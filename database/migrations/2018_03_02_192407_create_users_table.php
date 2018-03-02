@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->integer('id')->primary();
             $table->string('battletag', 255);
-            $table->string('main_character', 32);
+            $table->string('main_character', 32)->nullable();
             $table->boolean('is_officer')->default(false);
             $table->string('access_token', 255);
             $table->timestamps();
