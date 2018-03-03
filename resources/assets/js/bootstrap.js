@@ -54,3 +54,11 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/**
+ * We'll load in Google Analytics. This is used to track users throughout the
+ * application. It has some custom logic to set the client ID to the user's ID
+ * number.
+ */
+
+require('./google_analytics');
