@@ -151,7 +151,6 @@ return [
          * Package Service Providers...
          */
         SocialiteProviders\Manager\ServiceProvider::class,
-        Xklusive\BattlenetApi\BattlenetApiServiceProvider::class,
 
         /*
          * Application Service Providers...

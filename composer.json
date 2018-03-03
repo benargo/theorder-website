@@ -9,11 +9,11 @@
         "doctrine/dbal": "^2.6",
         "fideloper/proxy": "~4.0",
         "laravel/framework": "5.6.*",
+        "laravel/passport": "^5.0",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "marquine/eloquent-uuid": "^1.0",
-        "socialiteproviders/battlenet": "^2.0",
-        "xklusive/laravel-battlenet-api": "^1.0"
+        "socialiteproviders/battlenet": "^2.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
