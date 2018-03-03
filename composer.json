@@ -12,6 +12,7 @@
         "laravel/passport": "^5.0",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
+        "logansua/blizzard-api-client": "^2.0",
         "marquine/eloquent-uuid": "^1.0",
         "socialiteproviders/battlenet": "^2.0"
     },
