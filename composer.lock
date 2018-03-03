@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "22d863dc4bb5900783c63e46f973fbf3",
+    "content-hash": "4bb2506d5cd7f67ac40cd16107843a73",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -2598,6 +2598,43 @@
             ],
             "description": "Battlenet OAuth2 Provider for Laravel Socialite",
             "time": "2017-01-25T09:48:29+00:00"
+        },
+        {
+            "name": "socialiteproviders/discord",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Discord.git",
+                "reference": "f934ca3f4fa5ea915c1d20852b826e860aa64727"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Discord/zipball/f934ca3f4fa5ea915c1d20852b826e860aa64727",
+                "reference": "f934ca3f4fa5ea915c1d20852b826e860aa64727",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~2.0 || ~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Discord\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christopher Eklund",
+                    "email": "eklundchristopher@gmail.com"
+                }
+            ],
+            "description": "Discord OAuth2 Provider for Laravel Socialite",
+            "time": "2017-08-28T02:20:40+00:00"
         },
         {
             "name": "socialiteproviders/manager",
