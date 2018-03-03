@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::get('login', 'Auth\LoginController@redirectToProvider');
 Route::get('login/battlenet/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('logout', 'Auth\LogoutController@handleLogout');
