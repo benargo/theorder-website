@@ -9,6 +9,14 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import fontawesome from '@fortawesome/fontawesome';
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
+import { faDiscord, faFacebook } from '@fortawesome/fontawesome-free-brands';
+import { faBell as faBellRegular, faExternalLink, faHistory, } from '@fortawesome/fontawesome-pro-regular';
+import { faBell as faBellSolid, faHome } from '@fortawesome/fontawesome-pro-solid';
+
+fontawesome.library.add(faDiscord, faFacebook, faBellRegular, faExternalLink, faHistory, faBellSolid, faHome);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -16,7 +24,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
-const app = new Vue({
-    el: '#app'
+const navbar = new Vue({
+    el: '#navbar'
 });

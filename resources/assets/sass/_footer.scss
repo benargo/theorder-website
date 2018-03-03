@@ -1,0 +1,20 @@
+.footer {
+    color: rgba(255, 255, 255, 1);
+    padding: 20px;
+
+    .nav-item.copyright, .disclaimer {
+        padding: 0.5rem 1rem;
+    }
+    .nav-link, .cmtcloud-link {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    .nav-link:hover {
+        color: rgba(255, 255, 255, 0.75);
+    }
+    .cmtcloud-link:hover, .cmtcloud-period {
+        color: #00AFA5;
+    }
+    .cmtcloud-logo {
+        margin-bottom: 1rem;
+    }
+}

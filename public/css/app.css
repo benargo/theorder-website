@@ -10000,3 +10000,46 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.navbar-brand .home-icon {
+  visibility: hidden;
+}
+
+.navbar-brand:hover .home-icon {
+  visibility: visible;
+}
+
+.footer {
+  color: white;
+  padding: 20px;
+}
+
+.footer .nav-item.copyright,
+.footer .disclaimer {
+  padding: 0.5rem 1rem;
+}
+
+.footer .nav-link,
+.footer .cmtcloud-link {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer .nav-link:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.footer .cmtcloud-link:hover,
+.footer .cmtcloud-period {
+  color: #00AFA5;
+}
+
+.footer .cmtcloud-logo {
+  margin-bottom: 1rem;
+}
+
+#app {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: calc(100vh - 55px);
+}
+

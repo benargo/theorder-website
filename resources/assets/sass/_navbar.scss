@@ -1,0 +1,14 @@
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-brand {
+    .home-icon {
+        visibility: hidden;
+    }
+
+    &:hover .home-icon {
+        visibility: visible;
+    }
+}
