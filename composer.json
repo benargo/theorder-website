@@ -14,6 +14,7 @@
         "laravel/tinker": "~1.0",
         "logansua/blizzard-api-client": "^2.0",
         "marquine/eloquent-uuid": "^1.0",
+        "predis/predis": "^1.1",
         "socialiteproviders/battlenet": "^2.0"
     },
     "require-dev": {
