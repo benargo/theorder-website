@@ -12,8 +12,8 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "marquine/eloquent-uuid": "^1.0",
-        "pwnraid/bnet": "^0.1.1",
-        "socialiteproviders/battlenet": "^2.0"
+        "socialiteproviders/battlenet": "^2.0",
+        "xklusive/laravel-battlenet-api": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

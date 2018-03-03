@@ -14,6 +14,12 @@ return [
     |
     */
 
+    'battlenet' => [
+        'client_id' => env('BATTLENET_KEY'),
+        'client_secret' => env('BATTLENET_SECRET'),
+        'redirect' => env('BATTLENET_REDIRECT_URI'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
