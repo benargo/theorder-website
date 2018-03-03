@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('main_character', 32)->nullable();
             $table->boolean('is_officer')->default(false);
             $table->string('access_token', 255);
+            $table->rememberToken();
             $table->timestamps();
 
             $table->foreign('main_character')
