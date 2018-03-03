@@ -10037,9 +10037,77 @@ a.text-dark:focus {
 }
 
 #app {
+  min-height: calc(100vh - 54px);
+}
+
+a:hover {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.full-height:first-of-type {
+  min-height: calc(100vh - 54px);
+}
+
+.extra-padding-top {
+  padding-top: 50px;
+}
+
+.extra-padding-bottom {
+  padding-bottom: 50px;
+}
+
+.bg-guildshot-side {
+  background-color: #636b6f;
+  background-image: url(/images/bg_guildshot_side.jpg?e8c6b82142cb9af2d5fc0d7485930fa6);
+  background-position: center;
+}
+
+.bg-kitty-meeting {
+  background-color: #636b6f;
+  background-image: url(/images/bg_kitty_meeting.jpg?c012dac16375be6d49f55126120a0e07);
+  background-position: center;
+  background-size: cover;
+}
+
+.bg-garrison {
+  background-color: #636b6f;
+  background-image: url(/images/bg_garrison.jpg?831ae46ee528af7635ed355cdc6a8778);
+  background-position: center;
+  background-size: cover;
+}
+
+.welcome-home {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  min-height: calc(100vh - 55px);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.welcome-home .content {
+  text-align: center;
+}
+
+.officers-card {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px 0;
+}
+
+.officers-card .officers-card-body {
+  padding-left: 20px;
 }
 

@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@renderHomepage');
 
-Route::get('login', 'Auth\LoginController@redirectToProvider');
+Route::get('login', 'Auth\LoginController@redirectToProvider')
+    ->name('login');
+
 Route::get('login/battlenet/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('logout', 'Auth\LogoutController@handleLogout');

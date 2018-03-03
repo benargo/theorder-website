@@ -13,7 +13,7 @@
 
         <title>@yield('title')</title>
 
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="icon" sizes="192x192" href="{{ asset('images/app_icon_192.png') }}">
     </head>
     <body>
@@ -58,7 +58,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <font-awesome-icon :icon="['fas', 'bell']"></font-awesome-icon>
-                                <font-awesome-icon :icon="['far', 'bell']"></font-awesome-icon>
+                                {{-- <font-awesome-icon :icon="['far', 'bell']"></font-awesome-icon> --}}
                                 {{ __('navigation.notifications') }}
                                 <span class="badge badge-light">3</span>
                             </a>
@@ -78,9 +78,9 @@
                                 {{ str_before(Auth::user()->battletag, '#') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authDropdown">
-                                <a class="dropdown-item" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
+                                {{-- <a class="dropdown-item" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
                                 <a class="dropdown-item" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a>
-                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div> --}}
                                 <a class="dropdown-item" href="{{ url('logout') }}">{{ __('navigation.logout') }}</a>
                             </div>
                         </li>
@@ -93,14 +93,14 @@
             </div>
         </nav>
 
-        <div id="app" class="container-fluid">
-
+        <div id="app">
+            @yield('content')
         </div>
 
         <footer class="footer bg-dark">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-xs-12 col-md-10">
+                    <div class="col-12 col-md-10">
                         <ul class="nav">
                             <li class="nav-item copyright" rel="copyright">
                                 {!! __('footer.copyright', ['year' => date('Y')]) !!}
@@ -121,7 +121,7 @@
                             {!! __('footer.disclaimer.body') !!}
                         </p>
                     </div>
-                    <div class="col-xs-12 col-md-2 text-center">
+                    <div class="col-12 col-md-2 text-center">
                         <a class="cmtcloud-link" href="http://cmtcloud.uk" target="_blank">
                             <img class="cmtcloud-logo" src="{{ asset('images/cmtcloud_logo.svg') }}" alt="CMT Cloud Services Logo" height="39" />
                             <p>{!! __('footer.promotion') !!}</p>
