@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\GuildRoster;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Cache;
-use BlizzardApi\Service\WorldOfWarcraft;
 
 /**
  * Homepage Controller
@@ -14,35 +13,38 @@ use BlizzardApi\Service\WorldOfWarcraft;
 class HomeController extends Controller
 {
     /**
+     * Contains the Guild Roster instance.
+     *
+     * @var \App\Services\GuildRoster
+     */
+    protected $roster;
+
+    /**
+     * Construct the controller.
+     *
+     * @param  \App\Services\GuildRoster  $roster
+     * @return void
+     */
+    public function __construct(GuildRoster $roster)
+    {
+        $this->roster = $roster->getRoster('Silvermoon');
+    }
+
+    /**
      * Render the homepage.
      *
-     * @param  \BlizzardApi\Service\WorldOfWarcraft  $api
+     *
      * @return \Illuminate\Http\Response
      */
-    public function renderHomepage(WorldOfWarcraft $api)
+    public function renderHomepage()
     {
-        // Fetch the roster from the cache, or the Battle.net API...
-        $roster = Cache::get('roster', function () use ($api) {
-            $response = json_decode(
-                $api->getGuild('Silvermoon', 'The Road Less Travelled', ['fields' => 'members'])
-                    ->getBody()
-                    ->getContents()
-            );
-
-            $roster = collect($response->members);
-
-            Cache::put('roster', $roster, now()->addMinutes(30));
-
-            return $roster;
-        });
-
         // Pluck the guild master from the roster...
-        $guild_master = $roster->first(function ($item, $key) {
+        $guild_master = $this->roster->first(function ($item, $key) {
             return $item->rank == 0;
         });
 
         // Filter the roster to just include officers...
-        $officers = $roster->filter(function ($item, $key) {
+        $officers = $this->roster->filter(function ($item, $key) {
             return $item->rank == 2;
         })->sortBy('character.name');
 

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\GuildRoster;
 use BlizzardApi\BlizzardClient;
 use Illuminate\Support\ServiceProvider;
 use BlizzardApi\Service\WorldOfWarcraft;
@@ -32,8 +33,12 @@ class BattlenetServiceProvider extends ServiceProvider
             config('battlenet.locale')
         );
 
-        $this->app->singleton(WorldOfWarcraft::class, function ($app) use ($client) {
+        $this->app->singleton(WorldOfWarcraft::class, function () use ($client) {
             return new WorldOfWarcraft($client);
+        });
+
+        $this->app->singleton(GuildRoster::class, function ($app) {
+            return new GuildRoster($app->make(WorldOfWarcraft::class));
         });
     }
 }
