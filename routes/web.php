@@ -12,10 +12,8 @@
 */
 
 Route::get('/', 'HomeController@renderHomepage');
-
-Route::get('login', 'Auth\LoginController@redirectToProvider')
-    ->name('login');
-
+Route::get('discord', 'DiscordController@redirectToServer');
+Route::get('login', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/battlenet/callback', 'Auth\LoginController@handleProviderCallback');
-
+Route::get('login/discord/callback', 'DiscordController@handleProviderCallback');
 Route::get('logout', 'Auth\LogoutController@handleLogout');

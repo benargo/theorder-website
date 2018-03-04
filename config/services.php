@@ -21,9 +21,9 @@ return [
     ],
 
     'discord' => [
-        'client_id' => env('DISCORD_KEY'),
-        'client_secret' => env('DISCORD_SECRET'),
-        'redirect' => env('DISCORD_REDIRECT_URI'),
+        'client_id' => env('DISCORD_GUILDBOT_KEY'),
+        'client_secret' => env('DISCORD_GUILDBOT_SECRET'),
+        'redirect' => env('DISCORD_GUILDBOT_REDIRECT_URI'),
     ],
 
     'mailgun' => [
