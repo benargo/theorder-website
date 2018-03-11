@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $attributes = [
-        'is_officer' => 'false',
+        'is_officer' => false,
     ];
 
     /**
@@ -35,6 +35,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'id',
         'battletag',
         'access_token',
     ];

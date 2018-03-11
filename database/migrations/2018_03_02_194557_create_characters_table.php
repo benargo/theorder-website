@@ -15,10 +15,10 @@ class CreateCharactersTable extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->string('id', 32)->primary();
-            $table->string('region', 2);
+            $table->string('region', 2)->default('eu');
             $table->string('realm', 32);
             $table->string('name', 32);
-            $table->integer('user_id');
+            $table->integer('user_id')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
