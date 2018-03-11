@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="x-ga-property" content="UA-23790873-11">
         @if (Auth::check())
-            <meta name="x-ga-user-id" content="{{ Auth::user()->id }}">
+            <meta name="x-user-id" content="{{ Auth::user()->id }}">
         @endif
 
         <title>@yield('title')</title>
@@ -78,9 +78,12 @@
                                 {{ str_before(Auth::user()->battletag, '#') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authDropdown">
-                                {{-- <a class="dropdown-item" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
-                                <a class="dropdown-item" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a>
-                                <div class="dropdown-divider"></div> --}}
+                                @if (Auth::user()->is_officer)
+                                    <a class="dropdown-item" href="{{ url('officers') }}">{{ __('navigation.officers_cp') }}</a>
+                                @endif
+                                {{-- <a class="dropdown-item" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a> --}}
+                                {{-- <a class="dropdown-item" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a> --}}
+                                {{-- <div class="dropdown-divider"></div> --}}
                                 <a class="dropdown-item" href="{{ url('logout') }}">{{ __('navigation.logout') }}</a>
                             </div>
                         </li>
@@ -106,12 +109,12 @@
                                 {!! __('footer.copyright', ['year' => date('Y')]) !!}
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/legal/your-data">
+                                <a class="nav-link" href="{{ url('your-data') }}">
                                     {{ __('footer.privacy') }}
                                 </a>
                             </li>
 					        <li class="nav-item">
-                                <a class="nav-link" href="/legal/battlenet">
+                                <a class="nav-link" href="{{ url('battlenet') }}">
                                     {{ __('footer.battlenet') }}
                                 </a>
                             </li>

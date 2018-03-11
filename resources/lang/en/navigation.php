@@ -20,6 +20,7 @@ return [
     'notifications' => 'Notifications',
     'notifications_history' => 'Notifications History',
     'login' => 'Log In',
+    'officers_cp' => 'Officers\' Control Panel',
     'account_settings' => 'Account Settings',
     'character_select' => 'Character Select',
     'logout' => 'Log Out',
