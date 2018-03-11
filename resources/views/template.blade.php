@@ -108,7 +108,7 @@
                             <li class="nav-item copyright" rel="copyright">
                                 {!! __('footer.copyright', ['year' => date('Y')]) !!}
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link" href="{{ url('your-data') }}">
                                     {{ __('footer.privacy') }}
                                 </a>
@@ -117,7 +117,7 @@
                                 <a class="nav-link" href="{{ url('battlenet') }}">
                                     {{ __('footer.battlenet') }}
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                         <p class="disclaimer">
                             <strong>{{ __('footer.disclaimer.title') }}</strong>
