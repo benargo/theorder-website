@@ -11,6 +11,9 @@
 // Navbar
 @import 'navbar';
 
+// Character Select
+@import 'character_select';
+
 // Footer
 @import 'footer';
 
@@ -36,6 +39,18 @@ a:hover {
 .extra-padding-bottom {
     padding-bottom: 50px;
 }
+.bg-dark-portal {
+    background-color: #636b6f;
+    background-image: url('../images/bg_darkportal.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.bg-garrison {
+    background-color: #636b6f;
+    background-image: url('../images/bg_garrison.jpg');
+    background-position: center;
+    background-size: cover;
+}
 .bg-guildshot-side {
     background-color: #636b6f;
     background-image: url('../images/bg_guildshot_side.jpg');
@@ -44,12 +59,6 @@ a:hover {
 .bg-kitty-meeting {
     background-color: #636b6f;
     background-image: url('../images/bg_kitty_meeting.jpg');
-    background-position: center;
-    background-size: cover;
-}
-.bg-garrison {
-    background-color: #636b6f;
-    background-image: url('../images/bg_garrison.jpg');
     background-position: center;
     background-size: cover;
 }

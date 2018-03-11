@@ -9,6 +9,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import BootstrapVue from 'bootstrap-vue';
 import fontawesome from '@fortawesome/fontawesome';
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
 import { faDiscord, faFacebook } from '@fortawesome/fontawesome-free-brands';
@@ -23,9 +24,14 @@ fontawesome.library.add(faDiscord, faFacebook, faBellRegular, faExternalLink, fa
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.use(BootstrapVue);
+// Vue.component('character-select-button', require('./components/CharacterSelectButton.vue'));
+// Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue'));
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 const navbar = new Vue({
     el: '#navbar'
+});
+const app = new Vue({
+    el: '#app'
 });
