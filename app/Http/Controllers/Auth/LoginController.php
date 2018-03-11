@@ -74,10 +74,18 @@ class LoginController extends Controller
         $user = User::firstOrCreate(
             ['id' => $response->id],
             [
+                'id' => $response->id,
                 'battletag' => $response->nickname,
                 'access_token' => $response->token,
             ]
         );
+
+        // Update and save the access token in case it has changed...
+        $user->fill([
+            'battletag' => $response->nickname,
+            'access_token' => $response->token,
+        ]);
+        $user->save();
 
         // Login and "remember" the given user...
         Auth::login($user, true);
