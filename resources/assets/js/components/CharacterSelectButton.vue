@@ -1,5 +1,5 @@
 <template>
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-6 col-lg-4">
         <a class="character-select-button" href="#" role="button" @click.prevent="setPrimaryCharacter">
             <img class="character-select-avatar" :src="avatarUrl" alt="" width="84">
             <div class="character-select-body">

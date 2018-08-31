@@ -5,10 +5,10 @@
     .nav-item.copyright, .disclaimer {
         padding: 0.5rem 1rem;
     }
-    .nav-link, .cmtcloud-link {
+    .nav-link, .footer-link, .cmtcloud-link {
         color: rgba(255, 255, 255, 0.5);
     }
-    .nav-link:hover {
+    .nav-link:hover, .footer-link:hover {
         color: rgba(255, 255, 255, 0.75);
     }
     .cmtcloud-link:hover, .cmtcloud-period {

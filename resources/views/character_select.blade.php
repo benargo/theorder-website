@@ -31,7 +31,7 @@
                     </div>
 
                     @foreach ($characters->pull('Silvermoon') as $character)
-                        {{-- <character-select-button
+                        <character-select-button
                             name="{{ $character->name }}"
                             realm="{{ $character->realm }}"
                             summary="{{ __('account.character_summary', [
@@ -40,8 +40,8 @@
                                 'class' => $classes->getClass($character->class)->name,
                             ]) }}"
                             thumbnail="{{ $character->thumbnail }}">
-                        </character-select-button> --}}
-                        <div class="col-12 col-md-4">
+                        </character-select-button>
+                        {{-- <div class="col-12 col-md-6 col-lg-4">
                             <a class="character-select-button" href="#" role="button">
                                 <img class="character-select-avatar" src="https://render-api-eu.worldofwarcraft.com/static-render/eu/{{ $character->thumbnail }}" alt="" width="84">
                                 <div class="character-select-body">
@@ -55,7 +55,7 @@
                                     </p>
                                 </div>
                             </a>
-                        </div>
+                        </div> --}}
                     @endforeach
                 </div>
                 <div class="row">
@@ -64,7 +64,7 @@
                     </div>
 
                     @foreach ($characters->pull('Chamber of Aspects') as $character)
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-md-6 col-lg-4">
                             <a class="character-select-button" href="#" role="button">
                                 <img class="character-select-avatar" src="https://render-api-eu.worldofwarcraft.com/static-render/eu/{{ $character->thumbnail }}" alt="" width="84">
                                 <div class="character-select-body">
@@ -88,7 +88,7 @@
                         </div>
 
                         @foreach ($chars as $character)
-                            <div class="col-12 col-md-4">
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <a class="character-select-button" href="#" role="button">
                                     <img class="character-select-avatar" src="https://render-api-eu.worldofwarcraft.com/static-render/eu/{{ $character->thumbnail }}" alt="" width="84">
                                     <div class="character-select-body">

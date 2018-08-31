@@ -9,14 +9,14 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import BootstrapVue from 'bootstrap-vue';
-import fontawesome from '@fortawesome/fontawesome';
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
-import { faDiscord, faFacebook } from '@fortawesome/fontawesome-free-brands';
-import { faBell as faBellRegular, faExternalLink, faHistory, } from '@fortawesome/fontawesome-pro-regular';
-import { faBell as faBellSolid, faHome } from '@fortawesome/fontawesome-pro-solid';
+import BootstrapVue from 'bootstrap-vue'
+import { library as faLibrary } from '@fortawesome/fontawesome-svg-core'
+import { faDiscord, faFacebook } from '@fortawesome/free-brands-svg-icons'
+import { faBell as faBellRegular, faExternalLink, faHistory, } from '@fortawesome/pro-regular-svg-icons'
+import { faBell as faBellSolid, faHome } from '@fortawesome/pro-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-fontawesome.library.add(faDiscord, faFacebook, faBellRegular, faExternalLink, faHistory, faBellSolid, faHome);
+faLibrary.add(faDiscord, faFacebook, faBellRegular, faExternalLink, faHistory, faBellSolid, faHome);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -25,8 +25,8 @@ fontawesome.library.add(faDiscord, faFacebook, faBellRegular, faExternalLink, fa
  */
 
 Vue.use(BootstrapVue);
-// Vue.component('character-select-button', require('./components/CharacterSelectButton.vue'));
-// Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue'));
+Vue.component('character-select-button', require('./components/CharacterSelectButton.vue'));
+Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue'));
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 const navbar = new Vue({

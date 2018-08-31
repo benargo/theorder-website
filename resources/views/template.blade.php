@@ -78,12 +78,12 @@
                                 {{ str_before(Auth::user()->battletag, '#') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authDropdown">
+                                <a class="dropdown-item" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
+                                <a class="dropdown-item" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a>
                                 @if (Auth::user()->is_officer)
                                     <a class="dropdown-item" href="{{ url('officers') }}">{{ __('navigation.officers_cp') }}</a>
                                 @endif
-                                {{-- <a class="dropdown-item" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a> --}}
-                                {{-- <a class="dropdown-item" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a> --}}
-                                {{-- <div class="dropdown-divider"></div> --}}
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('logout') }}">{{ __('navigation.logout') }}</a>
                             </div>
                         </li>
