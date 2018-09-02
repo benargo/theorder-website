@@ -3,7 +3,7 @@
 @section('title', __('meta.title'))
 
 @section('content')
-    <div class="container-fluid full-height welcome-home bg-guildshot-side text-light">
+    <div class="container-fluid full-height welcome-home bg-goldshire text-light">
         <div class="content">
             <h1 class="display-2">
                 {{ __('meta.title') }}

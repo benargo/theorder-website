@@ -14,15 +14,14 @@ return [
 
     'roster' => 'Roster',
     'events' => 'Events',
-    'join' => 'Become a Member',
+    'marketplace' => 'Marketplace',
     'discord' => 'Discord',
-    'facebook' => 'Facebook Group',
+    'join' => 'Join The Order',
     'notifications' => 'Notifications',
     'notifications_history' => 'Notifications History',
     'login' => 'Log In',
     'officers_cp' => 'Officers\' Control Panel',
     'account_settings' => 'Account Settings',
-    'character_select' => 'Character Select',
     'logout' => 'Log Out',
     'language' => 'Language',
 

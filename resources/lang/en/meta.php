@@ -12,9 +12,10 @@ return [
     |
     */
 
-    'title' => 'The Road Less Travelled',
-    'short_title' => 'TRLT',
-    'realm' => 'Silvermoon-EU',
-    'description' => 'The Road Less Travelled is an eventful, vibrant, social World of Warcraft guild based on Silvermoon (EU).',
+    'title' => 'The Order',
+    'short_title' => 'The Order',
+    'motto' => 'Ex Umbras Percutitis',
+    'realm' => 'Nighthaven PvP',
+    'description' => 'The Order is an exclusive, secretive, and  World of Warcraft Classic guild. Currently based on Nighthaven PvP (part of the Elysium project).',
 
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -17,13 +18,6 @@ use Laravel\Socialite\Facades\Socialite;
  */
 class LoginController extends Controller
 {
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
-
     /**
      * Contains the socialite driver instance.
      *
@@ -42,7 +36,7 @@ class LoginController extends Controller
         $client_id = config('services.battlenet.client_id');
         $client_secret = config('services.battlenet.client_secret');
         $redirect = config('services.battlenet.redirect');
-        $additional_config = ['region' => 'eu'];
+        $additional_config = ['region' => config('battlenet.region')];
         $config = new Config($client_id, $client_secret, $redirect, $additional_config);
         $this->driver = Socialite::driver('battlenet')->setConfig($config);
     }
@@ -76,27 +70,22 @@ class LoginController extends Controller
             [
                 'id' => $response->id,
                 'battletag' => $response->nickname,
-                'access_token' => $response->token,
+                'bnet_access_token' => $response->token,
             ]
         );
 
         // Update and save the access token in case it has changed...
         $user->fill([
             'battletag' => $response->nickname,
-            'access_token' => $response->token,
+            'bnet_access_token' => $response->token,
+            'bnet_access_token_expires' => Carbon::now()->addDays(30);
         ]);
         $user->save();
 
         // Login and "remember" the given user...
         Auth::login($user, true);
 
-        // If there is no character selected, redirect them to the character
-        // select page...
-        // if (is_null($user->main_character)) {
-        //     return redirect()->route('character-select');
-        // }
-
-        // Otherwise, return them to the home page...
-        return redirect($this->redirectTo);
+        // Return them to the home page...
+        return redirect()->intended('/');
     }
 }

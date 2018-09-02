@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <font-awesome-icon :icon="['fas', 'home']" class="home-icon"></font-awesome-icon>
-                The Road Less Travelled
+                {{ __('meta.title') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,24 +29,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        {{-- <a class="nav-link" href="{{ url('roster') }}">{{ __('navigation.roster') }}</a> --}}
-                        <a class="nav-link" href="http://eu.battle.net/wow/en/guild/silvermoon/The_Road_Less_Travelled/roster">
-                            {{ __('navigation.roster') }}
-                        </a>
+                        <a class="nav-link" href="{{ url('roster') }}">{{ __('navigation.roster') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('events') }}">{{ __('navigation.events') }}</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ url('marketplace') }}">{{ __('navigation.marketplace') }}</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('discord') }}">
                             <font-awesome-icon :icon="['fab', 'discord']"></font-awesome-icon>
                             {{ __('navigation.discord') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://www.facebook.com/groups/1422789254626118/">
-                            <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
-                            {{ __('navigation.facebook') }}
                         </a>
                     </li>
                     <li class="nav-item">
@@ -80,9 +74,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authDropdown">
                                 <a class="dropdown-item" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
                                 <a class="dropdown-item" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a>
-                                @if (Auth::user()->is_officer)
-                                    <a class="dropdown-item" href="{{ url('officers') }}">{{ __('navigation.officers_cp') }}</a>
-                                @endif
+                                <a class="dropdown-item" href="{{ url('officers') }}">{{ __('navigation.officers_cp') }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('logout') }}">{{ __('navigation.logout') }}</a>
                             </div>
@@ -108,7 +100,7 @@
                             <li class="nav-item copyright" rel="copyright">
                                 {!! __('footer.copyright', ['year' => date('Y')]) !!}
                             </li>
-                            {{-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ url('your-data') }}">
                                     {{ __('footer.privacy') }}
                                 </a>
@@ -117,7 +109,7 @@
                                 <a class="nav-link" href="{{ url('battlenet') }}">
                                     {{ __('footer.battlenet') }}
                                 </a>
-                            </li> --}}
+                            </li>
                         </ul>
                         <p class="disclaimer">
                             <strong>{{ __('footer.disclaimer.title') }}</strong>
@@ -126,7 +118,7 @@
                     </div>
                     <div class="col-12 col-md-2 text-center">
                         <a class="cmtcloud-link" href="http://cmtcloud.uk" target="_blank">
-                            <img class="cmtcloud-logo" src="{{ asset('images/cmtcloud_logo.svg') }}" alt="CMT Cloud Services Logo" height="39" />
+                            <img class="cmtcloud-logo" src="{{ asset('images/cmtcloud_logo.svg') }}" alt="CMT Cloud Services logo" height="39" />
                             <p>{!! __('footer.promotion') !!}</p>
                         </a>
                     </div>
