@@ -4,29 +4,24 @@ namespace App\Models;
 
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, SoftDeletes;
 
     /**
-     * Default properties.
+     * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $attributes = [
-        'is_officer' => false,
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'is_officer' => 'boolean',
+    protected $dates = [
+        'bnet_access_token_expires',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -37,7 +32,8 @@ class User extends Authenticatable
     protected $fillable = [
         'id',
         'battletag',
-        'access_token',
+        'bnet_access_token',
+        'bnet_access_token_expires',
     ];
 
     /**
@@ -46,7 +42,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'access_token',
+        'bnet_access_token',
     ];
 
     /**
@@ -111,6 +107,8 @@ class User extends Authenticatable
 
     /**
      * Get all the characters associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function characters()
     {
