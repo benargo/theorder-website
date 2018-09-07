@@ -14,11 +14,11 @@ class CreateCharactersTable extends Migration
     public function up()
     {
         Schema::create('characters', function (Blueprint $table) {
-            $table->increments('id')->primary();
+            $table->increments('id');
             $table->string('region', 2)->default('eu');
             $table->string('realm', 32);
             $table->string('name', 32);
-            $table->integer('user_id', 16)->nullable();
+            $table->integer('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
