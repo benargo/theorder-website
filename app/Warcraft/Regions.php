@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Battlenet;
+namespace App\Warcraft;
 
 trait Regions
 {
