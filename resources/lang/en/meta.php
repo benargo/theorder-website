@@ -16,6 +16,6 @@ return [
     'short_title' => 'The Order',
     'motto' => 'Ex Umbras Percutitis',
     'realm' => 'Nighthaven PvP',
-    'description' => 'The Order is an exclusive, secretive, and  World of Warcraft Classic guild. Currently based on Nighthaven PvP (part of the Elysium project).',
+    'description' => 'The Order is an exclusive and secretive World of Warcraft Classic raiding guild. Currently based on Nighthaven PvP (part of the Elysium project).',
 
 ];

@@ -87,9 +87,9 @@
                 </ul>
             </div>
         </nav>
-
-        <div id="app">
-            @yield('content')
+            @section('content')
+                <div id="app"></div>
+            @show
         </div>
 
         <footer class="footer bg-dark">

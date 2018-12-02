@@ -34,10 +34,10 @@ a:hover {
     }
 }
 .extra-padding-top {
-    padding-top: 50px;
+    padding-top: 100px;
 }
 .extra-padding-bottom {
-    padding-bottom: 50px;
+    padding-bottom: 100px;
 }
 .bg-dark-portal {
     background-color: #636b6f;
@@ -62,28 +62,107 @@ a:hover {
     background-position: center;
     background-size: cover;
 }
-.bg-kitty-meeting {
+.bg-homepage-inner-circle {
     background-color: #636b6f;
-    background-image: url('../images/bg_kitty_meeting.jpg');
-    background-position: center;
+    background-image: url('../images/bg_homepage_inner_circle.jpg');
+    background-position: bottom center;
     background-size: cover;
 }
-.welcome-home {
-    align-items: center;
-    display: flex;
-    justify-content: center;
+.class-icons {
+    .class-icon {
+        height: 56px;
+        object-fit: none;
+        width: 56px;
 
-    .content {
-        text-align: center;
+        &.class-icon-druid {
+            object-position: 0 0;
+
+            &.class-icon-closed {
+                object-position: 0 66px;
+            }
+        }
+        &.class-icon-hunter {
+            object-position: -66px 0;
+
+            &.class-icon-closed {
+                object-position: -66px -66px;
+            }
+        }
+        &.class-icon-mage {
+            object-position: -132px 0;
+
+            &.class-icon-closed {
+                object-position: -132px -66px;
+            }
+        }
+        &.class-icon-paladin {
+            object-position: -198px 0;
+
+            &.class-icon-closed {
+                object-position: -198px -66px;
+            }
+        }
+        &.class-icon-priest {
+            object-position: -264px 0;
+
+            &.class-icon-closed {
+                object-position: -264px -66px;
+            }
+        }
+        &.class-icon-rogue {
+            object-position: -330px 0;
+
+            &.class-icon-closed {
+                object-position: -330px -66px;
+            }
+        }
+        &.class-icon-warlock {
+            object-position: -396px 0;
+
+            &.class-icon-closed {
+                object-position: -396px -66px;
+            }
+        }
+        &.class-icon-warrior {
+            object-position: -462px 0;
+
+            &.class-icon-closed {
+                object-position: -462px -66px;
+            }
+        }
     }
 }
-.officers-card {
-    align-items: center;
-    display: flex;
-    // justify-content: center;
-    margin: 20px 0;
+.page-home {
+    p {
+        font-size: 1.125rem;
+    }
+    .section-fs-splash {
+        align-items: center;
+        display: flex;
+        justify-content: center;
 
-    .officers-card-body {
-        padding-left: 20px;
+        .content {
+            text-align: center;
+        }
+    }
+    .section-introduction .container .col-12 {
+        align-items: center;
+        display: flex;
+
+        article.article-introduction {
+            margin-right: 10px;
+
+            p {
+                font-weight: 300;
+                text-align: justify;
+            }
+        }
+        img.image-guild-emblem {
+            margin-left: 10px;
+        }
+
+    }
+    .section-inner-circle {
+        height: 1000px;
     }
 }

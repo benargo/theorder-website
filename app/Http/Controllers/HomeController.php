@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\GuildRoster;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 /**
@@ -12,45 +13,39 @@ use App\Http\Controllers\Controller;
  */
 class HomeController extends Controller
 {
-    /**
-     * Contains the Guild Roster instance.
-     *
-     * @var \App\Services\GuildRoster
-     */
-    protected $roster;
-
-    /**
-     * Construct the controller.
-     *
-     * @param  \App\Services\GuildRoster  $roster
-     * @return void
-     */
-    public function __construct(GuildRoster $roster)
-    {
-        $this->roster = $roster->getRoster('Silvermoon');
-    }
+    // /**
+    //  * Contains the Guild Roster instance.
+    //  *
+    //  * @var \App\Services\GuildRoster
+    //  */
+    // protected $roster;
+    //
+    // /**
+    //  * Construct the controller.
+    //  *
+    //  * @param  \App\Services\GuildRoster  $roster
+    //  * @return void
+    //  */
+    // public function __construct(GuildRoster $roster)
+    // {
+    //     $this->roster = $roster->getRoster('Silvermoon');
+    // }
 
     /**
      * Render the homepage.
-     *
      *
      * @return \Illuminate\Http\Response
      */
     public function renderHomepage()
     {
-        // Pluck the guild master from the roster...
-        $guild_master = $this->roster->first(function ($item, $key) {
-            return $item->rank == 0;
-        });
-
-        // Filter the roster to just include officers...
-        $officers = $this->roster->filter(function ($item, $key) {
-            return $item->rank == 2;
-        })->sortBy('character.name');
+        $recruiting_classes = DB::table('wow_classes')
+            ->select('name', 'is_recruiting')
+            ->where('is_recruiting', true)
+            ->orderBy('name', 'asc')
+            ->get();
 
         return view('home', [
-            'guild_master' => $guild_master,
-            'officers' => $officers,
+            'recruiting_classes' => $recruiting_classes,
         ]);
     }
 }
