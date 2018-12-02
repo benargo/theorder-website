@@ -17,7 +17,7 @@ return [
 
     'disclaimer' => [
         'title' => 'Disclaimer:',
-        'body' => 'Classic is a trademark, and World of Warcraft and Warcraft are trademarks or registered trademarks of Blizzard Entertainment, Inc., in the U.S. and/or other countries.<br/>All related materials, logos, and images are copyright &copy; Blizzard Entertainment, Inc.. The Road Less Travelled is in no way associated with or endorsed by Blizzard Entertainment.',
+        'body' => 'Classic is a trademark, and World of Warcraft and Warcraft are trademarks or registered trademarks of Blizzard Entertainment, Inc., in the U.S. and/or other countries.<br/>All related materials, logos, and images are copyright &copy; Blizzard Entertainment, Inc.. The Order is in no way associated with or endorsed by Blizzard Entertainment.',
     ],
     'promotion' => 'Website hosted by <strong>CMT Cloud<span class="cmtcloud-period">.</span></strong>',
 
