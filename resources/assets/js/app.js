@@ -5,11 +5,12 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./bootstrap')
 
-window.Vue = require('vue');
+window.Vue = require('vue')
 
 import BootstrapVue from 'bootstrap-vue'
+import FlagIcon from 'vue-flag-icon'
 import { library as faLibrary } from '@fortawesome/fontawesome-svg-core'
 import { faDiscord, faFacebook } from '@fortawesome/free-brands-svg-icons'
 // import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
@@ -36,6 +37,7 @@ faLibrary.add(
  */
 
 Vue.use(BootstrapVue)
+Vue.use(FlagIcon)
 Vue.component('character-select-button', require('./components/CharacterSelectButton.vue'))
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue'))
 Vue.component('font-awesome-icon', FontAwesomeIcon)

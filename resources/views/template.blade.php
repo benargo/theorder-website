@@ -17,7 +17,7 @@
         <link rel="icon" sizes="192x192" href="{{ asset('images/app_icon_192.png') }}">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+        <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <font-awesome-icon :icon="['fas', 'home']" class="home-icon"></font-awesome-icon>
                 {{ __('meta.title') }}
@@ -92,7 +92,7 @@
             @show
         </div>
 
-        <footer class="footer bg-dark">
+        <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-10">
@@ -116,7 +116,7 @@
                             {!! __('footer.disclaimer.body') !!}
                         </p>
                     </div>
-                    <div class="col-12 col-md-2 text-center">
+                    <div class="col-12 col-md-2 cmtcloud-column text-center">
                         <a class="cmtcloud-link" href="http://cmtcloud.uk" target="_blank">
                             <img class="cmtcloud-logo" src="{{ asset('images/cmtcloud_logo.svg') }}" alt="CMT Cloud Services logo" height="39" />
                             <p>{!! __('footer.promotion') !!}</p>

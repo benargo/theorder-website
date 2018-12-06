@@ -8,24 +8,13 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Navbar
-@import 'navbar';
-
-// Character Select
-@import 'character_select';
-
-// Footer
-@import 'footer';
-
 #app {
     // display: flex;
     min-height: calc(100vh - 54px);
 }
 a:hover {
-    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
 }
-
 .full-height {
     min-height: 100vh;
 
@@ -56,17 +45,32 @@ a:hover {
     background-position: center;
     background-size: cover;
 }
-.bg-guildshot-side {
-    background-color: #636b6f;
-    background-image: url('../images/bg_guildshot_side.jpg');
-    background-position: center;
-    background-size: cover;
-}
 .bg-homepage-inner-circle {
     background-color: #636b6f;
     background-image: url('../images/bg_homepage_inner_circle.jpg');
-    background-position: bottom center;
+    background-position: top center;
     background-size: cover;
+}
+.bg-homepage-inner-circle-introduction {
+    background: rgb(98,130,143);
+    background: linear-gradient(180deg, rgba(98,130,143,0.9) 0%, rgba(98,130,143,0.6) 80%, rgba(98,130,143,0) 100%);
+}
+.v-align-center {
+    align-items: center;
+    display: flex;
+}
+.v-align-bottom {
+    align-items: flex-end;
+    display: flex;
+}
+.z-index-1 {
+    z-index: 101;
+}
+.z-index-2 {
+    z-index: 102;
+}
+.z-index-3 {
+    z-index: 103;
 }
 .class-icons {
     .class-icon {
@@ -132,37 +136,17 @@ a:hover {
         }
     }
 }
-.page-home {
-    p {
-        font-size: 1.125rem;
-    }
-    .section-fs-splash {
-        align-items: center;
-        display: flex;
-        justify-content: center;
 
-        .content {
-            text-align: center;
-        }
-    }
-    .section-introduction .container .col-12 {
-        align-items: center;
-        display: flex;
 
-        article.article-introduction {
-            margin-right: 10px;
+/**
+ * Components
+ */
 
-            p {
-                font-weight: 300;
-                text-align: justify;
-            }
-        }
-        img.image-guild-emblem {
-            margin-left: 10px;
-        }
+@import 'navbar';
+@import 'footer';
 
-    }
-    .section-inner-circle {
-        height: 1000px;
-    }
-}
+/**
+ * Pages
+ */
+@import 'character_select';
+@import 'home';

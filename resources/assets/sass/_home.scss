@@ -1,0 +1,90 @@
+.page-home {
+    p {
+        font-size: 1.125rem;
+    }
+    .section-fs-splash {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        .content {
+            text-align: center;
+        }
+    }
+    .section-introduction {
+        article.article-introduction {
+            h2 {
+                margin-top: 1.0rem;
+            }
+            p {
+                font-weight: 300;
+                text-align: justify;
+            }
+        }
+        img.image-guild-emblem {
+            margin: 0 auto;
+        }
+    }
+    .section-inner-circle {
+        .inner-circle-image-wrapper {
+            position: relative;
+            height: 400px;
+            margin: 0 0 2rem;
+        }
+        .image-inner-circle {
+            margin: 0 auto;
+            overflow: visible;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+
+            &[alt="Alex"] {
+                -webkit-transform: translateX(-42.5%);
+                transform: translateX(-42.5%);
+            }
+
+            &[alt="Andy"], &[alt="Ben"], &[alt="Sam"] {
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+            }
+
+            &[alt="Tommy"] {
+                -webkit-transform: translateX(-75%);
+                transform: translateX(-75%);
+            }
+        }
+        .carousel {
+            width: 100%;
+
+            .carousel-item {
+                padding: 25px 0;
+
+                .carousel-image-wrapper {
+                    position: relative;
+                    height: 400px;
+                    margin: 0 1rem;
+
+                    .carousel-image-inner-circle {
+                        height: 375px;
+                        margin: 0 auto;
+                        overflow: hidden;
+                        padding: 0 1rem;
+                        position: absolute;
+                        bottom: 0;
+                        left: 50%;
+                        -webkit-transform: translateX(-50%);
+                        transform: translateX(-50%);
+                    }
+                }
+
+                .carousel-caption {
+                    position: static;
+
+                    p {
+                        margin-bottom: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+}
