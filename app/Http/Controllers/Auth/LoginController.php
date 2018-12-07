@@ -78,7 +78,7 @@ class LoginController extends Controller
         $user->fill([
             'battletag' => $response->nickname,
             'bnet_access_token' => $response->token,
-            'bnet_access_token_expires' => Carbon::now()->addDays(30);
+            'bnet_access_token_expires' => Carbon::now()->addDays(30)
         ]);
         $user->save();
 
