@@ -32,6 +32,9 @@
                         <a class="nav-link" href="{{ url('roster') }}">{{ __('navigation.roster') }}</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ url('news') }}">{{ __('navigation.news') }}</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('events') }}">{{ __('navigation.events') }}</a>
                     </li>
                     <li class="nav-item">
@@ -39,7 +42,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('discord') }}">
-                            <font-awesome-icon :icon="['fab', 'discord']"></font-awesome-icon>
+                            <font-awesome-icon :icon="['fab', 'discord']" class="nav-icon"></font-awesome-icon>
                             {{ __('navigation.discord') }}
                         </a>
                     </li>
@@ -51,17 +54,17 @@
                     @if (Auth::check())
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <font-awesome-icon :icon="['fas', 'bell']"></font-awesome-icon>
+                                <font-awesome-icon :icon="['fas', 'bell']" class="nav-icon"></font-awesome-icon>
                                 {{-- <font-awesome-icon :icon="['far', 'bell']"></font-awesome-icon> --}}
                                 {{ __('navigation.notifications') }}
                                 <span class="badge badge-light">3</span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authDropdown">
-                                <a class="dropdown-item" href="/notifications/id">Select your Guild Event for April</a>
-                                <a class="dropdown-item" href="/notifications/id">New application received: Animorphus</a>
-                                <a class="dropdown-item" href="/notifications/id">Upcoming Event: Timewalking</a>
+                            <div class="dropdown-menu dropdown-menu-right bg-brown" aria-labelledby="authDropdown">
+                                <a class="dropdown-item nav-link" href="/notifications/id">Select your Guild Event for April</a>
+                                <a class="dropdown-item nav-link" href="/notifications/id">New application received: Animorphus</a>
+                                <a class="dropdown-item nav-link" href="/notifications/id">Upcoming Event: Timewalking</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/notifications">
+                                <a class="dropdown-item nav-link" href="/notifications">
                                     <font-awesome-icon :icon="['far', 'history']"></font-awesome-icon>
                                     {{ __('navigation.notifications_history') }}
                                 </a>
@@ -71,12 +74,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ str_before(Auth::user()->battletag, '#') }}
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="authDropdown">
-                                <a class="dropdown-item" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
-                                <a class="dropdown-item" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a>
-                                <a class="dropdown-item" href="{{ url('officers') }}">{{ __('navigation.officers_cp') }}</a>
+                            <div class="dropdown-menu dropdown-menu-right bg-brown" aria-labelledby="authDropdown">
+                                <a class="dropdown-item nav-link" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
+                                <a class="dropdown-item nav-link" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a>
+                                <a class="dropdown-item nav-link" href="{{ url('officers') }}">{{ __('navigation.officers_control_panel') }}</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ url('logout') }}">{{ __('navigation.logout') }}</a>
+                                <a class="dropdown-item nav-link" href="{{ url('logout') }}">{{ __('navigation.logout') }}</a>
                             </div>
                         </li>
                     @else

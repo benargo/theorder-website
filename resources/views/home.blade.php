@@ -43,7 +43,7 @@
         <div class="section-inner-circle bg-homepage-inner-circle text-light extra-padding-bottom">
             <div class="bg-homepage-inner-circle-introduction">
                 <div class="container">
-                    <div class="row extra-padding-top">
+                    <div class="row extra-padding-top extra-padding-bottom">
                         <div class="col-12">
                             <h2>{{ __('home.meet_the_inner_circle') }}</h2>
                             {!! __('home.inner_circle_introduction') !!}

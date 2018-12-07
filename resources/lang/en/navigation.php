@@ -13,15 +13,18 @@ return [
     */
 
     'roster' => 'Roster',
+    'news' => 'News',
     'events' => 'Events',
+    'teams' => 'Teams',
     'marketplace' => 'Marketplace',
     'discord' => 'Discord',
     'join' => 'Join The Order',
     'notifications' => 'Notifications',
     'notifications_history' => 'Notifications History',
     'login' => 'Log In',
-    'officers_cp' => 'Officers\' Control Panel',
     'account_settings' => 'Account Settings',
+    'character_select' => 'Character Select',
+    'officers_control_panel' => 'Officers\' Control Panel',
     'logout' => 'Log Out',
     'language' => 'Language',
 

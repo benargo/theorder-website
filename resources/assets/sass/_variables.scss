@@ -10,3 +10,15 @@ $line-height-base: 1.6;
 // Colours
 $primary: #f8b700;
 $secondary: #504137;
+$brown: #231a13;
+
+$theme-colors: () !default;
+
+$theme-colors: map-merge(
+    (
+        "primary": $primary,
+        "secondary": $secondary,
+        "brown": $brown
+    ),
+    $theme-colors
+);

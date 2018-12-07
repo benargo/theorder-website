@@ -1,8 +1,3 @@
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
 .navbar-brand {
     .home-icon {
         visibility: hidden;
@@ -10,5 +5,21 @@
 
     &:hover .home-icon {
         visibility: visible;
+    }
+}
+.nav-icon {
+    margin-right: 0.25rem;
+}
+.nav-item {
+    span.badge {
+        margin-left: 0.5rem;
+        vertical-align: text-bottom;
+    }
+    .dropdown-item:hover,
+    .dropdown-item:focus {
+        background-color: lighten($brown, 5%);
+    }
+    .dropdown-divider {
+        border-top-color: lighten($brown, 20%);
     }
 }
