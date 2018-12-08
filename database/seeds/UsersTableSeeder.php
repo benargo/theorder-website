@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'id' => 1922840,
+            'battletag' => 'Animorphus#2491',
         ]);
     }
 }

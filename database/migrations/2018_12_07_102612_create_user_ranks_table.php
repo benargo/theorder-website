@@ -17,6 +17,8 @@ class CreateUserRanksTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('seniority');
+            $table->integer('kudos_per_day')->default(0);
+            $table->integer('kudos_required')->default(0);
             $table->timestamps();
         });
 
@@ -36,6 +38,10 @@ class CreateUserRanksTable extends Migration
      */
     public function down()
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_rank_id_foreign');
+        });
+
         Schema::dropIfExists('user_ranks');
     }
 }

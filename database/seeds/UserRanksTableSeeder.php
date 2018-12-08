@@ -28,7 +28,7 @@ class UserRanksTableSeeder extends Seeder
             ['title' => 'Member', 'seniority' => 5],
             ['title' => 'Initiate', 'seniority' => 6],
             // ['title' => 'Retired Member', 'seniority' => 8],
-            ['title' => 'Applicant', 'seniority' => 9]
+            ['title' => 'Applicant', 'seniority' => 9],
             ['title' => 'Expelled Member', 'seniority' => 10],
         ]);
     }
