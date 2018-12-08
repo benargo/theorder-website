@@ -18,7 +18,7 @@ class CreateCharactersTable extends Migration
             $table->string('region', 2)->default('eu');
             $table->string('realm', 32);
             $table->string('name', 32);
-            $table->integer('user_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
