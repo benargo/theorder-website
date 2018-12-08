@@ -14,7 +14,7 @@
                 </h2>
             </div>
         </div>
-        <div class="extra-padding-top extra-padding-bottom section-introduction text-light">
+        <div class="bg-brown-texture extra-padding-top extra-padding-bottom section-introduction text-light">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-4 v-align-center">
