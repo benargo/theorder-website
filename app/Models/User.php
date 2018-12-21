@@ -43,6 +43,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'bnet_access_token',
+        'bnet_access_token_expires',
     ];
 
     /**
@@ -107,11 +108,17 @@ class User extends Authenticatable
 
     /**
      * Get all the characters associated with the user.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function characters()
     {
         return $this->hasMany('App\Models\Character');
+    }
+
+    /**
+     * Get the kudos awarded to the user.
+     */
+    public function kudos()
+    {
+        return $this->hasMany('App\Models\Kudos', 'awarded_to_user_id');
     }
 }

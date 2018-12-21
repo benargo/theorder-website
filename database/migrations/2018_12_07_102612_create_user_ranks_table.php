@@ -17,8 +17,8 @@ class CreateUserRanksTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('seniority');
-            $table->integer('kudos_per_day')->default(0);
-            $table->integer('kudos_required')->default(0);
+            $table->unsignedInteger('kudos_per_day')->default(0)->nullable();
+            $table->unsignedInteger('kudos_required')->default(0);
             $table->timestamps();
         });
 
