@@ -21,6 +21,10 @@ return [
     ],
 
     'discord' => [
+        // Used by Autokin notifications...
+        'token' => env('DISCORD_AUTOKIN_TOKEN'),
+
+        // Used by The Order for authentication...
         'client_id' => env('DISCORD_GUILDBOT_KEY'),
         'client_secret' => env('DISCORD_GUILDBOT_SECRET'),
         'redirect' => env('DISCORD_GUILDBOT_REDIRECT_URI'),

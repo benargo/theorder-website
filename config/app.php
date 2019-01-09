@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        NotificationChannels\Discord\DiscordServiceProvider::class,
         SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
