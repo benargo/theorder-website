@@ -51,7 +51,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav">
-                    @if (Auth::check())
+                    @if ($user)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <font-awesome-icon :icon="['fas', 'bell']" class="nav-icon"></font-awesome-icon>
@@ -72,7 +72,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ str_before(Auth::user()->battletag, '#') }}
+                                {{ str_before($user->battletag, '#') }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right bg-brown" aria-labelledby="authDropdown">
                                 <a class="dropdown-item nav-link" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
