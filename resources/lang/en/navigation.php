@@ -14,6 +14,7 @@ return [
 
     'roster' => 'Roster',
     'news' => 'News',
+    'forum' => 'Forum',
     'events' => 'Events',
     'teams' => 'Teams',
     'marketplace' => 'Marketplace',

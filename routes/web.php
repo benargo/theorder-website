@@ -28,7 +28,7 @@ Route::get('account/character-select', 'Account\CharacterSelectController@showCh
  |--------------------------------------------------------------------------
  */
 Route::get('discord', 'DiscordController@redirectToServer');
-Route::get('login/discord/callback', 'DiscordController@handleProviderCallback');
+Route::get('oauth2/discord', 'DiscordController@handleProviderCallback');
 
 /*
  |--------------------------------------------------------------------------
@@ -36,6 +36,7 @@ Route::get('login/discord/callback', 'DiscordController@handleProviderCallback')
  |--------------------------------------------------------------------------
  */
 Route::get('login', 'Auth\LoginController@redirectToProvider')
-    ->name('login');
-Route::get('login/battlenet/callback', 'Auth\LoginController@handleProviderCallback');
+    ->name('login.auth');
+Route::get('oauth2/battlenet', 'Auth\LoginController@handleProviderCallback')
+    ->name('login.callback');
 Route::get('logout', 'Auth\LogoutController@handleLogout');

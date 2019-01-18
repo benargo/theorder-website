@@ -5,6 +5,7 @@ namespace App\Http\View\Composers;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class TemplateComposer
 {
@@ -35,8 +36,10 @@ class TemplateComposer
      */
     public function compose(View $view)
     {
-        // Share the total number of kudos the user has received...
-        $view->with('user_kudos_count', $this->user->kudos()->count());
+        if ($this->user instanceof Authenticatable) {
+            // Share the total number of kudos the user has received...
+            $view->with('user_kudos_count', $this->user->kudos()->count());
+        }
 
         // Determine how many kudos the user has to give out today...
     }

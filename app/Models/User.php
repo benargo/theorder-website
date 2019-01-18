@@ -121,4 +121,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Kudos', 'awarded_to_user_id');
     }
+
+    /**
+     * Gets the rank for the user.
+     */
+    public function rank()
+    {
+        return $this->belongsTo('App\Models\Rank');
+    }
 }
