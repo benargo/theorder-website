@@ -16,10 +16,11 @@ use GuzzleHttp\Command\Exception\CommandException;
  */
 class DiscordController extends Controller
 {
+    const CHANNEL = 'https://discordapp.com/channels/241543479602315264/';
+    const GUILD_ID = 241543479602315264;
+
     /**
      * Redirects the user to the Discord server.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function redirectToServer()
     {
@@ -35,7 +36,7 @@ class DiscordController extends Controller
 
         try {
             $discord->guild->addGuildMember([
-                'guild.id' => 241543479602315264,
+                'guild.id' => self::GUILD_ID,
                 'user.id' => intval($user->id),
                 'access_token' => $user->token,
             ]);
@@ -44,13 +45,11 @@ class DiscordController extends Controller
             //
         }
 
-        return redirect('https://discordapp.com/channels/241543479602315264/');
+        return redirect(self::CHANNEL);
     }
 
     /**
      * Obtain the user information from Discord.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function handleProviderCallback()
     {
