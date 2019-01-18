@@ -25,7 +25,7 @@ return [
     'login' => 'Log In',
     'account_settings' => 'Account Settings',
     'character_select' => 'Character Select',
-    'officers_control_panel' => 'Officers\' Control Panel',
+    'officers_control_panel' => 'Inner Circle Control Panel',
     'logout' => 'Log Out',
     'language' => 'Language',
 

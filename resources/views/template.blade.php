@@ -7,8 +7,8 @@
         <meta name="description" content="{{ __('meta.description') }}">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="x-ga-property" content="UA-23790873-11">
-        @if (Auth::check())
-            <meta name="x-user-id" content="{{ Auth::user()->id }}">
+        @if ($user)
+            <meta name="x-user-id" content="{{ $user->id }}">
         @endif
 
         <title>@yield('title')</title>
@@ -28,17 +28,41 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="{{ url('roster') }}">
+                            <font-awesome-icon :icon="['far', 'address-book']" class="nav-icon"></font-awesome-icon>
+                            {{ __('navigation.roster') }}
+                        </a>
+                    </li> --}}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('roster') }}">{{ __('navigation.roster') }}</a>
+                        <a class="nav-link" href="{{ url('news') }}">
+                            <font-awesome-icon :icon="['far', 'newspaper']" class="nav-icon"></font-awesome-icon>
+                            {{ __('navigation.news') }}
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="{{ url('forum') }}">
+                            <font-awesome-icon :icon="['far', 'comments']" class="nav-icon"></font-awesome-icon>
+                            {{ __('navigation.forum') }}
+                        </a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('events') }}">
+                            <font-awesome-icon :icon="['far', 'calendar-alt']" class="nav-icon"></font-awesome-icon>
+                            {{ __('navigation.events') }}
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('news') }}">{{ __('navigation.news') }}</a>
+                        <a class="nav-link" href="{{ url('teams') }}">
+                            <font-awesome-icon :icon="['far', 'helmet-battle']" class="nav-icon"></font-awesome-icon>
+                            {{ __('navigation.teams') }}
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('events') }}">{{ __('navigation.events') }}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('marketplace') }}">{{ __('navigation.marketplace') }}</a>
+                        <a class="nav-link" href="{{ url('marketplace') }}">
+                            <font-awesome-icon :icon="['far', 'balance-scale']" class="nav-icon"></font-awesome-icon>
+                            {{ __('navigation.marketplace') }}
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('discord') }}">
@@ -47,29 +71,21 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('join') }}">{{ __('navigation.join') }}</a>
+                        <a class="nav-link" href="{{ url('join') }}">
+                            <font-awesome-icon :icon="['far', 'user-plus']" class="nav-icon"></font-awesome-icon>
+                            {{ __('navigation.join') }}
+                        </a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
                     @if ($user)
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <font-awesome-icon :icon="['fas', 'bell']" class="nav-icon"></font-awesome-icon>
-                                {{-- <font-awesome-icon :icon="['far', 'bell']"></font-awesome-icon> --}}
-                                {{ __('navigation.notifications') }}
-                                <span class="badge badge-light">3</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right bg-brown" aria-labelledby="authDropdown">
-                                <a class="dropdown-item nav-link" href="/notifications/id">Select your Guild Event for April</a>
-                                <a class="dropdown-item nav-link" href="/notifications/id">New application received: Animorphus</a>
-                                <a class="dropdown-item nav-link" href="/notifications/id">Upcoming Event: Timewalking</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item nav-link" href="/notifications">
-                                    <font-awesome-icon :icon="['far', 'history']"></font-awesome-icon>
-                                    {{ __('navigation.notifications_history') }}
-                                </a>
-                            </div>
-                        </li>
+                        <notifications-menu-item
+                            :lang="{
+                                notifications: '{{ __('navigation.notifications') }}',
+                                notifications_history: '{{ __('navigation.notifications_history') }}'
+                            }"
+                            :number-unread="3"
+                        ></notifications-menu-item>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ str_before($user->battletag, '#') }}
@@ -77,14 +93,16 @@
                             <div class="dropdown-menu dropdown-menu-right bg-brown" aria-labelledby="authDropdown">
                                 <a class="dropdown-item nav-link" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
                                 <a class="dropdown-item nav-link" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a>
-                                <a class="dropdown-item nav-link" href="{{ url('officers') }}">{{ __('navigation.officers_control_panel') }}</a>
+                                @if ($user->rank->seniority <= 1)
+                                    <a class="dropdown-item nav-link" href="{{ url('officers') }}">{{ __('navigation.officers_control_panel') }}</a>
+                                @endif
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item nav-link" href="{{ url('logout') }}">{{ __('navigation.logout') }}</a>
                             </div>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link btn btn-sm btn-outline-secondary" href="{{ url('login') }}">{{ __('navigation.login') }}</a>
+                            <a class="nav-link btn btn-sm btn-outline-secondary" href="{{ route('login.auth') }}">{{ __('navigation.login') }}</a>
                         </li>
                     @endif
                 </ul>

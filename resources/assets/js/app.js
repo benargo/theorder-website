@@ -13,21 +13,28 @@ import BootstrapVue from 'bootstrap-vue'
 import FlagIcon from 'vue-flag-icon'
 import { library as faLibrary } from '@fortawesome/fontawesome-svg-core'
 import { faDiscord, faFacebook } from '@fortawesome/free-brands-svg-icons'
-// import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-import { faBell as faBellRegular, faExternalLink, faHistory, } from '@fortawesome/pro-regular-svg-icons'
+// import {  } from '@fortawesome/pro-light-svg-icons'
+import { faAddressBook, faBalanceScale, faBell as faBellRegular, faCalendarAlt, faComments, faExternalLink, faHelmetBattle, faHistory, faNewspaper, faUserPlus } from '@fortawesome/pro-regular-svg-icons'
 import { faBell as faBellSolid, faCheckCircle, faHome, faTimesCircle } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 faLibrary.add(
+    faAddressBook,
+    faBalanceScale,
     faBellRegular,
     faBellSolid,
+    faCalendarAlt,
     faCheckCircle,
+    faComments,
     faDiscord,
     faExternalLink,
     faFacebook,
+    faHelmetBattle,
     faHistory,
     faHome,
-    faTimesCircle
+    faNewspaper,
+    faTimesCircle,
+    faUserPlus,
 )
 
 /**
@@ -41,6 +48,7 @@ Vue.use(FlagIcon)
 Vue.component('character-select-button', require('./components/CharacterSelectButton.vue'))
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue'))
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue'))
 
 const navbar = new Vue({
     el: '#navbar'

@@ -13,8 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->put('/primary-character/{user}', 'Account\CharacterSelectController@setPrimaryCharacter');
+Route::middleware('auth:api')->put('primary-character/{user}', 'Account\CharacterSelectController@setPrimaryCharacter');
+
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'notifications',
+], function () {
+    Route::get('unread', 'NotificationsController@getUnreadNotifications');
+});
