@@ -92,7 +92,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right bg-brown" aria-labelledby="authDropdown">
                                 <a class="dropdown-item nav-link" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
-                                <a class="dropdown-item nav-link" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a>
+                                {{-- <a class="dropdown-item nav-link" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a> --}}
                                 @if ($user->rank->seniority <= 1)
                                     <a class="dropdown-item nav-link" href="{{ url('officers') }}">{{ __('navigation.officers_control_panel') }}</a>
                                 @endif
