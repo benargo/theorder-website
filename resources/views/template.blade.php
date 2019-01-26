@@ -13,7 +13,7 @@
 
         <title>@yield('title')</title>
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link rel="icon" sizes="192x192" href="{{ asset('images/app_icon_192.png') }}">
     </head>
     <body>
@@ -93,9 +93,9 @@
                             <div class="dropdown-menu dropdown-menu-right bg-brown" aria-labelledby="authDropdown">
                                 <a class="dropdown-item nav-link" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>
                                 {{-- <a class="dropdown-item nav-link" href="{{ url('account/character-select') }}">{{ __('navigation.character_select') }}</a> --}}
-                                @if ($user->rank->seniority <= 1)
-                                    <a class="dropdown-item nav-link" href="{{ url('officers') }}">{{ __('navigation.officers_control_panel') }}</a>
-                                @endif
+                                @can('access-inner-circle-control-panel')
+                                    <a class="dropdown-item nav-link" href="{{ url('inner-circle') }}">{{ __('navigation.officers_control_panel') }}</a>
+                                @endcan
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item nav-link" href="{{ url('logout') }}">{{ __('navigation.logout') }}</a>
                             </div>
