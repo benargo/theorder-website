@@ -73,14 +73,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the main character associated with the user.
-     */
-    public function mainCharacter()
-    {
-        return $this->hasOne('App\Models\Character');
-    }
-
-    /**
      * Get the user's access token.
      *
      * @param  string  $value
@@ -115,11 +107,35 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all the comments this user has made.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    /**
      * Get the kudos awarded to the user.
      */
     public function kudos()
     {
         return $this->hasMany('App\Models\Kudos', 'awarded_to_user_id');
+    }
+
+    /**
+     * Get the main character associated with the user.
+     */
+    public function mainCharacter()
+    {
+        return $this->hasOne('App\Models\Character');
+    }
+
+    /**
+     * Get the news items authored by the user.
+     */
+    public function newsItems()
+    {
+        return $this->hasMany('App\Models\NewsItem');
     }
 
     /**
