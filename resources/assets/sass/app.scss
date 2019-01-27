@@ -13,7 +13,7 @@
     min-height: calc(100vh - 54px);
 }
 a:hover {
-    text-decoration: none;
+    border-color: $link-hover-color !important;
 }
 .full-height {
     min-height: 100vh;
@@ -35,6 +35,11 @@ a:hover {
 }
 .bg-dark-portal {
     background-image: url('../images/bg_darkportal.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.bg-engineering {
+    background-image: url('../images/bg_engineering.jpg');
     background-position: center;
     background-size: cover;
 }
@@ -150,5 +155,6 @@ a:hover {
 /**
  * Pages
  */
+@import 'control_panel';
 @import 'character_select';
 @import 'home';

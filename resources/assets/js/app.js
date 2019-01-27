@@ -14,8 +14,37 @@ import FlagIcon from 'vue-flag-icon'
 import { library as faLibrary } from '@fortawesome/fontawesome-svg-core'
 import { faDiscord, faFacebook } from '@fortawesome/free-brands-svg-icons'
 // import {  } from '@fortawesome/pro-light-svg-icons'
-import { faAddressBook, faBalanceScale, faBell as faBellRegular, faCalendarAlt, faComments, faExternalLink, faHelmetBattle, faHistory, faNewspaper, faUserPlus } from '@fortawesome/pro-regular-svg-icons'
-import { faBell as faBellSolid, faCheckCircle, faHome, faTimesCircle } from '@fortawesome/pro-solid-svg-icons'
+import {
+    faAddressBook,
+    faBalanceScale,
+    faBell as faBellRegular,
+    faCalendarAlt,
+    faComments,
+    faExternalLink,
+    faHelmetBattle,
+    faHistory,
+    faNewspaper,
+    faUserPlus as faUserPlusRegular
+} from '@fortawesome/pro-regular-svg-icons'
+import {
+    faBell as faBellSolid,
+    faCalendarEdit,
+    faCalendarPlus,
+    faChalkboard,
+    faChartLine,
+    faCheckCircle,
+    faClipboardList,
+    faHome,
+    faPaperPlane,
+    faPenFancy,
+    faPencil,
+    faTimesCircle,
+    faUserClock,
+    faUserPlus as faUserPlusSolid,
+    faUsers,
+    faUsersCog,
+    faUsersCrown
+} from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 faLibrary.add(
@@ -24,7 +53,12 @@ faLibrary.add(
     faBellRegular,
     faBellSolid,
     faCalendarAlt,
+    faCalendarEdit,
+    faCalendarPlus,
+    faChalkboard,
+    faChartLine,
     faCheckCircle,
+    faClipboardList,
     faComments,
     faDiscord,
     faExternalLink,
@@ -33,8 +67,16 @@ faLibrary.add(
     faHistory,
     faHome,
     faNewspaper,
+    faPaperPlane,
+    faPenFancy,
+    faPencil,
     faTimesCircle,
-    faUserPlus,
+    faUserClock,
+    faUserPlusRegular,
+    faUserPlusSolid,
+    faUsers,
+    faUsersCog,
+    faUsersCrown,
 )
 
 /**
