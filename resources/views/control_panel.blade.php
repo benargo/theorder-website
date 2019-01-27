@@ -6,7 +6,11 @@
     <div id="app" class="page-control-panel-index">
         <div class="container-fluid bg-engineering extra-padding-top extra-padding-bottom text-light">
             <div class="content">
-                <h1 class="display-2 text-center">{{ __('controlpanel.control_panel') }}</h1>
+                <h1 class="text-center">
+                    {{ __('controlpanel.inner_circle') }}
+                    <br class="d-block d-md-none">
+                    {{ __('controlpanel.control_panel') }}
+                </h1>
             </div>
         </div>
         <div class="bg-brown-texture extra-padding-top extra-padding-bottom text-light">
@@ -29,7 +33,7 @@
                 <h2>{{ __('controlpanel.news') }}</h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/news/new') }}" class="card-action">
+                        <a href="{{ url('inner-circle/news/create') }}" class="card-action">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'pen-fancy']" class="fa-3x"></font-awesome-icon>
@@ -41,7 +45,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/news/new') }}" class="card-action">
+                        <a href="{{ url('inner-circle/news') }}" class="card-action">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'pencil']" class="fa-3x"></font-awesome-icon>

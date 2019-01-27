@@ -13,7 +13,7 @@ return [
     */
 
     'applications' => 'Applications',
-    'control_panel' => 'Inner Circle Control Panel',
+    'control_panel' => 'Control Panel',
     'create_event' => 'Create a new event',
     'create_news_item' => 'Create a news item',
     'create_team' => 'Create a new team',
@@ -22,6 +22,7 @@ return [
     'edit_news_item' => 'Edit a news item',
     'edit_team' => 'Manage a team',
     'forum' => 'Forum',
+    'inner_circle' => 'Inner Circle',
     'manage_ranks' => 'Manage guild ranks',
     'manage_forum_boards' => 'Manage boards',
     'marketplace' => 'Marketplace',

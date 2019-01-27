@@ -1,11 +1,12 @@
 .page-control-panel-index {
     .action-cards {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
     .card-action {
         border: solid 1px $link-color;
         @include border-radius(2px);
         display: block;
+        margin-bottom: 10px;
         padding: 30px 0;
     }
 }
