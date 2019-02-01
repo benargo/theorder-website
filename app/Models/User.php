@@ -131,6 +131,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all of the drafts.
+     */
+    public function newsItemDrafts()
+    {
+        return $this->hasMany('App\Models\NewsItemDraft');
+    }
+
+    /**
      * Get the news items authored by the user.
      */
     public function newsItems()

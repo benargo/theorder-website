@@ -30,4 +30,12 @@ class NewsItem extends Model
     {
         return $this->morphMany('App\Models\Comment', 'commentable');
     }
+
+    /**
+     * Get all of the drafts.
+     */
+    public function drafts()
+    {
+        return $this->hasMany('App\Models\NewsItemDraft');
+    }
 }
