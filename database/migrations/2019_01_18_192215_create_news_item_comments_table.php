@@ -18,7 +18,7 @@ class CreateNewsItemCommentsTable extends Migration
             $table->text('body');
             $table->unsignedInteger('author_id');
             $table->unsignedInteger('commentable_id');
-            $table->string('commentable_type')
+            $table->string('commentable_type');
             $table->timestamps();
 
             $table->foreign('author_id')
