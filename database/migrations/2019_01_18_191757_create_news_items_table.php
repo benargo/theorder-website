@@ -17,6 +17,7 @@ class CreateNewsItemsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('body');
+            $table->string('url')->unique();
             $table->unsignedInteger('author_id');
             $table->dateTime('published_at');
             $table->timestamps();
