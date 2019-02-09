@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'HomeController@renderHomepage')->name('homepage');
+Route::get('/', 'HomeController@renderHomepage')
+        ->name('homepage');
 
 /*
  |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ Route::get('/', 'HomeController@renderHomepage')->name('homepage');
  |--------------------------------------------------------------------------
  */
 Route::get('/account/character-select', 'Account\CharacterSelectController@showCharacterList')
-    ->middleware('auth')
-    ->name('character-select');
+        ->middleware('auth')
+        ->name('character-select');
 
 /*
  |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::get('/account/character-select', 'Account\CharacterSelectController@showC
  |--------------------------------------------------------------------------
  */
 Route::get('/discord', 'DiscordController@redirectToServer');
+
 Route::get('/oauth2/discord', 'DiscordController@handleProviderCallback');
 
 /*
@@ -61,7 +63,9 @@ Route::group(
  |--------------------------------------------------------------------------
  */
 Route::get('/login', 'Auth\LoginController@redirectToProvider')
-    ->name('login');
+        ->name('login');
+
 Route::get('/oauth2/battlenet', 'Auth\LoginController@handleProviderCallback')
-    ->name('login.callback');
+        ->name('login.callback');
+
 Route::get('/logout', 'Auth\LogoutController@handleLogout');
