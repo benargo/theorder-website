@@ -9,17 +9,29 @@
 @import '~bootstrap/scss/bootstrap';
 
 #app {
-    // display: flex;
     min-height: calc(100vh - 54px);
 }
 a:hover {
     border-color: $link-hover-color !important;
 }
 .full-height {
-    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    min-height: 100%;
 
-    &:first-of-type {
+    &.full-height-exclude-navbar:first-of-type {
         min-height: calc(100vh - 54px);
+    }
+    .full-height-extension, .full-height-child {
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+    }
+    .full-height-header {
+        flex: 0 1 auto;
+    }
+    .full-height-body {
+        flex: 1 1 auto;
     }
 }
 .extra-padding-top {

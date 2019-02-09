@@ -4,7 +4,7 @@
 
 @section('content')
     <div id="app" class="page-home">
-        <div class="container-fluid full-height section-fs-splash bg-goldshire text-light">
+        <div class="container-fluid full-height full-height-exclude-navbar section-fs-splash bg-goldshire text-light">
             <div class="content">
                 <h1 class="display-2">
                     {{ __('meta.title') }}
