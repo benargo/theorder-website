@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', 'HomeController@renderHomepage');
+Route::get('/', 'HomeController@renderHomepage')->name('homepage');
 
 /*
  |--------------------------------------------------------------------------
  | Account
  |--------------------------------------------------------------------------
  */
-Route::get('account/character-select', 'Account\CharacterSelectController@showCharacterList')
+Route::get('/account/character-select', 'Account\CharacterSelectController@showCharacterList')
     ->middleware('auth')
     ->name('character-select');
 
@@ -27,8 +27,8 @@ Route::get('account/character-select', 'Account\CharacterSelectController@showCh
  | Discord
  |--------------------------------------------------------------------------
  */
-Route::get('discord', 'DiscordController@redirectToServer');
-Route::get('oauth2/discord', 'DiscordController@handleProviderCallback');
+Route::get('/discord', 'DiscordController@redirectToServer');
+Route::get('/oauth2/discord', 'DiscordController@handleProviderCallback');
 
 /*
  |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ Route::get('oauth2/discord', 'DiscordController@handleProviderCallback');
  */
 Route::group([
     'middleware' => 'can:access-inner-circle-control-panel',
-    'prefix' => 'inner-circle',
+    'prefix' => '/inner-circle',
 ], function () {
     Route::get('', function () {
         return view('control_panel');
