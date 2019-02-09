@@ -8,20 +8,44 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colours
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+$brown: #231a13;
+$browns: () !default;
+
+$browns: map-merge(
+    (
+        "100": lighten($brown, 10%),
+        "200": lighten($brown, 20%),
+        "300": lighten($brown, 30%),
+        "400": lighten($brown, 40%),
+        "500": lighten($brown, 50%),
+        "600": lighten($brown, 60%),
+        "700": lighten($brown, 80%),
+        "800": lighten($brown, 80%),
+        "900": lighten($brown, 90%)
+    ),
+    $browns
+);
+
 $primary: #f8b700;
 $secondary: #504137;
-$brown: #231a13;
-$white: #fff;
 
-$theme-colors: () !default;
-
-$theme-colors: map-merge(
-    (
-        "primary": $primary,
-        "secondary": $secondary,
-        "brown": $brown,
-    ),
-    $theme-colors
+$theme-colors: (
+    primary: $primary,
+    secondary: $secondary,
+    brown: $brown,
+    white: $white
 );
 
 $breadcrumb-bg: transparent;

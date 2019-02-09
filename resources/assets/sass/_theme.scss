@@ -1,0 +1,3 @@
+@each $color, $value in $browns {
+    @include bg-variant('bg-brown-#{$color}', $value);
+}
