@@ -102,7 +102,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link btn btn-sm btn-outline-secondary" href="{{ route('login.auth') }}">{{ __('navigation.login') }}</a>
+                            <a class="nav-link btn btn-sm btn-outline-secondary" href="{{ route('login') }}">{{ __('navigation.login') }}</a>
                         </li>
                     @endif
                 </ul>

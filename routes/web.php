@@ -49,8 +49,8 @@ Route::group([
  | Login/Logout
  |--------------------------------------------------------------------------
  */
-Route::get('login', 'Auth\LoginController@redirectToProvider')
-    ->name('login.auth');
-Route::get('oauth2/battlenet', 'Auth\LoginController@handleProviderCallback')
+Route::get('/login', 'Auth\LoginController@redirectToProvider')
+    ->name('login');
+Route::get('/oauth2/battlenet', 'Auth\LoginController@handleProviderCallback')
     ->name('login.callback');
-Route::get('logout', 'Auth\LogoutController@handleLogout');
+Route::get('/logout', 'Auth\LogoutController@handleLogout');
