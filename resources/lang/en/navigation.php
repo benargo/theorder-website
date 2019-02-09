@@ -27,6 +27,7 @@ return [
     'character_select' => 'Character Select',
     'officers_control_panel' => 'Inner Circle Control Panel',
     'logout' => 'Log Out',
+    'home' => 'Home',
     'language' => 'Language',
 
 ];
