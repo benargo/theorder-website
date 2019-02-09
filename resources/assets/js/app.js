@@ -125,6 +125,7 @@ Vue.component('character-select-button', require('./components/CharacterSelectBu
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue'))
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.vue'))
+Vue.component('news-item-manager', require('./components/NewsItemManagerComponent.vue'))
 Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue'))
 
 const navbar = new Vue({

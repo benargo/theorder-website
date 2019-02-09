@@ -45,7 +45,13 @@ Route::group(
             return view('control_panel');
         });
 
+        Route::get('/news', function () {
+            return view('manage_news_items');
+        });
+
         Route::get('/news/create', 'NewsItemController@create');
+
+        Route::get('/news/editor/{news_item?}', 'NewsItemController@edit');
     }
 );
 

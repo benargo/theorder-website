@@ -115,6 +115,69 @@ class NewsItemController extends Controller
         ]);
     }
 
+    public function getManageList(Request $request)
+    {
+        $this->authorize('create', NewsItem::class);
+
+        // The current user can create news items...
+
+        // Get all the drafts without articles...
+        $drafts = DB::table('news_item_drafts')
+                ->leftJoin('users', 'news_item_drafts.user_id', '=', 'users.id')
+                ->select('news_item_id', 'news_item_drafts.id as draft_id', 'title', 'user_id as author_id', 'users.battletag as author_battletag', 'news_item_drafts.updated_at')
+                ->where(function ($query) {
+                    $query->whereNotNull('title')
+                          ->orWhereNotNull('body');
+                })
+                ->where('user_id', Auth::id())
+                ->whereNull('news_item_id')
+                ->orderBy('news_item_drafts.created_at', 'desc')
+                ->get();
+
+        // Get all the news articles...
+        $news_items = DB::table('news_items')
+                ->leftJoin('users', 'news_items.author_id', '=', 'users.id')
+                ->select(
+                    'news_items.id as news_item_id',
+                    DB::raw('(
+                        select id from news_item_drafts
+                        where news_item_drafts.news_item_id = news_items.id
+                            and news_item_drafts.user_id = ' . Auth::id() . '
+                            and news_item_drafts.updated_at >= news_items.updated_at
+                        order by news_item_drafts.created_at
+                        limit 1
+                    ) as draft_id'),
+                    'title',
+                    'author_id',
+                    'users.battletag as author_battletag',
+                    'published_at',
+                    'news_items.updated_at'
+                )
+                ->orderBy('news_items.published_at', 'desc')
+                ->orderBy('news_items.created_at', 'desc')
+                ->get();
+
+        // Merge the collections together. This will append the news items
+        // below the drafts...
+        $merged = $drafts->merge($news_items);
+
+        $merged->transform(function ($item, $key) {
+            $item->author_battletag = str_before(decrypt($item->author_battletag), '#');
+            $item->edit_url = url(
+                '/inner-circle/news/editor' . ($item->draft_id ? '?draft=' . $item->draft_id : ''),
+                ['item' => $item->news_item_id]
+            );
+
+            return $item;
+        });
+
+        $per_page = ($request->query('per_page') ?: 20);
+        $page_number = (Paginator::resolveCurrentPage() ?: 1);
+
+        // Create a paginator...
+        return new LengthAwarePaginator($merged->forPage($page_number, $per_page), $merged->count(), $per_page, null, ['path' => action('NewsItemController@getManageList', [], false)]);
+    }
+
     public function publish(NewsItem $news_item = null, Request $request)
     {
         $this->authorize('create', NewsItem::class);
