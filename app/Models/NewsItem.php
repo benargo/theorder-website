@@ -16,6 +16,19 @@ class NewsItem extends Model
     ];
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'body',
+        'allows_comments',
+        'url',
+        'published_at',
+    ];
+
+    /**
      * Get the author of the news item.
      */
     public function author()
