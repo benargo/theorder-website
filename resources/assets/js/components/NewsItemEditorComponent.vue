@@ -4,7 +4,7 @@
             <div class="col-12 col-lg-9 editor">
                 <div class="row">
                     <div class="col">
-                        <h2 contenteditable="true" id="titleEditable" class="news-editor-title" @focus.once="highlight()" @blur="trimTitle()" @input="filterEditable()">{{ lang.startingTitle }}</h2>
+                        <h2 contenteditable="true" id="titleEditable" class="news-editor-title" @focus.once="highlight()" @blur="trimTitle()" @input="filterEditable()">{{ (startingTitle ? startingTitle : lang.startingTitle) }}</h2>
                     </div>
                 </div>
                 <div class="row no-gutters">
@@ -174,6 +174,7 @@
                     body: null,
                 },
                 publishDate: undefined,
+                startingTitle: undefined,
             }
         },
 
@@ -238,9 +239,20 @@
             getArticle: function (articleId) {
                 axios.get('/api/news/' + articleId)
                      .then(function (response) {
+                         this.article.id     = response.data.id
+                         this.article.title  = response.data.title
+                         this.article.body   = response.data.body
+                         this.article.url    = response.data.url
+                         this.allowsComments = response.data.allows_comments
+                         this.authorId       = response.data.author_id
 
-                     })
-                     .error(function (error) {
+                         // Change the title...
+                         this.startingTitle = this.article.title
+
+                         // Quickly check whether the URL is a custom one or not...
+                         this.setCustomUrl()
+                     }.bind(this))
+                     .catch(function (error) {
 
                      })
             },
@@ -296,6 +308,7 @@
                     allowsComments: this.allowComments,
                     author: this.authorId,
                     body: this.article.body,
+                    draftId: this.draft.id,
                     publishDate: (publishDate instanceof window.moment)
                         ? publishDate.toISOString()
                         : window.moment().toISOString(),
@@ -515,8 +528,9 @@
             /**
              * Pull down the current article
              */
-            if (this.article.id) this.getArticle(this.article.id)
-
+            if (this.article.id) {
+                this.getArticle(this.article.id)
+            }
         },
 
         props: {

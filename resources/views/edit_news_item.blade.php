@@ -12,8 +12,8 @@
         <div class="bg-brown-texture extra-padding-top extra-padding-bottom text-light">
             <news-item-editor
                 {{-- article id prop --}}
-                @if (isset($article_id))
-                    ':article-id="'.$article_id.'"'
+                @if (isset($item_id))
+                    :article-id="{{ $item_id }}"
                 @endif
 
                 {{-- array of available authors prop --}}

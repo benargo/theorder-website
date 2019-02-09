@@ -27,6 +27,11 @@ Route::middleware('auth:api')->put('/primary-character/{user}', 'Account\Charact
 Route::get('/news/check-url', 'NewsItemController@checkUrl');
 Route::post('/news/create', 'NewsItemController@publish');
 Route::put('/news/drafts/{draft}', 'NewsItemController@saveDraft');
+Route::get('/news/{news_item}', function (App\Models\NewsItem $news_item) {
+    $user = Auth::user();
+    $user->can('update', $news_item);
+    return response($news_item);
+});
 Route::put('/news/{news_item}', 'NewsItemController@publish');
 
 /*

@@ -35,16 +35,19 @@ Route::get('/oauth2/discord', 'DiscordController@handleProviderCallback');
  | Inner Circle Control Panel
  |--------------------------------------------------------------------------
  */
-Route::group([
-    'middleware' => 'can:access-inner-circle-control-panel',
-    'prefix' => '/inner-circle',
-], function () {
-    Route::get('', function () {
-        return view('control_panel');
-    });
+Route::group(
+    [
+        'middleware' => 'can:access-inner-circle-control-panel',
+        'prefix' => '/inner-circle',
+    ],
+    function () {
+        Route::get('', function () {
+            return view('control_panel');
+        });
 
-    Route::get('/news/create', 'NewsItemController@create');
-});
+        Route::get('/news/create', 'NewsItemController@create');
+    }
+);
 
 /*
  |--------------------------------------------------------------------------

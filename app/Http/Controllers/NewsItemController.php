@@ -8,8 +8,11 @@ use App\Models\User;
 use App\Models\NewsItem;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Models\NewsItemDraft as Draft;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
+use App\Models\NewsItemDraft as Draft;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class NewsItemController extends Controller
 {
@@ -32,6 +35,35 @@ class NewsItemController extends Controller
         ]);
     }
 
+    protected function checkForDraft(NewsItem $news_item = null)
+    {
+        // Check if the current user has a draft for this article...
+        if ($news_item) {
+
+            $draft = $news_item->drafts()->where('user_id', Auth::id())->first();
+
+            if ($draft) return $draft;
+        }
+
+        // Either the current user doesn't have a draft for this news item, or
+        // no news item was provided. In either case, we should now create a
+        // new draft...
+        $this->authorize('create', Draft::class);
+
+        $draft = new Draft;
+
+        $draft->user()->associate(Auth::user());
+
+        // Associate the news item if there is one...
+        if ($news_item) {
+            $draft->newsItem()->associate($news_item);
+        }
+
+        $draft->save();
+
+        return $draft;
+    }
+
     public function create(Request $request)
     {
         $this->authorize('create', NewsItem::class);
@@ -41,16 +73,45 @@ class NewsItemController extends Controller
         // Create a new draft...
         $draft = new Draft;
 
-        $draft->user()->associate($request->user());
+        $draft->user()->associate(Auth::user());
 
         $draft->save();
 
+        return $this->editor($draft);
+    }
+
+    public function edit(NewsItem $news_item = null, Request $request)
+    {
+        if ($news_item) {
+            $this->authorize('update', $news_item);
+        }
+
+        // The current user can edit news items...
+
+        // Check if a draft ID has been passed in the query string...
+        if ($request->query('draft', false)) {
+            $draft = Draft::findOrFail($request->query('draft'));
+        }
+        else {
+            $draft = $this->checkForDraft($news_item);
+        }
+
+        $this->authorize('update', $draft);
+
+        // The current user can edit this draft...
+
+        return $this->editor($draft, $news_item);
+    }
+
+    public function editor(Draft $draft, NewsItem $news_item = null)
+    {
         return view('edit_news_item', [
             'authors' => User::whereHas(
                 'rank', function ($query) {
                     $query->where('seniority', '<=', 1);
                 })->get(['id', 'battletag']),
             'draft' => $draft,
+            'item_id' => $news_item ? $news_item->id : null,
         ]);
     }
 
@@ -65,14 +126,15 @@ class NewsItemController extends Controller
             $news_item = new NewsItem;
         }
 
-        $validatedData = $request->validate([
+        $validated_data = $request->validate([
             'allowsComments' => 'boolean',
             'author' => 'exists:users,id',
-            'body' => 'required',
+            'body' => 'string',
+            'draftId' => 'exists:news_item_drafts,id',
             'publishDate' => 'nullable|date',
-            'title' => 'required|max:255',
+            'title' => 'string|max:255',
             'url' => [
-                'required',
+                'string',
                 Rule::unique('news_items')->ignore($news_item->id),
                 'max:255',
             ],
@@ -82,21 +144,31 @@ class NewsItemController extends Controller
 
         // Set the new values...
         $news_item->fill([
-            'title' => $validatedData['title'],
-            'body' => $validatedData['body'],
-            'allows_comments' => $validatedData['allowsComments'],
-            'url' => $validatedData['url'],
-            'published_at' => $validatedData['publishDate']
-                ? Carbon::parse($validatedData['publishDate'])
+            'title' => array_get($validated_data, 'title', $news_item->title),
+            'body' => array_get($validated_data, 'body', $news_item->body),
+            'allows_comments' => array_get($validated_data, 'allowsComments', $news_item->allows_comments),
+            'url' => array_get($validated_data, 'url', $news_item->url),
+            'published_at' => $validated_data['publishDate']
+                ? Carbon::parse($validated_data['publishDate'])
                 : null,
         ]);
 
         // Set the author...
-        $news_item->author()->associate(User::find($validatedData['author']));
+        if (array_has($validated_data, 'author')) {
+            $news_item->author()->associate(User::find($validated_data['author']));
+        }
 
         // Save the news item...
         $news_item->save();
 
+        // Set the news item ID against the draft...
+        if (array_has($validated_data, 'draftId')) {
+            $draft = Draft::find($validated_data['draftId']);
+            $draft->newsItem()->associate($news_item);
+            $draft->save();
+        }
+
+        // Return the news item...
         return response()->json($news_item);
     }
 
@@ -106,13 +178,17 @@ class NewsItemController extends Controller
 
         // The current user can create news items...
 
-        $draft->title = $request->input('title', null);
-
-        if ($request->filled('body')) {
-            $draft->body = $request->input('body');
+        // Return early if both the title and body are empty. We don't want to
+        // throw an error, but still inform the client that the action has not
+        // been completed...
+        if (! $request->filled('title') && ! $request->filled('body')) {
+            return response(null, 202);
         }
 
-        $draft->save();
+        $draft->update([
+            'title' => $request->input('title'),
+            'body' => $request->input('body')
+            ]);
 
         return response(null, 204);
     }
