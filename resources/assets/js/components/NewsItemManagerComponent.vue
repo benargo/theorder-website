@@ -34,16 +34,22 @@
                 </tbody>
             </table>
         </div>
-        <div class="row">
-            <div class="col-6" v-if="prev_page_url">
-                <button type="button" class="btn btn-primary">
-
-                </button>
-            </div>
-            <div class="col-6" v-if="next_page_url">
-                <button type="button" class="btn btn-primary">
-
-                </button>
+        <div class="row" v-if="last_page > 1">
+            <div class="col-12 text-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(prev_page_url)" :disabled="(prev_page_url === null)">
+                        {{ lang.buttons.previous }}
+                    </button>
+                    <button
+                        class="btn btn-primary btn-lg"
+                        :class="(page == current_page ? 'active' : '')"
+                        :aria-pressed="(page == current_page)"
+                        @click="fetchItems(path + '?page=' + page)"
+                        v-for="page in last_page">{{ page }}</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(next_page_url)" :disabled="(next_page_url === null)">
+                        {{ lang.buttons.next }}
+                    </button>
+                </div>
             </div>
         </div>
         <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog">

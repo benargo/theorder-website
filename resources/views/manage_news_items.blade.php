@@ -30,6 +30,8 @@
                         deleteDraft: '{{ __('news.buttons.delete_draft') }}',
                         deleteItem: '{{ __('news.buttons.delete_item') }}',
                         edit: '{{ __('news.buttons.edit') }}',
+                        next: '{{ __('news.buttons.next') }}',
+                        previous: '{{ __('news.buttons.previous') }}',
                         unpublish: '{{ __('news.unpublish') }}',
                     },
                     modal: {

@@ -13,6 +13,8 @@ return [
         'delete_item' => 'Delete news item',
         'edit' => 'Edit',
         'new' => 'New item',
+        'next' => 'Next',
+        'previous' => 'Previous',
     ],
 
     'labels' => [

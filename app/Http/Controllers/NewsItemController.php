@@ -171,7 +171,7 @@ class NewsItemController extends Controller
             return $item;
         });
 
-        $per_page = ($request->query('per_page') ?: 20);
+        $per_page = $request->query('per_page', 20);
         $page_number = (Paginator::resolveCurrentPage() ?: 1);
 
         // Create a paginator...
