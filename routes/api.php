@@ -21,6 +21,16 @@ Route::middleware('auth:api')->put('/primary-character/{user}', 'Account\Charact
 
 /*
  |--------------------------------------------------------------------------
+ | News Items
+ |--------------------------------------------------------------------------
+ */
+Route::get('/news/check-url', 'NewsItemController@checkUrl');
+Route::post('/news/create', 'NewsItemController@publish');
+Route::put('/news/drafts/{draft}', 'NewsItemController@saveDraft');
+Route::put('/news/{news_item}', 'NewsItemController@publish');
+
+/*
+ |--------------------------------------------------------------------------
  | Notifications
  |--------------------------------------------------------------------------
  */

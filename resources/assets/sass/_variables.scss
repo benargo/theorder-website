@@ -11,6 +11,7 @@ $line-height-base: 1.6;
 $primary: #f8b700;
 $secondary: #504137;
 $brown: #231a13;
+$white: #fff;
 
 $theme-colors: () !default;
 
@@ -18,10 +19,22 @@ $theme-colors: map-merge(
     (
         "primary": $primary,
         "secondary": $secondary,
-        "brown": $brown
+        "brown": $brown,
     ),
     $theme-colors
 );
+
+$breadcrumb-bg: transparent;
+$card-bg: transparent;
+$card-border-color: $secondary;
+$close-color: $white;
+$input-bg: $brown;
+$input-border-color: $secondary;
+$input-color: $white;
+$input-disabled-bg: $brown;
+$input-group-addon-bg: $secondary;
+$input-group-addon-color: $white;
+$modal-content-bg: $brown;
 
 // Links
 $link-hover-decoration: none;

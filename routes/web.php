@@ -42,6 +42,8 @@ Route::group([
     Route::get('', function () {
         return view('control_panel');
     });
+
+    Route::get('/news/create', 'NewsItemController@create');
 });
 
 /*
