@@ -17,7 +17,7 @@
         "marquine/eloquent-uuid": "^1.0",
         "predis/predis": "^1.1",
         "restcord/restcord": "^0.2.2",
-        "socialiteproviders/battlenet": "^2.0",
+        "socialiteproviders/battlenet": "dev-master",
         "socialiteproviders/discord": "^2.0"
     },
     "require-dev": {

@@ -26,6 +26,7 @@
         "lodash": "^4.17.5",
         "marked": "^0.6.0",
         "moment": "^2.24.0",
+        "moment-timezone": "^0.5.23",
         "popper.js": "^1.14.7",
         "prismjs": "^1.15.0",
         "vue": "2.5.*",
