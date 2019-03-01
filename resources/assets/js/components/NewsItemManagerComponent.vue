@@ -15,19 +15,20 @@
                     <tr v-for="(item, index) in items" :data-article-id="item.article_id" :data-draft-id="item.draft_id" :class="isDraftClass(index)">
                         <th scope="row">
                             {{ item.title }}
-                            <span class="badge badge-primary" v-show="item.draft_id">{{ lang.draft }}</span>
+                            <span class="badge badge-primary" v-show="item.draft_id" data-toggle="tooltip" data-placement="top" :title="lang.tooltips.draft">{{ lang.draft }}</span>
+                            <span class="badge badge-info" v-show="isScheduledForLater(item.published_at)"  data-toggle="tooltip" data-placement="top" :title="lang.tooltips.scheduled">{{ lang.scheduled }}</span>
                         </th>
                         <td>{{ item.author_battletag }}</td>
                         <td>{{ (item.published_at ? item.published_at : lang.notPublished) }}</td>
                         <td>{{ item.updated_at }}</td>
                         <td>
-                            <a :href="item.edit_url" class="btn btn-primary" role="button">
+                            <a :href="item.edit_url" class="btn btn-primary" role="button" data-toggle="tooltip" data-placement="top" :title="lang.buttons.edit">
                                 <font-awesome-icon :icon="['fas', 'pencil']" class="fa-sm"></font-awesome-icon>
                                 <span class="sr-only">{{ lang.buttons.edit }}</span>
                             </a>
-                            <button type="button" class="btn btn-danger" @click="showDeleteModal(index)">
+                            <button type="button" class="btn btn-danger" @click="showDeleteModal(index)" data-toggle="tooltip" data-placement="top" :title="lang.buttons.delete">
                                 <font-awesome-icon :icon="['fas', 'trash']" class="fa-sm"></font-awesome-icon>
-                                <span class="sr-only"></span>
+                                <span class="sr-only">{{ lang.buttons.delete }}</span>
                             </button>
                         </td>
                     </tr>
@@ -186,6 +187,13 @@
                 )
             },
 
+            isScheduledForLater: function (date) {
+                let now = window.moment().tz('Europe/London')
+                    date = (date ? moment(date) : undefined)
+
+                return (date > now)
+            },
+
             /**
              * Show the modal to confirm deletion of the draft/item.
              *
@@ -229,6 +237,9 @@
         },
         mounted: function () {
             this.fetchItems(this.path)
+
+            // Initialise tooltips...
+            $('[data-toggle="tooltip"]').tooltip()
         },
         props: {
             lang: {

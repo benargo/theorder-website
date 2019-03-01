@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class NewsItem extends Model
 {
+    use Notifiable;
+
     /**
      * The attributes that should be mutated to dates.
      *
@@ -50,5 +53,13 @@ class NewsItem extends Model
     public function drafts()
     {
         return $this->hasMany('App\Models\NewsItemDraft');
+    }
+
+    /**
+     * Get the channel ID to send notifications to.
+     */
+    public function routeNotificationForDiscord()
+    {
+        return config('services.discord.channels.notices');
     }
 }

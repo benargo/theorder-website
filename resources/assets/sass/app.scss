@@ -94,6 +94,9 @@ a:hover {
 .z-index-3 {
     z-index: 103;
 }
+.breadcrumb {
+    border: solid 1px $breadcrumb-divider-color;
+}
 .class-icons {
     .class-icon {
         height: 56px;

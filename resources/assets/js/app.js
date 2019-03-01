@@ -14,7 +14,7 @@ import FlagIcon from 'vue-flag-icon'
 import Prism from 'prismjs'
 const VueInputMask = require('vue-inputmask').default
 window.marked = require('marked')
-window.moment = require('moment')
+window.moment = require('moment-timezone')
 window.str_slug = require('./str_slug').default
 
 /**
@@ -131,6 +131,7 @@ Vue.component('notifications-menu-item', require('./components/NotificationsMenu
 const navbar = new Vue({
     el: '#navbar'
 })
+
 const app = new Vue({
     el: '#app'
 })

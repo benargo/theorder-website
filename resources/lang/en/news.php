@@ -9,6 +9,7 @@ return [
 
     'buttons' => [
         'cancel' => 'Cancel',
+        'delete' => 'Delete',
         'delete_draft' => 'Delete draft',
         'delete_item' => 'Delete news item',
         'edit' => 'Edit',
@@ -37,8 +38,14 @@ return [
         'actions' => 'Actions',
     ],
 
+    'tooltips' => [
+        'draft' => 'You have a draft in progress.',
+        'scheduled' => 'This article is scheduled to be published later.',
+    ],
+
     'allow_comments' => 'Do you wish to allow comments?',
     'article_id' => 'Article ID',
+    'attribution' => 'By :author on :date',
     'author' => 'Author',
     'click_to_set_title' => 'Click to set title',
     'comments' => 'Comments',
@@ -48,6 +55,7 @@ return [
     'editor' => 'Editor',
     'news_editor' => 'News Editor',
     'news_items' => 'News Items',
+    'news' => 'News',
     'not_currently_published' => 'This article is not currently published.',
     'not_published_short' => '(Not published)',
     'pick_publish_date' => 'Pick the ',
@@ -55,6 +63,7 @@ return [
     'publishing_options' => 'Publishing Options',
     'publish_later' => 'Publish later',
     'publish_now' => 'Publish',
+    'scheduled' => 'Scheduled',
     'select_author' => 'Pick the author',
     'settings' => 'Settings',
     'sr_toggle_publishing_options' => 'Toggle publishing options',

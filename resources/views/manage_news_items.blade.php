@@ -27,6 +27,7 @@
                 :lang="{
                     buttons: {
                         cancel: '{{ __('news.buttons.cancel') }}',
+                        delete: '{{ __('news.buttons.delete') }}',
                         deleteDraft: '{{ __('news.buttons.delete_draft') }}',
                         deleteItem: '{{ __('news.buttons.delete_item') }}',
                         edit: '{{ __('news.buttons.edit') }}',
@@ -48,7 +49,12 @@
                         updatedAt: '{{ __('news.table_headers.updated_at') }}',
                         actions: '{{ __('news.table_headers.actions') }}',
                     },
+                    tooltips: {
+                        draft: '{{ __('news.tooltips.draft') }}',
+                        scheduled: '{{ __('news.tooltips.scheduled') }}',
+                    },
                     draft: '{{ __('news.draft') }}',
+                    scheduled: '{{ __('news.scheduled') }}',
                     notPublished: '{{ __('news.not_published_short') }}',
                 }"
             ></news-item-manager>

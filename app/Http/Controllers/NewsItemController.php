@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\NewsItemDraft as Draft;
+use App\Notifications\NewsItemPublished;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class NewsItemController extends Controller
@@ -178,6 +179,19 @@ class NewsItemController extends Controller
         return new LengthAwarePaginator($merged->forPage($page_number, $per_page), $merged->count(), $per_page, null, ['path' => action('NewsItemController@getManageList', [], false)]);
     }
 
+    public function index()
+    {
+        $news_items = NewsItem::whereDate('published_at', '<=', Carbon::now())
+                                    ->paginate(10);
+
+        return view(
+            'news_index',
+            [
+                'news_items' => $news_items,
+            ]
+        );
+    }
+
     public function publish(NewsItem $news_item = null, Request $request)
     {
         $this->authorize('create', NewsItem::class);
@@ -229,6 +243,15 @@ class NewsItemController extends Controller
             $draft = Draft::find($validated_data['draftId']);
             $draft->newsItem()->associate($news_item);
             $draft->save();
+        }
+
+        // If this article was just published...
+        if (
+            $news_item->published_at
+            && $news_item->published_at instanceof Carbon
+            && $news_item->published_at->greaterThanOrEqualTo(Carbon::now())
+        ) {
+            $news_item->notify((new NewsItemPublished($news_item))->delay($news_item->published_at));
         }
 
         // Return the news item...

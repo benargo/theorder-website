@@ -69,3 +69,22 @@ Route::get('/oauth2/battlenet', 'Auth\LoginController@handleProviderCallback')
         ->name('login.callback');
 
 Route::get('/logout', 'Auth\LogoutController@handleLogout');
+
+/*
+ |--------------------------------------------------------------------------
+ | News
+ |--------------------------------------------------------------------------
+ */
+Route::group(
+    [
+        'prefix' => '/news',
+    ],
+    function () {
+        Route::get('/', 'NewsItemController@index')
+                ->name('news.index');
+
+        Route::get('/{news_item}', function (App\Models\NewsItem $news_item) {
+            dd($news_item);
+        })->name('news.single');
+    }
+);
