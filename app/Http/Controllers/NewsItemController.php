@@ -182,6 +182,7 @@ class NewsItemController extends Controller
     public function index()
     {
         $news_items = NewsItem::whereDate('published_at', '<=', Carbon::now())
+                                    ->orderBy('published_at', 'desc')
                                     ->paginate(10);
 
         return view(
