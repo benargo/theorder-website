@@ -16,7 +16,7 @@
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link rel="icon" sizes="192x192" href="{{ asset('images/app_icon_192.png') }}">
     </head>
-    <body>
+    <body class="bg-brown-texture">
         <nav class="navbar navbar-expand-lg navbar-dark" id="navbar">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <font-awesome-icon :icon="['fas', 'home']" class="home-icon"></font-awesome-icon>
@@ -113,7 +113,7 @@
             @show
         </div>
 
-        <footer class="footer bg-brown-texture">
+        <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12 col-md-10">
