@@ -245,13 +245,9 @@ class NewsItemController extends Controller
             $draft->save();
         }
 
-        // If this article was just published...
-        if (
-            $news_item->published_at
-            && $news_item->published_at instanceof Carbon
-            && $news_item->published_at->greaterThanOrEqualTo(Carbon::now())
-        ) {
-            $news_item->notify((new NewsItemPublished($news_item))->delay($news_item->published_at));
+        // If we should send a notification to Discord...
+        if ($this->shouldNotifyDiscord($news_item)) {
+            $this->notifyDiscord($news_item);
         }
 
         // Return the news item...
@@ -277,5 +273,37 @@ class NewsItemController extends Controller
             ]);
 
         return response(null, 204);
+    }
+
+    protected function notifyDiscord(NewsItem $news_item)
+    {
+        // If the news item is scheduled to be published at least one minute
+        // in the future...
+        if ($news_item->published_at->greaterThanOrEqualTo(now()->addMinute())) {
+            $notification = (new NewsItemPublished())->delay(new Carbon($news_item->published_at));
+        }
+        else {
+            $notification = new NewsItemPublished();
+        }
+
+        $news_item->notify($notification);
+    }
+
+    /**
+     * Test whether we should notify Discord.
+     *
+     * This should only apply if the article was just published or scheduled to
+     * be published later.
+     *
+     * @param  App\Models\NewsItem  $news_item
+     * @return boolean
+     */
+    protected function shouldNotifyDiscord(NewsItem $news_item)
+    {
+        return (
+            $news_item->published_at
+            && $news_item->published_at instanceof Carbon
+            && $news_item->published_at->greaterThanOrEqualTo(now()->subMinute())
+        );
     }
 }
