@@ -9,11 +9,11 @@
                 <h1 class="text-center">{{ __('news.news') }}</h1>
             </div>
         </header>
-        <div class="bg-brown-texture extra-padding-top extra-padding-bottom text-light">
+        <div class="extra-padding-top extra-padding-bottom text-light">
             <div class="container">
                 <div class="row">
                     @foreach ($news_items as $news_item)
-                        <div class="col col-md-6 mb-4">
+                        <div class="col-12 my-3">
                             <a href="{{ route('news.single', ['news_item' => $news_item->url]) }}" class="card text-light">
                                 <h4 class="card-header bg-secondary">
                                     {{ $news_item->title }}
@@ -28,7 +28,7 @@
                                         }}
                                     </h5>
                                     <p class="card-text">
-                                        {{ $news_item->body }}
+                                        @parsedown($news_item->body)
                                     </p>
                                 </div>
                                 @if ($news_item->allows_comments)
