@@ -309,9 +309,9 @@
                     author: this.authorId,
                     body: this.article.body,
                     draftId: this.draft.id,
-                    publishDate: (publishDate instanceof window.moment)
+                    publishDate: (publishDate instanceof window.moment
                         ? publishDate.toISOString()
-                        : window.moment().toISOString(),
+                        : window.moment().toISOString()),
                     title: this.article.title,
                     url: this.article.url,
                 }
