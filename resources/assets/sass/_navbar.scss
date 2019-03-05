@@ -23,3 +23,8 @@
         border-top-color: lighten($brown, 20%);
     }
 }
+.nav-pills.nav-scrollspy .nav-link {
+    &.active {
+        background-color: $secondary;
+    }
+}

@@ -12,7 +12,7 @@ window.Vue = require('vue')
 import BootstrapVue from 'bootstrap-vue'
 import FlagIcon from 'vue-flag-icon'
 import Prism from 'prismjs'
-const VueInputMask = require('vue-inputmask').default
+import VueInputMask from 'vue-inputmask'
 window.marked = require('marked')
 window.moment = require('moment-timezone')
 window.str_slug = require('./str_slug').default
@@ -121,12 +121,12 @@ faLibrary.add(
 Vue.use(BootstrapVue)
 Vue.use(FlagIcon)
 Vue.use(VueInputMask)
-Vue.component('character-select-button', require('./components/CharacterSelectButton.vue'))
-Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue'))
+Vue.component('character-select-button', require('./components/CharacterSelectButton.vue').default)
+Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.vue'))
-Vue.component('news-item-manager', require('./components/NewsItemManagerComponent.vue'))
-Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue'))
+Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.vue').default)
+Vue.component('news-item-manager', require('./components/NewsItemManagerComponent.vue').default)
+Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue').default)
 
 const navbar = new Vue({
     el: '#navbar'

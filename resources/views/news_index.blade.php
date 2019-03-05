@@ -3,18 +3,27 @@
 @section('title', __('news.news'))
 
 @section('content')
-    <div id="app" class="page-news-index">
+    <div id="app" class="page-news-index d-flex flex-column" data-spy="scroll" data-target="scrollspy-news-items" data-offset="0">
         <header class="container-fluid bg-engineering extra-padding-top extra-padding-bottom text-light">
             <div class="content">
                 <h1 class="text-center">{{ __('news.news') }}</h1>
             </div>
         </header>
-        <div class="extra-padding-top extra-padding-bottom text-light">
+        <div class="extra-padding-bottom text-light flex-1">
             <div class="container">
                 <div class="row">
-                    @foreach ($news_items as $news_item)
-                        <div class="col-12 my-3">
-                            <a href="{{ route('news.single', ['news_item' => $news_item->url]) }}" class="card text-light">
+                    <div class="col-3 d-none d-md-block">
+                        <div id="scrollspy-news-items" class="list-group extra-padding-top sticky-top">
+                            @foreach ($news_items as $index => $news_item)
+                                <a class="list-group-item list-group-item-action" href="#{{ $news_item->id }}">
+                                    {{ $news_item->title }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="col extra-padding-top">
+                        @foreach ($news_items as $news_item)
+                            <a href="{{ route('news.single', ['news_item' => $news_item->url]) }}" class="card text-light mb-3" id="{{ $news_item->id }}">
                                 <h4 class="card-header bg-secondary">
                                     {{ $news_item->title }}
                                 </h4>
@@ -27,9 +36,9 @@
                                             ])
                                         }}
                                     </h5>
-                                    <p class="card-text">
-                                        @parsedown($news_item->body)
-                                    </p>
+                                    <div class="card-text">
+                                        @markdown($news_item->body)
+                                    </div>
                                 </div>
                                 @if ($news_item->allows_comments)
                                     <div class="card-footer bg-brown text-muted text-right">
@@ -37,8 +46,8 @@
                                     </div>
                                 @endif
                             </a>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
                 <div class="row">
                     {{ $news_items->links() }}

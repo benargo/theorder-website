@@ -9,7 +9,7 @@
                 </div>
                 <div class="row no-gutters">
                     <textarea :value="article.body" @input="processMarkdown" :placeholder="lang.placeholder" class="col md-editor text-light"></textarea>
-                    <div v-html="compiledMarkdown" class="col md-compiled d-none d-md-block"></div>
+                    <div v-html="compiledMarkdown" class="col md-compiled d-none d-md-block overflow-auto"></div>
                 </div>
             </div>
             <div class="col-12 col-lg-3">

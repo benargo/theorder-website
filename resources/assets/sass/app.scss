@@ -17,6 +17,11 @@
 a:hover {
     border-color: $link-hover-color !important;
 }
+
+// Flexbox
+.flex-1 {
+    flex: 1;
+}
 .full-height {
     display: flex;
     flex-flow: column;
@@ -37,12 +42,19 @@ a:hover {
         flex: 1 1 auto;
     }
 }
+
+// Margin & Padding Utilities
+.extra-margin-top {
+    margin-top: 100px;
+}
 .extra-padding-top {
     padding-top: 100px;
 }
 .extra-padding-bottom {
     padding-bottom: 100px;
 }
+
+// Backgrounds
 .bg-brown-texture {
     background-image: url('../images/bg_brown_texture_repeat.jpg');
     background-position: center -200px;
@@ -77,6 +89,8 @@ a:hover {
     background: rgb(98,130,143);
     background: linear-gradient(180deg, rgba(98,130,143,0.9) 0%, rgba(98,130,143,0.6) 80%, rgba(98,130,143,0) 100%);
 }
+
+// Alignment
 .v-align-center {
     align-items: center;
     display: flex;
@@ -94,9 +108,13 @@ a:hover {
 .z-index-3 {
     z-index: 103;
 }
+
+// @todo move to component file
 .breadcrumb {
     border: solid 1px $breadcrumb-divider-color;
 }
+
+// @todo move to component file
 .class-icons {
     .class-icon {
         height: 56px;
@@ -162,7 +180,6 @@ a:hover {
     }
 }
 
-
 /**
  * Components
  */
@@ -170,6 +187,7 @@ a:hover {
 @import 'footer';
 @import 'navbar';
 @import 'pagination';
+@import 'scrollspy';
 
 /**
  * Pages
