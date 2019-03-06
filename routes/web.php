@@ -84,7 +84,7 @@ Route::group(
                 ->name('news.index');
 
         Route::get('/{news_item}', function (App\Models\NewsItem $news_item) {
-            dd($news_item);
+            return view('news_single', ['news_item' => $news_item]);
         })->name('news.single');
     }
 );

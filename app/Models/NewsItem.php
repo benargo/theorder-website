@@ -56,6 +56,16 @@ class NewsItem extends Model
     }
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'url';
+    }
+
+    /**
      * Get the channel ID to send notifications to.
      */
     public function routeNotificationForDiscord()
