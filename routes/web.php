@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@renderHomepage')
  | Account
  |--------------------------------------------------------------------------
  */
+
 Route::get('/account/character-select', 'Account\CharacterSelectController@showCharacterList')
         ->middleware('auth')
         ->name('character-select');
@@ -28,6 +29,7 @@ Route::get('/account/character-select', 'Account\CharacterSelectController@showC
  | Discord
  |--------------------------------------------------------------------------
  */
+
 Route::get('/discord', 'DiscordController@redirectToServer');
 
 Route::get('/discord/channels/{channel}', 'DiscordController@redirectToServer')
@@ -40,6 +42,7 @@ Route::get('/oauth2/discord', 'DiscordController@handleProviderCallback');
  | Inner Circle Control Panel
  |--------------------------------------------------------------------------
  */
+
 Route::group(
     [
         'middleware' => 'can:access-inner-circle-control-panel',
@@ -65,6 +68,7 @@ Route::group(
  | Login/Logout
  |--------------------------------------------------------------------------
  */
+
 Route::get('/login', 'Auth\LoginController@redirectToProvider')
         ->name('login');
 
@@ -78,6 +82,7 @@ Route::get('/logout', 'Auth\LogoutController@handleLogout');
  | News
  |--------------------------------------------------------------------------
  */
+
 Route::group(
     [
         'prefix' => '/news',
