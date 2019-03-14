@@ -5,6 +5,7 @@ return [
     'alerts' => [
         'error_publishing' => 'Hmm, there was an error when trying to save the changes. You can try again later.',
         'error_invalid_publish_date' => 'The date you entered isn’t complete.',
+        'info_items_count_zero' => 'Sorry, there are no news articles to display.',
     ],
 
     'buttons' => [
