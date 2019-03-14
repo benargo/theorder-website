@@ -6,6 +6,7 @@ use DB;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\NewsItem;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -110,7 +111,7 @@ class NewsItemController extends Controller
             'authors' => User::whereHas(
                 'rank', function ($query) {
                     $query->where('seniority', '<=', 1);
-                })->get(['id', 'battletag']),
+                })->get(['id', 'nickname']),
             'draft' => $draft,
             'item_id' => $news_item ? $news_item->id : null,
         ]);
@@ -125,7 +126,15 @@ class NewsItemController extends Controller
         // Get all the drafts without articles...
         $drafts = DB::table('news_item_drafts')
                 ->leftJoin('users', 'news_item_drafts.user_id', '=', 'users.id')
-                ->select('news_item_id', 'news_item_drafts.id as draft_id', 'title', 'user_id as author_id', 'users.battletag as author_battletag', 'news_item_drafts.updated_at')
+                ->select(
+                    'news_item_id',
+                    'news_item_drafts.id as draft_id',
+                    'title',
+                    'user_id as author_id',
+                    'users.nickname as author_nickname',
+                    'users.battletag as author_battletag',
+                    'news_item_drafts.updated_at'
+                )
                 ->where(function ($query) {
                     $query->whereNotNull('title')
                           ->orWhereNotNull('body');
@@ -150,6 +159,7 @@ class NewsItemController extends Controller
                     ) as draft_id'),
                     'title',
                     'author_id',
+                    'users.nickname as author_nickname',
                     'users.battletag as author_battletag',
                     'published_at',
                     'news_items.updated_at'
@@ -163,11 +173,20 @@ class NewsItemController extends Controller
         $merged = $drafts->merge($news_items);
 
         $merged->transform(function ($item, $key) {
-            $item->author_battletag = str_before(decrypt($item->author_battletag), '#');
+            // If the nickname field is null, use the user's battletag
+            // instead...
+            $item->author_nickname = $this->author_nickname ?: Str::before(decrypt($item->author_battletag), '#');
+
+            // Calculate the URL to edit the article...
             $item->edit_url = url(
                 '/inner-circle/news/editor' . ($item->draft_id ? '?draft=' . $item->draft_id : ''),
                 ['item' => $item->news_item_id]
             );
+
+            // Unset the battletag field.
+            // This is no longer required after calculating the correct
+            // nickname...
+            unset($item->author_battletag);
 
             return $item;
         });

@@ -32,7 +32,7 @@
                                         <h5 class="card-title">
                                             {{
                                                 __('news.attribution', [
-                                                        'author' => str_before($news_item->author->battletag, '#'),
+                                                        'author' => $news_item->author->nickname,
                                                         'date' => $news_item->published_at->toDayDateTimeString(),
                                                 ])
                                             }}

@@ -23,7 +23,7 @@
                         <h2 class="h4 my-4"><em>
                             {{
                                 __('news.attribution', [
-                                        'author' => str_before($news_item->author->battletag, '#'),
+                                        'author' => $news_item->author->nickname,
                                         'date' => $news_item->published_at->toDayDateTimeString(),
                                 ])
                             }}

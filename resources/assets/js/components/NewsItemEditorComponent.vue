@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="selectAuthor">{{ lang.selectAuthor }}</label>
                             <select id="selectAuthor" class="form-control" v-model="authorId">
-                                <option v-for="author in authors" :value="author.id" :label="getBattletag(author.battletag)" :selected="authorIsUser(author.id)" />
+                                <option v-for="author in authors" :value="author.id" :label="author.nickname" :selected="authorIsUser(author.id)" />
                             </select>
                         </div>
                     </div>
@@ -255,16 +255,6 @@
                      .catch(function (error) {
 
                      })
-            },
-
-            /**
-             * Returns just the elected portion of the Battletag.
-             *
-             * @param  {String} battletag
-             * @return {String}
-             */
-            getBattletag: function (battletag) {
-                return battletag.substr(0, battletag.indexOf('#'))
             },
 
             /**

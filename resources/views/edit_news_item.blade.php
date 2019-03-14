@@ -58,7 +58,7 @@
                 {{-- current user object prop --}}
                 :user="{
                     id: {{ $user->id }},
-                    battletag: '{{ $user->battletag }}',
+                    nickname: '{{ $user->nickname }}',
                 }"
             ></news-item-editor>
         </div>

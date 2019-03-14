@@ -12,7 +12,7 @@ window.Vue = require('vue')
 import BootstrapVue from 'bootstrap-vue'
 import FlagIcon from 'vue-flag-icon'
 import Prism from 'prismjs'
-import VueInputMask from 'vue-inputmask'
+const VueInputMask = require('vue-inputmask').default
 window.marked = require('marked')
 window.moment = require('moment-timezone')
 window.str_slug = require('./str_slug').default
