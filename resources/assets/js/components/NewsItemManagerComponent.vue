@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row" v-if="items.length > 0">
             <table class="table my-4">
                 <thead>
                     <tr>
@@ -34,6 +34,11 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="row mt-5" v-else>
+            <div class="col">
+                <p class="lead text-center">{{ lang.alerts.info_items_count_zero }}</p>
+            </div>
         </div>
         <div class="row" v-if="last_page > 1">
             <div class="col-12 text-center">

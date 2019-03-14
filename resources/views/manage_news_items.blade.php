@@ -9,7 +9,7 @@
                 <h1 class="text-center">{{ __('news.news_items') }}</h1>
             </div>
         </header>
-        <div class="bg-brown-texture extra-padding-top extra-padding-bottom text-light">
+        <div class="extra-padding-top extra-padding-bottom text-light">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-8">
@@ -25,6 +25,9 @@
             </div>
             <news-item-manager
                 :lang="{
+                    alerts: {
+                        info_items_count_zero: '{{ __('news.alerts.info_items_count_zero') }}',
+                    },
                     buttons: {
                         cancel: '{{ __('news.buttons.cancel') }}',
                         delete: '{{ __('news.buttons.delete') }}',
