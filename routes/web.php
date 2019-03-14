@@ -20,9 +20,13 @@ Route::get('/', 'HomeController@renderHomepage')
  |--------------------------------------------------------------------------
  */
 
-Route::get('/account/character-select', 'Account\CharacterSelectController@showCharacterList')
-        ->middleware('auth')
-        ->name('character-select');
+Route::get('/account/character-select', function () {
+    abort(404);
+})->name('character-select');
+
+// Route::get('/account/character-select', 'Account\CharacterSelectController@showCharacterList')
+//         ->middleware('auth')
+//         ->name('character-select');
 
 /*
  |--------------------------------------------------------------------------
