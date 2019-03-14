@@ -88,7 +88,7 @@
                         ></notifications-menu-item>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ str_before($user->battletag, '#') }}
+                                {{ $user->nickname }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right bg-brown" aria-labelledby="authDropdown">
                                 <a class="dropdown-item nav-link" href="{{ url('account/settings') }}">{{ __('navigation.account_settings') }}</a>

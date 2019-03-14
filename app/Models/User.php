@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -47,6 +48,50 @@ class User extends Authenticatable
     ];
 
     /**
+     * Get the user's nickname.
+     *
+     * @return string
+     */
+    public function getNicknameAttribute()
+    {
+        try {
+            if ($this->attributes['nickname']) {
+                return Str::title($this->attributes['nickname']);
+            }
+
+            return Str::before(decrypt($this->attributes['battletag']), '#');
+        } catch (DecryptException $e) {
+            //
+        }
+    }
+
+    /**
+     * Get the user's email address.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getEmailAttribute($value)
+    {
+        try {
+            return decrypt($value);
+        } catch (DecryptException $e) {
+            //
+        }
+    }
+
+    /**
+     * Set the user's email address.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setEmailAttribute($value)
+    {
+        $this->attributes['email'] = encrypt($value);
+    }
+
+    /**
      * Get the user's battle tag.
      *
      * @param  string  $value
@@ -70,6 +115,32 @@ class User extends Authenticatable
     public function setBattletagAttribute($value)
     {
         $this->attributes['battletag'] = encrypt($value);
+    }
+
+    /**
+     * Get the user's Discord ID.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getDiscordUserIdAttribute($value)
+    {
+        try {
+            return decrypt($value);
+        } catch (DecryptException $e) {
+            //
+        }
+    }
+
+    /**
+     * Set the user's nickname.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setDiscordUserIdAttribute($value)
+    {
+        $this->attributes['discord_user_id'] = encrypt($value);
     }
 
     /**
