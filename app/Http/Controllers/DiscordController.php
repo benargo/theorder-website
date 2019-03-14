@@ -16,13 +16,13 @@ use GuzzleHttp\Command\Exception\CommandException;
  */
 class DiscordController extends Controller
 {
-    const CHANNEL = 'https://discordapp.com/channels/241543479602315264/';
-    const GUILD_ID = 241543479602315264;
+    const URL = 'https://discordapp.com/channels/470564810929733643/';
+    const GUILD_ID = 470564810929733643;
 
     /**
      * Redirects the user to the Discord server.
      */
-    public function redirectToServer()
+    public function redirectToServer($channel = null)
     {
         if (! session('discord_access_token')) {
             return Socialite::driver('discord')
@@ -45,7 +45,7 @@ class DiscordController extends Controller
             //
         }
 
-        return redirect(self::CHANNEL);
+        return redirect(self::URL.$channel);
     }
 
     /**

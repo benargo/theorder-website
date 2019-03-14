@@ -30,6 +30,9 @@ Route::get('/account/character-select', 'Account\CharacterSelectController@showC
  */
 Route::get('/discord', 'DiscordController@redirectToServer');
 
+Route::get('/discord/channels/{channel}', 'DiscordController@redirectToServer')
+    ->name('discord-channel');
+
 Route::get('/oauth2/discord', 'DiscordController@handleProviderCallback');
 
 /*
