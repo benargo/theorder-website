@@ -126,7 +126,7 @@ class User extends Authenticatable
     public function getDiscordUserIdAttribute($value)
     {
         try {
-            return decrypt($value);
+            return intval(decrypt($value));
         } catch (DecryptException $e) {
             //
         }

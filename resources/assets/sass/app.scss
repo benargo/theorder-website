@@ -89,6 +89,11 @@ a:hover {
     background: rgb(98,130,143);
     background: linear-gradient(180deg, rgba(98,130,143,0.9) 0%, rgba(98,130,143,0.6) 80%, rgba(98,130,143,0) 100%);
 }
+.bg-tavern {
+    background-image: url('../images/bg_tavern.jpg');
+    background-position: center;
+    background-size: cover;
+}
 
 // Alignment
 .v-align-center {

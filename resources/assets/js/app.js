@@ -121,6 +121,7 @@ faLibrary.add(
 Vue.use(BootstrapVue)
 Vue.use(FlagIcon)
 Vue.use(VueInputMask)
+Vue.component('account-settings', require('./components/AccountSettingsComponent.vue').default)
 Vue.component('character-select-button', require('./components/CharacterSelectButton.vue').default)
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

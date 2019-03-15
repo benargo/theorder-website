@@ -40,7 +40,6 @@ class DiscordController extends Controller
         // else...
 
         $user = Socialite::driver('discord')->userFromToken($this->getAccessToken());
-
         $discord = new DiscordClient(['token' => config('discord.clients.guildbot.token')]);
 
         try {

@@ -20,6 +20,12 @@ Route::get('/', 'HomeController@renderHomepage')
  |--------------------------------------------------------------------------
  */
 
+Route::get('/account', function () {
+    return redirect('/account/settings');
+});
+
+Route::get('/account/settings', 'Account\SettingsController@settingsPage');
+
 Route::get('/account/character-select', function () {
     abort(404);
 })->name('character-select');
@@ -27,6 +33,16 @@ Route::get('/account/character-select', function () {
 // Route::get('/account/character-select', 'Account\CharacterSelectController@showCharacterList')
 //         ->middleware('auth')
 //         ->name('character-select');
+
+/*
+ |--------------------------------------------------------------------------
+ | Applications
+ |--------------------------------------------------------------------------
+ */
+
+Route::get('/join', function () {
+    return redirect()->route('discord-channel', ['channel' => 552893734266863617]);
+});
 
 /*
  |--------------------------------------------------------------------------

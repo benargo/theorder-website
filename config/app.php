@@ -160,6 +160,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\BattlenetServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\DiscordServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
