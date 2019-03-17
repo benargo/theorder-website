@@ -16,6 +16,7 @@ const VueInputMask = require('vue-inputmask').default
 window.marked = require('marked')
 window.moment = require('moment-timezone')
 window.str_slug = require('./str_slug').default
+window.kebabCase = require('dashify')
 
 /**
  * Second, import all of the Font Awesome libraries. There are thousands of
@@ -55,10 +56,13 @@ import {
     faChevronLeft,
     faChevronRight,
     faClipboardList,
+    faFirstAid,
     faHome as faHomeSolid,
     faPaperPlane,
     faPenFancy,
     faPencil,
+    faShield,
+    faSword,
     faTimesCircle as faTimesCircleSolid,
     faTrash,
     faUserClock,
@@ -92,6 +96,7 @@ faLibrary.add(
     faDiscord,
     faExternalLink,
     faFacebook,
+    faFirstAid,
     faHelmetBattle,
     faHistory,
     faHomeRegular,
@@ -100,6 +105,8 @@ faLibrary.add(
     faPaperPlane,
     faPenFancy,
     faPencil,
+    faShield,
+    faSword,
     faTimesCircleRegular,
     faTimesCircleSolid,
     faTrash,
@@ -125,6 +132,7 @@ Vue.component('account-settings', require('./components/AccountSettingsComponent
 Vue.component('character-select-button', require('./components/CharacterSelectButton.vue').default)
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('join-form', require('./components/NewApplicationComponent.vue').default)
 Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.vue').default)
 Vue.component('news-item-manager', require('./components/NewsItemManagerComponent.vue').default)
 Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue').default)

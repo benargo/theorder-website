@@ -16,13 +16,13 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('name');
-            $table->string('character');
-            // $table->string('realm');
-            // $table->unsignedInteger('class_id');
-            $table->timestamp('submitted_at')->nullable();
+            $table->string('character_name', 12);
+            $table->unsignedInteger('race_id');
+            $table->unsignedInteger('class_id');
+            $table->string('role', 8)->default('damage');
             $table->timestamp('accepted_at')->nullable();
             $table->timestamp('declined_at')->nullable();
+            $table->timestamp('withdrawn_at')->nullable();
             $table->timestamps();
         });
     }

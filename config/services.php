@@ -15,8 +15,8 @@ return [
     */
 
     'battlenet' => [
-        'client_id' => env('BATTLENET_KEY'),
-        'client_secret' => env('BATTLENET_SECRET'),
+        'client_id' => env('BLIZZARD_KEY'),
+        'client_secret' => env('BLIZZARD_SECRET'),
         'redirect' => env('BATTLENET_REDIRECT_URI'),
     ],
 

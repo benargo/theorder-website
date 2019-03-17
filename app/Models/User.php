@@ -170,6 +170,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all the applications associated with the user.
+     */
+    public function applications()
+    {
+        return $this->hasMany('App\Models\Application');
+    }
+
+    /**
      * Get all the characters associated with the user.
      */
     public function characters()

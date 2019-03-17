@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@renderHomepage')
-        ->name('homepage');
+Route::get('/', function () {
+    return view('home');
+})->name('homepage');
 
 /*
  |--------------------------------------------------------------------------
@@ -40,9 +41,8 @@ Route::get('/account/character-select', function () {
  |--------------------------------------------------------------------------
  */
 
-Route::get('/join', function () {
-    return redirect()->route('discord-channel', ['channel' => 552893734266863617]);
-});
+Route::get('/join', 'ApplicationsController@showJoinPage')
+    ->middleware('auth');
 
 /*
  |--------------------------------------------------------------------------

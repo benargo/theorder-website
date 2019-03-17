@@ -89,6 +89,11 @@ a:hover {
     background: rgb(98,130,143);
     background: linear-gradient(180deg, rgba(98,130,143,0.9) 0%, rgba(98,130,143,0.6) 80%, rgba(98,130,143,0) 100%);
 }
+.bg-ironforge {
+    background-image: url('../images/bg_ironforge.jpg');
+    background-position: center;
+    background-size: cover;
+}
 .bg-tavern {
     background-image: url('../images/bg_tavern.jpg');
     background-position: center;
@@ -120,72 +125,6 @@ a:hover {
     border: solid 1px $breadcrumb-divider-color;
 }
 
-// @todo move to component file
-.class-icons {
-    .class-icon {
-        height: 56px;
-        object-fit: none;
-        width: 56px;
-
-        &.class-icon-druid {
-            object-position: 0 0;
-
-            &.class-icon-closed {
-                object-position: 0 66px;
-            }
-        }
-        &.class-icon-hunter {
-            object-position: -66px 0;
-
-            &.class-icon-closed {
-                object-position: -66px -66px;
-            }
-        }
-        &.class-icon-mage {
-            object-position: -132px 0;
-
-            &.class-icon-closed {
-                object-position: -132px -66px;
-            }
-        }
-        &.class-icon-paladin {
-            object-position: -198px 0;
-
-            &.class-icon-closed {
-                object-position: -198px -66px;
-            }
-        }
-        &.class-icon-priest {
-            object-position: -264px 0;
-
-            &.class-icon-closed {
-                object-position: -264px -66px;
-            }
-        }
-        &.class-icon-rogue {
-            object-position: -330px 0;
-
-            &.class-icon-closed {
-                object-position: -330px -66px;
-            }
-        }
-        &.class-icon-warlock {
-            object-position: -396px 0;
-
-            &.class-icon-closed {
-                object-position: -396px -66px;
-            }
-        }
-        &.class-icon-warrior {
-            object-position: -462px 0;
-
-            &.class-icon-closed {
-                object-position: -462px -66px;
-            }
-        }
-    }
-}
-
 /**
  * Components
  */
@@ -194,6 +133,7 @@ a:hover {
 @import 'navbar';
 @import 'pagination';
 @import 'scrollspy';
+@import 'warcraft_icons';
 
 /**
  * Pages

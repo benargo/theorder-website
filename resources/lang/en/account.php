@@ -13,9 +13,9 @@ return [
 
     // TODO: Change key to 'alerts'
     'errors' => [
-        'battlenet_api_504' => 'We encountered an error fetching data from Battle.net\'s API. Would you mind <a class="alert-link" href="'. route('character-select') .'">trying again</a>?',
-        'no_characters_found' => 'We couldn\'t find any characters attached to your World of Warcraft account.',
-        'no_silvermoon_characters_found' => 'We couldn\'t find any characters belonging to our guild. Don\'t panic though, it\'s not a big deal.',
+        'battlenet_api_504' => 'We encountered an error fetching data from Battle.net’s API. Would you mind <a class="alert-link" href="'. route('character-select') .'">trying again</a>?',
+        'no_characters_found' => 'We couldn’t find any characters attached to your World of Warcraft account.',
+        'no_silvermoon_characters_found' => 'We couldn’t find any characters belonging to our guild. Don’t panic though, it’s not a big deal.',
     ],
 
     'buttons' => [

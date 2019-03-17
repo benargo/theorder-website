@@ -158,7 +158,7 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\BattlenetServiceProvider::class,
+        App\Providers\BlizzardServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\DiscordServiceProvider::class,
         App\Providers\EventServiceProvider::class,
