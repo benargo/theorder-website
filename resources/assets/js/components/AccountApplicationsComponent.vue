@@ -9,7 +9,7 @@
                     <th scope="col">{{ lang.labels.class }}</th>
                     <th scope="col">{{ lang.labels.role }}</th>
                     <th scope="col">{{ lang.labels.status }}</th>
-                    <th scope="col"></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -34,13 +34,27 @@
                     </td>
                     <td class="align-middle">
                         {{ lang.status[a.status] }}
+                        <span v-if="a.status === 'accepted'">
+                            ({{ lang.on }}
+                            {{ formatDate(a.accepted_at) }})
+                        </span>
+                        <span v-else-if="a.status === 'declined'">
+                            ({{ lang.on }}
+                            {{ formatDate(a.declined_at) }})
+                        </span>
+                        <span v-else-if="a.status === 'withdrawn'">
+                            ({{ lang.on }}
+                            {{ formatDate(a.withdrawn_at) }})
+                        </span>
                     </td>
-                    <td v-if="a.status === 'pending'">
+                    <td>
                         <button type="button"
                                 class="btn btn-primary"
                                 data-toggle="tooltip"
                                 data-placement="bottom"
                                 :title="lang.labels.withdrawApplication"
+                                v-if="a.status === 'pending'"
+                                @click="withdrawApplication(a.id)"
                             >
                             <font-awesome-icon :icon="['fas', 'trash']" class="fa-sm"></font-awesome-icon>
                         </button>
@@ -75,17 +89,33 @@
 
             classStatus: function (status) {
                 let classMapStatus = {
-                    accepted: 'table-success',
-                    declined: 'table-warning',
-                    pending:  'table-info',
+                    accepted:  'table-success',
+                    declined:  'table-warning',
+                    pending:   'table-info',
+                    withdrawn: 'table-danger',
                 }
 
                 return classMapStatus[status]
             },
 
+            formatDate: function (date) {
+                return moment(date).format('D MMM YYYY')
+            },
+
             langStatus: function (application) {
                 return this.lang.status[application.status]
             },
+
+            withdrawApplication: function (applicationId) {
+                axios.patch('/api/applications/' + applicationId, {
+                    action: 'withdraw'
+                }).then(function (response) {
+                    $('[data-toggle="tooltip"]').tooltip('hide')
+                    this.applications = this.applications.filter(function (value, i, arr) {
+                        return value.id != applicationId
+                    }.bind(applicationId));
+                }.bind(this, applicationId))
+            }
 
         },
 

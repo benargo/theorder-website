@@ -18,6 +18,7 @@ class Application extends Model
     protected $dates = [
         'accepted_at',
         'declined_at',
+        'withdrawn_at',
     ];
 
     /**

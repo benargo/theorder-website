@@ -40,6 +40,7 @@
                 :classes="{{ $classes }}"
                 :lang="{
                     applications: '{{ __('account.applications') }}',
+                    on: '{{ __('applications.on') }}',
                     labels: {
                         characterName: '{{ __('applications.character_name') }}',
                         class: '{{ __('applications.class') }}',
@@ -55,6 +56,7 @@
                         accepted: '{{ ucfirst(__('applications.status.accepted')) }}',
                         declined: '{{ ucfirst(__('applications.status.declined')) }}',
                         pending: '{{ ucfirst(__('applications.status.pending')) }}',
+                        withdrawn: '{{ ucfirst(__('applications.status.withdrawn')) }}',
                     },
                 }"
                 :races="{{ $races }}"

@@ -35,9 +35,10 @@ return [
     ],
 
     'status' => [
-        'accepted' => 'accepted',
-        'declined' => 'declined',
-        'pending'  => 'pending',
+        'accepted'  => 'accepted',
+        'declined'  => 'declined',
+        'pending'   => 'pending',
+        'withdrawn' => 'withdrawn',
     ],
 
     'character_name' => 'Character Name',
@@ -45,6 +46,7 @@ return [
     'join_title' => 'Join the Order',
     'lead' => 'The Order is always looking for talented individuals with the aptitude for fun and adventure. At the moment we are gearing up for the launch of the official Blizzard Classic realms later in 2019. If you are thinking of trying out Classic then we welcome your application. All you need to do is fill out the details below and one of the Inner Circle will invite you when the official Classic server goes live.',
     'next_steps' => 'In the meantime, you are welcome to join us on the Elysium Project. Just drop us a message on Discord or whisper one of the Inner Circle.',
+    'on' => 'on',
     'race' => 'Race',
     'role' => 'Role',
 

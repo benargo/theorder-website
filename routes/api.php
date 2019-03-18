@@ -37,6 +37,8 @@ Route::middleware('auth:api')->put('/user/{user}/{field}', 'Account\SettingsCont
 
 Route::middleware('auth:api')->post('/applications/new', 'ApplicationsController@create');
 
+Route::middleware('auth:api')->patch('/applications/{application}', 'ApplicationsController@patch');
+
 /*
  |--------------------------------------------------------------------------
  | Character Select

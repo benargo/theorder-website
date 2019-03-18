@@ -12,6 +12,7 @@ class ApplicationsController extends Controller
         if (Auth::check()) {
             $applications = Auth::user()
                     ->applications()
+                    ->latest()
                     ->get()
                     ->map(function ($item, $key) {
                         $item->status = $item->getStatus();
