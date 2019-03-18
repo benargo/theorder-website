@@ -31,4 +31,8 @@ return [
         ]
     ],
 
+    'channels' => [
+        'recruitment' => '484387377956257804',
+    ],
+
 ];

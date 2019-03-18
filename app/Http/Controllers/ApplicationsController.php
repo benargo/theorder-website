@@ -12,10 +12,16 @@ use App\Blizzard\Warcraft\Classes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Notifications\ApplicationReceived;
 
 class ApplicationsController extends Controller
 {
-    const FACTION = 'alliance';
+    protected $faction;
+
+    public function __construct()
+    {
+        $this->faction = config('blizzard.faction');
+    }
 
     public function create(Classes $classes, Races $races, Request $request)
     {
@@ -37,11 +43,11 @@ class ApplicationsController extends Controller
             'characterName' => 'required|max:12',
             'classId' => [
                 'required',
-                Rule::in($classes->getClassicClasses(self::FACTION)->pluck('id')->toArray()),
+                Rule::in($classes->getClassicClasses($this->faction)->pluck('id')->toArray()),
             ],
             'raceId' => [
                 'required',
-                Rule::in($races->getClassicRaces(self::FACTION)->pluck('id')->toArray()),
+                Rule::in($races->getClassicRaces($this->faction)->pluck('id')->toArray()),
             ],
             'role' => [
                 'required',
@@ -56,7 +62,15 @@ class ApplicationsController extends Controller
             'role' => Arr::get($validated_data, 'role'),
         ]);
 
+        // Send a notification to Discord...
+        $this->notifyDiscord($application);
+
         return response(null, 204);
+    }
+
+    protected function notifyDiscord(ApplicationModel $application)
+    {
+        $application->notify(new ApplicationReceived);
     }
 
     public function patch(ApplicationModel $application, Request $request)
@@ -96,8 +110,8 @@ class ApplicationsController extends Controller
 
     public function showJoinPage(Classes $classes, Races $races)
     {
-        $classes = $classes->getClassicClasses(self::FACTION);
-        $races   = $races->getClassicRaces(self::FACTION);
+        $classes = $classes->getClassicClasses($this->faction);
+        $races   = $races->getClassicRaces($this->faction);
         $application = null;
 
         if (Auth::check()) {

@@ -111,9 +111,7 @@
                     action: 'withdraw'
                 }).then(function (response) {
                     $('[data-toggle="tooltip"]').tooltip('hide')
-                    this.applications = this.applications.filter(function (value, i, arr) {
-                        return value.id != applicationId
-                    }.bind(applicationId));
+                    this.applications[applicationId].status = 'withdrawn'
                 }.bind(this, applicationId))
             }
 

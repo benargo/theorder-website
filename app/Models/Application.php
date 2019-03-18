@@ -5,11 +5,14 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use App\Blizzard\Warcraft\Facades\Races;
 use App\Blizzard\Warcraft\Facades\Classes;
 
 class Application extends Model
 {
+    use Notifiable;
+
     /**
      * The attributes that should be mutated to dates.
      *
@@ -38,10 +41,15 @@ class Application extends Model
         'healer',
         'tank',
     ];
-
+    
     public static function getAllowedRoles()
     {
         return static::$allowed_roles;
+    }
+
+    public function routeNotificationForDiscord()
+    {
+        return config('discord.channels.recruitment');
     }
 
     public function getClassAttribute()
