@@ -54,6 +54,7 @@ return [
     'draft' => 'Draft',
     'draft_id' => 'Draft ID',
     'editor' => 'Editor',
+    'manage_lead' => 'Below is a list of news items, including drafts that have not yet been published.',
     'news_editor' => 'News Editor',
     'news_items' => 'News Items',
     'news' => 'News',

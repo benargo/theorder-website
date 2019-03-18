@@ -41,10 +41,23 @@ class Application extends Model
         'healer',
         'tank',
     ];
-    
+
+    protected static $allowed_states = [
+        'accepted',
+        'declined',
+        'pending',
+        'withdrawn',
+        null,
+    ];
+
     public static function getAllowedRoles()
     {
         return static::$allowed_roles;
+    }
+
+    public static function getAllowedStates()
+    {
+        return static::$allowed_states;
     }
 
     public function routeNotificationForDiscord()
@@ -83,8 +96,7 @@ class Application extends Model
         elseif ($this->attributes['accepted_at'] <> null) {
             return 'accepted';
         }
-        elseif ($this->attributes['declined_at'] instanceof Carbon &&
-                $this->attributes['declined_at']->between(Carbon::now()->subWeek(), Carbon::now())) {
+        elseif ($this->attributes['declined_at'] <> null) {
             return 'declined';
         }
         elseif ($this->attributes['accepted_at'] === null &&

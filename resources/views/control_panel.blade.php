@@ -180,7 +180,7 @@
                 <h2>{{ __('controlpanel.applications') }}</h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/applications?filter=undecided') }}" class="card-action">
+                        <a href="{{ url('inner-circle/applications?status=pending') }}" class="card-action">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'user-plus']" class="fa-3x"></font-awesome-icon>

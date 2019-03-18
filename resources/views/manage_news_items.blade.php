@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-8">
-                        <p class="lead">Below is a list of news items, including drafts that have not yet been published.</p>
+                        <p class="lead">{{ __('news.manage_lead') }}</p>
                     </div>
                     <div class="col-12 col-md-4 text-md-right">
                         <a href="{{ url('/inner-circle/news/create') }}" class="btn btn-primary btn-lg" role="button">

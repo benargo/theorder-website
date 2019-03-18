@@ -47,7 +47,7 @@
                             {{ formatDate(a.withdrawn_at) }})
                         </span>
                     </td>
-                    <td>
+                    <td v-if="">
                         <button type="button"
                                 class="btn btn-primary"
                                 data-toggle="tooltip"
@@ -68,10 +68,6 @@
 <script>
     export default {
 
-        computed: {
-
-        },
-
         data: function () {
             return {
                 applications: [],
@@ -84,7 +80,7 @@
             },
 
             classIconRace: function (id) {
-                return 'race-icon class-icon-xs race-icon-' + id
+                return 'race-icon race-icon-xs race-icon-' + id
             },
 
             classStatus: function (status) {

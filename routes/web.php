@@ -73,6 +73,8 @@ Route::group(
             return view('control_panel');
         });
 
+        Route::get('/applications', 'ApplicationsController@all');
+
         Route::get('/news', function () {
             return view('manage_news_items');
         });

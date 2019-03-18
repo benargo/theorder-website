@@ -19,7 +19,18 @@ class ApplicationPolicy
      */
     public function view(User $user, Application $application)
     {
-        //
+        return $user->rank->seniority <= 1;
+    }
+
+    /**
+     * Determine whether the user can view applications.
+     *
+     * @param  \App\Models\User  $user
+     * @return mixed
+     */
+    public function viewAll(User $user)
+    {
+        return $user->rank->seniority <= 1;
     }
 
     /**
@@ -52,9 +63,9 @@ class ApplicationPolicy
      * @param  \App\Models\Application  $application
      * @return mixed
      */
-    public function approve(User $user, Application $application)
+    public function accept(User $user, Application $application)
     {
-        //
+        return $user->rank->seniority <= 1;
     }
 
     /**
@@ -66,6 +77,6 @@ class ApplicationPolicy
      */
     public function decline(User $user, Application $application)
     {
-        //
+        return $user->rank->seniority <= 1;
     }
 }

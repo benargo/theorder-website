@@ -52,6 +52,7 @@ import {
     faCalendarPlus,
     faChalkboard,
     faChartLine,
+    faCheck,
     faCheckCircle,
     faChevronLeft,
     faChevronRight,
@@ -63,6 +64,7 @@ import {
     faPencil,
     faShield,
     faSword,
+    faTimes,
     faTimesCircle as faTimesCircleSolid,
     faTrash,
     faUserClock,
@@ -87,6 +89,7 @@ faLibrary.add(
     faCalendarPlus,
     faChalkboard,
     faChartLine,
+    faCheck,
     faCheckCircle,
     faChevronLeft,
     faChevronRight,
@@ -107,6 +110,7 @@ faLibrary.add(
     faPencil,
     faShield,
     faSword,
+    faTimes,
     faTimesCircleRegular,
     faTimesCircleSolid,
     faTrash,
@@ -130,6 +134,7 @@ Vue.use(FlagIcon)
 Vue.use(VueInputMask)
 Vue.component('account-settings', require('./components/AccountSettingsComponent.vue').default)
 Vue.component('account-applications', require('./components/AccountApplicationsComponent.vue').default)
+Vue.component('applications-manager', require('./components/ApplicationsManagerComponent.vue').default)
 Vue.component('character-select-button', require('./components/CharacterSelectButton.vue').default)
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)
 Vue.component('font-awesome-icon', FontAwesomeIcon)

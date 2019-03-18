@@ -124,6 +124,10 @@ a:hover {
     background: $brown;
     border: solid 1px $breadcrumb-divider-color;
 }
+.btn.btn-icon {
+    min-width: 41px;
+    min-height: 41px;
+}
 
 /**
  * Components

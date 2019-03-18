@@ -5,25 +5,152 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Application as ApplicationModel;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Blizzard\Warcraft\Races;
 use App\Blizzard\Warcraft\Classes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder as Query;
 use App\Notifications\ApplicationReceived;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ApplicationsController extends Controller
 {
+    protected $classes;
     protected $faction;
+    protected $races;
 
-    public function __construct()
+    public function __construct(Classes $classes, Races $races)
     {
+        $this->classes = $classes;
         $this->faction = config('blizzard.faction');
+        $this->races   = $races;
     }
 
-    public function create(Classes $classes, Races $races, Request $request)
+    public function all(Request $request)
+    {
+        $this->authorize('viewAll', ApplicationModel::class);
+
+        $data = $this->validateGetRequest($request);
+
+        // TODO: Move to a ViewComposer
+        $data['classes'] = $this->classes->getClassicClasses($this->faction);
+        $data['races']   = $this->races->getClassicRaces($this->faction);
+        $data['roles']   = ApplicationModel::getAllowedRoles();
+
+        return view('manage_applications', $data);
+    }
+
+    public function getCollection(Request $request)
+    {
+        $this->authorize('viewAll', ApplicationModel::class);
+
+        $classes        = $this->classes;
+        $races          = $this->races;
+        $validated_data = $this->validateGetRequest($request);
+
+        $applications = ApplicationModel::where(function (Query $query) use ($classes, $races, $validated_data) {
+            // Add character name filter...
+            if ($regexp = Arr::get($validated_data, 'characterName')) {
+                $query->where('character_name', 'REGEXP', $regexp);
+            }
+
+            // Add class filters...
+            if ($class = Arr::get($validated_data, 'classId')) {
+                $class = $classes->getClass($class);
+
+                $query->where('class_id', $class->id);
+            }
+
+            // Add race filters...
+            if ($race = Arr::get($validated_data, 'raceId')) {
+                $race = $races->getRace($race);
+
+                $query->where('race_id', $race->id);
+            }
+
+            // Add role filters...
+            if ($role = Arr::get($validated_data, 'role')) {
+                $query->where('role', strtolower($role));
+            }
+
+            // Add status filters...
+            if ($status = Arr::get($validated_data, 'status')) {
+                $status = Str::studly($status);
+
+                call_user_func_array([$this, "query{$status}Status"], [$query]);
+            }
+        })->latest()->get()->transform(function ($item, $key) {
+            $item->status = $item->getStatus();
+
+            return $item;
+        });
+
+        $page_number = (Paginator::resolveCurrentPage() ?: 1);
+        $per_page    = 10;
+
+        return new LengthAwarePaginator(
+            $applications->forPage($page_number, $per_page),
+            $applications->count(),
+            $per_page,
+            null,
+            ['path' => action('ApplicationsController@getCollection', [], false)]
+        );
+    }
+
+    protected function validateGetRequest(Request $request)
+    {
+        return $request->validate([
+            'characterName' => [
+                'nullable',
+                'string',
+            ],
+            'classId' => [
+                'nullable',
+                Rule::in($this->classes->getClassicClasses($this->faction)->pluck('id')->toArray()),
+            ],
+            'raceId' => [
+                'nullable',
+                Rule::in($this->races->getClassicRaces($this->faction)->pluck('id')->toArray()),
+            ],
+            'role' => [
+                'nullable',
+                Rule::in(ApplicationModel::getAllowedRoles())
+            ],
+            'status' => [
+                'nullable',
+                Rule::in(ApplicationModel::getAllowedStates()),
+            ],
+        ]);
+    }
+
+    protected function queryAcceptedStatus(Query $query)
+    {
+        $query->whereNotNull('accepted_at');
+    }
+
+    protected function queryDeclinedStatus(Query $query)
+    {
+        $query->whereNotNull('declined_at');
+    }
+
+    protected function queryPendingStatus(Query $query)
+    {
+        $query->whereNull('accepted_at')
+              ->whereNull('declined_at')
+              ->whereNull('withdrawn_at');
+    }
+
+    protected function queryWithdrawnStatus(Query $query)
+    {
+        $query->whereNotNull('withdrawn_at');
+    }
+
+    public function create(Request $request)
     {
         $user = $request->user();
 
@@ -43,11 +170,11 @@ class ApplicationsController extends Controller
             'characterName' => 'required|max:12',
             'classId' => [
                 'required',
-                Rule::in($classes->getClassicClasses($this->faction)->pluck('id')->toArray()),
+                Rule::in($this->classes->getClassicClasses($this->faction)->pluck('id')->toArray()),
             ],
             'raceId' => [
                 'required',
-                Rule::in($races->getClassicRaces($this->faction)->pluck('id')->toArray()),
+                Rule::in($this->races->getClassicRaces($this->faction)->pluck('id')->toArray()),
             ],
             'role' => [
                 'required',
@@ -78,7 +205,7 @@ class ApplicationsController extends Controller
         $action = Arr::get($request->validate([
             'action' => [
                 'required',
-                Rule::in(['approve', 'decline', 'withdraw']),
+                Rule::in(['accept', 'decline', 'withdraw']),
             ],
         ]), 'action');
 
@@ -88,19 +215,29 @@ class ApplicationsController extends Controller
         );
     }
 
-    protected function approveApplication(ApplicationModel $application, Authenticatable $user)
+    protected function acceptApplication(ApplicationModel $application, Authenticatable $user)
     {
+        abort_unless($user->can('accept', $application), 403);
 
+        $application->accepted_at = Carbon::now();
+        $application->save();
+
+        return response(null, 204);
     }
 
     protected function declineApplication(ApplicationModel $application, Authenticatable $user)
     {
+        abort_unless($user->can('decline', $application), 403);
 
+        $application->declined_at = Carbon::now();
+        $application->save();
+
+        return response(null, 204);
     }
 
     protected function withdrawApplication(ApplicationModel $application, Authenticatable $user)
     {
-        abort_unless($user->can('withdraw', $application), 400);
+        abort_unless($user->can('withdraw', $application), 403);
 
         $application->withdrawn_at = Carbon::now();
         $application->save();
@@ -108,10 +245,10 @@ class ApplicationsController extends Controller
         return response(null, 204);
     }
 
-    public function showJoinPage(Classes $classes, Races $races)
+    public function showJoinPage()
     {
-        $classes = $classes->getClassicClasses($this->faction);
-        $races   = $races->getClassicRaces($this->faction);
+        $classes = $this->classes->getClassicClasses($this->faction);
+        $races   = $this->races->getClassicRaces($this->faction);
         $application = null;
 
         if (Auth::check()) {
