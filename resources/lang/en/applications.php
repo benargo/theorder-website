@@ -28,8 +28,16 @@ return [
     'labels' => [
         'damage' => 'Damage',
         'healer' => 'Healer',
+        'status' => 'Status',
         'submit_application' => 'Submit Application',
         'tank'   => 'Tank',
+        'withdraw_application' => 'Withdraw Application',
+    ],
+
+    'status' => [
+        'accepted' => 'accepted',
+        'declined' => 'declined',
+        'pending'  => 'pending',
     ],
 
     'character_name' => 'Character Name',

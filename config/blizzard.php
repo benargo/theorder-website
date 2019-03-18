@@ -37,6 +37,17 @@ return [
     | For examples: en_GB | fr_FR | de_DE | ru_RU
     |
     */
+    'faction' => 'alliance',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Battle.net Locale
+    |--------------------------------------------------------------------------
+    |
+    | Define what locale to use for the Battle.net API response.
+    | For examples: en_GB | fr_FR | de_DE | ru_RU
+    |
+    */
     'locale' => 'en_GB',
 
     /*

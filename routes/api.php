@@ -23,6 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:api')->get('/user/applications', 'Account\ApplicationsController@get');
+
 Route::middleware('auth:api')->post('/user/{user}/unlink-discord', 'Account\SettingsController@unlinkDiscord');
 
 Route::middleware('auth:api')->put('/user/{user}/{field}', 'Account\SettingsController@updateUserField');

@@ -1,0 +1,120 @@
+<template>
+    <form class="mt-5" v-if="applications">
+        <h2 class="h3">{{ lang.applications }}</h2>
+        <table class="table table-dark my-3">
+            <thead>
+                <tr>
+                    <th scope="col">{{ lang.labels.characterName }}</th>
+                    <th scope="col">{{ lang.labels.race }}</th>
+                    <th scope="col">{{ lang.labels.class }}</th>
+                    <th scope="col">{{ lang.labels.role }}</th>
+                    <th scope="col">{{ lang.labels.status }}</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr :class="classStatus(a.status)" v-for="a in applications">
+                    <td class="align-middle">{{ a.character_name }}</td>
+                    <td class="race-icons">
+                        <img src="/images/raceicons_xs.png"
+                            :class="classIconRace(a.race_id)"
+                            :title="races[a.race_id].name"
+                        />
+                        {{ races[a.race_id].name }}
+                    </td>
+                    <td class="class-icons">
+                        <img src="/images/classicons_xs.png"
+                            :class="classIconClass(a.class_id)"
+                            :title="classes[a.class_id].name"
+                        />
+                        {{ classes[a.class_id].name }}
+                    </td>
+                    <td class="align-middle">
+                        {{ lang.labels[a.role] }}
+                    </td>
+                    <td class="align-middle">
+                        {{ lang.status[a.status] }}
+                    </td>
+                    <td v-if="a.status === 'pending'">
+                        <button type="button"
+                                class="btn btn-primary"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                :title="lang.labels.withdrawApplication"
+                            >
+                            <font-awesome-icon :icon="['fas', 'trash']" class="fa-sm"></font-awesome-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</template>
+
+<script>
+    export default {
+
+        computed: {
+
+        },
+
+        data: function () {
+            return {
+                applications: [],
+            }
+        },
+
+        methods: {
+            classIconClass: function (id) {
+                return 'class-icon class-icon-xs class-icon-' + id
+            },
+
+            classIconRace: function (id) {
+                return 'race-icon class-icon-xs race-icon-' + id
+            },
+
+            classStatus: function (status) {
+                let classMapStatus = {
+                    accepted: 'table-success',
+                    declined: 'table-warning',
+                    pending:  'table-info',
+                }
+
+                return classMapStatus[status]
+            },
+
+            langStatus: function (application) {
+                return this.lang.status[application.status]
+            },
+
+        },
+
+        mounted: function () {
+            axios.get('/api/user/applications')
+                 .then(function (response) {
+                     this.applications = response.data
+                 }.bind(this))
+        },
+
+        props: {
+            classes: {
+                type: Object,
+                required: true,
+            },
+            lang: {
+                type: Object,
+                required: true,
+            },
+            races: {
+                type: Object,
+                required: true,
+            },
+        },
+
+        updated: function () {
+            // Initialise tooltips...
+            $('[data-toggle="tooltip"]').tooltip()
+        },
+
+    }
+</script>

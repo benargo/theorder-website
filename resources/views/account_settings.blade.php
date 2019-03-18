@@ -36,6 +36,29 @@
                 }"
                 :user-id="{{ $user->id }}"
             ></account-settings>
+            <account-applications
+                :classes="{{ $classes }}"
+                :lang="{
+                    applications: '{{ __('account.applications') }}',
+                    labels: {
+                        characterName: '{{ __('applications.character_name') }}',
+                        class: '{{ __('applications.class') }}',
+                        damage: '{{ __('applications.labels.damage') }}',
+                        healer: '{{ __('applications.labels.healer') }}',
+                        race: '{{ __('applications.race') }}',
+                        role: '{{ __('applications.role') }}',
+                        status: '{{ __('applications.labels.status') }}',
+                        tank: '{{ __('applications.labels.tank') }}',
+                        withdrawApplication: '{{ __('applications.labels.withdraw_application') }}',
+                    },
+                    status: {
+                        accepted: '{{ ucfirst(__('applications.status.accepted')) }}',
+                        declined: '{{ ucfirst(__('applications.status.declined')) }}',
+                        pending: '{{ ucfirst(__('applications.status.pending')) }}',
+                    },
+                }"
+                :races="{{ $races }}"
+            ></account-applications>
         </div>
     </div>
 @endsection

@@ -5,15 +5,19 @@ namespace App\Http\Controllers\Account;
 use App\Models\User;
 use RestCord\DiscordClient;
 use Illuminate\Http\Request;
+use App\Blizzard\Warcraft\Races;
+use App\Blizzard\Warcraft\Classes;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Schema;
 
 class SettingsController extends Controller
 {
-    public function settingsPage(DiscordClient $discord, Request $request)
+    public function settingsPage(Classes $classes, DiscordClient $discord, Races $races, Request $request)
     {
+        $discord_tag  = null;
+        $faction = config('blizzard.faction');
         $user = $request->user();
-        $discord_tag = null;
+
 
         if ($user->discord_user_id) {
             $discord_user = $discord->user->getUser(['user.id' => $user->discord_user_id]);
@@ -21,10 +25,12 @@ class SettingsController extends Controller
         }
 
         return view('account_settings', [
-            'nickname' => $user->nickname,
-            'email' => $user->email,
             'battletag' => $user->battletag,
-            'discord' => $discord_tag,
+            'classes'   => $classes->getClassicClasses($faction)->toJson(),
+            'discord'   => $discord_tag,
+            'email'     => $user->email,
+            'nickname'  => $user->nickname,
+            'races'     => $races->getClassicRaces($faction)->toJson(),
         ]);
     }
 

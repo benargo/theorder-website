@@ -29,6 +29,7 @@ return [
         'discord' => 'Discord Tag',
     ],
 
+    'applications' => 'Applications',
     'character_select_title' => 'Character Select',
     'character_select_lead' => 'Click any character you like to make it your main character on this site.',
     'character_summary' => 'Level :level :race :class',
