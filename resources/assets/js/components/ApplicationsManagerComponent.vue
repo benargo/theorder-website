@@ -77,43 +77,43 @@
                     </thead>
                     <tbody>
                         <tr v-for="(a,i) in items">
-                            <th scope="row">
+                            <th scope="row" class="align-middle">
                                 {{ a.character_name }}
                             </th>
-                            <td class="race-icons">
+                            <td class="align-middle race-icons">
                                 <img src="/images/raceicons_xs.png"
                                     :class="classIconRace(a.race_id)"
                                     :title="lang.races[a.race_id]"
                                 />
                                 {{ lang.races[a.race_id] }}
                             </td>
-                            <td class="class-icons">
+                            <td class="align-middle class-icons">
                                 <img src="/images/classicons_xs.png"
                                     :class="classIconClass(a.class_id)"
                                     :title="lang.classes[a.class_id]"
                                 />
                                 {{ lang.classes[a.class_id] }}
                             </td>
-                            <td>
+                            <td class="align-middle">
                                 {{ lang.roles[a.role] }}
                             </td>
-                            <td v-if="a.status == 'accepted'">
+                            <td class="align-middle" v-if="a.status == 'accepted'">
                                 {{ lang.status[a.status] }}
                                 ({{ lang.on + ' ' + formatDate(a.accepted_at) }})
                             </td>
-                            <td v-else-if="a.status == 'declined'">
+                            <td class="align-middle" v-else-if="a.status == 'declined'">
                                 {{ lang.status[a.status] }}
                                 ({{ lang.on + ' ' + formatDate(a.declined_at) }})
                             </td>
-                            <td v-else-if="a.status == 'pending'">
+                            <td class="align-middle" v-else-if="a.status == 'pending'">
                                 {{ lang.status[a.status] }}
                                 ({{ lang.since + ' ' + formatDate(a.created_at) }})
                             </td>
-                            <td v-else-if="a.status == 'withdrawn'">
+                            <td class="align-middle" v-else-if="a.status == 'withdrawn'">
                                 {{ lang.status[a.status] }}
                                 ({{ lang.on + ' ' + formatDate(a.withdrawn_at) }})
                             </td>
-                            <td v-if="a.status == 'pending'">
+                            <td class="align-middle" v-if="a.status == 'pending'">
                                 <button type="button"
                                         class="btn btn-primary"
                                         data-toggle="tooltip"
@@ -135,7 +135,7 @@
                                     <span class="sr-only">{{ lang.buttons.decline }}</span>
                                 </button>
                             </td>
-                            <td v-else>
+                            <td class="align-middle" v-else>
                                 {{ lang.alerts.info_no_actions_available }}
                             </td>
                         </tr>
