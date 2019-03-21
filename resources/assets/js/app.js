@@ -59,9 +59,11 @@ import {
     faClipboardList,
     faFirstAid,
     faHome as faHomeSolid,
+    faLayerPlus,
     faPaperPlane,
     faPenFancy,
     faPencil,
+    faSave,
     faShield,
     faSword,
     faTimes,
@@ -104,10 +106,12 @@ faLibrary.add(
     faHistory,
     faHomeRegular,
     faHomeSolid,
+    faLayerPlus,
     faNewspaper,
     faPaperPlane,
     faPenFancy,
     faPencil,
+    faSave,
     faShield,
     faSword,
     faTimes,
@@ -139,9 +143,11 @@ Vue.component('character-select-button', require('./components/CharacterSelectBu
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('join-form', require('./components/NewApplicationComponent.vue').default)
+Vue.component('new-rank', require('./components/NewRankComponent.vue').default)
 Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.vue').default)
 Vue.component('news-item-manager', require('./components/NewsItemManagerComponent.vue').default)
 Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue').default)
+Vue.component('ranks-manager', require('./components/RanksManagerComponent.vue').default)
 
 const navbar = new Vue({
     el: '#navbar'

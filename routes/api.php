@@ -100,3 +100,28 @@ Route::group([
 ], function () {
     Route::get('/unread', 'NotificationsController@getUnreadNotifications');
 });
+
+/*
+ |--------------------------------------------------------------------------
+ | Ranks
+ |--------------------------------------------------------------------------
+ */
+
+Route::get('/ranks', 'RanksController@get');
+
+Route::post('/ranks', 'RanksController@create');
+
+Route::put('/ranks/{rank}', 'RanksController@update')->middleware([
+    'auth:api',
+    'can:update,rank',
+]);
+
+Route::delete('/ranks/{rank}', 'RanksController@delete')->middleware([
+    'auth:api',
+    'can:delete,rank',
+]);
+
+Route::get('/ranks/{rank}/users', 'RanksController@users')->middleware([
+    'auth:api',
+    'can:seeUsers,rank',
+]);

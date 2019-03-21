@@ -19,6 +19,7 @@ class CreateUserRanksTable extends Migration
             $table->integer('seniority');
             $table->unsignedInteger('kudos_per_day')->default(0)->nullable();
             $table->unsignedInteger('kudos_required')->default(0);
+            $table->bigInteger('discord_role')->unsigned()->nullable();
             $table->timestamps();
         });
 

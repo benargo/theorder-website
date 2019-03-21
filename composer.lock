@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04fc40d3a1981f94756b6c32dab4c781",
+    "content-hash": "67f9ece4afc4c1090629347743ec9c47",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -3873,6 +3873,43 @@
             ],
             "description": "Easily add new or override built-in providers in Laravel Socialite.",
             "time": "2019-01-16T07:58:54+00:00"
+        },
+        {
+            "name": "socialiteproviders/patreon",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Patreon.git",
+                "reference": "c6ddd58c5c7ebfe27b9d543d20a7b944ea7f89e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Patreon/zipball/c6ddd58c5c7ebfe27b9d543d20a7b944ea7f89e3",
+                "reference": "c6ddd58c5c7ebfe27b9d543d20a7b944ea7f89e3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Patreon\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pieter Maes",
+                    "email": "maescool@gmail.com"
+                }
+            ],
+            "description": "Patreon OAuth2 Provider for Laravel Socialite",
+            "time": "2017-01-25T09:48:29+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

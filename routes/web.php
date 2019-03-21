@@ -82,6 +82,8 @@ Route::group(
         Route::get('/news/create', 'NewsItemController@create');
 
         Route::get('/news/editor/{news_item?}', 'NewsItemController@edit');
+
+        Route::get('/ranks', 'RanksController@manage');
     }
 );
 

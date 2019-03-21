@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use RestCord\DiscordClient;
+use App\Discord\RolesRepository;
 use Illuminate\Support\ServiceProvider;
 
 class DiscordServiceProvider extends ServiceProvider
@@ -23,6 +24,10 @@ class DiscordServiceProvider extends ServiceProvider
     {
         $this->app->bind(DiscordClient::class, function ($app) {
             return new DiscordClient(['token' => config('discord.clients.guildbot.token')]);
+        });
+
+        $this->app->singleton(RolesRepository::class, function ($app) {
+            return new RolesRepository($app->make(DiscordClient::class));
         });
     }
 

@@ -17,6 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Application'   => 'App\Policies\ApplicationPolicy',
         'App\Models\NewsItemDraft' => 'App\Policies\NewsItemDraftPolicy',
         'App\Models\NewsItem'      => 'App\Policies\NewsItemPolicy',
+        'App\Models\Rank'          => 'App\Policies\ManageRanksPolicy',
     ];
 
     /**

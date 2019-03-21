@@ -20,7 +20,8 @@
         "predis/predis": "^1.1",
         "restcord/restcord": "^0.2.2",
         "socialiteproviders/battlenet": "dev-master",
-        "socialiteproviders/discord": "^2.0"
+        "socialiteproviders/discord": "^2.0",
+        "socialiteproviders/patreon": "^2.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

@@ -18,6 +18,18 @@
                 <h2>{{ __('controlpanel.roster') }}</h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">
+                        <a href="{{ url('inner-circle/members') }}" class="card-action">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'users']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                        {{ __('controlpanel.manage_members') }}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12 col-lg-4">
                         <a href="{{ url('inner-circle/ranks') }}" class="card-action">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
