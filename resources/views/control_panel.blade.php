@@ -15,6 +15,8 @@
         </div>
         <div class="bg-brown-texture extra-padding-top extra-padding-bottom text-light">
             <div class="container">
+
+                {{-- Roster --}}
                 <h2>{{ __('controlpanel.roster') }}</h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">
@@ -42,6 +44,8 @@
                         </a>
                     </div>
                 </div>
+
+                {{-- News --}}
                 <h2>{{ __('controlpanel.news') }}</h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">
@@ -69,10 +73,17 @@
                         </a>
                     </div>
                 </div>
-                <h2>{{ __('controlpanel.forum') }}</h2>
+
+                {{-- Forum --}}
+                {{-- <h2>{{ __('controlpanel.forum') }}</h2> --}}
+                <h2>
+                    {{ __('controlpanel.forum') }}
+                    <small class="text-muted">{{ __('controlpanel.not_yet_implemented') }}</small>
+                </h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/forum') }}" class="card-action">
+                        {{-- <a href="{{ url('inner-circle/forum') }}" class="card-action"> --}}
+                        <a href="javascript:void();" class="card-action disabled" tabindex="-1" role="button" aria-disabled="true">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'chalkboard']" class="fa-3x"></font-awesome-icon>
@@ -84,6 +95,8 @@
                         </a>
                     </div>
                 </div>
+
+                {{-- Events --}}
                 <h2>{{ __('controlpanel.events') }}</h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">
@@ -123,6 +136,8 @@
                         </a>
                     </div>
                 </div>
+
+                {{-- Teams --}}
                 <h2>{{ __('controlpanel.teams') }}</h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">
@@ -162,6 +177,8 @@
                         </a>
                     </div>
                 </div>
+
+                {{-- Marketplace --}}
                 <h2>{{ __('controlpanel.marketplace') }}</h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">
@@ -189,6 +206,8 @@
                         </a>
                     </div>
                 </div>
+
+                {{-- Applications --}}
                 <h2>{{ __('controlpanel.applications') }}</h2>
                 <div class="row action-cards">
                     <div class="col-12 col-lg-4">

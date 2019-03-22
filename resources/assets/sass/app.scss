@@ -70,13 +70,18 @@ a:hover {
     background-position: center;
     background-size: cover;
 }
+.bg-garrison {
+    background-image: url('../images/bg_garrison.jpg');
+    background-position: center;
+    background-size: cover;
+}
 .bg-goldshire {
     background-image: url('../images/bg_goldshire.jpg');
     background-position: center;
     background-size: cover;
 }
-.bg-garrison {
-    background-image: url('../images/bg_garrison.jpg');
+.bg-goblin-engineer {
+    background-image: url('../images/bg_goblin_engineer.jpg');
     background-position: center;
     background-size: cover;
 }
@@ -96,6 +101,11 @@ a:hover {
 }
 .bg-tavern {
     background-image: url('../images/bg_tavern.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.bg-tavern-hi {
+    background-image: url('../images/bg_tavern_hi.jpg');
     background-position: center;
     background-size: cover;
 }

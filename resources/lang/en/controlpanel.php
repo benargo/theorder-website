@@ -29,6 +29,7 @@ return [
     'marketplace' => 'Marketplace',
     'message_team' => 'Message a team',
     'news' => 'News',
+    'not_yet_implemented' => '(not yet implemented)',
     'review_marketplace_transactions' => 'Review transactions',
     'roster' => 'Roster',
     'send_event_reminder' => 'Send a reminder to attendees',
