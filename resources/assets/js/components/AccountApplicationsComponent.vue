@@ -1,5 +1,5 @@
 <template>
-    <form class="mt-5" v-if="applications">
+    <form class="mt-5" v-if="applications.length > 0">
         <h2 class="h3">{{ lang.applications }}</h2>
         <table class="table table-dark my-3">
             <thead>

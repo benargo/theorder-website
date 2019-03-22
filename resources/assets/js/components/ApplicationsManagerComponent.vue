@@ -1,13 +1,13 @@
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row" v-if="items.length > 0">
             <div class="col">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="h3">{{ lang.filters }}</h2>
                     </div>
                     <div class="card-body">
-                        <form id="formFilters" v-if="items.length > 0">
+                        <form id="formFilters">
                             <div class="form-row">
                                 <div class="col">
                                     <div class="form-group">
