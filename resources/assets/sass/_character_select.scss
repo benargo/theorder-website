@@ -14,12 +14,14 @@
         border: solid 1px rgba(255, 255, 255, 0.75);
     }
 }
+
 .character-select-avatar {
-    background: url('../images/avatar_default.png');
+    background: url("../images/avatar_default.png");
     background-size: cover;
     height: 84px;
     width: 84px;
 }
+
 .character-select-body {
     margin-left: 10px;
 }

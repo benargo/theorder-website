@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -23,8 +22,13 @@ window.kebabCase = require('dashify')
  * icons, but we only need to inport a few. So let's do that!
  */
 
-import { library as faLibrary } from '@fortawesome/fontawesome-svg-core'
-import { faDiscord, faFacebook } from '@fortawesome/free-brands-svg-icons'
+import {
+    library as faLibrary
+} from '@fortawesome/fontawesome-svg-core'
+import {
+    faDiscord,
+    faFacebook
+} from '@fortawesome/free-brands-svg-icons'
 // import {  } from '@fortawesome/pro-light-svg-icons'
 import {
     faAddressBook,
@@ -75,7 +79,9 @@ import {
     faUsersCog,
     faUsersCrown
 } from '@fortawesome/pro-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import {
+    FontAwesomeIcon
+} from '@fortawesome/vue-fontawesome'
 
 faLibrary.add(
     faAddressBook,

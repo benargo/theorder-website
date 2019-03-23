@@ -2,6 +2,7 @@
     p {
         font-size: 1.125rem;
     }
+
     .section-fs-splash {
         align-items: center;
         display: flex;
@@ -11,26 +12,31 @@
             text-align: center;
         }
     }
+
     .section-introduction {
         article.article-introduction {
             h2 {
                 margin-top: 1.0rem;
             }
+
             p {
                 font-weight: 300;
                 text-align: justify;
             }
         }
+
         img.image-guild-emblem {
             margin: 0 auto;
         }
     }
+
     .section-inner-circle {
         .inner-circle-image-wrapper {
             position: relative;
             height: 400px;
             margin: 0 0 2rem;
         }
+
         .image-inner-circle {
             margin: 0 auto;
             overflow: visible;
@@ -43,7 +49,9 @@
                 transform: translateX(-42.5%);
             }
 
-            &[alt="Andy"], &[alt="Ben"], &[alt="Sam"] {
+            &[alt="Andy"],
+            &[alt="Ben"],
+            &[alt="Sam"] {
                 -webkit-transform: translateX(-50%);
                 transform: translateX(-50%);
             }
@@ -53,6 +61,7 @@
                 transform: translateX(-75%);
             }
         }
+
         .carousel {
             width: 100%;
 

@@ -7,22 +7,27 @@
         visibility: visible;
     }
 }
+
 .nav-icon {
     margin-right: 0.25rem;
 }
+
 .nav-item {
     span.badge {
         margin-left: 0.5rem;
         vertical-align: text-bottom;
     }
-    .dropdown-item:hover,
-    .dropdown-item:focus {
+
+    .dropdown-item:focus,
+    .dropdown-item:hover {
         background-color: lighten($brown, 5%);
     }
+
     .dropdown-divider {
         border-top-color: lighten($brown, 20%);
     }
 }
+
 .nav-pills.nav-scrollspy .nav-link {
     &.active {
         background-color: $secondary;

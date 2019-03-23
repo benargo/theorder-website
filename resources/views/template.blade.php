@@ -46,24 +46,24 @@
                             {{ __('navigation.forum') }}
                         </a>
                     </li> --}}
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('events') }}">
                             <font-awesome-icon :icon="['far', 'calendar-alt']" class="nav-icon"></font-awesome-icon>
                             {{ __('navigation.events') }}
                         </a>
-                    </li> --}}
-                    {{-- <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('teams') }}">
                             <font-awesome-icon :icon="['far', 'helmet-battle']" class="nav-icon"></font-awesome-icon>
                             {{ __('navigation.teams') }}
                         </a>
-                    </li> --}}
-                    {{-- <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('marketplace') }}">
                             <font-awesome-icon :icon="['far', 'balance-scale']" class="nav-icon"></font-awesome-icon>
                             {{ __('navigation.marketplace') }}
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('discord') }}">
                             <font-awesome-icon :icon="['fab', 'discord']" class="nav-icon"></font-awesome-icon>
@@ -79,13 +79,13 @@
                 </ul>
                 <ul class="navbar-nav">
                     @if ($user)
-                        {{-- <notifications-menu-item
+                        <notifications-menu-item
                             :lang="{
                                 notifications: '{{ __('navigation.notifications') }}',
                                 notifications_history: '{{ __('navigation.notifications_history') }}'
                             }"
                             :number-unread="3"
-                        ></notifications-menu-item> --}}
+                        ></notifications-menu-item>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="authDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ $user->nickname }}

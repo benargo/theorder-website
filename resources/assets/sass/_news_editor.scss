@@ -1,5 +1,6 @@
 .editor {
-    textarea.md-editor, div.md-compiled {
+    div.md-compiled,
+    textarea.md-editor {
         box-sizing: border-box;
         display: inline-block;
         height: calc(100vh - 564px);
@@ -8,6 +9,7 @@
         padding: 20px;
         vertical-align: top;
     }
+
     textarea.md-editor {
         background-color: $secondary;
         border: none;
@@ -17,6 +19,7 @@
         outline: none;
         resize: vertical;
     }
+
     div.md-compiled {
         background-color: $brown;
     }

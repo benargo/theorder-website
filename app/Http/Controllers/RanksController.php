@@ -52,7 +52,7 @@ class RanksController extends Controller
 
             $rank->users()->update(['rank_id' => $validated_data['new_rank']]);
         }
-        
+
         $rank->delete();
 
         return response(null, 204);
@@ -74,10 +74,10 @@ class RanksController extends Controller
     public function update(Rank $rank, Request $request)
     {
         $validated_data = $request->validate([
-            'title'          => 'required',
-            'seniority'      => 'required|between:1,25',
+            'title'          => 'string',
+            'seniority'      => 'integer|between:1,25',
             'kudos_per_day'  => 'nullable|between:0,100',
-            'kudos_required' => 'required|min:0',
+            'kudos_required' => 'integer|min:0',
             'discord_role'   => [
                 'nullable',
                 Rule::in($this->roles->pluck('id')->toArray()),

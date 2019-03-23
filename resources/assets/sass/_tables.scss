@@ -1,10 +1,10 @@
 .table-active,
+.table-danger,
+.table-info,
+.table-light,
 .table-primary,
 .table-secondary,
 .table-success,
-.table-danger,
-.table-warning,
-.table-info,
-.table-light {
+.table-warning {
     color: $table-color-conditional;
 }

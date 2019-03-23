@@ -2,22 +2,32 @@
     color: rgba(255, 255, 255, 1);
     padding: 20px;
 
-    .nav-item.copyright, .disclaimer {
+    .disclaimer,
+    .nav-item.copyright {
         padding: 0.5rem 1rem;
     }
-    .nav-link, .footer-link, .cmtcloud-link {
+
+    .cmtcloud-link,
+    .footer-link,
+    .nav-link {
         color: rgba(255, 255, 255, 0.5);
     }
-    .nav-link:hover, .footer-link:hover {
+
+    .footer-link:hover,
+    .nav-link:hover {
         color: rgba(255, 255, 255, 0.75);
     }
+
     .cmtcloud-column {
         align-items: center;
         display: flex;
     }
-    .cmtcloud-link:hover, .cmtcloud-period {
+
+    .cmtcloud-link:hover,
+    .cmtcloud-period {
         color: #00AFA5;
     }
+
     .cmtcloud-logo {
         margin: 1rem 0;
     }
