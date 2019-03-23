@@ -33,10 +33,10 @@
                 ref="RanksManagerComponent"
                 :discord-roles='{!! $roles->toJson() !!}'
                 :lang="{
-                    btnCancel:             '{{ __('controlpanel.ranks.btn_cancel') }}',
+                    btnCancel:             '{{ __('forms.buttons.cancel') }}',
                     btnDelete:             '{{ __('controlpanel.ranks.btn_delete') }}',
                     btnEdit:               '{{ __('controlpanel.ranks.btn_edit') }}',
-                    btnSave:               '{{ __('controlpanel.ranks.btn_save') }}',
+                    btnSave:               '{{ __('forms.buttons.save') }}',
                     errTitle:              '{{ __('controlpanel.ranks.errors.title') }}',
                     errSeniority:          '{{ __('controlpanel.ranks.errors.seniority') }}',
                     errKudosPerDay:        '{{ __('controlpanel.ranks.errors.kudos_per_day') }}',

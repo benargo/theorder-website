@@ -58,12 +58,10 @@ return [
         ],
 
         'abbr_unlimited' => '∞',
-        'btn_cancel' => 'Cancel',
         'btn_create_rank' => 'Create Rank',
         'btn_delete' => 'Delete Rank',
         'btn_edit' => 'Edit Rank',
         'btn_new_rank' => 'New Rank',
-        'btn_save' => 'Save',
         'field_unlimited' => 'Unlimited',
         'hdr_title' => 'Title',
         'hdr_seniority' => 'Seniority',

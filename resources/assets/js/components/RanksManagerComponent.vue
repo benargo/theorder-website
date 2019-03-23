@@ -15,38 +15,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr :id="'rank' + index" v-for="(r, index) in ranks" @focusout="saveRow(index)">
-                            <th scope="row" class="form-col title" @click="editCell(index, 'title')" @focus="editCell(r.id, 'title')">
+                        <tr :id="'rank' + index" v-for="(r, index) in ranks">
+                            <th scope="row" class="form-col title" @click="editCell(index, 'title')">
                                 <span class="form-static align-middle">{{ r.title }}</span>
-                                <input type="text" class="form-control d-none" name="inputTitle" required v-model="r.title">
+                                <input type="text" class="form-control d-none" name="inputTitle" required v-model="r.title" @blur="saveCell(index, 'title')">
                                 <div class="invalid-feedback">
                                     {{ lang.errTitle }}
                                 </div>
                             </th>
-                            <td class="form-col  seniority" @click="editCell(index, 'seniority')" @focus="editCell(index, 'seniority')">
+                            <td class="form-col  seniority" @click="editCell(index, 'seniority')">
                                 <span class="form-static align-middle">{{ r.seniority }}</span>
-                                <input type="number" class="form-control d-none" name="inputSeniority" min="1" max="25" required v-model="r.seniority">
+                                <input type="number" class="form-control d-none" name="inputSeniority" min="1" max="25" required v-model="r.seniority" @blur="saveCell(index, 'seniority')">
                                 <div class="invalid-feedback">
                                     {{ lang.errSeniority }}
                                 </div>
                             </td>
-                            <td class="form-col kudos-per-day" @click="editCell(index, 'kudos-per-day')" @focus="editCell(index, 'kudos_per_day')">
+                            <td class="form-col kudos-per-day" @click="editCell(index, 'kudos-per-day')">
                                 <span class="form-static align-middle" v-html="kudosPerDay(r.kudos_per_day)"></span>
-                                <input type="number" class="form-control d-none" name="inputKudosPerDay" min="0" max="100" v-model="r.kudos_per_day">
+                                <input type="number" class="form-control d-none" name="inputKudosPerDay" min="0" max="100" v-model="r.kudos_per_day" @blur="saveCell(index, 'kudos-per-day')">
                                 <div class="invalid-feedback">
                                     {{ lang.errKudosPerDay }}
                                 </div>
                             </td>
-                            <td class="form-col kudos-required" @click="editCell(index, 'kudos-required')" @focus="editCell(index, 'kudos_required')">
+                            <td class="form-col kudos-required" @click="editCell(index, 'kudos-required')">
                                 <span class="form-static align-middle">{{ r.kudos_required }}</span>
-                                <input type="number" class="form-control d-none" name="inputKudosRequired" min="0" required v-model="r.kudos_required">
+                                <input type="number" class="form-control d-none" name="inputKudosRequired" min="0" required v-model="r.kudos_required" @blur="saveCell(index, 'kudos-required')">
                                 <div class="invalid-feedback">
                                     {{ lang.errKudosRequired }}
                                 </div>
                             </td>
-                            <td class="form-col discord-role" @click="editCell(index, 'discord-role')" @focus="editCell(index, 'discord_role')">
+                            <td class="form-col discord-role" @click="editCell(index, 'discord-role')">
                                 <span class="form-static align-middle" :style="styleDiscordRole(r.discord_role)">{{ getDiscordRole(r.discord_role).name }}</span>
-                                <select class="form-control d-none" name="inputDiscordRole" v-model="r.discord_role">
+                                <select class="form-control d-none" name="inputDiscordRole" v-model="r.discord_role" @change="saveCell(index, 'discord-role')">
                                     <option value="">{{ lang.noRole }}</option>
                                     <option v-for="dr in discordRolesSorted" :value="dr.id" :style="styleDiscordRole(dr.id)">{{ dr.name }}</option>
                                 </select>
@@ -55,7 +55,7 @@
                                 </div>
                             </td>
                             <td class="align-top">
-                                <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" :title="lang.btnSave" v-if="editingRow === index" @click="saveRow(index)">
+                                <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" :title="lang.btnSave" v-if="editingRows.indexOf(index) !== -1" @click="saveRow(index)">
                                     <font-awesome-icon :icon="['fas', 'save']"></font-awesome-icon>
                                     <span class="sr-only">{{ lang.btnSave }}</span>
                                 </button>
@@ -109,7 +109,7 @@ export default {
 
     data: function() {
         return {
-            editingRow: false,
+            editingRows: [],
             ranks: [],
             rankToDelete: {
                 newRank: undefined,
@@ -153,7 +153,7 @@ export default {
 
         editCell: function(rowId, field) {
             let row = this.$el.querySelector('#rank' + rowId),
-                cell = row.querySelector('#rank' + rowId + ' .' + field),
+                cell = row.querySelector('.' + field),
                 span = cell.querySelector('span.form-static'),
                 input = cell.querySelector('.form-control[name^="input"]')
 
@@ -174,7 +174,7 @@ export default {
                 input.classList.replace('d-none', 'd-block')
             })
 
-            this.editingRow = rowId
+            this.editingRows.push(rowId)
 
             row.querySelector('input[name="inputTitle"]').focus()
         },
@@ -206,8 +206,41 @@ export default {
             return k === null || k === '' ? '<abbr title="' + this.lang.fieldUnlimited + '">' + this.lang.abbrUnlimited + '</abbr>' : k
         },
 
+        saveCell: function(rowId, field) {
+            if (this.editingRows.indexOf(rowId) === -1) {
+                // Only save changes to the database if we're editing a single
+                // cell...
+                let form = this.$el.querySelector('#formManageRanks'),
+                    rank = this.ranks[rowId]
+
+                if (form.checkValidity()) {
+                    axios.put('/api/ranks/' + rank.id, {
+                            title: rank.title,
+                            seniority: rank.seniority,
+                            kudos_per_day: rank.kudos_per_day,
+                            kudos_required: rank.kudos_required,
+                            discord_role: rank.discord_role,
+                        })
+                        .then(function(response) {
+                            this.fetchRanks()
+
+                            let cell = this.$el.querySelector('#rank' + rowId + ' .' + field)
+
+                            cell.querySelector('.form-control[name^="input"]')
+                                .classList
+                                .replace('d-block', 'd-none')
+
+                            cell.querySelector('span.form-static')
+                                .classList
+                                .remove('d-none')
+                        }.bind(this, rowId, field))
+                }
+            }
+        },
+
         saveRow: function(rowId) {
             let form = this.$el.querySelector('#formManageRanks'),
+                row = form.querySelector('#rank' + rowId),
                 rank = this.ranks[rowId]
 
             if (form.checkValidity()) {
@@ -221,8 +254,8 @@ export default {
                     .then(function(response) {
                         this.fetchRanks()
 
-                        let inputs = this.$el.querySelectorAll('.form-control[name^="input"]'),
-                            spans = this.$el.querySelectorAll('span.form-static')
+                        let inputs = row.querySelectorAll('.form-control[name^="input"]'),
+                            spans = row.querySelectorAll('span.form-static')
 
                         inputs.forEach(function(i) {
                             i.classList.replace('d-block', 'd-none')
@@ -231,8 +264,9 @@ export default {
                             s.classList.remove('d-none')
                         })
 
-                        this.editingRow = false
-                    }.bind(this))
+                        // Remove the row from the list of rows being edited...
+                        this.editingRows = this.editingRows.filter(el => el !== rowId)
+                    }.bind(this, row, rowId))
             }
         },
 
