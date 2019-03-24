@@ -28,54 +28,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ url('roster') }}">
-                            <font-awesome-icon :icon="['far', 'address-book']" class="nav-icon"></font-awesome-icon>
-                            {{ __('navigation.roster') }}
-                        </a>
-                    </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('news') }}">
-                            <font-awesome-icon :icon="['far', 'newspaper']" class="nav-icon"></font-awesome-icon>
-                            {{ __('navigation.news') }}
-                        </a>
-                    </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="{{ url('forum') }}">
-                            <font-awesome-icon :icon="['far', 'comments']" class="nav-icon"></font-awesome-icon>
-                            {{ __('navigation.forum') }}
-                        </a>
-                    </li> --}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('events') }}">
-                            <font-awesome-icon :icon="['far', 'calendar-alt']" class="nav-icon"></font-awesome-icon>
-                            {{ __('navigation.events') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('teams') }}">
-                            <font-awesome-icon :icon="['far', 'helmet-battle']" class="nav-icon"></font-awesome-icon>
-                            {{ __('navigation.teams') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('marketplace') }}">
-                            <font-awesome-icon :icon="['far', 'balance-scale']" class="nav-icon"></font-awesome-icon>
-                            {{ __('navigation.marketplace') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('discord') }}">
-                            <font-awesome-icon :icon="['fab', 'discord']" class="nav-icon"></font-awesome-icon>
-                            {{ __('navigation.discord') }}
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('join') }}">
-                            <font-awesome-icon :icon="['far', 'user-plus']" class="nav-icon"></font-awesome-icon>
-                            {{ __('navigation.join') }}
-                        </a>
-                    </li>
+                    @include('navigation')
                 </ul>
                 <ul class="navbar-nav">
                     @if ($user)
@@ -113,35 +66,20 @@
             @show
         </div>
 
-        <footer class="footer">
+        <footer class="footer" id="footer">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-md-10">
-                        <ul class="nav">
-                            <li class="nav-item copyright" rel="copyright">
-                                {!! __('footer.copyright', ['year' => date('Y')]) !!}
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('your-data') }}">
-                                    {{ __('footer.privacy') }}
-                                </a>
-                            </li>
-					        <li class="nav-item">
-                                <a class="nav-link" href="{{ url('battlenet') }}">
-                                    {{ __('footer.battlenet') }}
-                                </a>
-                            </li>
-                        </ul>
+                <div class="row my-3">
+                    @include('nav_footer')
+                </div>
+            </div>
+            <div class="container">
+                <div class="row mt-3" rel="disclaimer">
+                    <div class="col">
                         <p class="disclaimer">
-                            <strong>{{ __('footer.disclaimer.title') }}</strong>
-                            {!! __('footer.disclaimer.body') !!}
+                            <span class="align-bottom d-inline">
+                                {!! __('footer.disclaimer') !!}
+                            </span>
                         </p>
-                    </div>
-                    <div class="col-12 col-md-2 cmtcloud-column text-center">
-                        <a class="cmtcloud-link" href="http://cmtcloud.uk" target="_blank">
-                            <img class="cmtcloud-logo" src="{{ asset('images/cmtcloud_logo.svg') }}" alt="CMT Cloud Services logo" height="39" />
-                            <p>{!! __('footer.promotion') !!}</p>
-                        </a>
                     </div>
                 </div>
             </div>

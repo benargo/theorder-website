@@ -27,7 +27,8 @@ import {
 } from '@fortawesome/fontawesome-svg-core'
 import {
     faDiscord,
-    faFacebook
+    faFacebook,
+    faPatreon,
 } from '@fortawesome/free-brands-svg-icons'
 // import {  } from '@fortawesome/pro-light-svg-icons'
 import {
@@ -39,6 +40,7 @@ import {
     faCalendarCheck,
     faClock,
     faComments,
+    faEnvelopeOpen,
     faExternalLink,
     faHelmetBattle,
     faHistory,
@@ -46,6 +48,7 @@ import {
     faNewspaper,
     faTimesCircle as faTimesCircleRegular,
     faTrashAlt,
+    faTreasureChest,
     faUserPlus as faUserPlusRegular
 } from '@fortawesome/pro-regular-svg-icons'
 import {
@@ -105,6 +108,7 @@ faLibrary.add(
     faClock,
     faComments,
     faDiscord,
+    faEnvelopeOpen,
     faExternalLink,
     faFacebook,
     faFirstAid,
@@ -115,6 +119,7 @@ faLibrary.add(
     faLayerPlus,
     faNewspaper,
     faPaperPlane,
+    faPatreon,
     faPenFancy,
     faPencil,
     faSave,
@@ -125,6 +130,7 @@ faLibrary.add(
     faTimesCircleSolid,
     faTrash,
     faTrashAlt,
+    faTreasureChest,
     faUserClock,
     faUserPlusRegular,
     faUserPlusSolid,
@@ -161,4 +167,8 @@ const navbar = new Vue({
 
 const app = new Vue({
     el: '#app'
+})
+
+const footer = new Vue({
+    el: '#footer'
 })
