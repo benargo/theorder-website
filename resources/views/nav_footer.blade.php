@@ -1,5 +1,5 @@
 <div class="col col-md-2">
-    <img src="{{ asset('images/guild_emblem.png') }}" alt="Guild Emblem" class="image-guild-emblem ml-5 px-5" height="150">
+    <img src="{{ asset('images/guild_emblem.png') }}" alt="Guild Emblem" class="img-fluid img-guild-emblem ml-4">
 </div>
 <div class="col">
     <div class="container">
@@ -130,7 +130,7 @@
 </div>
 <div class="col col-md-2 text-right">
     <a href="https://worldofwarcraft.com/" class="d-inline-block">
-        <img class="mr-5 px-5" src="{{ asset('images/wow_classic_logo.png') }}" alt="{{ __('footer.wow_classic') }}" height="100" />
+        <img class="img-fluid img-wow-classic-logo mr-4" src="{{ asset('images/wow_classic_logo.png') }}" alt="{{ __('footer.wow_classic') }}" height="100" />
         <span class="sr-only">{{ __('footer.wow_classic') }}</span>
     </a>
 </div>

@@ -2,6 +2,10 @@
     color: rgba(255, 255, 255, 1);
     padding: 20px;
 
+    .img-guild-emblem, .img-wow-classic-logo {
+        max-height: 150px;
+    }
+
     .disclaimer,
     .nav-item.copyright {
         padding: 0.5rem 1rem;
