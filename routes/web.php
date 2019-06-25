@@ -75,6 +75,10 @@ Route::group(
 
         Route::get('/applications', 'ApplicationsController@all');
 
+        Route::get('/guild-bank/clients', function () {
+            return view('view_api_clients');
+        });
+
         Route::get('/news', function () {
             return view('manage_news_items');
         });
