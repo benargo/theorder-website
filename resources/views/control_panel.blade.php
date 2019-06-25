@@ -178,6 +178,23 @@
                     </div>
                 </div>
 
+                {{-- Guild Bank --}}
+                <h2>{{ __('controlpanel.guild_bank') }}</h2>
+                <div class="row action-cards">
+                    <div class="col-12 col-lg-4">
+                        <a href="{{ url('inner-circle/guild-bank/clients') }}" class="card-action">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'user-cog']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                    {{ __('controlpanel.stock_addon_settings') }}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
                 {{-- Marketplace --}}
                 <h2>{{ __('controlpanel.marketplace') }}</h2>
                 <div class="row action-cards">
