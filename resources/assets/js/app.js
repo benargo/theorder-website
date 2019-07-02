@@ -52,6 +52,7 @@ import {
     faTimesCircle as farTimesCircle,
     faTrashAlt as farTrashAlt,
     faTreasureChest as farTreasureChest,
+    faUserCog as farUserCog,
     faUserPlus as farUserPlus,
     faUserSecret as farUserSecret,
 } from '@fortawesome/pro-regular-svg-icons'
@@ -117,6 +118,7 @@ faLibrary.add(
     farTimesCircle,
     farTrashAlt,
     farTreasureChest,
+    farUserCog,
     farUserPlus,
     farUserSecret,
     // Solid

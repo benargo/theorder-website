@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div class="col col-md-2 text-right">
-                <a href="https://worldofwarcraft.com/" class="d-inline-block">
+                <a href="https://worldofwarcraft.com/wowclassic" class="d-inline-block">
                     <img class="img-fluid img-wow-classic-logo mr-4" src="{{ asset('images/wow_classic_logo.png') }}" alt="{{ __('footer.wow_classic') }}" height="100" />
                     <span class="sr-only">{{ __('footer.wow_classic') }}</span>
                 </a>
