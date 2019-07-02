@@ -29,6 +29,7 @@ import {
     faDiscord,
     faFacebook,
     faPatreon,
+    faSafari,
 } from '@fortawesome/free-brands-svg-icons'
 // import {  } from '@fortawesome/pro-light-svg-icons'
 import {
@@ -76,6 +77,7 @@ import {
     faTimes,
     faTimesCircle as faTimesCircleSolid,
     faTrash,
+    faUserCog,
     faUserClock,
     faUserPlus as faUserPlusSolid,
     faUsers,
@@ -122,6 +124,7 @@ faLibrary.add(
     faPatreon,
     faPenFancy,
     faPencil,
+    faSafari,
     faSave,
     faShield,
     faSword,
@@ -132,6 +135,7 @@ faLibrary.add(
     faTrashAlt,
     faTreasureChest,
     faUserClock,
+    faUserCog,
     faUserPlusRegular,
     faUserPlusSolid,
     faUsers,
@@ -150,6 +154,7 @@ Vue.use(FlagIcon)
 Vue.use(VueInputMask)
 Vue.component('account-settings', require('./components/AccountSettingsComponent.vue').default)
 Vue.component('account-applications', require('./components/AccountApplicationsComponent.vue').default)
+Vue.component('api-clients', require('./components/APIClientsComponent.vue').default)
 Vue.component('applications-manager', require('./components/ApplicationsManagerComponent.vue').default)
 Vue.component('character-select-button', require('./components/CharacterSelectButton.vue').default)
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)

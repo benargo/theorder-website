@@ -66,24 +66,7 @@
             @show
         </div>
 
-        <footer class="footer" id="footer">
-            <div class="container-fluid">
-                <div class="row my-3">
-                    @include('nav_footer')
-                </div>
-            </div>
-            <div class="container">
-                <div class="row mt-3" rel="disclaimer">
-                    <div class="col">
-                        <p class="disclaimer">
-                            <span class="align-bottom d-inline">
-                                {!! __('footer.disclaimer') !!}
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        @include('footer')
 
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
