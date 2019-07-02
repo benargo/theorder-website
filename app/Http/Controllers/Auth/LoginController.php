@@ -35,7 +35,7 @@ class LoginController extends Controller
         // Configure the Socialite driver to use the EU region.
         $client_id = config('services.battlenet.client_id');
         $client_secret = config('services.battlenet.client_secret');
-        $additional_config = ['region' => config('battlenet.region')];
+        $additional_config = ['region' => config('blizzard.region')];
         $config = new Config($client_id, $client_secret, route('login.callback'), $additional_config);
         $this->driver = Socialite::driver('battlenet')->setConfig($config);
     }
