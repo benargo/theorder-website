@@ -9,23 +9,27 @@
                     <div class="row">
                         <div class="col">
                             <ul class="nav flex-column">
-                                <li class="nav-item copyright" rel="copyright">
-                                    &copy; {{ Carbon::now()->year }} The Order
+                                <li class="nav-item no-link" rel="copyright">
+                                    <font-awesome-icon :icon="['far', 'copyright']" class="nav-icon"></font-awesome-icon>
+                                    {{ Carbon::now()->year }} The Order
                                 </li>
                                 @if ($user)
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('account/settings') }}">
+                                            <font-awesome-icon :icon="['far', 'user-cog']" class="nav-icon"></font-awesome-icon>
                                             {{ __('navigation.account_settings') }}
                                         </a>
                                     </li>
                                 @endif
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('your-data') }}">
+                                        <font-awesome-icon :icon="['far', 'user-secret']" class="nav-icon"></font-awesome-icon>
                                         {{ __('footer.privacy') }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ url('battlenet') }}">
+                                        <font-awesome-icon :icon="['fab', 'battle-net']" class="nav-icon"></font-awesome-icon>
                                         {{ __('footer.battlenet') }}
                                     </a>
                                 </li>
@@ -34,12 +38,12 @@
                         <div class="col">
                             <ul class="nav flex-column">
                                 {{-- Roster --}}
-                                {{-- <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('roster') }}">
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="{{ url('roster') }}" tabindex="-1" aria-disabled="true">
                                         <font-awesome-icon :icon="['far', 'address-book']" class="nav-icon"></font-awesome-icon>
                                         {{ __('navigation.roster') }}
                                     </a>
-                                </li> --}}
+                                </li>
 
                                 {{-- News --}}
                                 <li class="nav-item">
@@ -59,7 +63,7 @@
 
                                 {{-- Events --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('events') }}">
+                                    <a class="nav-link disabled" href="{{ url('events') }}" tabindex="-1" aria-disabled="true">
                                         <font-awesome-icon :icon="['far', 'calendar-alt']" class="nav-icon"></font-awesome-icon>
                                         {{ __('navigation.events') }}
                                     </a>
@@ -67,7 +71,7 @@
 
                                 {{-- Teams --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('teams') }}">
+                                    <a class="nav-link disabled" href="{{ url('teams') }}" tabindex="-1" aria-disabled="true">
                                         <font-awesome-icon :icon="['far', 'helmet-battle']" class="nav-icon"></font-awesome-icon>
                                         {{ __('navigation.teams') }}
                                     </a>
@@ -78,7 +82,7 @@
                             <ul class="nav flex-column">
                                 {{-- Guild Bank --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('bank') }}">
+                                    <a class="nav-link disabled" href="{{ url('bank') }}" tabindex="-1" aria-disabled="true">
                                         <font-awesome-icon :icon="['far', 'treasure-chest']" class="nav-icon"></font-awesome-icon>
                                         {{ __('navigation.guild_bank') }}
                                     </a>
@@ -86,7 +90,7 @@
 
                                 {{-- Marketplace --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('marketplace') }}">
+                                    <a class="nav-link disabled" href="{{ url('marketplace') }}" tabindex="-1" aria-disabled="true">
                                         <font-awesome-icon :icon="['far', 'balance-scale']" class="nav-icon"></font-awesome-icon>
                                         {{ __('navigation.marketplace') }}
                                     </a>
@@ -113,7 +117,7 @@
 
                                 {{-- Patreon --}}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="https://patreon.com/fortheorder">
+                                    <a class="nav-link disabled" href="https://patreon.com/fortheorder" tabindex="-1" aria-disabled="true">
                                         <font-awesome-icon :icon="['fab', 'patreon']" class="nav-icon"></font-awesome-icon>
                                         {{ __('navigation.patreon') }}
                                     </a>
@@ -148,7 +152,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row mt-3" rel="disclaimer">
+        <div class="row m-3" rel="disclaimer">
             <div class="col">
                 <p class="disclaimer">
                     <span class="align-bottom d-inline">

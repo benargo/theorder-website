@@ -1,10 +1,10 @@
 {{-- Roster --}}
-{{-- <li class="nav-item">
-    <a class="nav-link" href="{{ url('roster') }}">
+<li class="nav-item">
+    <a class="nav-link disabled" href="{{ url('roster') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'address-book']" class="nav-icon"></font-awesome-icon>
         {{ __('navigation.roster') }}
     </a>
-</li> --}}
+</li>
 
 {{-- News --}}
 <li class="nav-item">
@@ -24,7 +24,7 @@
 
 {{-- Events --}}
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('events') }}">
+    <a class="nav-link disabled" href="{{ url('events') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'calendar-alt']" class="nav-icon"></font-awesome-icon>
         {{ __('navigation.events') }}
     </a>
@@ -32,7 +32,7 @@
 
 {{-- Teams --}}
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('teams') }}">
+    <a class="nav-link disabled" href="{{ url('teams') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'helmet-battle']" class="nav-icon"></font-awesome-icon>
         {{ __('navigation.teams') }}
     </a>
@@ -40,7 +40,7 @@
 
 {{-- Guild Bank --}}
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('bank') }}">
+    <a class="nav-link disabled" href="{{ url('bank') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'treasure-chest']" class="nav-icon"></font-awesome-icon>
         {{ __('navigation.guild_bank') }}
     </a>
@@ -48,7 +48,7 @@
 
 {{-- Marketplace --}}
 <li class="nav-item">
-    <a class="nav-link" href="{{ url('marketplace') }}">
+    <a class="nav-link disabled" href="{{ url('marketplace') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'balance-scale']" class="nav-icon"></font-awesome-icon>
         {{ __('navigation.marketplace') }}
     </a>
