@@ -37,7 +37,7 @@ class LoginController extends Controller
         $client_secret = config('services.battlenet.client_secret');
         $additional_config = ['region' => config('blizzard.region')];
         $config = new Config($client_id, $client_secret, route('login.callback'), $additional_config);
-        $this->driver = Socialite::driver('battlenet')->setConfig($config);
+        $this->driver = Socialite::driver('battlenet')->setConfig($config)->scopes(['wow.profile']);
     }
 
     /**
@@ -47,9 +47,7 @@ class LoginController extends Controller
      */
     public function redirectToProvider()
     {
-        return $this->driver
-            ->scopes(['wow.profile'])
-            ->redirect();
+        return $this->driver->redirect();
     }
 
     /**
