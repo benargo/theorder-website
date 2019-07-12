@@ -17,6 +17,10 @@ class InnerCirclePolicy
      */
     public function accessControlPanel(User $user)
     {
-        return $user->rank->seniority <= 1;
+        if ($user->rank instanceof \App\Models\Rank) {
+            return $user->rank->seniority <= 1;
+        }
+
+        return false;
     }
 }
