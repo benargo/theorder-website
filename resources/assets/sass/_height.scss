@@ -34,8 +34,19 @@
         }
     }
     @include media-breakpoint-up(md) {
+        .mvh-md-#{$i} {
+            min-height: $height;
+
+            &.exclude-navbar {
+                min-height: calc(#{$height} - 56px)
+            }
+        }
         .vh-md-#{$i} {
-            height: unquote($i + 'vh');
+            height: $height;
+
+            &.exclude-navbar {
+                min-height: calc(#{$height} - 56px)
+            }
         }
     }
 }
