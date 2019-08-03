@@ -1,7 +1,7 @@
 <template>
 <div class="row">
     <div class="col text-md-right">
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalNewRank">
+        <button class="btn btn-primary btn-lg" v-b-modal.modalNewRank>
             <font-awesome-icon :icon="['fas', 'layer-plus']"></font-awesome-icon>
             {{ lang.btnNewRank }}
         </button>
@@ -91,7 +91,7 @@ export default {
             form.classList.replace('needs-validation', 'was-validated')
 
             if (form.checkValidity()) {
-                axios.post('/api/ranks', {
+                axios.post('/api/ranks/new', {
                     title: this.title,
                     seniority: this.seniority,
                     kudos_per_day: this.kudos_per_day,

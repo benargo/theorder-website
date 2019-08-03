@@ -1,14 +1,14 @@
-<footer class="footer" id="footer">
+<footer class="footer m-4" id="footer">
     <div class="container-fluid">
         <div class="row my-4">
             <div class="col col-md-2 d-none d-md-flex">
-                <img src="{{ asset('images/guild_emblem.png') }}" alt="Guild Emblem" class="img-fluid img-guild-emblem ml-4">
+                <img src="{{ asset('images/guild_emblem.png') }}" alt="Guild Emblem" class="img-fluid ml-4 max-height-150">
             </div>
             <div class="col">
                 <div class="row">
                     <div class="col">
                         <ul class="nav flex-column">
-                            <li class="nav-item no-link" rel="copyright">
+                            <li class="nav-item py-2 px-3" rel="copyright">
                                 <font-awesome-icon :icon="['far', 'copyright']" class="nav-icon"></font-awesome-icon>
                                 {{ Carbon::now()->year }} The Order
                             </li>
@@ -21,7 +21,7 @@
                                 </li>
                             @endif
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('your-data') }}">
+                                <a class="nav-link" href="{{ url('privacy') }}">
                                     <font-awesome-icon :icon="['far', 'user-secret']" class="nav-icon"></font-awesome-icon>
                                     {{ __('footer.privacy') }}
                                 </a>
@@ -55,7 +55,7 @@
 
                             {{-- Forum --}}
                             {{-- <li class="nav-item">
-                                <a class="nav-link" href="{{ url('forum') }}">
+                                <a class="nav-link disabled" href="{{ url('forum') }}" tabindex="-1" aria-disabled="true">
                                     <font-awesome-icon :icon="['far', 'comments']" class="nav-icon"></font-awesome-icon>
                                     {{ __('navigation.forum') }}
                                 </a>
@@ -146,17 +146,15 @@
             </div>
             <div class="col col-md-2 d-none d-md-flex text-right">
                 <a href="https://worldofwarcraft.com/wowclassic" class="d-inline-block">
-                    <img class="img-fluid img-wow-classic-logo mr-4" src="{{ asset('images/wow_classic_logo.png') }}" alt="{{ __('footer.wow_classic') }}" height="100" />
+                    <img class="img-fluid max-height-150 mr-4" src="{{ asset('images/wow_classic_logo.png') }}" alt="{{ __('footer.wow_classic') }}" height="100" />
                     <span class="sr-only">{{ __('footer.wow_classic') }}</span>
                 </a>
             </div>
         </div>
         <div class="row my-4" rel="disclaimer">
             <div class="col">
-                <p class="disclaimer">
-                    <span class="align-bottom d-inline">
-                        {!! __('footer.disclaimer') !!}
-                    </span>
+                <p class="disclaimer text-muted">
+                    {!! __('footer.disclaimer') !!}
                 </p>
             </div>
         </div>

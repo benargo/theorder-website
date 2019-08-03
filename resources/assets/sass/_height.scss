@@ -1,0 +1,58 @@
+// Full height
+//
+// Use these classes to create elements that span a certain height
+#app {
+    min-height: calc(100vh - 56px);
+}
+.flex-1 {
+    flex: 1;
+}
+.full-height {
+    display: flex;
+    flex-flow: column;
+}
+.flex-column {
+    display: flex;
+    flex-flow: column;
+}
+.align-5050 {
+    justify-content: center;
+}
+
+// Height utilities
+//
+// Utility mixins and functions for controlling the height of elements.
+@for $i from 1 through 100 {
+    $height: unquote($i + 'vh');
+
+    .mvh-#{$i} {
+        min-height: $height;
+
+        &.exclude-navbar {
+            min-height: calc(#{$height} - 56px)
+        }
+    }
+    .vh-#{$i} {
+        height: $height;
+
+        &.exclude-navbar {
+            height: calc(#{$height} - 56px)
+        }
+    }
+    @include media-breakpoint-up(md) {
+        .vh-md-#{$i} {
+            height: unquote($i + 'vh');
+        }
+    }
+}
+
+@for $i from 10 through 1000 {
+    .h-#{$i} {
+        height: unquote($i + 'px');
+    }
+    .max-height-#{$i} {
+        max-height: unquote($i + 'px');
+    }
+
+    $i: $i + 10;
+}

@@ -1,7 +1,4 @@
 
-// Body
-$body-bg: #231a13;
-
 // Typography
 $font-family-sans-serif: "Raleway", sans-serif;
 $font-size-base: 0.9rem;
@@ -47,6 +44,10 @@ $theme-colors: (
     brown: $brown,
     white: $white
 );
+
+// Body
+$body-bg: #231a13;
+$body-color: $white;
 
 $border-color: $secondary;
 $breadcrumb-bg: transparent;

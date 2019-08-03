@@ -152,18 +152,20 @@ a:hover {
     min-width: 41px;
     min-height: 41px;
 }
-/**
- * Components
- */
-@import 'footer';
+
+// Components
+@import 'height';
+@import 'modal';
 @import 'navbar';
 @import 'pagination';
 @import 'scrollspy';
 @import 'tables';
 @import 'warcraft_icons';
-/**
- * Pages
- */
+
+// Pages
+//
+// @todo eliminate these where possible, instead rely on standardised CSS
+// elements
 @import 'control_panel';
 @import 'character_select';
 @import 'home';
