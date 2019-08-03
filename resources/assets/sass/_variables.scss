@@ -1,9 +1,4 @@
 
-// Typography
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
-
 // Colours
 $white: #fff;
 $gray-100: #f8f9fa;
@@ -19,7 +14,7 @@ $black: #000;
 
 $brown: #231a13;
 $browns: () !default;
-
+// stylelint-disable-next-line scss/dollar-variable-default
 $browns: map-merge(
     (
         "100": lighten($brown, 10%),
@@ -35,20 +30,57 @@ $browns: map-merge(
     $browns
 );
 
+@each $color, $value in $browns {
+    @include bg-variant('bg-brown-#{$color}', $value);
+}
+
 $primary: #f8b700;
 $secondary: #504137;
 
-$theme-colors: (
-    primary: $primary,
-    secondary: $secondary,
-    brown: $brown,
-    white: $white
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+    (
+        "primary":   $primary,
+        "secondary": $secondary,
+        "brown":     $brown
+    ),
+    $theme-colors
 );
 
 // Body
+//
+// Settings for the `<body>` element.
 $body-bg: #231a13;
 $body-color: $white;
 
+// Links
+//
+// Style anchor elements.
+$link-hover-decoration: none;
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+$font-size-md: 1.125rem;
+
+$font-family-sans-serif: "Raleway";
+
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+$spacer: 1rem;
+$spacers: (
+  6: ($spacer * 6),
+  7: ($spacer * 10)
+);
+
+// @todo organise
 $border-color: $secondary;
 $breadcrumb-bg: transparent;
 $card-bg: transparent;
@@ -68,6 +100,3 @@ $list-group-hover-bg: $secondary;
 $modal-content-bg: $brown;
 $table-color: $white;
 $table-color-conditional: $black;
-
-// Links
-$link-hover-decoration: none;

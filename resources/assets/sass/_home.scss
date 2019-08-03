@@ -1,35 +1,4 @@
 .page-home {
-    p {
-        font-size: 1.125rem;
-    }
-
-    .section-fs-splash {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-
-        .content {
-            text-align: center;
-        }
-    }
-
-    .section-introduction {
-        article.article-introduction {
-            h2 {
-                margin-top: 1.0rem;
-            }
-
-            p {
-                font-weight: 300;
-                text-align: justify;
-            }
-        }
-
-        img.image-guild-emblem {
-            margin: 0 auto;
-        }
-    }
-
     .section-inner-circle {
         .inner-circle-image-wrapper {
             position: relative;

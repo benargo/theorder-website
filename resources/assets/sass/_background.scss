@@ -1,0 +1,66 @@
+// Background images and colors
+// 
+.bg-brown-texture {
+    background-image: url("../images/bg_brown_texture_repeat.jpg");
+    background-position: center -200px;
+    background-repeat: repeat-y;
+}
+
+.bg-dark-portal {
+    background-image: url("../images/bg_darkportal.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-engineering {
+    background-image: url("../images/bg_engineering.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-garrison {
+    background-image: url("../images/bg_garrison.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-goldshire {
+    background-image: url("../images/bg_goldshire.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-goblin-engineer {
+    background-image: url("../images/bg_goblin_engineer.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-homepage-inner-circle {
+    background-image: url("../images/bg_homepage_inner_circle.jpg");
+    background-position: top center;
+    background-size: cover;
+}
+
+.bg-homepage-inner-circle-introduction {
+    background: rgb(98,130,143);
+    background: linear-gradient(180deg, rgba(98,130,143,0.9) 0%, rgba(98,130,143,0.6) 80%, rgba(98,130,143,0) 100%);
+}
+
+.bg-ironforge {
+    background-image: url("../images/bg_ironforge.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-tavern {
+    background-image: url("../images/bg_tavern.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.bg-tavern-hi {
+    background-image: url("../images/bg_tavern_hi.jpg");
+    background-position: center;
+    background-size: cover;
+}

@@ -1,125 +1,32 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Functions
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/mixins';
+
 // Variables
-@import 'variables';
+@import './variables';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-// Theme
-@import 'theme';
-
-#app {
-    min-height: calc(100vh - 54px);
-}
 
 a:hover {
     border-color: $link-hover-color !important;
 }
-// Flexbox
-.flex-1 {
-    flex: 1;
-}
-
-.full-height {
-    display: flex;
-    flex-flow: column;
-    min-height: 100%;
-
-    &.full-height-exclude-navbar:first-of-type {
-        min-height: calc(100vh - 54px);
-    }
-
-    .full-height-child,
-    .full-height-extension {
-        display: flex;
-        flex-flow: column;
-        height: 100%;
-    }
-
-    .full-height-header {
-        flex: 0 1 auto;
-    }
-
-    .full-height-body {
-        flex: 1 1 auto;
-    }
-}
 // Margin & Padding Utilities
-.extra-margin-top {
-    margin-top: 100px;
-}
+// .extra-margin-top {
+//     margin-top: 100px;
+// }
+//
+// .extra-padding-top {
+//     padding-top: 100px;
+// }
+//
+// .extra-padding-bottom {
+//     padding-bottom: 100px;
+// }
 
-.extra-padding-top {
-    padding-top: 100px;
-}
-
-.extra-padding-bottom {
-    padding-bottom: 100px;
-}
-// Backgrounds
-.bg-brown-texture {
-    background-image: url("../images/bg_brown_texture_repeat.jpg");
-    background-position: center -200px;
-    background-repeat: repeat-y;
-}
-
-.bg-dark-portal {
-    background-image: url("../images/bg_darkportal.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
-.bg-engineering {
-    background-image: url("../images/bg_engineering.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
-.bg-garrison {
-    background-image: url("../images/bg_garrison.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
-.bg-goldshire {
-    background-image: url("../images/bg_goldshire.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
-.bg-goblin-engineer {
-    background-image: url("../images/bg_goblin_engineer.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
-.bg-homepage-inner-circle {
-    background-image: url("../images/bg_homepage_inner_circle.jpg");
-    background-position: top center;
-    background-size: cover;
-}
-
-.bg-homepage-inner-circle-introduction {
-    background: rgb(98,130,143);
-    background: linear-gradient(180deg, rgba(98,130,143,0.9) 0%, rgba(98,130,143,0.6) 80%, rgba(98,130,143,0) 100%);
-}
-
-.bg-ironforge {
-    background-image: url("../images/bg_ironforge.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
-.bg-tavern {
-    background-image: url("../images/bg_tavern.jpg");
-    background-position: center;
-    background-size: cover;
-}
-
-.bg-tavern-hi {
-    background-image: url("../images/bg_tavern_hi.jpg");
-    background-position: center;
-    background-size: cover;
-}
 // Alignment
 .v-align-center {
     align-items: center;
@@ -154,19 +61,19 @@ a:hover {
 }
 
 // Components
+@import 'background';
 @import 'height';
 @import 'modal';
 @import 'navbar';
 @import 'pagination';
 @import 'scrollspy';
 @import 'tables';
+@import 'type';
 @import 'warcraft_icons';
 
 // Pages
 //
 // @todo eliminate these where possible, instead rely on standardised CSS
 // elements
-@import 'control_panel';
-@import 'character_select';
-@import 'home';
+@import 'home'; // keep
 @import 'news_editor';

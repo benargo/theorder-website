@@ -1,6 +1,6 @@
-<footer class="footer m-4" id="footer">
+<footer class="footer mx-3 mx-md-5 my-5" id="footer">
     <div class="container-fluid">
-        <div class="row my-4">
+        <div class="row my-5">
             <div class="col col-md-2 d-none d-md-flex">
                 <img src="{{ asset('images/guild_emblem.png') }}" alt="Guild Emblem" class="img-fluid ml-4 max-height-150">
             </div>

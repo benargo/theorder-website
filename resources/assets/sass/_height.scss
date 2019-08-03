@@ -7,16 +7,10 @@
 .flex-1 {
     flex: 1;
 }
-.full-height {
-    display: flex;
-    flex-flow: column;
-}
+.full-height,
 .flex-column {
     display: flex;
     flex-flow: column;
-}
-.align-5050 {
-    justify-content: center;
 }
 
 // Height utilities

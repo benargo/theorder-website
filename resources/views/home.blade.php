@@ -3,10 +3,10 @@
 @section('title', __('meta.title'))
 
 @section('content')
-    <div id="app" class="page-home">
-        <div class="container-fluid full-height mvh-95 exclude-navbar section-fs-splash bg-goldshire text-light">
-            <div class="content">
-                <h1 class="display-2">
+    <div id="app" class="page-home font-size-md">
+        <div class="bg-goldshire container-fluid full-height mvh-95 exclude-navbar justify-content-center">
+            <div class="text-center">
+                <h1 class="display-1">
                     {{ __('meta.title') }}
                 </h1>
                 <h2>
@@ -14,11 +14,11 @@
                 </h2>
             </div>
         </div>
-        <div class="bg-brown-texture extra-padding-top extra-padding-bottom section-introduction text-light">
+        <div class="bg-brown-texture py-6">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-4 v-align-center">
-                        <img src="{{ asset('images/guild_emblem.png') }}" alt="Guild Emblem" class="image-guild-emblem" height="228" width="216">
+                        <img src="{{ asset('images/guild_emblem.png') }}" alt="Guild Emblem" class="ml-auto" height="228" width="216">
                     </div>
                     <div class="col-xs-12 col-md-8 order-md-first">
                         <article class="article-introduction">
@@ -40,10 +40,10 @@
                 </div>
             </div>
         </div>
-        <div class="section-inner-circle bg-homepage-inner-circle text-light extra-padding-bottom">
+        <div class="section-inner-circle bg-homepage-inner-circle pb-6">
             <div class="bg-homepage-inner-circle-introduction">
                 <div class="container">
-                    <div class="row extra-padding-top extra-padding-bottom">
+                    <div class="row py-6">
                         <div class="col-12">
                             <h2>{{ __('home.meet_the_inner_circle') }}</h2>
                             {!! __('home.inner_circle_introduction') !!}

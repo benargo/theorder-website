@@ -18,9 +18,9 @@
 
                 {{-- Roster --}}
                 <h2>{{ __('controlpanel.roster') }}</h2>
-                <div class="row action-cards">
+                <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/members') }}" class="card-action">
+                        <a href="{{ url('inner-circle/members') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'users']" class="fa-3x"></font-awesome-icon>
@@ -32,7 +32,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/ranks') }}" class="card-action">
+                        <a href="{{ url('inner-circle/ranks') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'users-crown']" class="fa-3x"></font-awesome-icon>
@@ -46,10 +46,10 @@
                 </div>
 
                 {{-- News --}}
-                <h2>{{ __('controlpanel.news') }}</h2>
-                <div class="row action-cards">
+                <h2 class="mt-4">{{ __('controlpanel.news') }}</h2>
+                <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/news/create') }}" class="card-action">
+                        <a href="{{ url('inner-circle/news/create') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'pen-fancy']" class="fa-3x"></font-awesome-icon>
@@ -61,7 +61,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/news') }}" class="card-action">
+                        <a href="{{ url('inner-circle/news') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'pencil']" class="fa-3x"></font-awesome-icon>
@@ -76,14 +76,14 @@
 
                 {{-- Forum --}}
                 {{-- <h2>{{ __('controlpanel.forum') }}</h2> --}}
-                <h2>
+                <h2 class="mt-4">
                     {{ __('controlpanel.forum') }}
                     <small class="text-muted">{{ __('controlpanel.not_yet_implemented') }}</small>
                 </h2>
-                <div class="row action-cards">
+                <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        {{-- <a href="{{ url('inner-circle/forum') }}" class="card-action"> --}}
-                        <a href="javascript:void();" class="card-action disabled" tabindex="-1" role="button" aria-disabled="true">
+                        {{-- <a href="{{ url('inner-circle/forum') }}" class="d-block border border-primary rounded my-2 py-4"> --}}
+                        <a href="javascript:void();" class="d-block border border-primary rounded my-2 py-4 disabled" tabindex="-1" role="button" aria-disabled="true">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'chalkboard']" class="fa-3x"></font-awesome-icon>
@@ -97,10 +97,10 @@
                 </div>
 
                 {{-- Events --}}
-                <h2>{{ __('controlpanel.events') }}</h2>
-                <div class="row action-cards">
+                <h2 class="mt-4">{{ __('controlpanel.events') }}</h2>
+                <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/events/new') }}" class="card-action">
+                        <a href="{{ url('inner-circle/events/new') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'calendar-plus']" class="fa-3x"></font-awesome-icon>
@@ -112,7 +112,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/events?action=edit') }}" class="card-action">
+                        <a href="{{ url('inner-circle/events?action=edit') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'calendar-edit']" class="fa-3x"></font-awesome-icon>
@@ -124,7 +124,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/events?action=remind') }}" class="card-action">
+                        <a href="{{ url('inner-circle/events?action=remind') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'bell']" class="fa-3x"></font-awesome-icon>
@@ -138,10 +138,10 @@
                 </div>
 
                 {{-- Teams --}}
-                <h2>{{ __('controlpanel.teams') }}</h2>
-                <div class="row action-cards">
+                <h2 class="mt-4">{{ __('controlpanel.teams') }}</h2>
+                <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/teams/new') }}" class="card-action">
+                        <a href="{{ url('inner-circle/teams/new') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'users']" class="fa-3x"></font-awesome-icon>
@@ -153,7 +153,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/teams?action=edit') }}" class="card-action">
+                        <a href="{{ url('inner-circle/teams?action=edit') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'users-cog']" class="fa-3x"></font-awesome-icon>
@@ -165,7 +165,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/teams?action=message') }}" class="card-action">
+                        <a href="{{ url('inner-circle/teams?action=message') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'paper-plane']" class="fa-3x"></font-awesome-icon>
@@ -179,10 +179,10 @@
                 </div>
 
                 {{-- Guild Bank --}}
-                <h2>{{ __('controlpanel.guild_bank') }}</h2>
-                <div class="row action-cards">
+                <h2 class="mt-4">{{ __('controlpanel.guild_bank') }}</h2>
+                <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/guild-bank/clients') }}" class="card-action">
+                        <a href="{{ url('inner-circle/guild-bank/clients') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'user-cog']" class="fa-3x"></font-awesome-icon>
@@ -196,10 +196,10 @@
                 </div>
 
                 {{-- Marketplace --}}
-                <h2>{{ __('controlpanel.marketplace') }}</h2>
-                <div class="row action-cards">
+                <h2 class="mt-4">{{ __('controlpanel.marketplace') }}</h2>
+                <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/marketplace/transactions') }}" class="card-action">
+                        <a href="{{ url('inner-circle/marketplace/transactions') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'clipboard-list']" class="fa-3x"></font-awesome-icon>
@@ -211,7 +211,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/marketplace/stats') }}" class="card-action">
+                        <a href="{{ url('inner-circle/marketplace/stats') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'chart-line']" class="fa-3x"></font-awesome-icon>
@@ -225,10 +225,10 @@
                 </div>
 
                 {{-- Applications --}}
-                <h2>{{ __('controlpanel.applications') }}</h2>
-                <div class="row action-cards">
+                <h2 class="mt-4">{{ __('controlpanel.applications') }}</h2>
+                <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/applications?status=pending') }}" class="card-action">
+                        <a href="{{ url('inner-circle/applications?status=pending') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'user-plus']" class="fa-3x"></font-awesome-icon>
@@ -240,7 +240,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/applications') }}" class="card-action">
+                        <a href="{{ url('inner-circle/applications') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'user-clock']" class="fa-3x"></font-awesome-icon>
