@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Models\Application;
+use App\Guild\Application;
 use Illuminate\Bus\Queueable;
 use App\Blizzard\Warcraft\Races;
 use App\Blizzard\Warcraft\Classes;
@@ -46,7 +46,7 @@ class ApplicationReceived extends Notification
     /**
      * Get the Discord representation of the notification.
      *
-     * @param  App\Models\Application  $notifiable
+     * @param  App\Guild\Application  $notifiable
      * @return \NotificationChannels\Discord\DiscordMessage
      */
     public function toDiscord(Application $notifiable)

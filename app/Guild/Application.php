@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Guild;
 
 use Carbon\Carbon;
 use Illuminate\Support\Arr;

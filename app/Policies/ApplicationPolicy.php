@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\Application;
+use App\Guild\Application;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ApplicationPolicy
@@ -14,7 +14,7 @@ class ApplicationPolicy
      * Determine whether the user can view the application.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Application  $application
+     * @param  \App\Guild\Application  $application
      * @return mixed
      */
     public function view(User $user, Application $application)
@@ -48,7 +48,7 @@ class ApplicationPolicy
      * Determine whether the user can delete the application.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Application  $application
+     * @param  \App\Guild\Application  $application
      * @return mixed
      */
     public function withdraw(User $user, Application $application)
@@ -60,7 +60,7 @@ class ApplicationPolicy
      * Determine whether the user can approve the application.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Application  $application
+     * @param  \App\Guild\Application  $application
      * @return mixed
      */
     public function accept(User $user, Application $application)
@@ -72,7 +72,7 @@ class ApplicationPolicy
      * Determine whether the user can decline the application.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Application  $application
+     * @param  \App\Guild\Application  $application
      * @return mixed
      */
     public function decline(User $user, Application $application)
