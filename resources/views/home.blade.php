@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-4 v-align-center">
-                        <img src="{{ asset('images/guild_emblem.png') }}" alt="Guild Emblem" class="ml-auto" height="228" width="216">
+                        <img src="{{ asset('images/guild_emblem.png') }}" alt="Guild Emblem" class="mb-3 mx-auto" height="228" width="216">
                     </div>
                     <div class="col-xs-12 col-md-8 order-md-first">
                         <article class="article-introduction">
