@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'id' => 1922840,
-                'nickname' => 'Saromius',
+                'nickname' => 'Tinkletoes',
                 'battletag' => encrypt('Animorphus#2491'),
                 'rank_id' => 1,
             ],
