@@ -1,31 +1,69 @@
+// Variables
+//
+// Variables should follow the `$component-state-property-size` formula for
+// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
-// Colours
-$white: #fff;
-$gray-100: #f8f9fa;
-$gray-200: #e9ecef;
-$gray-300: #dee2e6;
-$gray-400: #ced4da;
-$gray-500: #adb5bd;
-$gray-600: #6c757d;
-$gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
-$black: #000;
 
-$brown: #231a13;
+//
+// Color system
+//
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$grays: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$grays: map-merge(
+  (
+    "100": $gray-100,
+    "200": $gray-200,
+    "300": $gray-300,
+    "400": $gray-400,
+    "500": $gray-500,
+    "600": $gray-600,
+    "700": $gray-700,
+    "800": $gray-800,
+    "900": $gray-900
+  ),
+  $grays
+);
+
+// Brown colors
+//
+// Brown is essential to the theme of the website. Hence why we have a whole
+// map worth of browns available to us.
+$brown:     #231a13 !default;
+$brown-100: lighten($brown, 90%);
+$brown-200: lighten($brown, 80%);
+$brown-300: lighten($brown, 70%);
+$brown-400: lighten($brown, 60%);
+$brown-500: lighten($brown, 50%);
+$brown-600: lighten($brown, 40%);
+$brown-700: lighten($brown, 30%);
+$brown-800: lighten($brown, 20%);
+$brown-900: lighten($brown, 10%);
+
 $browns: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $browns: map-merge(
     (
-        "100": lighten($brown, 10%),
-        "200": lighten($brown, 20%),
-        "300": lighten($brown, 30%),
-        "400": lighten($brown, 40%),
-        "500": lighten($brown, 50%),
-        "600": lighten($brown, 60%),
-        "700": lighten($brown, 80%),
-        "800": lighten($brown, 80%),
-        "900": lighten($brown, 90%)
+        "100": $brown-100,
+        "200": $brown-200,
+        "300": $brown-300,
+        "400": $brown-400,
+        "500": $brown-500,
+        "600": $brown-600,
+        "700": $brown-700,
+        "800": $brown-800,
+        "900": $brown-900
     ),
     $browns
 );
@@ -34,34 +72,126 @@ $browns: map-merge(
     @include bg-variant('bg-brown-#{$color}', $value);
 }
 
+// Primary colors
+//
+// These are primary colours of the rainbow.
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$colors: map-merge(
+  (
+    "blue":       $blue,
+    "brown":      $brown,
+    "indigo":     $indigo,
+    "purple":     $purple,
+    "pink":       $pink,
+    "red":        $red,
+    "orange":     $orange,
+    "yellow":     $yellow,
+    "green":      $green,
+    "teal":       $teal,
+    "cyan":       $cyan,
+    "white":      $white,
+    "gray":       $gray-600,
+    "gray-dark":  $gray-800
+  ),
+  $colors
+);
+
+// Theme colors
+//
+// These colors are used by the Bootstrap theming system.
 $primary: #f8b700;
-$secondary: #504137;
+$secondary: $brown-800;
 
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $theme-colors: map-merge(
     (
-        "primary":   $primary,
-        "secondary": $secondary,
-        "brown":     $brown
+        "primary":    $primary,
+        "secondary":  $secondary,
+        "navigation": $gray-200,
+        "brown":      $brown
     ),
     $theme-colors
 );
 
+// Class colors
+//
+// These are the colors used to identify each World of Warcraft class.
+$deathknight: #c41f3b;
+$demonhunter: #a330c9;
+$druid:       #ff7d0a;
+$hunter:      #abd473;
+$mage:        #40c7eb;
+$monk:        #00ff96;
+$paladin:     #f58cba;
+$priest:      #fff;
+$rogue:       #fff569;
+$shaman:      #0070de;
+$warlock:     #8787ed;
+$warrior:     #c79c6e;
+
+$class-colors: () !default;
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$class-colors: map-merge(
+    (
+        "deathknight": $deathknight,
+        "demonhunter": $demonhunter,
+        "druid":       $druid,
+        "hunter":      $hunter,
+        "mage":        $mage,
+        "monk":        $monk,
+        "paladin":     $paladin,
+        "priest":      $priest,
+        "rogue":       $rogue,
+        "shaman":      $shaman,
+        "warlock":     $warlock,
+        "warrior":     $warrior,
+    ),
+    $class-colors
+);
+
+// Merge class colours into theme colours.
+//
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+    $class-colors,
+    $theme-colors
+);
+
+//
+// Layout
+//
+
 // Body
 //
 // Settings for the `<body>` element.
+
 $body-bg: #231a13;
 $body-color: $white;
 
 // Links
 //
 // Style anchor elements.
+
 $link-hover-decoration: none;
 
 // Typography
 //
 // Font, line-height, and color for body text, headings, and more.
+
 $font-size-md: 1.125rem;
 
 $font-family-sans-serif: "Raleway";
@@ -74,11 +204,16 @@ $line-height-base: 1.6;
 // Control the default styling of most Bootstrap elements by modifying these
 // variables. Mostly focused on spacing.
 // You can add more entries to the $spacers map, should you need more variation.
+
 $spacer: 1rem;
 $spacers: (
   6: ($spacer * 6),
   7: ($spacer * 10)
 );
+
+// Navbar
+
+$navbar-dark-color: $gray-200;
 
 // @todo organise
 $border-color: $secondary;

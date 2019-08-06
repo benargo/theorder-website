@@ -1,7 +1,9 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
-// Functions
+// Bootstrap functions
+//
+// Load these in early as we need them when setting up the variables...
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/mixins';
 
@@ -9,23 +11,13 @@
 @import './variables';
 
 // Bootstrap
+//
+// Load the remainder of the Bootstrap framework now...
 @import '~bootstrap/scss/bootstrap';
 
 a:hover {
     border-color: $link-hover-color !important;
 }
-// Margin & Padding Utilities
-// .extra-margin-top {
-//     margin-top: 100px;
-// }
-//
-// .extra-padding-top {
-//     padding-top: 100px;
-// }
-//
-// .extra-padding-bottom {
-//     padding-bottom: 100px;
-// }
 
 // Alignment
 .v-align-center {
@@ -49,7 +41,7 @@ a:hover {
 .z-index-3 {
     z-index: 103;
 }
-// @todo move to component file
+// TODO: move to component file
 .breadcrumb {
     background: $brown;
     border: solid 1px $breadcrumb-divider-color;
@@ -73,7 +65,7 @@ a:hover {
 
 // Pages
 //
-// @todo eliminate these where possible, instead rely on standardised CSS
+// TODO: eliminate these where possible, instead rely on standardised CSS
 // elements
 @import 'home'; // keep
 @import 'news_editor';
