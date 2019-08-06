@@ -4,17 +4,16 @@
 
 @section('content')
     <div id="app" class="page-control-panel-index">
-        <div class="container-fluid bg-engineering extra-padding-top extra-padding-bottom text-light">
+        <div class="container-fluid bg-engineering py-7">
             <div class="content">
                 <h1 class="text-center">
                     {{ __('controlpanel.stock_addon_settings') }}
                 </h1>
             </div>
         </div>
-        <div class="bg-brown-texture extra-padding-top extra-padding-bottom text-light">
-            <api-clients>
-
-            </api-clients>
+        <div class="container py-7">
+            <p class="lead mb-5">In order to use the Stock addon, you first need to create an OAuth Client. This is required in order to authenticate with the API.</p>
+            <passport-clients></passport-clients>
         </div>
     </div>
 @endsection

@@ -4,7 +4,7 @@
 
 @section('content')
     <div id="app" class="page-control-panel-index">
-        <div class="container-fluid bg-engineering extra-padding-top extra-padding-bottom text-light">
+        <div class="container-fluid bg-engineering py-7 text-light">
             <div class="content">
                 <h1 class="text-center">
                     {{ __('controlpanel.inner_circle') }}
