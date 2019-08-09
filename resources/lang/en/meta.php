@@ -15,7 +15,7 @@ return [
     'title' => 'The Order',
     'short_title' => 'The Order',
     'motto' => 'Ex Umbras Percutitis',
-    'realm' => 'Nighthaven PvP',
+    'realm' => 'Pyrewood Village',
     'description' => 'The Order is an exclusive and secretive World of Warcraft Classic raiding guild. Currently based on Nighthaven PvP (part of the Elysium project).',
 
 ];
