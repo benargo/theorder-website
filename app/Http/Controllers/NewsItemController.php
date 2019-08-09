@@ -175,7 +175,9 @@ class NewsItemController extends Controller
         $merged->transform(function ($item, $key) {
             // If the nickname field is null, use the user's battletag
             // instead...
-            $item->author_nickname = $this->author_nickname ?: Str::before(decrypt($item->author_battletag), '#');
+            $item->author_nickname = isset($this->author_nickname)
+                ? $this->author_nickname
+                : Str::before(decrypt($item->author_battletag), '#');
 
             // Calculate the URL to edit the article...
             $item->edit_url = url(
