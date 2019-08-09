@@ -18,7 +18,7 @@
                         <span class="badge badge-primary" v-show="item.draft_id" data-toggle="tooltip" data-placement="top" :title="lang.tooltips.draft">{{ lang.draft }}</span>
                         <span class="badge badge-info" v-show="isScheduledForLater(item.published_at)" data-toggle="tooltip" data-placement="top" :title="lang.tooltips.scheduled">{{ lang.scheduled }}</span>
                     </th>
-                    <td>{{ item.author_battletag }}</td>
+                    <td>{{ item.author_nickname }}</td>
                     <td>{{ (item.published_at ? item.published_at : lang.notPublished) }}</td>
                     <td>{{ item.updated_at }}</td>
                     <td>
