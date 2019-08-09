@@ -100,7 +100,7 @@
                         </div>
                         <div class="col-lg text-center">
                             <div class="inner-circle-image-wrapper v-align-bottom">
-                                <img class="d-block image-inner-circle z-index-2" src="{{ asset('images/innercircle_tommy.png') }}" alt="Tommy" height="400">
+                                <img class="d-block image-inner-circle z-index-2" src="{{ asset('images/innercircle_tommy.png') }}" alt="Tommy" height="350">
                             </div>
                             <h4>Tommy</h4>
                             <p>Monori</p>
