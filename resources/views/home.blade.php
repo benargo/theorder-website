@@ -5,7 +5,7 @@
 @section('content')
     <div id="app" class="page-home font-size-md">
         <div class="bg-ragnaros">
-            <div class="bg-video overflow-hidden vh-80 vh-md-95 exclude-navbar">
+            <div class="d-none d-md-block bg-video overflow-hidden vh-80 vh-md-95 exclude-navbar">
                 <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
                     <source src="{{ asset('videos/bg_ragnaros.mp4') }}" type="video/mp4">
                 </video>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="bg-brown-texture py-6">
             <div class="container">
                 <div class="row">
