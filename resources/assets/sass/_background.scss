@@ -1,5 +1,5 @@
 // Background images and colors
-// 
+//
 .bg-brown-texture {
     background-image: url("../images/bg_brown_texture_repeat.jpg");
     background-position: center -200px;
@@ -53,6 +53,16 @@
     background-size: cover;
 }
 
+.bg-overlay {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.bg-ragnaros {
+    background-image: url("../images/bg_ragnaros.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
 .bg-tavern {
     background-image: url("../images/bg_tavern.jpg");
     background-position: center;
@@ -63,4 +73,29 @@
     background-image: url("../images/bg_tavern_hi.jpg");
     background-position: center;
     background-size: cover;
+}
+
+.bg-video {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    min-width: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+
+    video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-height: 100%;
+        min-width: 100%;
+        width: auto;
+        height: auto;
+        z-index: 0;
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+    }
 }

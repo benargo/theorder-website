@@ -1,4 +1,9 @@
 .page-home {
+    .container,
+    .container-fluid {
+        position: relative;
+    }
+
     .section-inner-circle {
         .inner-circle-image-wrapper {
             position: relative;
@@ -18,8 +23,16 @@
                 transform: translateX(-42.5%);
             }
 
-            &[alt="Andy"],
-            &[alt="Ben"],
+            &[alt="Andy"] {
+                -webkit-transform: translateX(-38%);
+                transform: translateX(-38%);
+            }
+
+            &[alt="Ben"] {
+                -webkit-transform: translateX(-65%);
+                transform: translateX(-65%);
+            }
+
             &[alt="Sam"] {
                 -webkit-transform: translateX(-50%);
                 transform: translateX(-50%);

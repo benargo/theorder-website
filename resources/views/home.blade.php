@@ -4,16 +4,24 @@
 
 @section('content')
     <div id="app" class="page-home font-size-md">
-        <div class="bg-goldshire container-fluid full-height mvh-80 mvh-md-95 exclude-navbar justify-content-center">
-            <div class="text-center">
-                <h1 class="display-1">
-                    {{ __('meta.title') }}
-                </h1>
-                <h2>
-                    {{ __('meta.realm') }}
-                </h2>
+        <div class="bg-ragnaros">
+            <div class="bg-video overflow-hidden vh-80 vh-md-95 exclude-navbar">
+                <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+                    <source src="{{ asset('videos/bg_ragnaros.mp4') }}" type="video/mp4">
+                </video>
+            </div>
+            <div class="bg-overlay container-fluid z-index-1 full-height vh-80 vh-md-95 exclude-navbar justify-content-center">
+                <div class="text-center">
+                    <h1 class="display-1">
+                        {{ __('meta.title') }}
+                    </h1>
+                    <h2>
+                        {{ __('meta.realm') }}
+                    </h2>
+                </div>
             </div>
         </div>
+        
         <div class="bg-brown-texture py-6">
             <div class="container">
                 <div class="row">
@@ -42,6 +50,7 @@
                 </div>
             </div>
         </div>
+
         <div class="section-inner-circle bg-homepage-inner-circle pb-6">
             <div class="bg-homepage-inner-circle-introduction">
                 <div class="container">
@@ -67,7 +76,7 @@
                         </div>
                         <div class="col-lg text-center">
                             <div class="inner-circle-image-wrapper v-align-bottom">
-                                <img class="d-block image-inner-circle z-index-1" src="{{ asset('images/innercircle_andy.png') }}" alt="Andy" height="325">
+                                <img class="d-block image-inner-circle z-index-1" src="{{ asset('images/innercircle_andy.png') }}" alt="Andy" height="450">
                             </div>
                             <h4>Andy</h4>
                             <p>Gambit</p>
@@ -75,7 +84,7 @@
                         </div>
                         <div class="col-lg text-center">
                             <div class="inner-circle-image-wrapper v-align-bottom">
-                                <img class="d-block image-inner-circle z-index-3" src="{{ asset('images/innercircle_ben.png') }}" alt="Ben" height="250">
+                                <img class="d-block image-inner-circle z-index-3" src="{{ asset('images/innercircle_ben.png') }}" alt="Ben" height="200">
                             </div>
                             <h4>Ben</h4>
                             <p>Tinkletoes</p>
