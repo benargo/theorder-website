@@ -24,10 +24,8 @@
                         </div>
                         <div class="col pt-6">
                             @foreach ($news_items as $news_item)
-                                <a href="{{ route('news.single', ['news_item' => $news_item->url]) }}" class="card text-light mb-3" id="{{ $news_item->id }}">
-                                    <h4 class="card-header bg-secondary">
-                                        {{ $news_item->title }}
-                                    </h4>
+                                <div class="card text-light mb-3" id="{{ $news_item->id }}">
+                                    <h4 class="card-header bg-secondary">{{ $news_item->title }}</h4>
                                     <div class="card-body bg-brown">
                                         <h5 class="card-title">
                                             {{
@@ -43,10 +41,12 @@
                                     </div>
                                     @if ($news_item->allows_comments)
                                         <div class="card-footer bg-brown text-muted text-right">
-                                            {{ $news_item->comments()->count() }} Comments
+                                            <a href="{{ route('news.single', ['news_item' => $news_item->url]) }}">
+                                                {{ $news_item->comments()->count() }} Comments
+                                            </a>
                                         </div>
                                     @endif
-                                </a>
+                                </div>
                             @endforeach
                         </div>
                     @else
