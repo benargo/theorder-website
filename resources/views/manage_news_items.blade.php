@@ -4,12 +4,12 @@
 
 @section('content')
     <div id="app" class="page-news-item-manager">
-        <header class="container-fluid bg-engineering extra-padding-top extra-padding-bottom text-light">
+        <header class="container-fluid bg-engineering py-6 text-light">
             <div class="content">
                 <h1 class="text-center">{{ __('news.news_items') }}</h1>
             </div>
         </header>
-        <div class="extra-padding-top extra-padding-bottom text-light">
+        <div class="py-6 text-light">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-8">

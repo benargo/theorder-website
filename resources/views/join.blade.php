@@ -4,12 +4,12 @@
 
 @section('content')
     <div id="app">
-        <header class="container-fluid bg-ironforge extra-padding-top extra-padding-bottom text-light">
+        <header class="container-fluid bg-ironforge py-6 text-light">
             <div class="content">
                 <h1 class="text-center">{{ __('applications.join_title') }}</h1>
             </div>
         </header>
-        <div class="container extra-padding-top extra-padding-bottom text-light">
+        <div class="container py-6 text-light">
             <p class="lead">{{ __('applications.lead') }}</p>
             <join-form
                 :classes="{{ $classes->toJson() }}"

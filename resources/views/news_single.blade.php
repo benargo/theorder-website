@@ -4,7 +4,7 @@
 
 @section('content')
     <div id="app" class="page-news-index d-flex flex-column" data-spy="scroll" data-target="scrollspy-news-items" data-offset="0">
-        <header class="container-fluid bg-engineering extra-padding-top extra-padding-bottom text-light">
+        <header class="container-fluid bg-engineering py-6 text-light">
             <div class="content">
                 <h1 class="text-center">{{ $news_item->title }}</h1>
             </div>

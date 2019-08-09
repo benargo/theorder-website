@@ -4,12 +4,12 @@
 
 @section('content')
     <div id="app" class="page-news-item-editor">
-        <header class="container-fluid bg-engineering extra-padding-top extra-padding-bottom text-light">
+        <header class="container-fluid bg-engineering py-6 text-light">
             <div class="content">
                 <h1 class="text-center">{{ __('news.news_editor') }}</h1>
             </div>
         </header>
-        <div class="bg-brown-texture extra-padding-top extra-padding-bottom text-light">
+        <div class="bg-brown-texture py-6 text-light">
             <news-item-editor
                 {{-- article id prop --}}
                 @if (isset($item_id))

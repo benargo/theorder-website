@@ -4,12 +4,12 @@
 
 @section('content')
     <div id="app">
-        <header class="container-fluid bg-tavern extra-padding-top extra-padding-bottom text-light">
+        <header class="container-fluid bg-tavern py-6 text-light">
             <div class="content">
                 <h1 class="text-center">{{ __('account.my_account') }}</h1>
             </div>
         </header>
-        <div class="container extra-padding-top extra-padding-bottom text-light">
+        <div class="container py-6 text-light">
             <p class="lead">{{ __('account.introduction_account_settings') }}</p>
             <account-settings
                 :default-values="{

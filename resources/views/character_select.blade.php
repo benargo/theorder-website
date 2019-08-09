@@ -3,7 +3,7 @@
 @section('title', __('account.character_select_title'))
 
 @section('content')
-    <div class="full-height bg-dark-portal text-light extra-padding-top extra-padding-bottom">
+    <div class="full-height bg-dark-portal text-light py-6">
         <div class="container">
             <div class="row">
                 <div class="col-12">

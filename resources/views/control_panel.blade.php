@@ -13,7 +13,7 @@
                 </h1>
             </div>
         </div>
-        <div class="bg-brown-texture extra-padding-top extra-padding-bottom text-light">
+        <div class="bg-brown-texture py-6 text-light">
             <div class="container">
 
                 {{-- Roster --}}
