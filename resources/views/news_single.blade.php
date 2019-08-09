@@ -9,7 +9,7 @@
                 <h1 class="text-center">{{ $news_item->title }}</h1>
             </div>
         </header>
-        <div class="extra-padding-bottom extra-padding-top text-light flex-1">
+        <div class="pb-6 pt-6 text-light flex-1">
             <div class="container">
                 <div class="row">
                     <div class="col">

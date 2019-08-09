@@ -10,7 +10,7 @@
             </div>
         </header>
         <div class="py-6 text-light">
-            <div class="container extra-padding-bottom">
+            <div class="container pb-6">
                 <new-rank
                     :discord-roles='{!! $roles->toJson() !!}'
                     :lang="{

@@ -9,12 +9,12 @@
                 <h1 class="text-center">{{ __('news.news') }}</h1>
             </div>
         </header>
-        <div class="extra-padding-bottom text-light flex-1">
+        <div class="pb-6 text-light flex-1">
             <div class="container">
                 <div class="row">
                     @if ($news_items->count() > 0)
                         <div class="col-3 d-none d-md-block">
-                            <div id="scrollspy-news-items" class="list-group extra-padding-top sticky-top">
+                            <div id="scrollspy-news-items" class="list-group pt-6 sticky-top">
                                 @foreach ($news_items as $index => $news_item)
                                     <a class="list-group-item list-group-item-action" href="#{{ $news_item->id }}">
                                         {{ $news_item->title }}
@@ -22,7 +22,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="col extra-padding-top">
+                        <div class="col pt-6">
                             @foreach ($news_items as $news_item)
                                 <a href="{{ route('news.single', ['news_item' => $news_item->url]) }}" class="card text-light mb-3" id="{{ $news_item->id }}">
                                     <h4 class="card-header bg-secondary">
@@ -50,7 +50,7 @@
                             @endforeach
                         </div>
                     @else
-                        <div class="col extra-padding-top">
+                        <div class="col pt-6">
                             <p class="lead text-center">{{ __('news.alerts.info_items_count_zero') }}</p>
                         </div>
                     @endif
