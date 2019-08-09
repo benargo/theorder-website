@@ -109,14 +109,17 @@ class Application extends Model
 
     public function canApplyAgainWhen()
     {
-        if ($this->attributes['declined_at'] instanceof Carbon) {
-            if ($this->attributes['declined_at']->between(Carbon::now()->subWeek(), Carbon::now()))
+        try {
+            $declined_at = new Carbon($this->attributes['declined_at']);
+
+            if ($declined_at->between(Carbon::now()->subWeek(), Carbon::now()))
             {
-                return $this->attributes['declined_at']->addWeek();
+                return $declined_at->addWeek();
             }
         }
-
-        return Carbon::now();
+        catch (Exception $e) {
+            return '{unknown date}';
+        }
     }
 
     public function user()

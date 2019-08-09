@@ -18,7 +18,7 @@
                 :lang="{
                     alerts: {
                         applicationAccepted: '{{ __('applications.alerts.application_accepted') }}',
-                        applicationDeclined: '{{ __('applications.alerts.application_declined', ['date' => $application ? $application->canApplyAgainWhen()->format('n F Y') : '{date}']) }}',
+                        applicationDeclined: '{{ __('applications.alerts.application_declined', ['date' => $application ? $application->canApplyAgainWhen()->format('jS F Y') : '{date}']) }}',
                         applicationPending: '{!! __('applications.alerts.application_pending') !!}',
                         applicationSubmitted: '{{ __('applications.alerts.application_submitted') }}',
                     },
