@@ -22,8 +22,10 @@
                     </div>
                     <div class="col-xs-12 col-md-8 order-md-first">
                         <article class="article-introduction">
-                            <h2>{{ __('home.who_we_are') }}</h2>
-                            {!! __('home.introduction') !!}
+                            <h2>Who We Are</h2>
+                            <p>The Order is an exclusive and secretive World of Warcraft Classic dungeon and leveling guild. We believe in helping and supporting our members, maintaining an active community and, most importantly, having fun.</p>
+                            <p>We started out life on the <a href="https://elysium-project.org/" title="Elysium" rel="nofollow">Elysium project</a>, but with the official Classic release just around the corner we look forward to welcoming new and returning adventurers to our new home on Pyrewood Village.</p>
+                            <p>Does what we do interest you? Are you thinking of joining? Great! <a href="{{ url('join') }}" title="Join the Order">Applications are always open</a> for those with exceptional talent.</p>
                             {{-- <p class="class-icons">
                                 @foreach($recruiting_classes as $class)
                                     <img src="{{ asset('images/classicons.png') }}"
@@ -45,8 +47,9 @@
                 <div class="container">
                     <div class="row py-6">
                         <div class="col-12">
-                            <h2>{{ __('home.meet_the_inner_circle') }}</h2>
-                            {!! __('home.inner_circle_introduction') !!}
+                            <h2>Meet the Inner Circle</h2>
+                            <p>At the top of any guild is the master. Or in our case, we’re ruled by a council of five outstanding, bright, young(-ish) players who together form the Order’s inner circle. Here we all are, in this amazing screenshot.</p>
+                            <p>You’re probably thinking: &lsquo;How do I become part of the inner circle?&rsquo; Well, to put it simply&hellip; you don’t. Sorry to disappoint you like that.</p>
                         </div>
                     </div>
                 </div>
@@ -67,7 +70,7 @@
                                 <img class="d-block image-inner-circle z-index-1" src="{{ asset('images/innercircle_andy.png') }}" alt="Andy" height="325">
                             </div>
                             <h4>Andy</h4>
-                            <p>Melkith</p>
+                            <p>Gambit</p>
                             <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
                         </div>
                         <div class="col-lg text-center">
@@ -75,7 +78,7 @@
                                 <img class="d-block image-inner-circle z-index-3" src="{{ asset('images/innercircle_ben.png') }}" alt="Ben" height="250">
                             </div>
                             <h4>Ben</h4>
-                            <p>Saromius</p>
+                            <p>Tinkletoes</p>
                             <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
                         </div>
                         <div class="col-lg text-center">
@@ -83,7 +86,7 @@
                                 <img class="d-block image-inner-circle z-index-1" src="{{ asset('images/innercircle_sam.png') }}" alt="Sam" height="350">
                             </div>
                             <h4>Sam</h4>
-                            <p>Bolinn</p>
+                            <p>Bolis</p>
                             <p><flag iso="gb-wls" :squared="false" /><span class="sr-only">{{ __('nationalities.gb-wls') }}</span></p>
                         </div>
                         <div class="col-lg text-center">
@@ -91,7 +94,7 @@
                                 <img class="d-block image-inner-circle z-index-2" src="{{ asset('images/innercircle_tommy.png') }}" alt="Tommy" height="400">
                             </div>
                             <h4>Tommy</h4>
-                            <p>Blaazer</p>
+                            <p>Monori</p>
                             <p><flag iso="se" :squared="false" /><span class="sr-only">{{ __('nationalities.se') }}</span></p>
                         </div>
                     </div>
@@ -122,7 +125,7 @@
                                 </div>
                                 <div class="carousel-caption">
                                     <h4>Andy</h4>
-                                    <p>Melkith</p>
+                                    <p>Gambit</p>
                                     <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
                                 </div>
                             </div>
@@ -132,7 +135,7 @@
                                 </div>
                                 <div class="carousel-caption">
                                     <h4>Ben</h4>
-                                    <p>Saromius</p>
+                                    <p>Tinkletoes</p>
                                     <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
                                 </div>
                             </div>
@@ -142,7 +145,7 @@
                                 </div>
                                 <div class="carousel-caption">
                                     <h4>Sam</h4>
-                                    <p>Bolinn</p>
+                                    <p>Bolis</p>
                                     <p><flag iso="gb-wls" :squared="false" /><span class="sr-only">{{ __('nationalities.gb-wls') }}</span></p>
                                 </div>
                             </div>
@@ -152,7 +155,7 @@
                                 </div>
                                 <div class="carousel-caption">
                                     <h4>Tommy</h4>
-                                    <p>Blaazer</p>
+                                    <p>Monori</p>
                                     <p><flag iso="se" :squared="false" /><span class="sr-only">{{ __('nationalities.se') }}</span></p>
                                 </div>
                             </div>
