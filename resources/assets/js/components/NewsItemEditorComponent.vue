@@ -240,6 +240,7 @@ export default {
                     this.article.url = response.data.url
                     this.allowsComments = response.data.allows_comments
                     this.authorId = response.data.author_id
+                    this.publishDate = new Date(response.data.published_at)
 
                     // Change the title...
                     this.startingTitle = this.article.title

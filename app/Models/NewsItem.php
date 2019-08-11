@@ -56,13 +56,16 @@ class NewsItem extends Model
     }
 
     /**
-     * Get the route key for the model.
+     * Retrieve the model for a bound value.
      *
-     * @return string
+     * @param  mixed  $value
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function getRouteKeyName()
+    public function resolveRouteBinding($value)
     {
-        return 'url';
+        return $this->where('id', $value)
+                    ->orWhere('url', $value)
+                    ->first() ?? abort(404);
     }
 
     /**
@@ -70,6 +73,6 @@ class NewsItem extends Model
      */
     public function routeNotificationForDiscord()
     {
-        return config('services.discord.channels.notices');
+        return config('discord.channels.notices');
     }
 }

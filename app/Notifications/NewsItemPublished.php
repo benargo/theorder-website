@@ -14,6 +14,13 @@ class NewsItemPublished extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    protected $news_item;
+
+    public function __construct(NewsItem $news_item)
+    {
+        $this->news_item = $news_item;
+    }
+
     /**
      * Get the notification's delivery channels.
      *
@@ -26,48 +33,56 @@ class NewsItemPublished extends Notification implements ShouldQueue
             return [];
         }
 
-        return [DiscordChannel::class];
+        return [
+            'database',
+            DiscordChannel::class,
+        ];
     }
 
+    /**
+     * Determine whether or not we should send the notification.
+     *
+     * @param  mixed
+     * @return boolean
+     */
     public function dontSend($notifiable)
     {
-        if ($notifiable instanceof NewsItem) {
-            return empty($notifiable->published_at);
-        }
-
-        return false;
+        return empty($this->news_item->published_at);
     }
 
     /**
      * Get the Discord representation of the notification.
      *
-     * @param  App\Models\NewsItem  $notifiable
+     * @param  mixed  $notifiable
      * @return \NotificationChannels\Discord\DiscordMessage
      */
-    public function toDiscord(NewsItem $notifiable)
+    public function toDiscord($notifiable)
     {
-        $battletag = str_before($notifiable->author->battletag, '#');
-        $url = route('news.single', $notifiable->url);
+        $author = isset($this->news_item->author->nickname)
+            ? $this->news_item->author->nickname
+            : str_before($this->news_item->author->battletag, '#');
+
+        $url = route('news.single', $this->news_item->url);
 
         return DiscordMessage::create(
-            "Hey @everyone! {$battletag} just published a news article. Check it out...\n\n{$url}",
+            "Hey everyone! {$author} just published an important announcement. Check it out...\n\n{$url}",
             [
-                'title' => $notifiable->title,
+                'title' => $this->news_item->title,
                 'type' => 'rich',
-                'description' => str_before($notifiable->body, "\n"),
+                'description' => str_before($this->news_item->body, "\n"),
                 'url' => $url,
-                'timestamp' => $notifiable->published_at->toIso8601String(),
+                'timestamp' => $this->news_item->published_at->toIso8601String(),
                 'color' => hexdec('f8b700'),
                 'thumbnail' => [
                     'url' => asset('images/guild_emblem.png'),
                 ],
-                'author' => ['name' => $battletag],
+                'author' => ['name' => $author],
             ]
         );
     }
 
     /**
-     * Get the array representation of the notification.
+     * Get the database representation of the notification.
      *
      * @param  mixed  $notifiable
      * @return array
@@ -75,7 +90,9 @@ class NewsItemPublished extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'title'    => 'New announcement posted:',
+            'subtitle' => $this->news_item->title,
+            'redirect' => route('news.single', $this->news_item->url),
         ];
     }
 }

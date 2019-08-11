@@ -23,9 +23,6 @@ return [
     'discord' => [
         // Used by Autokin notifications...
         'token' => env('DISCORD_AUTOKIN_TOKEN'),
-        'channels' => [
-            'notices' => env('DISCORD_CHANNEL_NOTICES', 479666941447897109),
-        ],
 
         // Used by The Order for authentication...
         'client_id' => env('DISCORD_GUILDBOT_KEY'),

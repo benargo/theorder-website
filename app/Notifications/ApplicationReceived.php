@@ -16,8 +16,6 @@ use NotificationChannels\Discord\DiscordMessage;
 
 class ApplicationReceived extends Notification
 {
-    use Queueable;
-
     protected $classes;
     protected $races;
 
@@ -40,7 +38,7 @@ class ApplicationReceived extends Notification
      */
     public function via($notifiable)
     {
-        return [DiscordChannel::class];
+        return [DiscordChannel::class, 'database'];
     }
 
     /**

@@ -32,7 +32,8 @@ return [
     ],
 
     'channels' => [
-        'recruitment' => 484387377956257804,
+        'notices'     => env('DISCORD_CHANNEL_NOTICES', 479666941447897109),
+        'recruitment' => env('DISCORD_CHANNEL_RECRUITMENT', 484387377956257804),
     ],
 
     'guild' => 470564810929733643,

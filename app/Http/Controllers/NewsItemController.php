@@ -14,7 +14,9 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\NewsItemDraft as Draft;
 use App\Notifications\NewsItemPublished;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Pagination\LengthAwarePaginator;
+use NotificationChannels\Discord\DiscordChannel;
 
 class NewsItemController extends Controller
 {
@@ -82,7 +84,7 @@ class NewsItemController extends Controller
         return $this->editor($draft);
     }
 
-    public function edit(NewsItem $news_item = null, Request $request)
+    public function edit(NewsItem $news_item, Request $request)
     {
         if ($news_item) {
             $this->authorize('update', $news_item);
@@ -135,10 +137,6 @@ class NewsItemController extends Controller
                     'users.battletag as author_battletag',
                     'news_item_drafts.updated_at'
                 )
-                ->where(function ($query) {
-                    $query->whereNotNull('title')
-                          ->orWhereNotNull('body');
-                })
                 ->where('user_id', Auth::id())
                 ->whereNull('news_item_id')
                 ->orderBy('news_item_drafts.created_at', 'desc')
@@ -153,7 +151,6 @@ class NewsItemController extends Controller
                         select id from news_item_drafts
                         where news_item_drafts.news_item_id = news_items.id
                             and news_item_drafts.user_id = ' . Auth::id() . '
-                            and news_item_drafts.updated_at >= news_items.updated_at
                         order by news_item_drafts.created_at
                         limit 1
                     ) as draft_id'),
@@ -267,9 +264,20 @@ class NewsItemController extends Controller
             $draft->save();
         }
 
-        // If we should send a notification to Discord...
-        if ($this->shouldNotifyDiscord($news_item)) {
-            $this->notifyDiscord($news_item);
+        // If we should send a notifications...
+        if ($this->shouldNotify($news_item)) {
+            $when = $news_item->published_at->greaterThanOrEqualTo(now()->addMinute())
+                  ? $news_item->published_at
+                  : now();
+
+            // Send the notification to Discord...
+            $news_item->notify((new NewsItemPublished($news_item))->delay($when));
+
+            // Send the notification to all active users...
+            Notification::send(
+                User::all(),
+                (new NewsItemPublished($news_item))->delay($when)
+            );
         }
 
         // Return the news item...
@@ -297,20 +305,6 @@ class NewsItemController extends Controller
         return response(null, 204);
     }
 
-    protected function notifyDiscord(NewsItem $news_item)
-    {
-        // If the news item is scheduled to be published at least one minute
-        // in the future...
-        if ($news_item->published_at->greaterThanOrEqualTo(now()->addMinute())) {
-            $notification = (new NewsItemPublished())->delay(new Carbon($news_item->published_at));
-        }
-        else {
-            $notification = new NewsItemPublished();
-        }
-
-        $news_item->notify($notification);
-    }
-
     /**
      * Test whether we should notify Discord.
      *
@@ -320,7 +314,7 @@ class NewsItemController extends Controller
      * @param  App\Models\NewsItem  $news_item
      * @return boolean
      */
-    protected function shouldNotifyDiscord(NewsItem $news_item)
+    protected function shouldNotify(NewsItem $news_item)
     {
         return (
             $news_item->published_at
