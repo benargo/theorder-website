@@ -1,14 +1,14 @@
 <template>
 <form class="mt-5" v-if="applications.length > 0">
-    <h2 class="h3">{{ lang.applications }}</h2>
+    <h2 class="h3">Applications</h2>
     <table class="table table-dark my-3">
         <thead>
             <tr>
-                <th scope="col">{{ lang.labels.characterName }}</th>
-                <th scope="col">{{ lang.labels.race }}</th>
-                <th scope="col">{{ lang.labels.class }}</th>
-                <th scope="col">{{ lang.labels.role }}</th>
-                <th scope="col">{{ lang.labels.status }}</th>
+                <th scope="col">Character Name</th>
+                <th scope="col">Race</th>
+                <th scope="col">Class</th>
+                <th scope="col">Role</th>
+                <th scope="col">Status</th>
                 <th></th>
             </tr>
         </thead>

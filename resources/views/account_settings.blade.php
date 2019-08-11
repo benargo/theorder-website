@@ -18,35 +18,15 @@
                     battletag: '{{ $battletag }}',
                     discordTag: '{{ $discord }}',
                 }"
-                :lang="{
-                    buttons: {
-                        unlink: '{{ __('account.buttons.unlink') }}',
-                    },
-                    forms: {
-                        emailHelpBlock: '{{ __('account.email_help_block') }}',
-                        looksGood: '{{ __('forms.looks_good') }}',
-                        nicknameHelpBlock: '{{ __('account.nickname_help_block') }}',
-                    },
-                    labels: {
-                        nickname: '{{ __('account.labels.nickname') }}',
-                        email: '{{ __('account.labels.email') }}',
-                        battletag: '{{ __('account.labels.battletag') }}',
-                        discord: '{{ __('account.labels.discord') }}',
-                    },
-                }"
                 :user-id="{{ $user->id }}"
             ></account-settings>
             <account-applications
                 :classes="{{ $classes }}"
                 :lang="{
-                    applications: '{{ __('account.applications') }}',
                     on: '{{ __('applications.on') }}',
                     labels: {
-                        characterName: '{{ __('applications.character_name') }}',
-                        class: '{{ __('applications.class') }}',
                         damage: '{{ __('applications.labels.damage') }}',
                         healer: '{{ __('applications.labels.healer') }}',
-                        race: '{{ __('applications.race') }}',
                         role: '{{ __('applications.role') }}',
                         status: '{{ __('applications.labels.status') }}',
                         tank: '{{ __('applications.labels.tank') }}',

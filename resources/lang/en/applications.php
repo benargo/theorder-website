@@ -35,7 +35,6 @@ return [
         'decline'      => 'Decline',
         'healer'       => 'Healer',
         'hide_filters' => 'Hide filters',
-        'status'       => 'Status',
         'show_filters' => 'Show filters',
         'submit_application' => 'Submit Application',
         'tank' => 'Tank',

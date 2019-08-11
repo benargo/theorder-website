@@ -18,7 +18,6 @@ class SettingsController extends Controller
         $faction = config('blizzard.faction');
         $user = $request->user();
 
-
         if ($user->discord_user_id) {
             $discord_user = $discord->user->getUser(['user.id' => $user->discord_user_id]);
             $discord_tag = $discord_user->username . '#' . $discord_user->discriminator;
@@ -69,7 +68,7 @@ class SettingsController extends Controller
         }
     }
 
-    public function unlinkDiscord(User $user, Request $request)
+    public function unlinkDiscord(User $user)
     {
         $user->discord_user_id = null;
         $user->save();

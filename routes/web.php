@@ -55,6 +55,8 @@ Route::get('/discord', 'DiscordController@redirectToServer');
 Route::get('/discord/channels/{channel}', 'DiscordController@redirectToServer')
     ->name('discord-channel');
 
+Route::get('/discord/link', 'DiscordController@linkAccount');
+
 Route::get('/oauth2/discord', 'DiscordController@handleProviderCallback');
 
 /*

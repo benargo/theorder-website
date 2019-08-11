@@ -2,38 +2,33 @@
 <form>
     <div class="form-row mb-3">
         <div class="col needs-validation" id="formGroupNickname">
-            <label for="inputNickname">{{ lang.labels.nickname }}</label>
+            <label for="inputNickname">Nickname</label>
             <input type="text" class="form-control" id="inputNickname" maxlength="32" pattern="^[a-zA-Z0-9]{3,32}" v-model="nickname" @blur="saveNickname()" @focus="enableValidation('formGroupNickname')" />
-            <div class="invalid-feedback">
-                {{ lang.forms.nicknameHelpBlock }}
-            </div>
-            <div class="valid-feedback">
-                {{ lang.forms.looksGood }}
-            </div>
+            <div class="invalid-feedback">Nicknames must be between (3) and (32) characters, and use only letters and numbers.</div>
+            <div class="valid-feedback">Looks good!</div>
         </div>
         <div class="col needs-validation" id="formGroupEmail">
-            <label for="inputEmail">{{ lang.labels.email }}</label>
+            <label for="inputEmail">Email</label>
             <input type="email" class="form-control" id="inputEmail" v-model="email" @blur="saveEmail()" @focus="enableValidation('formGroupEmail')" />
-            <div class="invalid-feedback">
-                {{ lang.forms.emailHelpBlock }}
-            </div>
-            <div class="valid-feedback">
-                {{ lang.forms.looksGood }}
-            </div>
+            <div class="invalid-feedback">Must be a valid email address.</div>
+            <div class="valid-feedback">Looks good!</div>
         </div>
     </div>
     <div class="form-row mb-3">
         <div class="col">
-            <label for="inputBattleTag">{{ lang.labels.battletag }}</label>
+            <label for="inputBattleTag">Blizzard Battletag&trade;</label>
             <input type="text" class="form-control" id="inputBattleTag" :value="defaultValues.battletag" disabled>
         </div>
         <div class="col">
-            <label for="inputDiscordTag">{{ lang.labels.discord }}</label>
-            <div class="input-group">
+            <label for="inputDiscordTag">Discord Tag</label>
+            <div class="input-group" v-if="discordTag">
                 <input type="text" class="form-control" id="inputDiscordTag" v-model="discordTag" disabled>
                 <div class="input-group-append">
-                    <button class="btn btn-outline-primary" id="btnUnlinkDiscord" type="button" v-if="discordTag" @click="unlinkDiscord()">{{ lang.buttons.unlink }}</button>
+                    <button class="btn btn-outline-primary" id="btnUnlinkDiscord" type="button" @click="unlinkDiscord()">Unlink</button>
                 </div>
+            </div>
+            <div class="input-group" v-else>
+                <a href="/discord/link" class="btn btn-primary" id="btnLinkDiscord">Link Discord account</a>
             </div>
         </div>
     </div>
@@ -101,11 +96,6 @@ export default {
                     obj.hasOwnProperty('discordTag')
                 );
             },
-        },
-
-        lang: {
-            type: Object,
-            required: true,
         },
 
         userId: {

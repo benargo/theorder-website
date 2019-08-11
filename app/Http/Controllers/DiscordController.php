@@ -21,39 +21,40 @@ class DiscordController extends Controller
     const URL = 'https://discordapp.com/channels/470564810929733643/';
     const GUILD_ID = 470564810929733643;
 
-    private $access_token;
+    protected $access_token;
+    protected $client;
+
+    public function __construct()
+    {
+        $this->client = new DiscordClient(['token' => config('discord.clients.guildbot.token')]);
+    }
 
     /**
      * Redirects the user to the Discord server.
      */
     public function redirectToServer($channel = null)
     {
-        // If there is no Discord access token...
-        if (! $this->getAccessToken()) {
-            // Store the channel in the session...
-            session(['discord_channel_id' => $channel]);
+        // Store the channel in the session...
+        session(['return_url' => self::URL.$channel]);
 
-            // Redirect for authentication...
+        // If there is no Discord access token, redirect for authentication...
+        if (! $this->getAccessToken()) {
             return $this->authenticate();
         }
 
-        // else...
-
-        $user = Socialite::driver('discord')->userFromToken($this->getAccessToken());
-        $discord = new DiscordClient(['token' => config('discord.clients.guildbot.token')]);
-
-        try {
-            $discord->guild->addGuildMember([
-                'guild.id' => self::GUILD_ID,
-                'user.id' => intval($user->id),
-                'access_token' => $user->token,
-            ]);
-        }
-        catch (CommandException $e) {
-            //
-        }
-
+        // Otherwise redirect to the Discord server...
         return redirect(self::URL.$channel);
+    }
+
+    /**
+     * Links the user's account but keep them on the website.
+     */
+    public function linkAccount()
+    {
+        session(['return_url' => url()->previous()]);
+
+        // Redirect for authentication...
+        return $this->authenticate();
     }
 
     /**
@@ -119,15 +120,24 @@ class DiscordController extends Controller
                 elseif ($user->discord_user_id !== $discord_user->id) {
                     // TODO: Redirect to page requesting the user to confirm overwriting their saved Discord user ID...
                 }
-            }
 
-            return $this->redirectToServer(session('discord_channel_id'));
+                $this->client->guild->addGuildMember([
+                    'guild.id' => self::GUILD_ID,
+                    'user.id' => intval($discord_user->id),
+                    'access_token' => $discord_user->token,
+                ]);
+            }
         }
         catch (ClientException $e) {
             return $this->authenticate();
         }
+        catch (CommandException $e) {
+            //
+        }
         catch (InvalidStateException $e) {
             return abort(500);
         }
+
+        return redirect(session('return_url', self::URL));
     }
 }
