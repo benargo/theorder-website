@@ -109,7 +109,7 @@ Route::group([
 
 Route::get('/ranks', 'RanksController@get');
 
-Route::post('/ranks', 'RanksController@create');
+Route::post('/ranks/new', 'RanksController@create');
 
 Route::put('/ranks/{rank}', 'RanksController@update')->middleware([
     'auth:api',

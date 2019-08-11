@@ -86,7 +86,7 @@ export default {
 
     methods: {
         createRank: function() {
-            let form = this.$el.querySelector('#formNewRank')
+            let form = document.querySelector('#formNewRank');
 
             form.classList.replace('needs-validation', 'was-validated')
 
