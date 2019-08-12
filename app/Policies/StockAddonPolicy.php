@@ -11,7 +11,7 @@ class StockAddonPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 
-    public function uploadData(User $user)
+    public function update(User $user)
     {
         return $this->userIsMemberOfInnerCircle($user);
     }

@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('access-inner-circle-control-panel', 'App\Policies\InnerCirclePolicy@accessControlPanel');
 
         // Guild bank/stock addon gates...
-        Gate::define('upload-stock-data', 'App\Policies\StockAddonPolicy@uploadData');
+        Gate::define('update-stock-data', 'App\Policies\StockAddonPolicy@update');
         Gate::define('withdraw-from-guild-bank', 'App\Policies\StockAddonPolicy@withdraw');
 
         Passport::routes();
