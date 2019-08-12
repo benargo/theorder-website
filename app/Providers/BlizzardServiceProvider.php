@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Blizzard\Client;
 use App\Services\GuildRoster;
+use App\Blizzard\Warcraft\Items;
 use App\Blizzard\Warcraft\Races;
 use App\Blizzard\Warcraft\Service as WarcraftService;
 use App\Blizzard\Warcraft\Classes;
@@ -53,6 +54,10 @@ class BlizzardServiceProvider extends ServiceProvider
             return new GuildRoster($app->make(WarcraftService::class));
         });
 
+        $this->app->singleton(Items::class, function ($app) {
+            return new Items($app->make(WarcraftService::class));
+        });
+
         $this->app->singleton(Races::class, function ($app) {
             return new Races($app->make(WarcraftService::class));
         });
@@ -69,6 +74,7 @@ class BlizzardServiceProvider extends ServiceProvider
             WarcraftService::class,
             CharactersRepository::class,
             Classes::class,
+            Items::class,
             GuildRoster::class,
             Races::class,
         ];

@@ -29,13 +29,13 @@ class Items
             return $this->items[$item_id];
         }
 
-        // First check the cache for the list of classes...
+        // First check the cache for the item...
         if (Cache::tags(['blizzard', 'items'])->has($item_id)) {
             $this->items[$item_id] = Cache::tags(['blizzard', 'items'])->get($item_id);
         }
 
         else {
-            // Fetch the list of classes from the API...
+            // Fetch the item from the API...
             $item = json_decode(
                 $this->service
                         ->getItem($item_id, $options)
