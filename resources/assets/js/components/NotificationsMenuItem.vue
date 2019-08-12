@@ -10,7 +10,7 @@
             <p>{{ notification.data.title }}</p>
             <small v-if="notification.data.subtitle">{{ notification.data.subtitle }}</small>
         </a>
-        <a class="dropdown-item nav-link" href="/notifications">
+        <a class="dropdown-item nav-link disabled text-muted" href="/notifications" tabindex="-1" aria-disabled="true">
             <font-awesome-icon :icon="['far', 'history']"></font-awesome-icon>
             {{ lang.notifications_history }}
         </a>
