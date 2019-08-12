@@ -39,6 +39,7 @@ class Stock extends Model
         'slot_number',
         'item_id',
         'count',
+        'updated_by_user_id',
     ];
 
     /**

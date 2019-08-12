@@ -54,6 +54,24 @@ Route::middleware('auth:api')->patch('/applications/{application}', 'Application
 
 /*
  |--------------------------------------------------------------------------
+ | Guild Bank
+ |--------------------------------------------------------------------------
+ */
+
+Route::get('/guild-bank/stock', function () {
+    return response()->json(
+        DB::table('guild_bank_stock')
+            ->whereNull('withdrawn_at')
+            ->get()
+            ->toJson()
+    );
+});
+
+Route::post('/guild-bank/stock/update', 'GuildBank\StockController@updateStock')
+            ->middleware('can:update-stock-data');
+
+/*
+ |--------------------------------------------------------------------------
  | News Items
  |--------------------------------------------------------------------------
  */
@@ -94,11 +112,8 @@ Route::delete('/news/{news_item}', function (App\Models\NewsItem $news_item) {
  |--------------------------------------------------------------------------
  */
 
-Route::group([
-    'middleware' => 'auth:api',
-    'prefix' => 'notifications',
-], function () {
-    Route::get('/unread', 'NotificationsController@getUnreadNotifications');
+Route::middleware('auth:api')->group(function () {
+    Route::get('/notifications/unread', 'NotificationsController@getUnreadNotifications');
 });
 
 /*

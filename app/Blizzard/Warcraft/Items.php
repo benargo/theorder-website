@@ -21,6 +21,8 @@ class Items
 
     /**
      * Get a specific item.
+     *
+     * @throws GuzzleHttp\Exception\ClientException
      */
     public function getItem($item_id, array $options = [])
     {
@@ -53,6 +55,8 @@ class Items
                 now()->addHours(24)
             );
         }
+
+        return $this->items[$item_id];
     }
 
     public function getItems()
