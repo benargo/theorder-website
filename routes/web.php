@@ -126,3 +126,10 @@ Route::group(
         })->name('news.single');
     }
 );
+
+/*
+ |--------------------------------------------------------------------------
+ | JSON Schemas
+ |--------------------------------------------------------------------------
+ */
+Route::get('schema/stock.update.json', 'JsonSchemaController@stockUpdateSchema');
