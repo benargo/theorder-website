@@ -4,9 +4,10 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Guild\Application;
+use App\Policies\BasePolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ApplicationPolicy
+class ApplicationPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 
@@ -19,7 +20,7 @@ class ApplicationPolicy
      */
     public function view(User $user, Application $application)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -30,7 +31,7 @@ class ApplicationPolicy
      */
     public function viewAll(User $user)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -41,7 +42,7 @@ class ApplicationPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -65,7 +66,7 @@ class ApplicationPolicy
      */
     public function accept(User $user, Application $application)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -77,6 +78,6 @@ class ApplicationPolicy
      */
     public function decline(User $user, Application $application)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 }

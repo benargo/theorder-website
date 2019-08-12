@@ -4,9 +4,10 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\Rank;
+use App\Policies\BasePolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ManageRanksPolicy
+class ManageRanksPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 
@@ -19,7 +20,7 @@ class ManageRanksPolicy
      */
     public function view(User $user, Rank $rank)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -30,7 +31,7 @@ class ManageRanksPolicy
      */
     public function create(User $user)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -42,7 +43,7 @@ class ManageRanksPolicy
      */
     public function update(User $user, Rank $rank)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -54,7 +55,7 @@ class ManageRanksPolicy
      */
     public function delete(User $user, Rank $rank)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -66,6 +67,6 @@ class ManageRanksPolicy
      */
     public function seeUsers(User $user, Rank $rank)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 }

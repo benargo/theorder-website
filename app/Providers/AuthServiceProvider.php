@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Guild\Application'   => 'App\Policies\ApplicationPolicy',
+        'App\Guild\Application'    => 'App\Policies\ApplicationPolicy',
         'App\Models\NewsItemDraft' => 'App\Policies\NewsItemDraftPolicy',
         'App\Models\NewsItem'      => 'App\Policies\NewsItemPolicy',
         'App\Models\Rank'          => 'App\Policies\ManageRanksPolicy',
@@ -29,7 +29,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // Control Panel gates...
         Gate::define('access-inner-circle-control-panel', 'App\Policies\InnerCirclePolicy@accessControlPanel');
+
+        // Guild bank/stock addon gates...
+        Gate::define('upload-stock-data', 'App\Policies\StockAddonPolicy@uploadData');
+        Gate::define('withdraw-from-guild-bank', 'App\Policies\StockAddonPolicy@withdraw');
 
         Passport::routes();
     }

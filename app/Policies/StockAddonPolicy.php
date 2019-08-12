@@ -3,20 +3,20 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Guild\Bank\Stock;
 use App\Policies\BasePolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class InnerCirclePolicy extends BasePolicy
+class StockAddonPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Determine if the user can access the control panel.
-     *
-     * @param  \App\Models\User  $user
-     * @return bool
-     */
-    public function accessControlPanel(User $user)
+    public function uploadData(User $user)
+    {
+        return $this->userIsMemberOfInnerCircle($user);
+    }
+
+    public function withdraw(User $user)
     {
         return $this->userIsMemberOfInnerCircle($user);
     }

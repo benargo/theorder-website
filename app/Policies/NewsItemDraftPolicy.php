@@ -3,10 +3,11 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Policies\BasePolicy;
 use App\Models\NewsItemDraft;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class NewsItemDraftPolicy
+class NewsItemDraftPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 
@@ -30,7 +31,7 @@ class NewsItemDraftPolicy
      */
     public function create(User $user)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -78,6 +79,6 @@ class NewsItemDraftPolicy
      */
     public function forceDelete(User $user, NewsItemDraft $draft)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 }

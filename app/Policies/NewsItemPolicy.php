@@ -4,9 +4,10 @@ namespace App\Policies;
 
 use App\Models\User;
 use App\Models\NewsItem;
+use App\Policies\BasePolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class NewsItemPolicy
+class NewsItemPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 
@@ -30,7 +31,7 @@ class NewsItemPolicy
      */
     public function create(User $user)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -42,7 +43,7 @@ class NewsItemPolicy
      */
     public function update(User $user, NewsItem $news_item)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -54,7 +55,7 @@ class NewsItemPolicy
      */
     public function delete(User $user, NewsItem $news_item)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -66,7 +67,7 @@ class NewsItemPolicy
      */
     public function restore(User $user, NewsItem $news_item)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 
     /**
@@ -78,6 +79,6 @@ class NewsItemPolicy
      */
     public function forceDelete(User $user, NewsItem $news_item)
     {
-        return $user->rank->seniority <= 1;
+        return $this->userIsMemberOfInnerCircle($user);
     }
 }
