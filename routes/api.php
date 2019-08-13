@@ -35,11 +35,13 @@ Route::middleware('auth:api')->put('/user/{user}/{field}', 'Account\SettingsCont
  |--------------------------------------------------------------------------
  */
 
-Route::middleware('auth:api')->get('/applications', 'ApplicationsController@getCollection');
+Route::get('/applications', 'ApplicationsController@getCollection');
 
-Route::middleware('auth:api')->post('/applications/new', 'ApplicationsController@create');
+Route::post('/applications/new', 'ApplicationsController@create');
 
-Route::middleware('auth:api')->patch('/applications/{application}', 'ApplicationsController@patch');
+Route::get('/applications/statistics', 'ApplicationsController@getStatistics');
+
+Route::patch('/applications/{application}', 'ApplicationsController@patch');
 
 /*
  |--------------------------------------------------------------------------

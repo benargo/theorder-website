@@ -1,4 +1,4 @@
-// Background images and colors
+ // Background images and colors
 //
 .bg-brown-texture {
     background-image: url("../images/bg_brown_texture_repeat.jpg");
@@ -50,6 +50,12 @@
 .bg-ironforge {
     background-image: url("../images/bg_ironforge.jpg");
     background-position: center;
+    background-size: cover;
+}
+
+.bg-ironforge-bank {
+    background-image: url("../images/bg_ironforge_bank.jpg");
+    background-position: 0 75%;
     background-size: cover;
 }
 

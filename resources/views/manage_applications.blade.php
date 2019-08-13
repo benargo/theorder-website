@@ -18,6 +18,15 @@
                 </div>
             </div>
             <applications-manager
+                :classes="{
+                    @foreach ($classes as $class)
+                        {{ $class->id }}: {
+                            'id': {{ $class->id }},
+                            'name': '{{ ucfirst(trans_choice('warcraft/classes.' . strtolower($class->name), 1)) }}',
+                        },
+                    @endforeach
+                }"
+
                 :lang="{
                     alerts: {
                         info_applicant_count_zero: '{{ __('applications.alerts.applicant_count_zero') }}',
@@ -29,16 +38,6 @@
                         decline: '{{ __('applications.labels.decline') }}',
                         next: '{{ __('pagination.next') }}',
                         previous: '{{ __('pagination.previous') }}',
-                    },
-                    classes: {
-                        @foreach ($classes as $class)
-                            {{ $class->id }}: '{{ ucfirst(trans_choice('warcraft/classes.' . strtolower($class->name), 1)) }}',
-                        @endforeach
-                    },
-                    races: {
-                        @foreach ($races as $race)
-                            {{ $race->id }}: '{{ trans_choice('warcraft/races.' . strtolower(snake_case($race->name)), 1) }}',
-                        @endforeach
                     },
                     roles: {
                         @foreach ($roles as $r)
@@ -65,6 +64,16 @@
                     since:   '{{ __('applications.since') }}',
 
                 }"
+
+                :races="{
+                    @foreach ($races as $race)
+                        {{ $race->id }}: {
+                            'id': {{ $race->id }},
+                            'name': '{{ trans_choice('warcraft/races.' . strtolower(snake_case($race->name)), 1) }}',
+                        },
+                    @endforeach
+                }"
+
                 :starting-filters="{
                     characterName: {!! isset($characterName) ? "'{$characterName}'" : 'undefined' !!},
                     classId:       {!! isset($classId) ? "'{$classId}'" : 'undefined' !!},

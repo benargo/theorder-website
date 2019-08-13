@@ -49,6 +49,7 @@ import {
     faHistory as farHistory,
     faHome as farHome,
     faNewspaper as farNewspaper,
+    faSearch as farSearch,
     faTimesCircle as farTimesCircle,
     faTrashAlt as farTrashAlt,
     faTreasureChest as farTreasureChest,
@@ -115,6 +116,7 @@ faLibrary.add(
     farHistory,
     farHome,
     farNewspaper,
+    farSearch,
     farTimesCircle,
     farTrashAlt,
     farTreasureChest,
@@ -170,6 +172,7 @@ Vue.component('applications-manager', require('./components/ApplicationsManagerC
 Vue.component('character-select-button', require('./components/CharacterSelectButton.vue').default)
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('guild-bank-viewer', require('./components/GuildBankViewerComponent.vue').default)
 Vue.component('join-form', require('./components/NewApplicationComponent.vue').default)
 Vue.component('new-rank', require('./components/NewRankComponent.vue').default)
 Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.vue').default)

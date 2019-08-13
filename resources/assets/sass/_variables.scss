@@ -171,6 +171,43 @@ $theme-colors: map-merge(
     $theme-colors
 );
 
+// Item rarity colors
+$poor:      #9d9d9d;
+$common:    #fff;
+$uncommon:  #1eff00;
+$rare:      #0070dd;
+$epic:      #a335ee;
+$legendary: #ff8000;
+$artifact:  #e6cc80;
+$heirloom:  #00ccff;
+$wowtoken:  #00ccff;
+
+$rarity-colors: () !default;
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$rarity-colors: map-merge(
+    (
+        "poor":      $poor,
+        "common":    $common,
+        "uncommon":  $uncommon,
+        "rare":      $rare,
+        "epic":      $epic,
+        "legendary": $legendary,
+        "artifact":  $artifact,
+        "heirloom":  $heirloom,
+        "wowtoken":  $wowtoken,
+    ),
+    $rarity-colors
+);
+
+// Merge item rarity colours into theme colours.
+//
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+    $rarity-colors,
+    $theme-colors
+);
+
 //
 // Layout
 //
