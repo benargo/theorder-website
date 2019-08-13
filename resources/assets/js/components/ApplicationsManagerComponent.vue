@@ -277,7 +277,12 @@ export default {
             next_page_url: undefined,
             per_page: 20,
             prev_page_url: undefined,
-            statistics: {},
+            statistics: {
+                races: {},
+                classes: {},
+                roles: {},
+                statuses: {},
+            },
             to: undefined,
             total: 0,
         }
