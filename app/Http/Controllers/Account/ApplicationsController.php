@@ -14,13 +14,13 @@ class ApplicationsController extends Controller
                     ->applications()
                     ->latest()
                     ->get()
-                    ->map(function ($item, $key) {
+                    ->mapWithKeys(function ($item, $key) {
                         $item->status = $item->getStatus();
-                        return $item;
+
+                        return [$item->id => $item];
                     });
 
             return $applications;
         }
-
     }
 }

@@ -1,5 +1,5 @@
 <template>
-<form class="mt-5" v-if="applications.length > 0">
+<form class="mt-5" v-if="Object.keys(applications).length >= 1">
     <h2 class="h3">Applications</h2>
     <table class="table table-dark my-3">
         <thead>
@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr :class="classStatus(a.status)" v-for="a in applications">
+            <tr :class="classStatus(a.status)" v-for="(a,i) in applications">
                 <td class="align-middle">{{ a.character_name }}</td>
                 <td class="race-icons">
                     <img src="/images/raceicons_xs.png" :class="classIconRace(a.race_id)" :title="races[a.race_id].name" />
@@ -37,12 +37,11 @@
                         {{ formatDate(a.declined_at) }})
                     </span>
                     <span v-else-if="a.status === 'withdrawn'">
-                        ({{ lang.on }}
-                        {{ formatDate(a.withdrawn_at) }})
+                        ({{ lang.on + ' ' + formatDate(a.withdrawn_at) }})
                     </span>
                 </td>
                 <td v-if="">
-                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" :title="lang.labels.withdrawApplication" v-if="a.status === 'pending'" @click="withdrawApplication(a.id)">
+                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" :title="lang.labels.withdrawApplication" v-if="a.status === 'pending'" @click="withdrawApplication(i)">
                         <font-awesome-icon :icon="['fas', 'trash']" class="fa-sm"></font-awesome-icon>
                     </button>
                 </td>
@@ -95,6 +94,7 @@ export default {
             }).then(function(response) {
                 $('[data-toggle="tooltip"]').tooltip('hide')
                 this.applications[applicationId].status = 'withdrawn'
+                this.applications[applicationId].withdrawn_at = Date.now()
             }.bind(this, applicationId))
         }
 

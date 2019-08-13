@@ -54,27 +54,27 @@
         </div>
         <div class="form-group">
             <p>{{ lang.role }}</p>
-            <div class="btn-group btn-group-toggle position-static d-block" data-toggle="buttons">
-                <label class="btn btn-secondary active" for="radioRoleDamage">
-                    <input class="form-control" type="radio" name="radioRole" id="radioRoleDamage" value="damage" v-model="role" selected>
+            <div class="btn-group btn-group-toggle position-static d-block">
+                <label class="btn btn-secondary" id="btnRoleDamage" for="radioRoleDamage">
+                    <input class="form-control" type="radio" name="radioRole" id="radioRoleDamage" value="damage" v-model="role">
                     <font-awesome-icon :icon="['fas', 'sword']"></font-awesome-icon>
-                    {{ lang.damage }}
+                    Damage
                 </label>
-                <label class="btn btn-secondary" for="radioRoleHealer">
+                <label class="btn btn-secondary" id="btnRoleHealer" for="radioRoleHealer">
                     <input class="form-control" type="radio" name="radioRole" id="radioRoleHealer" value="healer" v-model="role">
                     <font-awesome-icon :icon="['fas', 'first-aid']"></font-awesome-icon>
-                    {{ lang.healer }}
+                    Healer
                 </label>
-                <label class="btn btn-secondary" for="radioRoleTank">
+                <label class="btn btn-secondary" id="btnRoleTank" for="radioRoleTank">
                     <input class="form-control" type="radio" name="radioRole" id="radioRoleTank" value="tank" v-model="role">
                     <font-awesome-icon :icon="['fas', 'shield']"></font-awesome-icon>
-                    {{ lang.tank }}
+                    Tank
                 </label>
             </div>
         </div>
         <div class="form-row mb-3">
             <div class="col">
-                <button class="btn btn-primary" @click.prevent="submitForm()">{{ lang.submitApplication }}</button>
+                <button class="btn btn-primary" @click.prevent="submitForm()">Submit Application</button>
             </div>
         </div>
     </form>
@@ -83,26 +83,6 @@
 
 <script>
 export default {
-
-    computed: {
-
-        applicationPending: function() {
-            let str = this.lang.alerts.applicationPending
-            str = str.replace('Discord', '<a href="' + this.discordUrl + '" class="alert-link" title="#applications">Discord</a>')
-
-            return str
-        },
-
-        nextSteps: function() {
-            let str = this.lang.nextSteps
-            str = str.replace('Elysium Project', '<a href="https://elysium-project.org/" title="Elysium Project - Classic WoW Server">Elysium Project</a>')
-            str = str.replace('Discord', '<a href="' + this.discordUrl + '" title="#applications">Discord</a>')
-
-            return str
-        }
-
-    },
-
     data: function() {
 
         return {
@@ -116,6 +96,13 @@ export default {
     },
 
     methods: {
+        btnRoleClass: function (role) {
+            let css_class = 'btn btn-secondary'
+
+            if (role == this.role) {
+                css_class = css_class.concat(' active')
+            }
+        },
 
         classIconClass: function(name) {
             return 'class-icon class-icon-' + window.kebabCase(name)
@@ -157,7 +144,6 @@ export default {
             }
 
         },
-
     },
 
     props: {
@@ -185,6 +171,17 @@ export default {
         status: String,
 
     },
+
+    watch: {
+        role: function (new_role) {
+            this.$el.querySelectorAll('.btn-group.btn-group-toggle label.btn').forEach(function (el) {
+                el.classList.remove('active')
+            })
+
+            new_role = new_role.charAt(0).toUpperCase() + new_role.slice(1);
+            this.$el.querySelector('#btnRole' + new_role).classList.add('active');
+        }
+    }
 
 }
 </script>
