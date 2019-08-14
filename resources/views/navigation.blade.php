@@ -2,7 +2,7 @@
 <li class="nav-item">
     <a class="nav-link disabled" href="{{ url('roster') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'address-book']" class="nav-icon"></font-awesome-icon>
-        {{ __('navigation.roster') }}
+        Roster
     </a>
 </li>
 
@@ -10,7 +10,7 @@
 <li class="nav-item">
     <a class="nav-link" href="{{ url('news') }}">
         <font-awesome-icon :icon="['far', 'newspaper']" class="nav-icon"></font-awesome-icon>
-        {{ __('navigation.news') }}
+        News
     </a>
 </li>
 
@@ -18,7 +18,7 @@
 {{-- <li class="nav-item">
     <a class="nav-link" href="{{ url('forum') }}">
         <font-awesome-icon :icon="['far', 'comments']" class="nav-icon"></font-awesome-icon>
-        {{ __('navigation.forum') }}
+        Forum
     </a>
 </li> --}}
 
@@ -26,7 +26,7 @@
 <li class="nav-item">
     <a class="nav-link disabled" href="{{ url('events') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'calendar-alt']" class="nav-icon"></font-awesome-icon>
-        {{ __('navigation.events') }}
+        Events
     </a>
 </li>
 
@@ -34,15 +34,15 @@
 <li class="nav-item">
     <a class="nav-link disabled" href="{{ url('teams') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'helmet-battle']" class="nav-icon"></font-awesome-icon>
-        {{ __('navigation.teams') }}
+        Teams
     </a>
 </li>
 
 {{-- Guild Bank --}}
 <li class="nav-item">
-    <a class="nav-link disabled" href="{{ url('bank') }}" tabindex="-1" aria-disabled="true">
+    <a class="nav-link" href="{{ url('bank') }}">
         <font-awesome-icon :icon="['far', 'treasure-chest']" class="nav-icon"></font-awesome-icon>
-        {{ __('navigation.guild_bank') }}
+        Guild Bank
     </a>
 </li>
 
@@ -50,7 +50,7 @@
 <li class="nav-item">
     <a class="nav-link disabled" href="{{ url('marketplace') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'balance-scale']" class="nav-icon"></font-awesome-icon>
-        {{ __('navigation.marketplace') }}
+        Marketplace
     </a>
 </li>
 
@@ -58,7 +58,7 @@
 <li class="nav-item">
     <a class="nav-link" href="{{ url('discord') }}">
         <font-awesome-icon :icon="['fab', 'discord']" class="nav-icon"></font-awesome-icon>
-        {{ __('navigation.discord') }}
+        Discord
     </a>
 </li>
 
@@ -66,6 +66,6 @@
 <li class="nav-item">
     <a class="nav-link" href="{{ url('join') }}">
         <font-awesome-icon :icon="['far', 'user-plus']" class="nav-icon"></font-awesome-icon>
-        {{ __('navigation.join') }}
+        Join The Order
     </a>
 </li>

@@ -12,16 +12,6 @@ return [
     |
     */
 
-    'roster'                 => 'Roster',
-    'news'                   => 'News',
-    'forum'                  => 'Forum',
-    'events'                 => 'Events',
-    'teams'                  => 'Teams',
-    'guild_bank'             => 'Guild Bank',
-    'marketplace'            => 'Marketplace',
-    'discord'                => 'Discord',
-    'patreon'                => 'Patreon',
-    'join'                   => 'Join The Order',
     'notifications'          => 'Notifications',
     'notifications_history'  => 'Notifications History',
     'login'                  => 'Log In',
