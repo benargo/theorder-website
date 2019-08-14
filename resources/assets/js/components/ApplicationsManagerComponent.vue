@@ -213,10 +213,10 @@
                                 </th>
                                 <td>{{ statistics.races[7] ? statistics.races[7] : 0 }}</td>
                                 <th class="class-icons" scope="row">
-                                    <img src="/images/classicons_xs.png" :class="classIconClass(3)" title="Paladin" />
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(2)" title="Paladin" />
                                     Paladin
                                 </th>
-                                <td>{{ statistics.classes[3] ? statistics.classes[3] : 0 }}</td>
+                                <td>{{ statistics.classes[2] ? statistics.classes[2] : 0 }}</td>
                                 <td colspan="2"></td>
                                 <th scope="row">Withdrawn</th>
                                 <td>{{ statistics.statuses.withdrawn }}</td>
