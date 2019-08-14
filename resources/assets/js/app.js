@@ -11,6 +11,7 @@ window.Vue = require('vue')
 import BootstrapVue from 'bootstrap-vue'
 import FlagIcon from 'vue-flag-icon'
 import Prism from 'prismjs'
+import VueApexCharts from 'vue-apexcharts'
 const VueInputMask = require('vue-inputmask').default
 window.marked = require('marked')
 window.moment = require('moment-timezone')
@@ -166,10 +167,12 @@ faLibrary.add(
 
 Vue.use(BootstrapVue)
 Vue.use(FlagIcon)
+Vue.use(VueApexCharts)
 Vue.use(VueInputMask)
 Vue.component('account-settings', require('./components/AccountSettingsComponent.vue').default)
 Vue.component('account-applications', require('./components/AccountApplicationsComponent.vue').default)
 // Vue.component('api-clients', require('./components/APIClientsComponent.vue').default)
+Vue.component('apex-chart', VueApexCharts)
 Vue.component('applications-manager', require('./components/ApplicationsManagerComponent.vue').default)
 Vue.component('character-select-button', require('./components/CharacterSelectButton.vue').default)
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)

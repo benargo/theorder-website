@@ -62,204 +62,211 @@
             </div>
         </div>
     </div>
-    <div class="row my-5" v-if="items.length > 0">
-        <div class="col">
-            <table class="table mb-0">
-                <thead>
-                    <tr>
-                        <th scope="col">Character Name</th>
-                        <th scope="col">Race</th>
-                        <th scope="col">Class</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(a,i) in items">
-                        <th scope="row" class="align-middle">
-                            {{ a.character_name }}
-                        </th>
-                        <td class="align-middle race-icons">
-                            <img src="/images/raceicons_xs.png" :class="classIconRace(a.race_id)" :title="races[a.race_id].name" />
-                            {{ races[a.race_id].name }}
-                        </td>
-                        <td class="align-middle class-icons">
-                            <img src="/images/classicons_xs.png" :class="classIconClass(a.class_id)" :title="classes[a.class_id].name" />
-                            {{ classes[a.class_id].name }}
-                        </td>
-                        <td class="align-middle">
-                            {{ lang.roles[a.role] }}
-                        </td>
-                        <td class="align-middle" v-if="a.status == 'accepted'">
-                            {{ lang.status[a.status] }}
-                            (on {{ formatDate(a.accepted_at) }})
-                        </td>
-                        <td class="align-middle" v-else-if="a.status == 'declined'">
-                            {{ lang.status[a.status] }}
-                            (on {{ formatDate(a.declined_at) }})
-                        </td>
-                        <td class="align-middle" v-else-if="a.status == 'pending'">
-                            {{ lang.status[a.status] }}
-                            (since {{ formatDate(a.created_at) }})
-                        </td>
-                        <td class="align-middle" v-else-if="a.status == 'withdrawn'">
-                            {{ lang.status[a.status] }}
-                            (on {{ formatDate(a.withdrawn_at) }})
-                        </td>
-                        <td class="align-middle" v-if="a.status == 'pending'">
-                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Accept" @click="decideApplication(a, 'accept')">
-                                <font-awesome-icon :icon="['fas', 'check-circle']"></font-awesome-icon>
-                                <span class="sr-only">Accept</span>
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Decline" @click="decideApplication(a, 'decline')">
-                                <font-awesome-icon :icon="['fas', 'times-circle']"></font-awesome-icon>
-                                <span class="sr-only">Decline</span>
-                            </button>
-                        </td>
-                        <td class="align-middle" v-else>
-                            No actions are available
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="row my-5" v-else>
-        <div class="col">
-            <p class="lead text-center" v-if="this.hasFilters().length >= 1">Sorry, there are no applications to display. Consider removing one or more filters you have applied.}</p>
-            <p class="lead text-center" v-else>Sorry, there are no applications to display.</p>
-        </div>
-    </div>
-    <div class="row my-5" v-if="last_page > 1">
-        <div class="col-12 text-center">
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(prev_page_url)" :disabled="(prev_page_url === null)">
-                    &laquo; Previous
-                </button>
-                <button class="btn btn-primary btn-lg" :class="(page == current_page ? 'active' : '')" :aria-pressed="(page == current_page)" @click="fetchItems(page)" v-for="page in last_page">{{ page }}</button>
-                <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(next_page_url)" :disabled="(next_page_url === null)">
-                    Next &raquo;
-                </button>
+    <!-- <div class="row my-5"> -->
+    <b-tabs class="mt-3">
+        <b-tab title="Applications" active>
+            <div class="row">
+                <div class="col" v-if="items.length > 0">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Character Name</th>
+                                <th scope="col">Race</th>
+                                <th scope="col">Class</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(a,i) in items">
+                                <th scope="row" class="align-middle">
+                                    {{ a.character_name }}
+                                </th>
+                                <td class="align-middle race-icons">
+                                    <img src="/images/raceicons_xs.png" :class="classIconRace(a.race_id)" :title="races[a.race_id].name" />
+                                    {{ races[a.race_id].name }}
+                                </td>
+                                <td class="align-middle class-icons">
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(a.class_id)" :title="classes[a.class_id].name" />
+                                    {{ classes[a.class_id].name }}
+                                </td>
+                                <td class="align-middle">
+                                    {{ lang.roles[a.role] }}
+                                </td>
+                                <td class="align-middle" v-if="a.status == 'accepted'">
+                                    {{ lang.status[a.status] }}
+                                    (on {{ formatDate(a.accepted_at) }})
+                                </td>
+                                <td class="align-middle" v-else-if="a.status == 'declined'">
+                                    {{ lang.status[a.status] }}
+                                    (on {{ formatDate(a.declined_at) }})
+                                </td>
+                                <td class="align-middle" v-else-if="a.status == 'pending'">
+                                    {{ lang.status[a.status] }}
+                                    (since {{ formatDate(a.created_at) }})
+                                </td>
+                                <td class="align-middle" v-else-if="a.status == 'withdrawn'">
+                                    {{ lang.status[a.status] }}
+                                    (on {{ formatDate(a.withdrawn_at) }})
+                                </td>
+                                <td class="align-middle" v-if="a.status == 'pending'">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Accept" @click="decideApplication(a, 'accept')">
+                                        <font-awesome-icon :icon="['fas', 'check-circle']"></font-awesome-icon>
+                                        <span class="sr-only">Accept</span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Decline" @click="decideApplication(a, 'decline')">
+                                        <font-awesome-icon :icon="['fas', 'times-circle']"></font-awesome-icon>
+                                        <span class="sr-only">Decline</span>
+                                    </button>
+                                </td>
+                                <td class="align-middle" v-else>
+                                    No actions are available
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col" v-else>
+                    <p class="lead text-center">Sorry, there are no applications to display.</p>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row my-5" v-if="statistics">
-        <div class="col">
-            <h2 class="h3">Statistics</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col" colspan="2">Races</th>
-                        <th scope="col" colspan="2">Classes</th>
-                        <th scope="col" colspan="2">Roles</th>
-                        <th scope="col" colspan="2">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th class="race-icons" scope="row">
-                            <img src="/images/raceicons_xs.png" :class="classIconRace(1)" title="Human" />
-                            Human
-                        </th>
-                        <td>{{ statistics.races[1] ? statistics.races[1] : 0 }}</td>
-                        <th class="class-icons" scope="row">
-                            <img src="/images/classicons_xs.png" :class="classIconClass(11)" title="Druid" />
-                            Druid
-                        </th>
-                        <td>{{ statistics.classes[11] ? statistics.classes[11] : 0 }}</td>
-                        <th scope="row">Damage</th>
-                        <td>{{ statistics.roles.damage ? statistics.roles.damage : 0 }}</td>
-                        <th scope="row">Pending</th>
-                        <td>{{ statistics.statuses.pending ? statistics.statuses.pending : 0 }}</td>
-                    </tr>
-                    <tr>
-                        <th class="race-icons" scope="row">
-                            <img src="/images/raceicons_xs.png" :class="classIconRace(3)" title="Dwarf" />
-                            Dwarf
-                        </th>
-                        <td>{{ statistics.races[3] ? statistics.races[3] : 0 }}</td>
-                        <th class="class-icons" scope="row">
-                            <img src="/images/classicons_xs.png" :class="classIconClass(3)" title="Hunter" />
-                            Hunter
-                        </th>
-                        <td>{{ statistics.classes[3] ? statistics.classes[3] : 0 }}</td>
-                        <th scope="row">Healing</th>
-                        <td>{{ statistics.roles.healing ? statistics.roles.healing : 0 }}</td>
-                        <th scope="row">Accepted</th>
-                        <td>{{ statistics.statuses.accepted }}</td>
-                    </tr>
-                    <tr>
-                        <th class="race-icons" scope="row">
-                            <img src="/images/raceicons_xs.png" :class="classIconRace(4)" title="Night Elf" />
-                            Night Elf
-                        </th>
-                        <td>{{ statistics.races[4] ? statistics.races[4] : 0 }}</td>
-                        <th class="class-icons" scope="row">
-                            <img src="/images/classicons_xs.png" :class="classIconClass(8)" title="Mage" />
-                            Mage
-                        </th>
-                        <td>{{ statistics.classes[8] ? statistics.classes[8] : 0 }}</td>
-                        <th scope="row">Tank</th>
-                        <td>{{ statistics.roles.tank ? statistics.roles.tank : 0 }}</td>
-                        <th scope="row">Declined</th>
-                        <td>{{ statistics.statuses.declined }}</td>
-                    </tr>
-                    <tr>
-                        <th class="race-icons" scope="row">
-                            <img src="/images/raceicons_xs.png" :class="classIconRace(7)" title="Gnome" />
-                            Gnome
-                        </th>
-                        <td>{{ statistics.races[7] ? statistics.races[7] : 0 }}</td>
-                        <th class="class-icons" scope="row">
-                            <img src="/images/classicons_xs.png" :class="classIconClass(3)" title="Paladin" />
-                            Paladin
-                        </th>
-                        <td>{{ statistics.classes[3] ? statistics.classes[3] : 0 }}</td>
-                        <td colspan="2"></td>
-                        <th scope="row">Withdrawn</th>
-                        <td>{{ statistics.statuses.withdrawn }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <th class="class-icons" scope="row">
-                            <img src="/images/classicons_xs.png" :class="classIconClass(5)" title="Priest" />
-                            Priest
-                        </th>
-                        <td>{{ statistics.classes[5] ? statistics.classes[5] : 0 }}</td>
-                        <td colspan="4"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <th class="class-icons" scope="row">
-                            <img src="/images/classicons_xs.png" :class="classIconClass(4)" title="Rogue" />
-                            Rogue
-                        </th>
-                        <td>{{ statistics.classes[4] ? statistics.classes[4] : 0 }}</td>
-                        <td colspan="4"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <th class="class-icons" scope="row">
-                            <img src="/images/classicons_xs.png" :class="classIconClass(9)" title="Warlock" />
-                            Warlock
-                        </th>
-                        <td>{{ statistics.classes[9] ? statistics.classes[9] : 0 }}</td>
-                        <td colspan="4"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"></td>
-                        <th class="class-icons" scope="row">
-                            <img src="/images/classicons_xs.png" :class="classIconClass(1)" title="Warrior" />
-                            Warrior
-                        </th>
-                        <td>{{ statistics.classes[1] ? statistics.classes[1] : 0 }}</td>
-                        <td colspan="4"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+            <div class="row mt-3" v-if="last_page > 1">
+                <div class="col-12 text-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(prev_page_url)" :disabled="(prev_page_url === null)">
+                            &laquo; Previous
+                        </button>
+                        <button class="btn btn-primary btn-lg" :class="(page == current_page ? 'active' : '')" :aria-pressed="(page == current_page)" @click="fetchItems(page)" v-for="page in last_page">{{ page }}</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(next_page_url)" :disabled="(next_page_url === null)">
+                            Next &raquo;
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </b-tab>
+        <b-tab title="Statistics" v-if="statistics">
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="2">Races</th>
+                                <th scope="col" colspan="2">Classes</th>
+                                <th scope="col" colspan="2">Roles</th>
+                                <th scope="col" colspan="2">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="race-icons" scope="row">
+                                    <img src="/images/raceicons_xs.png" :class="classIconRace(1)" title="Human" />
+                                    Human
+                                </th>
+                                <td>{{ statistics.races[1] ? statistics.races[1] : 0 }}</td>
+                                <th class="class-icons" scope="row">
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(11)" title="Druid" />
+                                    Druid
+                                </th>
+                                <td>{{ statistics.classes[11] ? statistics.classes[11] : 0 }}</td>
+                                <th scope="row">Damage</th>
+                                <td>{{ statistics.roles.damage ? statistics.roles.damage : 0 }}</td>
+                                <th scope="row">Pending</th>
+                                <td>{{ statistics.statuses.pending ? statistics.statuses.pending : 0 }}</td>
+                            </tr>
+                            <tr>
+                                <th class="race-icons" scope="row">
+                                    <img src="/images/raceicons_xs.png" :class="classIconRace(3)" title="Dwarf" />
+                                    Dwarf
+                                </th>
+                                <td>{{ statistics.races[3] ? statistics.races[3] : 0 }}</td>
+                                <th class="class-icons" scope="row">
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(3)" title="Hunter" />
+                                    Hunter
+                                </th>
+                                <td>{{ statistics.classes[3] ? statistics.classes[3] : 0 }}</td>
+                                <th scope="row">Healing</th>
+                                <td>{{ statistics.roles.healing ? statistics.roles.healing : 0 }}</td>
+                                <th scope="row">Accepted</th>
+                                <td>{{ statistics.statuses.accepted }}</td>
+                            </tr>
+                            <tr>
+                                <th class="race-icons" scope="row">
+                                    <img src="/images/raceicons_xs.png" :class="classIconRace(4)" title="Night Elf" />
+                                    Night Elf
+                                </th>
+                                <td>{{ statistics.races[4] ? statistics.races[4] : 0 }}</td>
+                                <th class="class-icons" scope="row">
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(8)" title="Mage" />
+                                    Mage
+                                </th>
+                                <td>{{ statistics.classes[8] ? statistics.classes[8] : 0 }}</td>
+                                <th scope="row">Tank</th>
+                                <td>{{ statistics.roles.tank ? statistics.roles.tank : 0 }}</td>
+                                <th scope="row">Declined</th>
+                                <td>{{ statistics.statuses.declined }}</td>
+                            </tr>
+                            <tr>
+                                <th class="race-icons" scope="row">
+                                    <img src="/images/raceicons_xs.png" :class="classIconRace(7)" title="Gnome" />
+                                    Gnome
+                                </th>
+                                <td>{{ statistics.races[7] ? statistics.races[7] : 0 }}</td>
+                                <th class="class-icons" scope="row">
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(3)" title="Paladin" />
+                                    Paladin
+                                </th>
+                                <td>{{ statistics.classes[3] ? statistics.classes[3] : 0 }}</td>
+                                <td colspan="2"></td>
+                                <th scope="row">Withdrawn</th>
+                                <td>{{ statistics.statuses.withdrawn }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <th class="class-icons" scope="row">
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(5)" title="Priest" />
+                                    Priest
+                                </th>
+                                <td>{{ statistics.classes[5] ? statistics.classes[5] : 0 }}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <th class="class-icons" scope="row">
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(4)" title="Rogue" />
+                                    Rogue
+                                </th>
+                                <td>{{ statistics.classes[4] ? statistics.classes[4] : 0 }}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <th class="class-icons" scope="row">
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(9)" title="Warlock" />
+                                    Warlock
+                                </th>
+                                <td>{{ statistics.classes[9] ? statistics.classes[9] : 0 }}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <th class="class-icons" scope="row">
+                                    <img src="/images/classicons_xs.png" :class="classIconClass(1)" title="Warrior" />
+                                    Warrior
+                                </th>
+                                <td>{{ statistics.classes[1] ? statistics.classes[1] : 0 }}</td>
+                                <td colspan="4"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </b-tab>
+        <!-- TODO: Add flow chart, showing applications per day over time -->
+        <!-- <b-tab title="Flow">
+            <apex-chart type="line" :options="chartOptions" :series="series"></apex-chart>
+        </b-tab> -->
+    </b-tabs>
 </div>
 </template>
 
