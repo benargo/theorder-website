@@ -79,7 +79,7 @@
                                 <img class="d-block image-inner-circle z-index-1" src="{{ asset('images/innercircle_andy.png') }}" alt="Andy" height="450">
                             </div>
                             <h4>Andy</h4>
-                            <p>Gambit</p>
+                            <p>Gambiit</p>
                             <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
                         </div>
                         <div class="col-lg text-center">
@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="carousel-caption">
                                     <h4>Andy</h4>
-                                    <p>Gambit</p>
+                                    <p>Gambiit</p>
                                     <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
                                 </div>
                             </div>
