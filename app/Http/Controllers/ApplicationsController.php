@@ -15,7 +15,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Notifications\ApplicationAccepted;
 use App\Notifications\ApplicationReceived;
+use App\Notifications\ApplicationDeclined;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ApplicationsController extends Controller
@@ -286,6 +288,8 @@ class ApplicationsController extends Controller
         $application->accepted_at = Carbon::now();
         $application->save();
 
+        $application->user->notify(new ApplicationAccepted($application));
+
         return response(null, 204);
     }
 
@@ -295,6 +299,8 @@ class ApplicationsController extends Controller
 
         $application->declined_at = Carbon::now();
         $application->save();
+        
+        $application->user->notify(new ApplicationDeclined($application));
 
         return response(null, 204);
     }

@@ -108,11 +108,11 @@
                             (on {{ formatDate(a.withdrawn_at) }})
                         </td>
                         <td class="align-middle" v-if="a.status == 'pending'">
-                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" :title="lang.buttons.accept" @click="decideApplication(a, 'accept')">
+                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Accept" @click="decideApplication(a, 'accept')">
                                 <font-awesome-icon :icon="['fas', 'check-circle']"></font-awesome-icon>
                                 <span class="sr-only">Accept</span>
                             </button>
-                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" :title="lang.buttons.decline" @click="decideApplication(a, 'decline')">
+                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Decline" @click="decideApplication(a, 'decline')">
                                 <font-awesome-icon :icon="['fas', 'times-circle']"></font-awesome-icon>
                                 <span class="sr-only">Decline</span>
                             </button>
