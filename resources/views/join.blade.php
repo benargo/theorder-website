@@ -4,39 +4,20 @@
 
 @section('content')
     <div id="app">
-        <header class="container-fluid bg-ironforge py-6 text-light">
+        <header class="container-fluid bg-ironforge py-7 text-light">
             <div class="content">
                 <h1 class="text-center">{{ __('applications.join_title') }}</h1>
             </div>
         </header>
         <div class="container py-6 text-light">
-            <p class="lead">{{ __('applications.lead') }}</p>
+            <p class="lead">The Order is always looking for talented individuals, over the age of 18, with the aptitude for fun and adventure. Applications are simple and straightforward, all you need to do is fill out the details below and one of the Inner Circle will be in touch.</p>
             <join-form
                 :classes="{{ $classes->toJson() }}"
                 discord-url="{{ action('DiscordController@redirectToServer', ['channel' => 552893734266863617]) }}"
                 :races="{{ $races->toJson() }}"
+                cannot-apply-again-until-date="{{ $application ? $application->canApplyAgainWhen()->format('jS F Y') : '{date}' }}"
                 :lang="{
-                    alerts: {
-                        applicationAccepted: '{{ __('applications.alerts.application_accepted') }}',
-                        applicationDeclined: '{{ __('applications.alerts.application_declined', ['date' => $application ? $application->canApplyAgainWhen()->format('jS F Y') : '{date}']) }}',
-                        applicationPending: '{!! __('applications.alerts.application_pending') !!}',
-                        applicationSubmitted: '{{ __('applications.alerts.application_submitted') }}',
-                    },
-                    errors: {
-                        characterNameInvalid: '{{ __('applications.errors.character_name_invalid') }}',
-                        noClassSelected: '{{ __('applications.errors.no_class_selected') }}',
-                        noRaceSelected: '{{ __('applications.errors.no_race_selected') }}',
-                        noRoleSelected: '{{ __('applications.errors.no_role_selected') }}',
-                    },
-                    characterName: '{{ __('applications.character_name') }}',
-                    class: '{{ __('applications.class') }}',
-                    damage: '{{ __('applications.labels.damage') }}',
-                    healer: '{{ __('applications.labels.healer') }}',
                     nextSteps: '{!! __('applications.next_steps') !!}',
-                    race: '{{ __('applications.race') }}',
-                    role: '{{ __('applications.role') }}',
-                    submitApplication: '{{ __('applications.labels.submit_application') }}',
-                    tank: '{{ __('applications.labels.tank') }}',
                 }"
                 @isset ($application)
                     status="{{ $application->getStatus() }}"

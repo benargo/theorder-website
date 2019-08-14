@@ -2,60 +2,61 @@
 <section id="NewApplicationComponent">
     <div id="applicationAccepted" v-if="status === 'accepted'">
         <div class="alert alert-success text-center" role="alert">
-            {{ lang.alerts.applicationAccepted }}
+            Your application was previously accepted. There’s honestly no point applying again.
         </div>
     </div>
     <div id="applicationDeclined" v-else-if="status === 'declined'">
         <div class="alert alert-danger text-center" role="alert">
-            {{ lang.alerts.applicationDeclined }}
+            Your application was previously declined and you must wait until {{ cannotApplyAgainUntilDate }} before applying again.
         </div>
     </div>
     <div id="applicationPending" v-else-if="status === 'pending'">
-        <div class="alert alert-info" role="alert" v-html="applicationPending"></div>
+        <div class="alert alert-info" role="alert">
+            Your application is pending review by one of the Inner Circle. They will be in touch with you soon; either in-game or via <strong><a :href="discordUrl" class="text-info">Discord</a></strong>. You can also check back here at any time to see the status of your application.
+        </div>
     </div>
     <div id="applicationSubmitted" v-else-if="applicationSubmitted">
         <div class="alert alert-success text-center" role="alert">
-            {{ lang.alerts.applicationSubmitted }}
+            Relax! Your application has been received and one of the Inner Circle will be in touch with you soon.
         </div>
-        <p v-html="nextSteps"></p>
     </div>
     <form class="needs-validation" id="formApplication" v-else>
         <div class="form-row">
             <div class="form-group col">
-                <label for="inputCharacterName">{{ lang.characterName }}</label>
+                <label for="inputCharacterName">Character Name</label>
                 <input type="text" class="form-control" id="inputCharacterName" maxlength="12" pattern="^[a-zA-ZÀ-ž]{1,12}" placeholder="Jaina" required v-model="characterName" />
                 <div class="invalid-feedback">
-                    {{ lang.errors.characterNameInvalid }}
+                    Character names should be between 1 and 12 characters, and use letters only
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col">
-                <label for="inputRace">{{ lang.race }}</label>
+                <label for="inputRace">Race</label>
 
                 <div class="race-icons">
                     <img src="/images/raceicons.png" :alt="r.name" :class="raceIconClass(r.name)" data-html="true" data-toggle="tooltip" data-placement="bottom" :title="r.name" v-for="r in races" @click="handleIcon('race', r)" />
                 </div>
                 <input class="form-control d-none" type="number" name="inputRace" v-model="raceId" required>
                 <div class="invalid-feedback">
-                    {{ lang.errors.noRaceSelected }}
+                    Please select a race
                 </div>
             </div>
             <div class="form-group col">
-                <label for="inputClass">{{ lang.class }}</label>
+                <label for="inputClass">Class</label>
                 <div class="class-icons">
                     <img src="/images/classicons.png" :alt="c.name" :class="classIconClass(c.name)" data-html="true" data-toggle="tooltip" data-placement="bottom" :title="c.name" v-for="c in classes" @click="handleIcon('class', c)" />
                 </div>
                 <input class="form-control d-none" type="number" name="inputClass" v-model="classId" required>
                 <div class="invalid-feedback">
-                    {{ lang.errors.noClassSelected }}
+                    Please select a class
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <p>{{ lang.role }}</p>
+            <p>Role</p>
             <div class="btn-group btn-group-toggle position-static d-block">
-                <label class="btn btn-secondary" id="btnRoleDamage" for="radioRoleDamage">
+                <label class="btn btn-secondary active" id="btnRoleDamage" for="radioRoleDamage">
                     <input class="form-control" type="radio" name="radioRole" id="radioRoleDamage" value="damage" v-model="role">
                     <font-awesome-icon :icon="['fas', 'sword']"></font-awesome-icon>
                     Damage
@@ -147,6 +148,10 @@ export default {
     },
 
     props: {
+        cannotApplyAgainUntilDate: {
+            type: String,
+            required: true,
+        },
 
         classes: {
             type: Object,
@@ -169,7 +174,6 @@ export default {
         },
 
         status: String,
-
     },
 
     watch: {

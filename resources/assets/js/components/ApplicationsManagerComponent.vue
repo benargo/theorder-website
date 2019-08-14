@@ -17,7 +17,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="inputRace">{{ lang.tableHeaders.race }}</label>
+                                    <label for="inputRace">Race</label>
                                     <select class="form-control" id="inputRace" v-model.number="filters.raceId" @change="fetchItems(current_page)">
                                         <option value="">&nbsp;</option>
                                         <option :value="r.id" v-for="r in races">{{ r.name }}</option>
@@ -49,10 +49,10 @@
                                     <label for="inputStatus">Status</label>
                                     <select class="form-control" id="inputStatus" v-model="filters.status" @change="fetchItems(current_page)">
                                         <option value=""></option>
-                                        <option value="accepted">{{ lang.status.accepted }}</option>
-                                        <option value="declined">{{ lang.status.declined }}</option>
-                                        <option value="pending">{{ lang.status.pending }}</option>
-                                        <option value="withdrawn">{{ lang.status.withdrawn }}</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="accepted">Accepted</option>
+                                        <option value="declined">Declined</option>
+                                        <option value="withdrawn">Withdrawn</option>
                                     </select>
                                 </div>
                             </div>
@@ -93,32 +93,32 @@
                         </td>
                         <td class="align-middle" v-if="a.status == 'accepted'">
                             {{ lang.status[a.status] }}
-                            ({{ lang.on + ' ' + formatDate(a.accepted_at) }})
+                            (on {{ formatDate(a.accepted_at) }})
                         </td>
                         <td class="align-middle" v-else-if="a.status == 'declined'">
                             {{ lang.status[a.status] }}
-                            ({{ lang.on + ' ' + formatDate(a.declined_at) }})
+                            (on {{ formatDate(a.declined_at) }})
                         </td>
                         <td class="align-middle" v-else-if="a.status == 'pending'">
                             {{ lang.status[a.status] }}
-                            ({{ lang.since + ' ' + formatDate(a.created_at) }})
+                            (since {{ formatDate(a.created_at) }})
                         </td>
                         <td class="align-middle" v-else-if="a.status == 'withdrawn'">
                             {{ lang.status[a.status] }}
-                            ({{ lang.on + ' ' + formatDate(a.withdrawn_at) }})
+                            (on {{ formatDate(a.withdrawn_at) }})
                         </td>
                         <td class="align-middle" v-if="a.status == 'pending'">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" :title="lang.buttons.accept" @click="decideApplication(a, 'accept')">
                                 <font-awesome-icon :icon="['fas', 'check-circle']"></font-awesome-icon>
-                                <span class="sr-only">{{ lang.buttons.accept }}</span>
+                                <span class="sr-only">Accept</span>
                             </button>
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" :title="lang.buttons.decline" @click="decideApplication(a, 'decline')">
                                 <font-awesome-icon :icon="['fas', 'times-circle']"></font-awesome-icon>
-                                <span class="sr-only">{{ lang.buttons.decline }}</span>
+                                <span class="sr-only">Decline</span>
                             </button>
                         </td>
                         <td class="align-middle" v-else>
-                            {{ lang.alerts.info_no_actions_available }}
+                            No actions are available
                         </td>
                     </tr>
                 </tbody>
@@ -127,8 +127,8 @@
     </div>
     <div class="row my-5" v-else>
         <div class="col">
-            <p class="lead text-center" v-if="this.hasFilters().length >= 1">{{ lang.alerts.info_applicant_count_zero_filtered }}</p>
-            <p class="lead text-center" v-else>{{ lang.alerts.info_applicant_count_zero }}</p>
+            <p class="lead text-center" v-if="this.hasFilters().length >= 1">Sorry, there are no applications to display. Consider removing one or more filters you have applied.}</p>
+            <p class="lead text-center" v-else>Sorry, there are no applications to display.</p>
         </div>
     </div>
     <div class="row my-5" v-if="last_page > 1">
@@ -269,7 +269,13 @@ export default {
         return {
             current_page: undefined,
             items: [],
-            filters: undefined,
+            filters: {
+                characterName: undefined,
+                classId: undefined,
+                raceId: undefined,
+                role: undefined,
+                status: undefined,
+            },
             first_page_url: undefined,
             from: undefined,
             last_page: undefined,
@@ -371,11 +377,13 @@ export default {
             return filters
         },
     },
+
     mounted: function() {
         this.filters = this.startingFilters
 
         this.fetchItems(1)
     },
+
     props: {
         classes: {
             type: Object,
@@ -405,6 +413,7 @@ export default {
             },
         },
     },
+
     updated: function() {
         // Initialise tooltips...
         $('[data-toggle="tooltip"]').tooltip()

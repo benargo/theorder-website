@@ -109,7 +109,7 @@ class Application extends Model
 
     public function canApplyAgainWhen()
     {
-        try {
+        if ($this->attributes['declined_at']) {
             $declined_at = new Carbon($this->attributes['declined_at']);
 
             if ($declined_at->between(Carbon::now()->subWeek(), Carbon::now()))
@@ -117,9 +117,8 @@ class Application extends Model
                 return $declined_at->addWeek();
             }
         }
-        catch (Exception $e) {
-            return '{unknown date}';
-        }
+
+        return Carbon::now();
     }
 
     public function user()

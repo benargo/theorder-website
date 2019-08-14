@@ -27,18 +27,8 @@
                     @endforeach
                 }"
 
+                {{-- TODO Move to standard props --}}
                 :lang="{
-                    alerts: {
-                        info_applicant_count_zero: '{{ __('applications.alerts.applicant_count_zero') }}',
-                        info_applicant_count_zero_filtered: '{{ __('applications.alerts.applicant_count_zero_filtered') }}',
-                        info_no_actions_available: '{{ __('applications.errors.no_actions_available') }}',
-                    },
-                    buttons: {
-                        accept: '{{ __('applications.labels.accept') }}',
-                        decline: '{{ __('applications.labels.decline') }}',
-                        next: '{{ __('pagination.next') }}',
-                        previous: '{{ __('pagination.previous') }}',
-                    },
                     roles: {
                         @foreach ($roles as $r)
                             {{ $r }}: '{{ __("applications.labels.{$r}") }}',
@@ -49,20 +39,7 @@
                         declined: '{{ ucfirst(__('applications.status.declined')) }}',
                         pending: '{{ ucfirst(__('applications.status.pending')) }}',
                         withdrawn: '{{ ucfirst(__('applications.status.withdrawn')) }}',
-                    },
-                    tableHeaders: {
-                        characterName: '{{ __('applications.character_name') }}',
-                        class: '{{ __('applications.class') }}',
-                        race: '{{ __('applications.race') }}',
-                        role: '{{ __('applications.role') }}',
-                        status: '{{ __('applications.labels.status') }}',
-                        actions: '{{ __('applications.labels.actions') }}',
-                    },
-                    at:      '{{ __('applications.at') }}',
-                    filters: '{{ __('applications.filters') }}',
-                    on:      '{{ __('applications.on') }}',
-                    since:   '{{ __('applications.since') }}',
-
+                    }
                 }"
 
                 :races="{
