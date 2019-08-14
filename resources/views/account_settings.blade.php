@@ -4,7 +4,7 @@
 
 @section('content')
     <div id="app">
-        <header class="container-fluid bg-tavern py-6 text-light">
+        <header class="container-fluid bg-tavern py-7 text-light">
             <div class="content">
                 <h1 class="text-center">{{ __('account.my_account') }}</h1>
             </div>
