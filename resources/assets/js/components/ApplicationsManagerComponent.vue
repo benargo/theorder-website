@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-    <div class="row my-5" v-if="items.length > 0">
+    <div class="row my-5">
         <div class="col">
             <div class="card">
                 <div class="card-header">
@@ -171,7 +171,7 @@
                         <th scope="row">Damage</th>
                         <td>{{ statistics.roles.damage ? statistics.roles.damage : 0 }}</td>
                         <th scope="row">Pending</th>
-                        <td>{{ statistics.statuses.pending }}</td>
+                        <td>{{ statistics.statuses.pending ? statistics.statuses.pending : 0 }}</td>
                     </tr>
                     <tr>
                         <th class="race-icons" scope="row">
