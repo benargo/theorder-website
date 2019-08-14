@@ -1,7 +1,7 @@
 <template>
-<div class="container py-6">
+<div class="container my-6">
     <form id="formFilters">
-        <div class="row">
+        <div class="row my-3">
             <div class="col">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -17,9 +17,9 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row my-3">
             <div class="col">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header">
                         <h2 class="h4 my-2">Filters</h2>
                     </div>
@@ -27,7 +27,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="inputItemClass">Category</label>
-                                <select class="form-control" name="inputItemClass" id="inputItemClass">
+                                <select class="form-control" name="inputItemClass" id="inputItemClass" v-model="filters.itemClass">
                                     <option value="NULL">--</option>
                                     <option value="">Container</option>
                                 </select>
@@ -36,7 +36,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="inputItemSubclass">Subcategory</label>
-                                <select class="form-control" name="inputItemSubclass" id="inputItemSubclass" disabled>
+                                <select class="form-control" name="inputItemSubclass" id="inputItemSubclass" v-model="filters.itemSubclass" disabled>
                                     <option value="NULL">--</option>
                                     <option value="">Container</option>
                                 </select>
@@ -44,15 +44,15 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="inputRarity">Rarity</label>
-                                <select class="form-control" name="inputRarity" id="inputRarity">
+                                <label for="inputRarity">Quality</label>
+                                <select class="form-control" name="inputQuality" id="inputQuality" v-model="filters.quality">
                                     <option value="NULL" data-text-class="text-muted">--</option>
-                                    <option value="POOR" data-text-class="text-poor">Poor</option>
-                                    <option value="COMMON" data-text-class="text-common">Common</option>
-                                    <option value="UNCOMMON" data-text-class="text-uncommon">Uncommon</option>
-                                    <option value="RARE" data-text-class="text-rare">Rare</option>
-                                    <option value="EPIC" data-text-class="text-epic">Epic</option>
-                                    <option value="LEGENDARY" data-text-class="text-legendary">Legendary</option>
+                                    <option value="0" data-text-class="text-poor">Poor</option>
+                                    <option value="1" data-text-class="text-common">Common</option>
+                                    <option value="2" data-text-class="text-uncommon">Uncommon</option>
+                                    <option value="3" data-text-class="text-rare">Rare</option>
+                                    <option value="4" data-text-class="text-epic">Epic</option>
+                                    <option value="5" data-text-class="text-legendary">Legendary</option>
                                 </select>
                             </div>
                         </div>
@@ -61,13 +61,67 @@
             </div>
         </div>
     </form>
+    <div class="my-3" v-for="(banker,name) in items">
+        <a :name="name"></a>
+        <h2>{{ name }}</h2>
+        <div class="row" v-for="(bag,bag_number) in banker">
+            <div class="col-12 text-danger" role="alert"><strong>DEBUG</strong>: Bag number {{ bag_number }}</div>
+            <div class="col col-lg-3 mb-3" v-for="(slot,i) in bag">
+                <img :src="getIconUrl(slot.item.icon)" :alt="slot.item.icon" class="guild-bank-icon" />
+                <span class="item-count">x{{ slot.count }}</span>
+                <a :href="wowheadItemUrl(slot.item.id)" :class="qualityCssClass(slot.item.quality, 'item-name')" target="_blank">[{{ slot.item.name }}]</a>
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 
 <script>
 export default {
+    data: function () {
+        return {
+            filters: {
+                itemClass: null,
+                itemSubclass: null,
+                quality: null,
+            },
+            items: [],
+            itemQualities: {
+                0: 'poor',
+                1: 'common',
+                2: 'uncommon',
+                3: 'rare',
+                4: 'epic',
+                5: 'legendary',
+            },
+        }
+    },
+
+    methods: {
+        qualityCssClass: function (id, classes) {
+            let prepend = 'text-'
+
+            if (classes) {
+                prepend = classes + ' text-'
+            }
+
+            return prepend + this.itemQualities[id]
+        },
+
+        getIconUrl: function(path) {
+            return 'https://render-eu.worldofwarcraft.com/icons/56/' + path + '.jpg';
+        },
+
+        wowheadItemUrl: function (id) {
+            return "https://classic.wowhead.com/item=" + id
+        }
+    },
+
     mounted() {
-        console.log('Component mounted.')
-    }
+        axios.get('/api/guild-bank/stock')
+            .then(function(response) {
+                this.items = response.data
+            }.bind(this))
+    },
 }
 </script>

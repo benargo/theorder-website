@@ -8,6 +8,7 @@ use JsonSchema\Validator;
 use Illuminate\Http\Request;
 use App\Rules\StockSchemaRule;
 use App\Blizzard\Warcraft\Items;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Exception\ClientException;
 
@@ -18,6 +19,27 @@ class StockController extends Controller
     public function __construct(Items $items)
     {
         $this->items = $items;
+    }
+
+    public function getStock()
+    {
+        $stock = DB::table('guild_bank_stock')
+                    ->whereNull('withdrawn_at')
+                    ->get();
+
+        $stock = $stock->map(function ($item, $key) {
+            $item->item = $this->items->getItem($item->item_id);
+            unset($item->item_id);
+
+            return $item;
+        })
+        ->filter(function ($item, $key) {
+            return $item->item->itemBind <> 1;
+        })
+        ->groupBy(['banker_name', 'bag_number'])
+        ->sortBy('slot_number');
+
+        return response()->json($stock);
     }
 
     public function updateStock(Request $request)

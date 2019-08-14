@@ -60,14 +60,7 @@ Route::patch('/applications/{application}', 'ApplicationsController@patch');
  |--------------------------------------------------------------------------
  */
 
-Route::get('/guild-bank/stock', function () {
-    return response()->json(
-        DB::table('guild_bank_stock')
-            ->whereNull('withdrawn_at')
-            ->get()
-            ->toJson()
-    );
-});
+Route::get('/guild-bank/stock', 'GuildBank\StockController@getStock');
 
 Route::post('/guild-bank/stock/update', 'GuildBank\StockController@updateStock')
             ->middleware('can:update-stock-data');
