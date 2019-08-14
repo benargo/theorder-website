@@ -8,6 +8,8 @@ abstract class BasePolicy
 {
     public function userIsMemberOfInnerCircle(User $user)
     {
-        return $user->rank->seniority <= 1;
+        if ($user->rank) {
+            return $user->rank->seniority <= 1;
+        }
     }
 }
