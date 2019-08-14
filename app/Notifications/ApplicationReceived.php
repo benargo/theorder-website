@@ -49,7 +49,7 @@ class ApplicationReceived extends Notification
      */
     public function toDiscord(Application $notifiable)
     {
-        $url = url('inner-circle/applications');
+        $url = url('inner-circle/applications?status=pending');
 
         return DiscordMessage::create(
             "Hey chaps! {$notifiable->character_name} just applied to join The Order. If someone could review the application please?\n\n{$url}",
