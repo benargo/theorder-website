@@ -36,12 +36,6 @@
     background-size: cover;
 }
 
-.bg-homepage-inner-circle {
-    background-image: url("../images/bg_homepage_inner_circle.jpg");
-    background-position: top center;
-    background-size: cover;
-}
-
 .bg-homepage-inner-circle-introduction {
     background: rgb(98,130,143);
     background: linear-gradient(180deg, rgba(98,130,143,0.9) 0%, rgba(98,130,143,0.6) 80%, rgba(98,130,143,0) 100%);
@@ -56,6 +50,13 @@
 .bg-ironforge-bank {
     background-image: url("../images/bg_ironforge_bank.jpg");
     background-position: 0 75%;
+    background-size: cover;
+}
+
+.bg-menethil {
+    // background-image: url("../images/bg_menethil.jpg");
+    background-image: url("../images/bg_homepage_inner_circle.jpg");
+    background-position: top center;
     background-size: cover;
 }
 

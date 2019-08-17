@@ -51,7 +51,7 @@
             </div>
         </div>
 
-        <div class="section-inner-circle bg-homepage-inner-circle pb-6">
+        <div class="section-inner-circle bg-menethil pb-6">
             <div class="bg-homepage-inner-circle-introduction">
                 <div class="container">
                     <div class="row py-6">
