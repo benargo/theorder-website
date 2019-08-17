@@ -60,6 +60,12 @@ Route::patch('/applications/{application}', 'ApplicationsController@patch');
  |--------------------------------------------------------------------------
  */
 
+Route::get('/guild-bank/bankers', function () {
+    return DB::table('bankers')->select('name')
+                        ->orderBy('order')
+                        ->get();
+});
+
 Route::get('/guild-bank/stock', 'GuildBank\StockController@getStock');
 
 Route::post('/guild-bank/stock/update', 'GuildBank\StockController@updateStock')

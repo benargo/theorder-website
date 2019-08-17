@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3bfe7acfa454eba88c37873b950ac568",
+    "content-hash": "5e28f26c3b6d58aa6e83937fe5c3cf7d",
     "packages": [
         {
             "name": "benargo/laravel-json-schema",

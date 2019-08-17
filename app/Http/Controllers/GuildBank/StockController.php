@@ -5,12 +5,14 @@ namespace App\Http\Controllers\GuildBank;
 use GuzzleHttp\Psr7;
 use App\Guild\Bank\Stock;
 use JsonSchema\Validator;
+use App\Guild\Bank\Banker;
 use Illuminate\Http\Request;
 use App\Rules\StockSchemaRule;
 use App\Blizzard\Warcraft\Items;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class StockController extends Controller
 {
@@ -65,10 +67,13 @@ class StockController extends Controller
                 // Validate the item...
                 $item = $this->items->getItem($entry->item->id);
 
+                // Validate the banker...
+                $banker = Banker::where('name', $entry->banker_name)->firstOrFail();
+
                 $model = Stock::updateOrCreate(
                     // Where...
                     [
-                        'banker_name' => $entry->banker_name,
+                        'banker_id' => $banker->id,
                         'bag_number'  => $entry->bag_number,
                         'slot_number' => $entry->slot_number,
                     ],
@@ -100,6 +105,9 @@ class StockController extends Controller
 
             return response()->json($response);
 
+        }
+        catch (ModelNotFoundException $e) {
+            abort(403, 'One of the characters you specified is not authorised to act as a banker.');
         }
         catch (ClientException $e) {
             return response()->json([

@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
 
         // Set up the guild bank tables...
         $this->call(StockAddonSeeder::class);
+        $this->call(BankersTableSeeder::class);
     }
 }

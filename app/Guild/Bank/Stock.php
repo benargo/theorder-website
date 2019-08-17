@@ -48,6 +48,14 @@ class Stock extends Model
     protected $table = 'guild_bank_stock';
 
     /**
+     * Defines the relationship to the bank character.
+     */
+    public function banker()
+    {
+        return $this->belongsTo('App\Guild\Bank\Banker');
+    }
+
+    /**
      * Defines the relationship showing who last updated this entry.
      */
     public function updatingUser()
