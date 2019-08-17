@@ -15,6 +15,7 @@
                                     <input type="text" class="form-control" id="inputCharacterName" maxlength="12" placeholder="Jaina" v-model="filters.characterName" @keyup="fetchItems(current_page)">
                                 </div>
                             </div>
+                            <div class="w-100 d-sm-none"><!-- Clearfix --></div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputRace">Race</label>
@@ -24,6 +25,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="w-100 d-sm-none"><!-- Clearfix --></div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputClass">Class</label>
@@ -33,6 +35,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="w-100 d-sm-none"><!-- Clearfix --></div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputRole">Role</label>
@@ -44,6 +47,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="w-100 d-sm-none"><!-- Clearfix --></div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="inputStatus">Status</label>
@@ -66,7 +70,7 @@
     <b-tabs class="mt-3">
         <b-tab title="Applications" active>
             <div class="row">
-                <div class="col" v-if="items.length > 0">
+                <div class="col table-responsive-sm" v-if="items.length > 0">
                     <table class="table mb-0">
                         <thead>
                             <tr>
@@ -133,7 +137,26 @@
             </div>
             <div class="row mt-3" v-if="last_page > 1">
                 <div class="col-12 text-center">
-                    <div class="btn-group">
+                    <!-- Sizes: xs, sm -->
+                    <div class="d-md-none">
+                        <div class="row mb-3">
+                            <div class="col btn-group">
+                                <button class="btn btn-primary btn-lg" :class="(page == current_page ? 'active' : '')" :aria-pressed="(page == current_page)" @click="fetchItems(page)" v-for="page in last_page">{{ page }}</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col btn-group" role="group">
+                                <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(prev_page_url)" :disabled="(prev_page_url === null)">
+                                    &laquo; Previous
+                                </button>
+                                <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(next_page_url)" :disabled="(next_page_url === null)">
+                                    Next &raquo;
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sizes: md, lg, xl -->
+                    <div class="btn-group d-none d-md-block" role="group">
                         <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(prev_page_url)" :disabled="(prev_page_url === null)">
                             &laquo; Previous
                         </button>
@@ -147,7 +170,7 @@
         </b-tab>
         <b-tab title="Statistics" v-if="statistics">
             <div class="row">
-                <div class="col">
+                <div class="col table-responsive-sm">
                     <table class="table">
                         <thead>
                             <tr>
@@ -185,8 +208,8 @@
                                     Hunter
                                 </th>
                                 <td>{{ statistics.classes[3] ? statistics.classes[3] : 0 }}</td>
-                                <th scope="row">Healing</th>
-                                <td>{{ statistics.roles.healing ? statistics.roles.healing : 0 }}</td>
+                                <th scope="row">Healer</th>
+                                <td>{{ statistics.roles.healer ? statistics.roles.healer : 0 }}</td>
                                 <th scope="row">Accepted</th>
                                 <td>{{ statistics.statuses.accepted }}</td>
                             </tr>
