@@ -11,6 +11,11 @@ class StockAddonPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 
+    public function viewBankers(User $user)
+    {
+        return $this->userIsMemberOfInnerCircle($user);
+    }
+
     public function update(User $user)
     {
         return $this->userIsMemberOfInnerCircle($user);

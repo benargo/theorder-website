@@ -19,15 +19,15 @@ use Illuminate\Http\Request;
  |--------------------------------------------------------------------------
  */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->get('/user/applications', 'Account\ApplicationsController@get');
+Route::get('/user/applications', 'Account\ApplicationsController@get');
 
-Route::middleware('auth:api')->post('/user/{user}/unlink-discord', 'Account\SettingsController@unlinkDiscord');
+Route::post('/user/{user}/unlink-discord', 'Account\SettingsController@unlinkDiscord');
 
-Route::middleware('auth:api')->put('/user/{user}/{field}', 'Account\SettingsController@updateUserField');
+Route::put('/user/{user}/{field}', 'Account\SettingsController@updateUserField');
 
 /*
  |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ Route::patch('/applications/{application}', 'ApplicationsController@patch');
  |
  */
 
-// Route::middleware('auth:api')->put('/primary-character/{user}', 'Account\CharacterSelectController@setPrimaryCharacter');
+// Route::put('/primary-character/{user}', 'Account\CharacterSelectController@setPrimaryCharacter');
 
 /*
  |--------------------------------------------------------------------------
@@ -60,20 +60,17 @@ Route::patch('/applications/{application}', 'ApplicationsController@patch');
  |--------------------------------------------------------------------------
  */
 
-Route::get('/guild-bank/bankers', function () {
-    return DB::table('bankers')->select('id', 'name')
-                        ->orderBy('order')
-                        ->get();
-})->middleware('cache.headers:etag');
+Route::get('/guild-bank/bankers', 'GuildBank\BankersController@getBankers')
+    ->middleware(['can:view-bankers', 'cache.headers:etag']);
 
 Route::put('/guild-bank/bankers', 'GuildBank\BankersController@updateBankers')
-            ->middleware('can:update-stock-data');
+    ->middleware('can:update-stock-data');
 
 Route::get('/guild-bank/stock', 'GuildBank\StockController@getStock')
-            ->middleware('cache.headers:etag');
+    ->middleware('cache.headers:etag');
 
 Route::post('/guild-bank/stock/update', 'GuildBank\StockController@updateStock')
-            ->middleware('can:update-stock-data');
+    ->middleware('can:update-stock-data');
 
 /*
  |--------------------------------------------------------------------------
@@ -117,9 +114,7 @@ Route::delete('/news/{news_item}', function (App\Models\NewsItem $news_item) {
  |--------------------------------------------------------------------------
  */
 
-Route::middleware('auth:api')->group(function () {
-    Route::get('/notifications/unread', 'NotificationsController@getUnreadNotifications');
-});
+Route::get('/notifications/unread', 'NotificationsController@getUnreadNotifications');
 
 /*
  |--------------------------------------------------------------------------
@@ -131,17 +126,11 @@ Route::get('/ranks', 'RanksController@get');
 
 Route::post('/ranks/new', 'RanksController@create');
 
-Route::put('/ranks/{rank}', 'RanksController@update')->middleware([
-    'auth:api',
-    'can:update,rank',
-]);
+Route::put('/ranks/{rank}', 'RanksController@update')
+    ->middleware('can:update,rank');
 
-Route::delete('/ranks/{rank}', 'RanksController@delete')->middleware([
-    'auth:api',
-    'can:delete,rank',
-]);
+Route::delete('/ranks/{rank}', 'RanksController@delete')
+    ->middleware('can:delete,rank');
 
-Route::get('/ranks/{rank}/users', 'RanksController@users')->middleware([
-    'auth:api',
-    'can:seeUsers,rank',
-]);
+Route::get('/ranks/{rank}/users', 'RanksController@users')
+    ->middleware('can:seeUsers,rank');

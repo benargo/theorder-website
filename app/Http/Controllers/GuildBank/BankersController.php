@@ -8,6 +8,15 @@ use App\Http\Controllers\Controller;
 
 class BankersController extends Controller
 {
+    public function getBankers()
+    {
+        $results = DB::table('bankers')->select('id', 'name')
+                    ->orderBy('position')
+                    ->get();
+                    
+        return response($results);
+    }
+
     public function updateBankers(Request $request)
     {
         $validated_data = $request->validate([
@@ -15,6 +24,6 @@ class BankersController extends Controller
             'bankers.id' => 'required|unique:bankers,id',
             'bankers.name' => 'required|unique.bankers,name',
             'bankers.position' => 'required',
-        ])
+        ]);
     }
 }

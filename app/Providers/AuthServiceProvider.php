@@ -34,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
 
         // Guild bank/stock addon gates...
         Gate::define('update-stock-data', 'App\Policies\StockAddonPolicy@update');
+        Gate::define('view-bankers', 'App\Policies\StockAddonPolicy@viewBankers');
         Gate::define('withdraw-from-guild-bank', 'App\Policies\StockAddonPolicy@withdraw');
 
         Passport::routes();
