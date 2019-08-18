@@ -13,9 +13,9 @@ class BankersTableSeeder extends Seeder
     public function run()
     {
         DB::table('bankers')->insert([
-            ['name' => 'Theorder', 'order' => 0],
-            ['name' => 'Herbivore', 'order' => 1],
-            ['name' => 'Garment', 'order' => 2],
+            ['name' => 'Theorder', 'position' => 0],
+            ['name' => 'Herbivore', 'position' => 1],
+            ['name' => 'Garment', 'position' => 2],
         ]);
     }
 }

@@ -16,7 +16,7 @@ class CreateBankersTable extends Migration
         Schema::create('bankers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 12)->unique();
-            $table->unsignedInteger('order');
+            $table->unsignedInteger('position');
             $table->timestamps();
         });
 

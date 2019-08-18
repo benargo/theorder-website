@@ -38,9 +38,11 @@ class StockSchemaRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $decoded = json_decode($value);
+        if (is_array($value) === false) {
+            $value = json_decode($value);
+        }
 
-        $this->validator->validate($decoded, (new StockUpdateSchema)->decode());
+        $this->validator->validate($value, (new StockUpdateSchema)->decode());
 
         return $this->validator->isValid();
     }

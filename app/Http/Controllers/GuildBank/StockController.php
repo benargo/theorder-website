@@ -41,7 +41,17 @@ class StockController extends Controller
         ->groupBy(['banker_name', 'bag_number'])
         ->sortBy('slot_number');
 
-        return response()->json($stock);
+        $last_modified = DB::table('guild_bank_stock')
+                            ->select('updated_at')
+                            ->latest()
+                            ->first();
+
+        if ($last_modified) {
+            $last_modified = $last_modified->updated_at;
+        }
+
+        return response()->json($stock)
+                         ->header('Date', $last_modified);
     }
 
     public function updateStock(Request $request)
@@ -59,8 +69,8 @@ class StockController extends Controller
 
         // Decode the imported stock...
         try {
-            $stock = json_decode($validated_data['stock']);
-            $stock = collect($stock->entries);
+            $decoded = json_decode($validated_data['stock']);
+            $stock = collect($decoded->stock);
 
             // Loop over each of the stock entries...
             $models = $stock->mapWithKeys(function ($entry) use ($user) {
@@ -73,14 +83,14 @@ class StockController extends Controller
                 $model = Stock::updateOrCreate(
                     // Where...
                     [
-                        'banker_id' => $banker->id,
+                        'banker_id'   => $banker->id,
                         'bag_number'  => $entry->bag_number,
                         'slot_number' => $entry->slot_number,
                     ],
 
                     // Update/Create...
                     [
-                        'banker_name'        => $entry->banker_name,
+                        'banker_id'          => $banker->id,
                         'is_in_bags'         => $entry->is_in_bags,
                         'bag_number'         => $entry->bag_number,
                         'slot_number'        => $entry->slot_number,

@@ -2,6 +2,7 @@
 
 namespace App\Guild\Bank;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Banker extends Model
@@ -12,5 +13,10 @@ class Banker extends Model
     public function stock()
     {
         return $this->hasMany('App\Guild\Bank\Stock');
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = Str::studly($value);
     }
 }

@@ -61,12 +61,16 @@ Route::patch('/applications/{application}', 'ApplicationsController@patch');
  */
 
 Route::get('/guild-bank/bankers', function () {
-    return DB::table('bankers')->select('name')
+    return DB::table('bankers')->select('id', 'name')
                         ->orderBy('order')
                         ->get();
-});
+})->middleware('cache.headers:etag');
 
-Route::get('/guild-bank/stock', 'GuildBank\StockController@getStock');
+Route::put('/guild-bank/bankers', 'GuildBank\BankersController@updateBankers')
+            ->middleware('can:update-stock-data');
+
+Route::get('/guild-bank/stock', 'GuildBank\StockController@getStock')
+            ->middleware('cache.headers:etag');
 
 Route::post('/guild-bank/stock/update', 'GuildBank\StockController@updateStock')
             ->middleware('can:update-stock-data');

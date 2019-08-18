@@ -33,7 +33,7 @@ class Stock extends Model
      * @var array
      */
     protected $fillable = [
-        'banker_name',
+        'banker_id',
         'is_in_bags',
         'bag_number',
         'slot_number',

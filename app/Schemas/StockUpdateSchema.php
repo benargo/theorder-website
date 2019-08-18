@@ -15,7 +15,7 @@ class StockUpdateSchema
         	"description": "A Stock Update API Request",
         	"type": "object",
         	"properties": {
-        		"entries": {
+        		"stock": {
         			"type": "array",
         			"items": {
         				"type": "object",
@@ -75,7 +75,7 @@ class StockUpdateSchema
         			}
         		}
         	},
-        	"required": ["entries"]
+        	"required": ["stock"]
         }';
     }
 
