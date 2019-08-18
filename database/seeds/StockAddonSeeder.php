@@ -15,9 +15,9 @@ class StockAddonSeeder extends Seeder
     {
         DB::table('oauth_clients')->insert([
             'user_id'                   => 1922840,
-            'name'                      => 'OrderStock',
+            'name'                      => 'Stock Addon',
             'secret'                    => Str::random(40),
-            'redirect'                  => 'http://localhost:80080/oauth/authorise',
+            'redirect'                  => 'http://localhost:9000/',
             'personal_access_client'    => 0,
             'password_client'           => 0,
             'revoked'                   => 0,

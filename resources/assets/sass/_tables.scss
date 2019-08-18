@@ -1,10 +1,25 @@
-.table-active,
-.table-danger,
-.table-info,
-.table-light,
-.table-primary,
-.table-secondary,
-.table-success,
-.table-warning {
-    color: $table-color-conditional;
+.table {
+    & > tbody> tr> td,
+    & > tbody> tr> th,
+    & > tfoot> tr> td,
+    & > tfoot> tr> th,
+    & > thead> tr> td,
+    & > thead> tr> th {
+          vertical-align: middle;
+    }
+
+    .table-layout-fixed {
+        table-layout: fixed;
+    }
+
+    .table-active,
+    .table-danger,
+    .table-info,
+    .table-light,
+    .table-primary,
+    .table-secondary,
+    .table-success,
+    .table-warning {
+        color: $table-color-conditional;
+    }
 }

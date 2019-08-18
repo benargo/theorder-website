@@ -63,7 +63,10 @@ Route::patch('/applications/{application}', 'ApplicationsController@patch');
 Route::get('/guild-bank/bankers', 'GuildBank\BankersController@getBankers')
     ->middleware(['can:view-bankers', 'cache.headers:etag']);
 
-Route::put('/guild-bank/bankers', 'GuildBank\BankersController@updateBankers')
+Route::post('/guild-bank/bankers', 'GuildBank\BankersController@updateBankers')
+    ->middleware('can:update-stock-data');
+
+Route::delete('/guild-bank/bankers/{banker}', 'GuildBank\BankersController@deleteBanker')
     ->middleware('can:update-stock-data');
 
 Route::get('/guild-bank/stock', 'GuildBank\StockController@getStock')

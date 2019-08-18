@@ -9,14 +9,15 @@ require('./bootstrap')
 window.Vue = require('vue')
 
 import BootstrapVue from 'bootstrap-vue'
+import draggable from 'vuedraggable'
 import FlagIcon from 'vue-flag-icon'
 import Prism from 'prismjs'
 import VueApexCharts from 'vue-apexcharts'
 const VueInputMask = require('vue-inputmask').default
+window.kebabCase = require('dashify')
 window.marked = require('marked')
 window.moment = require('moment-timezone')
 window.str_slug = require('./str_slug').default
-window.kebabCase = require('dashify')
 
 /**
  * Second, import all of the Font Awesome libraries. There are thousands of
@@ -71,6 +72,7 @@ import {
     faChevronLeft as fasChevronLeft,
     faChevronRight as fasChevronRight,
     faClipboardList as fasClipboardList,
+    faCogs as fasCogs,
     faConstruction as fasConstruction,
     faFirstAid as fasFirstAid,
     faHome as fasHome,
@@ -80,12 +82,14 @@ import {
     faPencil as fasPencil,
     faSave as fasSave,
     faShield as fasShield,
+    faSort as fasSort,
     faSword as fasSword,
     faTimes as fasTimes,
     faTimesCircle as fasTimesCircle,
     faTrash as fasTrash,
     faUserCog as fasUserCog,
     faUserClock as fasUserClock,
+    faUserLock as fasUserLock,
     faUserPlus as fasUserPlus,
     faUsers as fasUsers,
     faUsersCog as fasUsersCog,
@@ -138,6 +142,7 @@ faLibrary.add(
     fasChevronLeft,
     fasChevronRight,
     fasClipboardList,
+    fasCogs,
     fasConstruction,
     fasFirstAid,
     fasHome,
@@ -147,12 +152,14 @@ faLibrary.add(
     fasPencil,
     fasSave,
     fasShield,
+    fasSort,
     fasSword,
     fasTimes,
     fasTimesCircle,
     fasTrash,
     fasUserCog,
     fasUserClock,
+    fasUserLock,
     fasUserPlus,
     fasUsers,
     fasUsersCog,
@@ -176,9 +183,11 @@ Vue.component('apex-chart', VueApexCharts)
 Vue.component('applications-manager', require('./components/ApplicationsManagerComponent.vue').default)
 Vue.component('character-select-button', require('./components/CharacterSelectButton.vue').default)
 Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)
+Vue.component('draggable', draggable)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('guild-bank-viewer', require('./components/GuildBankViewerComponent.vue').default)
 Vue.component('join-form', require('./components/NewApplicationComponent.vue').default)
+Vue.component('manage-bankers', require('./components/ManageBankersComponent.vue').default)
 Vue.component('new-rank', require('./components/NewRankComponent.vue').default)
 Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.vue').default)
 Vue.component('news-item-manager', require('./components/NewsItemManagerComponent.vue').default)

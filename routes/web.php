@@ -91,6 +91,10 @@ Route::group(
             return view('view_api_clients');
         });
 
+        Route::get('/guild-bank/bankers', function () {
+            return view('manage_bankers');
+        });
+
         Route::get('/news', function () {
             return view('manage_news_items');
         });
