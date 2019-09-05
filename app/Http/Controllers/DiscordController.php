@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rank;
 use RestCord\DiscordClient;
+use App\Discord\RolesRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Laravel\Socialite\Facades\Socialite;
 use GuzzleHttp\Exception\ClientException;
+use SocialiteProviders\Manager\OAuth2\User as DiscordUser;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Laravel\Socialite\Two\InvalidStateException;
 use GuzzleHttp\Command\Exception\CommandException;
 
@@ -23,24 +27,31 @@ class DiscordController extends Controller
 
     protected $access_token;
     protected $client;
+    protected $roles;
 
-    public function __construct()
+    public function __construct(DiscordClient $client, RolesRepository $roles)
     {
-        $this->client = new DiscordClient(['token' => config('discord.clients.guildbot.token')]);
+        $this->client = $client;
+        $this->roles  = $roles;
     }
 
     /**
      * Redirects the user to the Discord server.
      */
-    public function redirectToServer($channel = null)
+    public function main($channel = null)
     {
         // Store the channel in the session...
-        session(['return_url' => self::URL.$channel]);
+        session(['discord_redirect_url' => self::URL.$channel]);
 
         // If there is no Discord access token, redirect for authentication...
-        if (! $this->getAccessToken()) {
+        if ($this->getAccessToken() === false) {
             return $this->authenticate();
         }
+
+        // Add the user to the Discord guild and assign them the correct
+        // rank...
+        $discord_user = Socialite::driver('discord')->userFromToken($this->getAccessToken());
+        $this->addUserToGuild($discord_user, Auth::user());
 
         // Otherwise redirect to the Discord server...
         return redirect(self::URL.$channel);
@@ -51,7 +62,7 @@ class DiscordController extends Controller
      */
     public function linkAccount()
     {
-        session(['return_url' => url()->previous()]);
+        session(['discord_redirect_url' => url()->previous()]);
 
         // Redirect for authentication...
         return $this->authenticate();
@@ -79,13 +90,13 @@ class DiscordController extends Controller
     /**
      * Set the access token to the class and the session.
      *
-     * @param  string  $value
+     * @param  SocialiteProviders\Manager\OAuth2\User  $user
      * @return void
      */
-    protected function setAccessToken($value)
+    protected function setAccessToken(DiscordUser $user)
     {
-        $this->access_token = $value;
-        session(['discord_access_token' => $value]);
+        $this->access_token = $user->token;
+        session(['discord_access_token' => $this->access_token]);
     }
 
     /**
@@ -99,6 +110,58 @@ class DiscordController extends Controller
     }
 
     /**
+     * Add the user to the guild and assign the role.
+     *
+     * @param  SocialiteProviders\Manager\OAuth2\User     $discord_user
+     * @param  Illuminate\Contracts\Auth\Authenticatable  $user
+     * @return void
+     */
+    protected function addUserToGuild(DiscordUser $discord_user, Authenticatable $user = null)
+    {
+        try {
+            $this->client->guild->addGuildMember([
+                'guild.id'     => self::GUILD_ID,
+                'user.id'      => intval($discord_user->id),
+                'access_token' => $discord_user->token,
+            ]);
+
+            // Prune the user of roles that does not equivate to ranks...
+            $ranks = $this->roles->getRanks();
+
+            if ($user) {
+                $ranks->reject(function ($role) use ($user) {
+                    return ($role->name == $user->rank->title);
+                })->each(function ($role) use ($discord_user) {
+                    $this->client->guild->removeGuildMemberRoles([
+                        'guild.id' => self::GUILD_ID,
+                        'user.id'  => $discord_user->id,
+                        'role.id'  => $role->id,
+                    ]);
+                });
+
+                // Assign the user to their role...
+                $this->client->guild->addGuildMemberRole([
+                    'guild.id' => self::GUILD_ID,
+                    'user.id'  => intval($discord_user->id),
+                    'role.id'  => $this->roles->firstWhere('name', $user->rank->title),
+                ]);
+            }
+        }
+        catch (ClientException $e) {
+            // Do nothing here, because if the user is already assigned to the
+            // guild and has the correct role then we want the commands to fail
+            // softly.
+        }
+        catch (CommandException $e) {
+            // Do nothing here, because if the user is already assigned to the
+            // guild and has the correct role then we want the commands to fail
+            // softly.
+        }
+
+        dd($discord_user);
+    }
+
+    /**
      * Obtain the user information from Discord.
      */
     public function handleProviderCallback()
@@ -106,11 +169,9 @@ class DiscordController extends Controller
         try {
             $discord_user = Socialite::driver('discord')->user();
 
-            $this->setAccessToken($discord_user->token);
+            $this->setAccessToken($discord_user);
 
             if (Auth::check()) {
-                // The user is logged in...
-
                 $user = Auth::user();
 
                 if (empty($user->discord_user_id)) {
@@ -121,23 +182,25 @@ class DiscordController extends Controller
                     // TODO: Redirect to page requesting the user to confirm overwriting their saved Discord user ID...
                 }
 
-                $this->client->guild->addGuildMember([
-                    'guild.id' => self::GUILD_ID,
-                    'user.id' => intval($discord_user->id),
-                    'access_token' => $discord_user->token,
-                ]);
+                $this->addUserToGuild($discord_user, $user);
+            }
+            else {
+                // Add the user to the Discord guild but without the user...
+                $this->addUserToGuild($discord_user);
             }
         }
         catch (ClientException $e) {
             return $this->authenticate();
         }
         catch (CommandException $e) {
-            //
+            // Do nothing here, because if the user is already assigned to the
+            // guild and has the correct role then we want the commands to fail
+            // softly.
         }
         catch (InvalidStateException $e) {
-            return abort(500);
+            return $this->authenticate();
         }
 
-        return redirect(session('return_url', self::URL));
+        return redirect(session('discord_redirect_url', self::URL));
     }
 }

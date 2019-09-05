@@ -50,9 +50,9 @@ Route::get('/join', 'ApplicationsController@showJoinPage')
  |--------------------------------------------------------------------------
  */
 
-Route::get('/discord', 'DiscordController@redirectToServer');
+Route::get('/discord', 'DiscordController@main');
 
-Route::get('/discord/channels/{channel}', 'DiscordController@redirectToServer')
+Route::get('/discord/channels/{channel}', 'DiscordController@main')
     ->name('discord-channel');
 
 Route::get('/discord/link', 'DiscordController@linkAccount');

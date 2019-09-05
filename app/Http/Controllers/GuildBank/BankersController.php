@@ -24,7 +24,7 @@ class BankersController extends Controller
 
         $results = Banker::select($select)->orderBy($order_by)->get();
 
-        return response($results);
+        return response()->json(['bankers' => $results]);
     }
 
     public function updateBankers(Request $request)

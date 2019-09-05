@@ -11,8 +11,6 @@ use App\Blizzard\Warcraft\Facades\Classes;
 
 class Application extends Model
 {
-    use Notifiable;
-
     /**
      * The attributes that should be mutated to dates.
      *
@@ -58,11 +56,6 @@ class Application extends Model
     public static function getAllowedStates()
     {
         return static::$allowed_states;
-    }
-
-    public function routeNotificationForDiscord()
-    {
-        return config('discord.channels.recruitment');
     }
 
     public function getClassAttribute()

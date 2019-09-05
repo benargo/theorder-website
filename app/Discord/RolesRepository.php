@@ -2,6 +2,8 @@
 
 namespace App\Discord;
 
+use App\Models\Rank;
+use Illuminate\Support\Arr;
 use RestCord\DiscordClient;
 use Illuminate\Support\Facades\Cache;
 
@@ -41,6 +43,18 @@ class RolesRepository
     public function getRoles()
     {
         return collect($this->roles);
+    }
+
+    public function getRanks()
+    {
+        // Load the ranks from the database...
+        $ranks = Rank::all();
+
+        dd($roles);
+
+        $roles = Arr::where($this->roles, function ($value, $key) use ($ranks) {
+            return ($value);
+        });
     }
 
     public function __call($method, $args)
