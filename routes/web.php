@@ -41,8 +41,12 @@ Route::get('/account/character-select', function () {
  |--------------------------------------------------------------------------
  */
 
-Route::get('/join', 'ApplicationsController@showJoinPage')
-    ->middleware('auth');
+// Route::get('/join', 'ApplicationsController@showJoinPage')
+//     ->middleware('auth');
+
+Route::get('/join', function () {
+    return abort(504);
+});
 
 /*
  |--------------------------------------------------------------------------

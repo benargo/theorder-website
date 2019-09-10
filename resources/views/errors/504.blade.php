@@ -1,6 +1,6 @@
 @extends('errors::illustrated-layout')
 
-@section('code', '503')
+@section('code', '504')
 @section('title', __('Service Unavailable'))
 
 @section('image')
@@ -8,4 +8,4 @@
     </div>
 @endsection
 
-@section('message', __($exception->getMessage() ?: 'Sorry, but Blizzard\'s services are unavailable so we\'re unable to accept new applicants at this time.));
+@section('message', 'Sorry, but due to technical difficulties with Blizzard\'s technical data we are currently not able to accept new applications.')
