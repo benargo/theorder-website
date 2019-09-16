@@ -33,6 +33,9 @@ class Service
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->blizzard_client->getAccessToken(),
             ],
+            'proxy' => [
+                'https' => 'tcp://52.166.58.138:3128',
+            ],
         ]);
 
         $options = $this->generateQueryOptions($options);
