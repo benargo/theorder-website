@@ -16,6 +16,7 @@ use NotificationChannels\Discord\DiscordMessage;
 
 class ApplicationReceived extends Notification
 {
+    protected $application;
     protected $classes;
     protected $races;
 
@@ -24,10 +25,11 @@ class ApplicationReceived extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Application $application)
     {
-        $this->classes = App::make(Classes::class);
-        $this->races   = App::make(Races::class);
+        $this->application = $application;
+        $this->classes     = App::make(Classes::class);
+        $this->races       = App::make(Races::class);
     }
 
     /**
@@ -38,7 +40,10 @@ class ApplicationReceived extends Notification
      */
     public function via($notifiable)
     {
-        return [DiscordChannel::class, 'database'];
+        return [
+            'database',
+            DiscordChannel::class,
+        ];
     }
 
     /**

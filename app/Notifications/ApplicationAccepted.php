@@ -29,7 +29,15 @@ class ApplicationAccepted extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return [
+            'database',
+            DiscordChannel::class,
+        ];
+    }
+
+    public function toDiscord()
+    {
+
     }
 
     /**
