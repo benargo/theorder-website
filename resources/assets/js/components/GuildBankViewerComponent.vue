@@ -1,7 +1,29 @@
 <template>
 <div class="container my-6">
-    <form id="formFilters">
-        <div class="row my-3">
+
+    <!-- Step 1: Action  -->
+    <section id="bankAction" class="my-6">
+        <p class="lead mb-4">Welcome to The Order's guild bank. How can we serve you today?</p>
+        <div class="row">
+            <div class="col btn-group btn-group-toggle">
+                <label class="btn btn-outline-primary btn-lg w-50 py-5" id="btnStepOneSearch" for="inputStepOneSearch">
+                    <input type="radio" name="stepOne" v-model="progress.stepOne" id="inputStepOneSearch" value="search">
+                    I'm looking for an item...
+                </label>
+                <label class="btn btn-outline-primary btn-lg w-50 py-5" id="btnStepOneDonate" for="inputStepOneDonate">
+                    <input type="radio" name="stepOne" v-model="progress.stepOne" id="inputStepOneDonate" value="donate">
+                    I want to donate items...
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <section id="bankDonate" class="my-6" v-if="progress.stepOne == 'donate'">
+        <p class="lead mb-4">Since guild banks weren't an official thing until The Burning Crusade&trade;, we have to do things the Classic way. The guild bank is spread over nine different characters on a separate WoW account owned and operated by the Inner Circle.</p>
+    </section>
+
+    <form id="formFilters" class="my-6" v-if="progress.stepOne == 'search'">
+        <div class="row mb-3">
             <div class="col">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -93,6 +115,10 @@ export default {
                 3: 'rare',
                 4: 'epic',
                 5: 'legendary',
+            },
+            progress: {
+                stepOne: null,
+                stepTwo: null,
             },
         }
     },
