@@ -13,7 +13,7 @@
             <p class="lead">The Order is always looking for talented individuals, over the age of 18, with the aptitude for fun and adventure. Applications are simple and straightforward, all you need to do is fill out the details below and one of the Inner Circle will be in touch.</p>
             <join-form
                 :classes="{{ $classes->toJson() }}"
-                discord-url="{{ action('DiscordController@redirectToServer', ['channel' => 552893734266863617]) }}"
+                discord-url="{{ action('DiscordController@main', ['channel' => 552893734266863617]) }}"
                 :races="{{ $races->toJson() }}"
                 cannot-apply-again-until-date="{{ $application ? $application->canApplyAgainWhen()->format('jS F Y') : '{date}' }}"
                 :lang="{
