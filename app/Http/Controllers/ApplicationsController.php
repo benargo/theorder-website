@@ -11,6 +11,7 @@ use Illuminate\Validation\Rule;
 use App\Blizzard\Warcraft\Races;
 use App\Blizzard\Warcraft\Classes;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,8 @@ use App\Http\Controllers\Controller;
 use App\Notifications\ApplicationAccepted;
 use App\Notifications\ApplicationReceived;
 use App\Notifications\ApplicationDeclined;
+use App\Discord\Channels\RecruitmentChannel;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ApplicationsController extends Controller
@@ -263,7 +266,7 @@ class ApplicationsController extends Controller
 
     protected function notifyDiscord(ApplicationModel $application)
     {
-        $application->notify(new ApplicationReceived);
+        Notification::send([App::make(RecruitmentChannel::class)], new ApplicationReceived($application));
     }
 
     public function patch(ApplicationModel $application, Request $request)
@@ -299,7 +302,7 @@ class ApplicationsController extends Controller
 
         $application->declined_at = Carbon::now();
         $application->save();
-        
+
         $application->user->notify(new ApplicationDeclined($application));
 
         return response(null, 204);

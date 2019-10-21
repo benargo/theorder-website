@@ -40,30 +40,27 @@ class ApplicationReceived extends Notification
      */
     public function via($notifiable)
     {
-        return [
-            'database',
-            DiscordChannel::class,
-        ];
+        return [DiscordChannel::class];
     }
 
     /**
      * Get the Discord representation of the notification.
      *
-     * @param  App\Guild\Application  $notifiable
+     * @param  mixed  $notifiable
      * @return \NotificationChannels\Discord\DiscordMessage
      */
-    public function toDiscord(Application $notifiable)
+    public function toDiscord($notifiable)
     {
         $url = url('inner-circle/applications?status=pending');
 
         return DiscordMessage::create(
-            "Hey chaps! {$notifiable->character_name} just applied to join The Order. If someone could review the application please?\n\n{$url}",
+            "Hey chaps! {$this->application->character_name} just applied to join The Order. If someone could review the application please?\n\n{$url}",
             [
                 'title' => 'Guild Applications',
                 'type' => 'rich',
-                'description' => "{$notifiable->character_name} has applied to join The Order.",
+                'description' => "{$this->application->character_name} has applied to join The Order.",
                 'url' => $url,
-                'timestamp' => $notifiable->created_at->toIso8601String(),
+                'timestamp' => $this->application->created_at->toIso8601String(),
                 'color' => hexdec('f8b700'),
                 'thumbnail' => [
                     'url' => asset('images/guild_emblem.png'),
@@ -71,21 +68,21 @@ class ApplicationReceived extends Notification
                 'fields' => [
                     [
                         'name'  => 'Character name',
-                        'value' => $notifiable->character_name,
+                        'value' => $this->application->character_name,
                     ],
                     [
                         'name'   => 'Race',
-                        'value'  => $this->races->getRace($notifiable->race_id)->name,
+                        'value'  => $this->races->getRace($this->application->race_id)->name,
                         'inline' => true,
                     ],
                     [
                         'name'   => 'Class',
-                        'value'  => $this->classes->getClass($notifiable->class_id)->name,
+                        'value'  => $this->classes->getClass($this->application->class_id)->name,
                         'inline' => true,
                     ],
                     [
                         'name'  => 'Role',
-                        'value' => ucfirst($notifiable->role),
+                        'value' => ucfirst($this->application->role),
                     ],
                 ],
             ]
