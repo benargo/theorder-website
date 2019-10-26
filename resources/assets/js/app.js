@@ -77,6 +77,7 @@ import {
     faFirstAid as fasFirstAid,
     faHome as fasHome,
     faLayerPlus as fasLayerPlus,
+    faMusicAlt as fasMusicAlt,
     faPaperPlane as fasPaperPlane,
     faPenFancy as fasPenFancy,
     faPencil as fasPencil,
@@ -147,6 +148,7 @@ faLibrary.add(
     fasFirstAid,
     fasHome,
     fasLayerPlus,
+    fasMusicAlt,
     fasPaperPlane,
     fasPenFancy,
     fasPencil,
@@ -194,6 +196,7 @@ Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.
 Vue.component('news-item-manager', require('./components/NewsItemManagerComponent.vue').default)
 Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue').default)
 Vue.component('ranks-manager', require('./components/RanksManagerComponent.vue').default)
+Vue.component('wow-icon', require('./components/WoWIconComponent.vue').default)
 
 // Laravel Passport clients...
 Vue.component(
