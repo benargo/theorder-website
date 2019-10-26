@@ -22,7 +22,7 @@
         <p class="lead mb-4">
             Since guild banks weren't an official thing until The Burning Crusade&trade;, we have to do things the Classic way. The guild bank is spread over nine different characters on a separate WoW account owned and operated by the Inner Circle.
         </p>
-        <p class="lead mb-4">s
+        <p class="lead mb-4">
             Below you will find the list of bank characters, so you know where to send each item.
         </p>
 
@@ -30,7 +30,7 @@
             <li class="list-group-item">
                 <b-media>
                     <template v-slot:aside>
-                        <img :src="getIconUrl('achievement_character_dwarf_female')" width="60" alt="achievement_character_dwarf_female" />
+                        <wow-icon name="achievement_character_dwarf_female" width="60"></wow-icon>
                     </template>
 
                     <h5 class="mt-0">Theorder</h5>
@@ -43,7 +43,7 @@
             <li class="list-group-item">
                 <b-media>
                     <template v-slot:aside>
-                        <img :src="getIconUrl('trade_alchemy')" width="60" alt="trade_alchemy" />
+                        <wow-icon name="trade_alchemy" width="60"></wow-icon>
                     </template>
 
                     <h5 class="mt-0">Bezoar</h5>
@@ -90,7 +90,7 @@
             <li class="list-group-item">
                 <b-media>
                     <template v-slot:aside>
-                        <img :src="getIconUrl('inv_fabric_purplefire_01')" alt="inv_fabric_purplefire_01" width="60" />
+                        <wow-icon name="inv_fabric_purplefire_01" width="60"></wow-icon>
                     </template>
 
                     <h5 class="mt-0">Garment</h5>
@@ -133,7 +133,7 @@
             <li class="list-group-item">
                 <b-media>
                     <template v-slot:aside>
-                        <img :src="getIconUrl('inv_misc_flower_02')" width="60" alt="inv_misc_flower_02" />
+                        <wow-icon name="inv_misc_flower_02" width="60"></wow-icon>
                     </template>
 
                     <h5 class="mt-0">Herbivore</h5>
@@ -172,7 +172,7 @@
             <li class="list-group-item">
                 <b-media>
                     <template v-slot:aside>
-                        <img :src="getIconUrl('inv_misc_food_15')" width="60" alt="inv_misc_food_15" />
+                        <wow-icon name="inv_misc_food_15" width="60"></wow-icon>
                     </template>
 
                     <h5 class="mt-0">Mealonwheels</h5>
@@ -207,7 +207,7 @@
             <li class="list-group-item">
                 <b-media>
                     <template v-slot:aside>
-                        <img :src="getIconUrl('inv_ingot_06')" width="60" alt="inv_ingot_06')" />
+                        <wow-icon name="inv_ingot_06" width="60"></wow-icon>
                     </template>
 
                     <h5 class="mt-0">Mithril</h5>
@@ -263,7 +263,7 @@
             <li class="list-group-item">
                 <b-media>
                     <template v-slot:aside>
-                        <img :src="getIconUrl('inv_enchant_shardbrilliantlarge')" width="60" alt="inv_enchant_shardbrilliantlarge" />
+                        <wow-icon name="inv_enchant_shardbrilliantlarge" width="60"></wow-icon>
                     </template>
 
                     <h5 class="mt-0">Shards</h5>
@@ -306,7 +306,7 @@
             <li class="list-group-item">
                 <b-media>
                     <template v-slot:aside>
-                        <img :src="getIconUrl('inv_misc_armorkit_17')" width="60" alt="inv_misc_armorkit_17" />
+                        <wow-icon name="inv_misc_armorkit_17" width="60"></wow-icon>
                     </template>
 
                     <h5 class="mt-0">Skinsaw</h5>
@@ -354,7 +354,7 @@
             <li class="list-group-item">
                 <b-media>
                     <template v-slot:aside>
-                        <img :src="getIconUrl('inv_scroll_03')" width="60" alt="inv_scroll_03" />
+                        <wow-icon name="inv_scroll_03" width="60"></wow-icon>
                     </template>
 
                     <h5 class="mt-0">Patterns</h5>
