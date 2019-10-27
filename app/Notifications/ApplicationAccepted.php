@@ -31,7 +31,7 @@ class ApplicationAccepted extends Notification
     {
         return [
             'database',
-            DiscordChannel::class,
+            // DiscordChannel::class,
         ];
     }
 
