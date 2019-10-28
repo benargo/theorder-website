@@ -116,8 +116,13 @@ Route::group(
  | Legal
  |--------------------------------------------------------------------------
  */
+
 Route::get('/privacy', function () {
     return view('privacy_policy');
+});
+
+Route::get('/battlenet', function () {
+    return view('battlenet_usage_information');
 });
 
 /*

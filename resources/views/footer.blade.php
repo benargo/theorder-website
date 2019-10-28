@@ -27,7 +27,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="{{ url('battlenet') }}" tabindex="-1" aria-disabled="true">
+                                <a class="nav-link" href="{{ url('battlenet') }}">
                                     <font-awesome-icon :icon="['fab', 'battle-net']" class="nav-icon"></font-awesome-icon>
                                     Battle.net API Usage
                                 </a>
