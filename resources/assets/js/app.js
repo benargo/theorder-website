@@ -11,6 +11,9 @@ window.Vue = require('vue')
 import BootstrapVue from 'bootstrap-vue'
 import draggable from 'vuedraggable'
 import FlagIcon from 'vue-flag-icon'
+import FullCalendar from '@fullcalendar/vue'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import listPlugin from '@fullcalendar/list'
 import Prism from 'prismjs'
 import VueApexCharts from 'vue-apexcharts'
 const VueInputMask = require('vue-inputmask').default
@@ -176,6 +179,9 @@ faLibrary.add(
 
 Vue.use(BootstrapVue)
 Vue.use(FlagIcon)
+Vue.use(FullCalendar)
+Vue.use(dayGridPlugin)
+Vue.use(listPlugin)
 Vue.use(VueApexCharts)
 Vue.use(VueInputMask)
 Vue.component('account-settings', require('./components/AccountSettingsComponent.vue').default)
