@@ -11,7 +11,7 @@
         </header>
         <div class="container py-6 text-light">
             <p class="lead">
-                This privacy policy will explain how The Order uses the personal data we collect from you when you use our website.
+                This privacy policy will explain how The Order uses the personal data we collect from you. While we need to be GDPR compliant, and take data protection seriously, please bear in mind that The Order is a World of Warcraft guild, not an organisation.
             </p>
 
             <h2>Topics:</h2>
