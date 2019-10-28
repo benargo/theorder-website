@@ -21,7 +21,7 @@
                                 </li>
                             @endif
                             <li class="nav-item">
-                                <a class="nav-link disabled" href="{{ url('privacy') }}" tabindex="-1" aria-disabled="true">
+                                <a class="nav-link" href="{{ url('privacy') }}">
                                     <font-awesome-icon :icon="['far', 'user-secret']" class="nav-icon"></font-awesome-icon>
                                     Privacy Policy
                                 </a>
