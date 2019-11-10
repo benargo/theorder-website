@@ -94,7 +94,7 @@ export default {
         getBankers: function () {
             axios.get('/api/guild-bank/bankers')
             .then(function (response) {
-                this.bankers = response.data
+                this.bankers = response.data.bankers
             }.bind(this))
             .catch(error => {
                 //
@@ -108,7 +108,7 @@ export default {
                 bankers: this.bankers,
             })
             .then(function (response) {
-                this.bankers = response.data
+                this.bankers = response.data.bankers
             }.bind(this))
             .catch(error => {
                 //
