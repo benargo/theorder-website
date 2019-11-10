@@ -58,6 +58,16 @@ class Application extends Model
         return static::$allowed_states;
     }
 
+    public function getCharacterName()
+    {
+        return ucfirst(strtolower($this->attributes['character_name']));
+    }
+
+    public function setCharacterName($value)
+    {
+        $this->attributes['character_name'] = ucfirst(strtolower($value));
+    }
+
     public function getClassAttribute()
     {
         if ($this->attributes['class_id']) {
