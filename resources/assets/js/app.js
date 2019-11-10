@@ -12,6 +12,7 @@ import BootstrapVue from 'bootstrap-vue'
 import draggable from 'vuedraggable'
 import FlagIcon from 'vue-flag-icon'
 import FullCalendar from '@fullcalendar/vue'
+import bootstrapPlugin from '@fullcalendar/bootstrap'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import listPlugin from '@fullcalendar/list'
 import Prism from 'prismjs'
@@ -225,7 +226,17 @@ const navbar = new Vue({
 })
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {
+        FullCalendar,
+    },
+    data: {
+        calendarPlugins: [
+            bootstrapPlugin,
+            dayGridPlugin,
+            listPlugin,
+        ],
+    }
 })
 
 const footer = new Vue({

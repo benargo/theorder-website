@@ -18,6 +18,7 @@
         "@fortawesome/pro-regular-svg-icons": "^5.11.2",
         "@fortawesome/pro-solid-svg-icons": "^5.11.2",
         "@fortawesome/vue-fontawesome": "^0.1.7",
+        "@fullcalendar/bootstrap": "^4.3.0",
         "@fullcalendar/core": "^4.3.1",
         "@fullcalendar/daygrid": "^4.3.0",
         "@fullcalendar/list": "^4.3.0",

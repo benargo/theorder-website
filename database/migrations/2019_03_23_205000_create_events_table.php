@@ -28,36 +28,8 @@ class CreateEventsTable extends Migration
                     ->onDelete('cascade');
         });
 
-        Schema::create('event_attendees', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('event_id');
-            $table->unsignedInteger('user_id');
-            $table->string('status');
-            $table->timestamps();
-
-            $table->foreign('event_id')
-                    ->references('id')->on('events')
-                    ->onDelete('cascade');
-
-            $table->foreign('user_id')
-                    ->references('id')->on('users')
-                    ->onDelete('cascade');
-        });
-
-        Schema::create('event_invitees', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('event_id');
-            $table->unsignedInteger('user_id');
-            $table->timestamps();
-
-            $table->foreign('event_id')
-                  ->references('id')->on('events')
-                  ->onDelete('cascade');
-
-            $table->foreign('user_id')
-                  ->references('id')->on('users')
-                  ->onDelete('cascade');
-        });
+        // The migration to create the 'event_attendees' and 'event_invitees'
+        // tables have been removed...
     }
 
     /**
