@@ -157,8 +157,6 @@ class DiscordController extends Controller
             // guild and has the correct role then we want the commands to fail
             // softly.
         }
-
-        dd($discord_user);
     }
 
     /**
