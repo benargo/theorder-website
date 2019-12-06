@@ -45,9 +45,58 @@
                     </div>
                 </div>
 
+                {{-- Recruitment --}}
+                <h2 class="mt-4">Recruitment</h2>
+                <div class="row my-2">
+                    <div class="col-12 col-lg-4">
+                        <a href="{{ url('inner-circle/applications?status=pending') }}" class="d-block border border-primary rounded my-2 py-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'user-plus']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                    View new applicants
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <a href="{{ url('inner-circle/applications') }}" class="d-block border border-primary rounded my-2 py-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'user-clock']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                    View all applicants
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {{-- TODO: Add route to load to Statistics tab --}}
+                    {{-- <div class="col-12 col-lg-4">
+                        <a href="{{ url('inner-circle/applications/statistics') }}" class="d-block border border-primary rounded my-2 py-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'chart-line']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                    View statistics
+                                </div>
+                            </div>
+                        </a>
+                    </div> --}}
+                </div>
+
                 {{-- News --}}
                 <h2 class="mt-4">News</h2>
-                <div class="row my-2">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <div class="alert alert-info" role="alert">
+                            The News feature has been deprecated. Please publish all announcements on <a href="{{ route('discord-channel', ['channel' => 479666941447897109]) }}" title="#announcements on Discord">Discord</a> instead.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
                     <div class="col-12 col-lg-4">
                         <a href="{{ url('inner-circle/news/create') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
@@ -75,14 +124,13 @@
                 </div>
 
                 {{-- Forum --}}
-                <h2 class="mt-4">
+                {{-- <h2 class="mt-4">
                     Forum
                     <small class="text-muted">(not yet implemented)</small>
                 </h2>
                 <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        {{-- <a href="{{ url('inner-circle/forum') }}" class="d-block border border-primary rounded my-2 py-4"> --}}
-                        <a href="javascript:void();" class="d-block border border-primary rounded my-2 py-4 disabled" tabindex="-1" role="button" aria-disabled="true">
+                        <a href="{{ url('inner-circle/forum') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'chalkboard']" class="fa-3x"></font-awesome-icon>
@@ -93,7 +141,7 @@
                             </div>
                         </a>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- Events --}}
                 <h2 class="mt-4">
@@ -132,7 +180,7 @@
                                     <font-awesome-icon :icon="['fas', 'bell']" class="fa-3x"></font-awesome-icon>
                                 </div>
                                 <div class="col-8 text-center v-align-center">
-                                    Sent a reminder to attendees
+                                    Send a reminder to attendees
                                 </div>
                             </div>
                         </a>
@@ -239,48 +287,6 @@
                             </div>
                         </a>
                     </div>
-                </div>
-
-                {{-- Applications --}}
-                <h2 class="mt-4">{{ __('controlpanel.applications') }}</h2>
-                <div class="row my-2">
-                    <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/applications?status=pending') }}" class="d-block border border-primary rounded my-2 py-4">
-                            <div class="row no-gutters">
-                                <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'user-plus']" class="fa-3x"></font-awesome-icon>
-                                </div>
-                                <div class="col-8 text-center v-align-center">
-                                    View new applicants
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/applications') }}" class="d-block border border-primary rounded my-2 py-4">
-                            <div class="row no-gutters">
-                                <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'user-clock']" class="fa-3x"></font-awesome-icon>
-                                </div>
-                                <div class="col-8 text-center v-align-center">
-                                    View all applicants
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    {{-- TODO: Add route to load to Statistics tab --}}
-                    {{-- <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/applications/statistics') }}" class="d-block border border-primary rounded my-2 py-4">
-                            <div class="row no-gutters">
-                                <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'chart-line']" class="fa-3x"></font-awesome-icon>
-                                </div>
-                                <div class="col-8 text-center v-align-center">
-                                    View statistics
-                                </div>
-                            </div>
-                        </a>
-                    </div> --}}
                 </div>
             </div>
         </div>
