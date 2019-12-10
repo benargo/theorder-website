@@ -137,30 +137,11 @@
             </div>
             <div class="row mt-3" v-if="last_page > 1">
                 <div class="col-12 text-center">
-                    <!-- Sizes: xs, sm -->
-                    <div class="d-md-none">
-                        <div class="row mb-3">
-                            <div class="col btn-group">
-                                <button class="btn btn-primary btn-lg" :class="(page == current_page ? 'active' : '')" :aria-pressed="(page == current_page)" @click="fetchItems(page)" v-for="page in last_page">{{ page }}</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col btn-group" role="group">
-                                <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(prev_page_url)" :disabled="(prev_page_url === null)">
-                                    &laquo; Previous
-                                </button>
-                                <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(next_page_url)" :disabled="(next_page_url === null)">
-                                    Next &raquo;
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Sizes: md, lg, xl -->
-                    <div class="btn-group d-none d-md-block" role="group">
+                    <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(prev_page_url)" :disabled="(prev_page_url === null)">
                             &laquo; Previous
                         </button>
-                        <button class="btn btn-primary btn-lg" :class="(page == current_page ? 'active' : '')" :aria-pressed="(page == current_page)" @click="fetchItems(page)" v-for="page in last_page">{{ page }}</button>
+                        <!-- <button class="btn btn-primary btn-lg" :class="(page == current_page ? 'active' : '')" :aria-pressed="(page == current_page)" @click="fetchItems(page)" v-for="page in last_page">{{ page }}</button> -->
                         <button type="button" class="btn btn-primary btn-lg btn-pagination" @click="fetchItems(next_page_url)" :disabled="(next_page_url === null)">
                             Next &raquo;
                         </button>

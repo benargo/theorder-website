@@ -1,11 +1,6 @@
 <template>
 <section id="NewApplicationComponent">
-    <div id="applicationAccepted" v-if="status === 'accepted'">
-        <div class="alert alert-success text-center" role="alert">
-            Your application was previously accepted. There’s honestly no point applying again.
-        </div>
-    </div>
-    <div id="applicationDeclined" v-else-if="status === 'declined'">
+    <div id="applicationDeclined" v-if="status === 'declined'">
         <div class="alert alert-danger text-center" role="alert">
             Your application was previously declined and you must wait until {{ cannotApplyAgainUntilDate }} before applying again.
         </div>
@@ -21,6 +16,11 @@
         </div>
     </div>
     <form class="needs-validation" id="formApplication" v-else>
+        <div id="applicationAccepted" v-if="status === 'accepted'">
+            <div class="alert alert-success text-center" role="alert">
+                Your application was previously accepted. Unless you previously left the guild, there’s little point applying again.
+            </div>
+        </div>
         <div class="form-row">
             <div class="form-group col">
                 <label for="inputCharacterName">Character Name</label>
