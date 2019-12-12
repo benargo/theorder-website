@@ -1,19 +1,20 @@
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
-// Bootstrap functions
-//
-// Load these in early as we need them when setting up the variables...
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/mixins';
-
 // Variables
-@import './variables';
+@import 'variables';
 
 // Bootstrap
 //
 // Load the remainder of the Bootstrap framework now...
 @import '~bootstrap/scss/bootstrap';
+
+// Post-Bootstrap
+//
+// These functions need to be run after Bootstrap has fully loaded...
+@each $color, $value in $browns {
+    @include bg-variant('bg-brown-#{$color}', $value);
+}
 
 // Full calendar
 //

@@ -19,10 +19,7 @@ $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
-$grays: () !default;
-// stylelint-disable-next-line scss/dollar-variable-default
-$grays: map-merge(
-  (
+$grays: (
     "100": $gray-100,
     "200": $gray-200,
     "300": $gray-300,
@@ -32,8 +29,6 @@ $grays: map-merge(
     "700": $gray-700,
     "800": $gray-800,
     "900": $gray-900
-  ),
-  $grays
 );
 
 // Brown colors
@@ -51,26 +46,17 @@ $brown-700: lighten($brown, 30%);
 $brown-800: lighten($brown, 20%);
 $brown-900: lighten($brown, 10%);
 
-$browns: () !default;
-// stylelint-disable-next-line scss/dollar-variable-default
-$browns: map-merge(
-    (
-        "100": $brown-100,
-        "200": $brown-200,
-        "300": $brown-300,
-        "400": $brown-400,
-        "500": $brown-500,
-        "600": $brown-600,
-        "700": $brown-700,
-        "800": $brown-800,
-        "900": $brown-900
-    ),
-    $browns
+$browns: (
+    "100": $brown-100,
+    "200": $brown-200,
+    "300": $brown-300,
+    "400": $brown-400,
+    "500": $brown-500,
+    "600": $brown-600,
+    "700": $brown-700,
+    "800": $brown-800,
+    "900": $brown-900
 );
-
-@each $color, $value in $browns {
-    @include bg-variant('bg-brown-#{$color}', $value);
-}
 
 // Primary colors
 //
@@ -86,10 +72,7 @@ $green:   #28a745 !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
-$colors: () !default;
-// stylelint-disable-next-line scss/dollar-variable-default
-$colors: map-merge(
-  (
+$colors: (
     "blue":       $blue,
     "brown":      $brown,
     "indigo":     $indigo,
@@ -104,8 +87,6 @@ $colors: map-merge(
     "white":      $white,
     "gray":       $gray-600,
     "gray-dark":  $gray-800
-  ),
-  $colors
 );
 
 // Theme colors
@@ -114,16 +95,11 @@ $colors: map-merge(
 $primary: #f8b700;
 $secondary: $brown-800;
 
-$theme-colors: () !default;
-// stylelint-disable-next-line scss/dollar-variable-default
-$theme-colors: map-merge(
-    (
-        "primary":    $primary,
-        "secondary":  $secondary,
-        "navigation": $gray-200,
-        "brown":      $brown
-    ),
-    $theme-colors
+$theme-colors: (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "navigation": $gray-200,
+    "brown":      $brown
 );
 
 // Class colors
@@ -142,25 +118,19 @@ $shaman:      #0070de;
 $warlock:     #8787ed;
 $warrior:     #c79c6e;
 
-$class-colors: () !default;
-
-// stylelint-disable-next-line scss/dollar-variable-default
-$class-colors: map-merge(
-    (
-        "deathknight": $deathknight,
-        "demonhunter": $demonhunter,
-        "druid":       $druid,
-        "hunter":      $hunter,
-        "mage":        $mage,
-        "monk":        $monk,
-        "paladin":     $paladin,
-        "priest":      $priest,
-        "rogue":       $rogue,
-        "shaman":      $shaman,
-        "warlock":     $warlock,
-        "warrior":     $warrior,
-    ),
-    $class-colors
+$class-colors: (
+    "deathknight": $deathknight,
+    "demonhunter": $demonhunter,
+    "druid":       $druid,
+    "hunter":      $hunter,
+    "mage":        $mage,
+    "monk":        $monk,
+    "paladin":     $paladin,
+    "priest":      $priest,
+    "rogue":       $rogue,
+    "shaman":      $shaman,
+    "warlock":     $warlock,
+    "warrior":     $warrior,
 );
 
 // Merge class colours into theme colours.
@@ -182,22 +152,16 @@ $artifact:  #e6cc80;
 $heirloom:  #00ccff;
 $wowtoken:  #00ccff;
 
-$rarity-colors: () !default;
-
-// stylelint-disable-next-line scss/dollar-variable-default
-$rarity-colors: map-merge(
-    (
-        "poor":      $poor,
-        "common":    $common,
-        "uncommon":  $uncommon,
-        "rare":      $rare,
-        "epic":      $epic,
-        "legendary": $legendary,
-        "artifact":  $artifact,
-        "heirloom":  $heirloom,
-        "wowtoken":  $wowtoken,
-    ),
-    $rarity-colors
+$rarity-colors: (
+    "poor":      $poor,
+    "common":    $common,
+    "uncommon":  $uncommon,
+    "rare":      $rare,
+    "epic":      $epic,
+    "legendary": $legendary,
+    "artifact":  $artifact,
+    "heirloom":  $heirloom,
+    "wowtoken":  $wowtoken,
 );
 
 // Merge item rarity colours into theme colours.
