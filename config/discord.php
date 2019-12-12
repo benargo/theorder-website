@@ -28,11 +28,12 @@ return [
             'key' => env('DISCORD_AUTOKIN_KEY'),
             'secret' => env('DISCORD_AUTOKIN_SECRET'),
             'token' => env('DISCORD_AUTOKIN_TOKEN'),
-        ]
+        ],
     ],
 
     'channels' => [
-        'notices'     => env('DISCORD_CHANNEL_NOTICES', 479666941447897109),
+        'notices' => env('DISCORD_CHANNEL_NOTICES', 479666941447897109),
+        'raids' => env('DISCORD_CHANNEL_RAIDS', 492290479111667722),
         'recruitment' => env('DISCORD_CHANNEL_RECRUITMENT', 484387377956257804),
     ],
 
