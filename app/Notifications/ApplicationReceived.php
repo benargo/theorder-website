@@ -9,10 +9,9 @@ use App\Blizzard\Warcraft\Classes;
 use Illuminate\Support\Facades\App;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use NotificationChannels\Discord\DiscordChannel;
 use NotificationChannels\Discord\DiscordMessage;
-
+use Illuminate\Notifications\Messages\MailMessage;
 
 class ApplicationReceived extends Notification
 {
