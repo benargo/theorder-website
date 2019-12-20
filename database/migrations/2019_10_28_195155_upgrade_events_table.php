@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventsTable extends Migration
+class UpgradeEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
+            $table->boolean('is_all_day')->after('ends_at')->default(false);
             $table->renameColumn('starts_at', 'start');
             $table->renameColumn('ends_at', 'end');
-            $table->boolean('is_all_day')->after('end')->default(false);
         });
 
         // Drop the 'event_attendees' and 'event_invitees' tables...
