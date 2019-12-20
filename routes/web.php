@@ -12,7 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    $recruiting_classes = DB::table('wow_classes')
+        ->select('name', 'is_recruiting')
+        ->where('is_recruiting', true)
+        ->orderBy('name', 'asc')
+        ->get();
+
+    return view('home', [
+        'recruiting_classes' => $recruiting_classes,
+    ]);
 })->name('homepage');
 
 /*

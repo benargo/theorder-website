@@ -33,8 +33,8 @@
                             <h2>Who We Are</h2>
                             <p>The Order is an exclusive and secretive World of Warcraft Classic dungeon and leveling guild. We believe in helping and supporting our members, maintaining an active community and, most importantly, having fun.</p>
                             <p>We started out life on the <a href="https://elysium-project.org/" title="Elysium" rel="nofollow">Elysium project</a>, but with the official Classic release just around the corner we look forward to welcoming new and returning adventurers to our new home on Pyrewood Village.</p>
-                            <p>Does what we do interest you? Are you thinking of joining? Great! <a href="{{ url('join') }}" title="Join the Order">Applications are always open</a> for those with exceptional talent.</p>
-                            {{-- <p class="class-icons">
+                            <p>Does what we do interest you? Are you thinking of joining? Great! We are currently recruiting the following classes:</p>
+                            <p class="class-icons">
                                 @foreach($recruiting_classes as $class)
                                     <img src="{{ asset('images/classicons.png') }}"
                                         alt="{{ $class->name }} Class icon"
@@ -44,7 +44,13 @@
                                         data-placement="bottom"
                                         title="{{ ucwords(trans_choice('warcraft/classes.'.$class->name, 1)) }}">
                                 @endforeach
-                            </p> --}}
+                            </p>
+                            <p>Social applications are always welcome, regardless of your class.</p>
+                            <p>
+                                <a href="{{ url('/join') }}" class="btn btn-primary btn-lg" role="button">
+                                    Apply Now!
+                                </a>
+                        </p>
                         </article>
                     </div>
                 </div>
