@@ -22,21 +22,21 @@
     </a>
 </li> --}}
 
-{{-- Events --}}
+{{-- Raiding --}}
 <li class="nav-item">
-    <a class="nav-link disabled" href="{{ url('events') }}" tabindex="-1" aria-disabled="true">
+    <a class="nav-link disabled" href="{{ url('raids') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'calendar-alt']" class="nav-icon"></font-awesome-icon>
-        Events
+        Raiding
     </a>
 </li>
 
 {{-- Teams --}}
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a class="nav-link disabled" href="{{ url('teams') }}" tabindex="-1" aria-disabled="true">
         <font-awesome-icon :icon="['far', 'helmet-battle']" class="nav-icon"></font-awesome-icon>
         Teams
     </a>
-</li>
+</li> --}}
 
 {{-- Guild Bank --}}
 <li class="nav-item">
