@@ -112,11 +112,11 @@ Route::group(
         });
 
         Route::get('/raids/schedule', function () {
-            return view('manage_raid_schedule');
+            return view('controlpanel/manage_raid_schedule');
         });
 
         Route::get('/raids/signups', function () {
-            return view('manage_raids');
+            return view('controlpanel/manage_raids');
         })->name('manage-raids');
 
         Route::get('/ranks', 'RanksController@manage');
