@@ -65,16 +65,6 @@ Route::get('/oauth2/discord', 'DiscordController@handleProviderCallback');
 
 /*
  |--------------------------------------------------------------------------
- | Events
- |--------------------------------------------------------------------------
- */
-
-Route::get('/events', function () {
-    return view('');
-});
-
-/*
- |--------------------------------------------------------------------------
  | Guild Bank
  |--------------------------------------------------------------------------
  */
@@ -117,6 +107,18 @@ Route::group(
 
         Route::get('/news/editor/{news_item}', 'NewsItemController@edit');
 
+        Route::get('/raids', function () {
+            return redirect()->route('manage-raids');
+        });
+
+        Route::get('/raids/schedule', function () {
+            return view('manage_raid_schedule');
+        });
+
+        Route::get('/raids/signups', function () {
+            return view('manage_raids');
+        })->name('manage-raids');
+
         Route::get('/ranks', 'RanksController@manage');
     }
 );
@@ -158,6 +160,16 @@ Route::get('/logout', 'Auth\LogoutController@handleLogout');
 Route::get('/marketplace', 'MarketplaceController@getIndex');
 
 Route::get('/marketplace/{action}');
+
+/*
+ |--------------------------------------------------------------------------
+ | Raiding
+ |--------------------------------------------------------------------------
+ */
+
+Route::get('/raids', function () {
+    return view('');
+});
 
 /*
  |--------------------------------------------------------------------------

@@ -17,9 +17,12 @@
             <div class="container">
 
                 {{-- Roster --}}
-                <h2>Roster</h2>
+                <h2>
+                    Roster
+                    <small class="text-muted">(coming soon&trade;)</small>
+                </h2>
                 <div class="row my-2">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/members') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -31,7 +34,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/ranks') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -48,7 +51,7 @@
                 {{-- Recruitment --}}
                 <h2 class="mt-4">Recruitment</h2>
                 <div class="row my-2">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/applications?status=pending') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -60,7 +63,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/applications') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -73,7 +76,7 @@
                         </a>
                     </div>
                     {{-- TODO: Add route to load to Statistics tab --}}
-                    {{-- <div class="col-12 col-lg-4">
+                    {{-- <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/applications/statistics') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -88,16 +91,19 @@
                 </div>
 
                 {{-- News --}}
-                <h2 class="mt-4">News</h2>
+                <h2 class="mt-4">
+                    News
+                    <small class="text-muted">(deprecated)</small>
+                </h2>
                 <div class="row">
-                    <div class="col-12 col-lg-8">
-                        <div class="alert alert-info" role="alert">
+                    <div class="col-12">
+                        <div class="alert alert-secondary" role="alert">
                             The News feature has been deprecated. Please publish all announcements on <a href="{{ route('discord-channel', ['channel' => 479666941447897109]) }}" title="#announcements on Discord">Discord</a> instead.
                         </div>
                     </div>
                 </div>
                 <div class="row mb-2">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/news/create') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -109,7 +115,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/news') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -129,7 +135,7 @@
                     <small class="text-muted">(not yet implemented)</small>
                 </h2>
                 <div class="row my-2">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/forum') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -143,57 +149,57 @@
                     </div>
                 </div> --}}
 
-                {{-- Events --}}
+                {{-- Raiding --}}
                 <h2 class="mt-4">
-                    Events
-                    <small class="text-muted">(not yet implemented)</small>
+                    Raiding
+                    <small class="text-muted">(coming soon&trade;)</small>
                 </h2>
                 <div class="row my-2">
-                    <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/events/new') }}" class="d-block border border-primary rounded my-2 py-4">
+                    <div class="col-12 col-lg-6">
+                        <a href="{{ url('inner-circle/raids/schedule') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'calendar-plus']" class="fa-3x"></font-awesome-icon>
+                                    <font-awesome-icon :icon="['fas', 'calendar-day']" class="fa-3x"></font-awesome-icon>
                                 </div>
                                 <div class="col-8 text-center v-align-center">
-                                    Create a new event
+                                    Manage Raid Schedule
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/events?action=edit') }}" class="d-block border border-primary rounded my-2 py-4">
+                    <div class="col-12 col-lg-6">
+                        <a href="{{ url('inner-circle/raids/signups') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'calendar-edit']" class="fa-3x"></font-awesome-icon>
+                                    <font-awesome-icon :icon="['fas', 'users-cog']" class="fa-3x"></font-awesome-icon>
                                 </div>
                                 <div class="col-8 text-center v-align-center">
-                                    Edit an event
+                                    Manage Signups
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/events?action=remind') }}" class="d-block border border-primary rounded my-2 py-4">
+                    {{-- <div class="col-12 col-lg-6">
+                        <a href="{{ url('inner-circle/dkp') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'bell']" class="fa-3x"></font-awesome-icon>
+                                    <font-awesome-icon :icon="['fas', 'dragon']" class="fa-3x"></font-awesome-icon>
                                 </div>
                                 <div class="col-8 text-center v-align-center">
-                                    Send a reminder to attendees
+                                    Manage DKP
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
 
                 {{-- Teams --}}
-                <h2 class="mt-4">
+                {{-- <h2 class="mt-4">
                     Teams
                     <small class="text-muted">(not yet implemented)</small>
                 </h2>
                 <div class="row my-2">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/teams/new') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -205,7 +211,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/teams?action=edit') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -217,7 +223,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/teams?action=message') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -229,12 +235,12 @@
                             </div>
                         </a>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- Guild Bank --}}
                 <h2 class="mt-4">Guild bank</h2>
                 <div class="row my-2">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/guild-bank/clients') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -246,7 +252,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/guild-bank/bankers') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -261,9 +267,12 @@
                 </div>
 
                 {{-- Marketplace --}}
-                <h2 class="mt-4">Marketplace</h2>
+                <h2 class="mt-4">
+                    Marketplace
+                    <small class="text-muted">(coming soon&trade;)</small>
+                </h2>
                 <div class="row my-2">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/marketplace/transactions') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
@@ -275,7 +284,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/marketplace/stats') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
