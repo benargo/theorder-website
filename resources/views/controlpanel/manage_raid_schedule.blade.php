@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="py-6 text-light">
-            
+            <raid-schedular :instances="{{ $instances }}"></raid-schedular>
         </div>
     </div>
 @endsection

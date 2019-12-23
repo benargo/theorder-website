@@ -5,6 +5,9 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Discord\Channels\RecruitmentChannel;
+use NotificationChannels\Discord\DiscordChannel;
+use NotificationChannels\Discord\DiscordMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class ApplicationAccepted extends Notification
@@ -31,13 +34,15 @@ class ApplicationAccepted extends Notification
     {
         return [
             'database',
-            // DiscordChannel::class,
+            DiscordChannel::class,
         ];
     }
 
-    public function toDiscord()
+    public function toDiscord($notifiable)
     {
-
+        if ($notifiable instanceof RecruitmentChannel::class) {
+            
+        }
     }
 
     /**

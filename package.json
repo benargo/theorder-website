@@ -46,5 +46,8 @@
         "vue-inputmask": "^0.2.1",
         "vue-template-compiler": "^2.6.11",
         "vuedraggable": "^2.23.2"
+    },
+    "dependencies": {
+        "vue-ctk-date-time-picker": "^2.4.0"
     }
 }

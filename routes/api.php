@@ -121,6 +121,16 @@ Route::get('/notifications/unread', 'NotificationsController@getUnreadNotificati
 
 /*
  |--------------------------------------------------------------------------
+ | Raid Schedular
+ |--------------------------------------------------------------------------
+ */
+
+Route::get('/schedular/schedules', 'RaidSchedularController@get');
+
+Route::post('/schedular/new', 'RaidSchedularController@create');
+
+/*
+ |--------------------------------------------------------------------------
  | Ranks
  |--------------------------------------------------------------------------
  */

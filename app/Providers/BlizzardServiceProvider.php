@@ -11,6 +11,7 @@ use App\Blizzard\Warcraft\Classes;
 use Illuminate\Support\Facades\Auth;
 use App\Services\CharactersRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Blizzard\Warcraft\Instances\Raids;
 
 class BlizzardServiceProvider extends ServiceProvider
 {
@@ -60,6 +61,10 @@ class BlizzardServiceProvider extends ServiceProvider
 
         $this->app->singleton(Races::class, function ($app) {
             return new Races($app->make(WarcraftService::class));
+        });
+
+        $this->app->singleton(Raids::class, function ($app) {
+            return new Raids();
         });
     }
 

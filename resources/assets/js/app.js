@@ -17,6 +17,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import listPlugin from '@fullcalendar/list'
 import Prism from 'prismjs'
 import VueApexCharts from 'vue-apexcharts'
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker'
 const VueInputMask = require('vue-inputmask').default
 window.kebabCase = require('dashify')
 window.marked = require('marked')
@@ -194,8 +195,7 @@ Vue.component('account-applications', require('./components/AccountApplicationsC
 // Vue.component('api-clients', require('./components/APIClientsComponent.vue').default)
 Vue.component('apex-chart', VueApexCharts)
 Vue.component('applications-manager', require('./components/ApplicationsManagerComponent.vue').default)
-Vue.component('character-select-button', require('./components/CharacterSelectButton.vue').default)
-Vue.component('character-select-confirmation', require('./components/CharacterSelectConfirmation.vue').default)
+Vue.component('datetime-picker', VueCtkDateTimePicker)
 Vue.component('draggable', draggable)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('guild-bank-viewer', require('./components/GuildBankViewerComponent.vue').default)
@@ -206,6 +206,7 @@ Vue.component('new-rank', require('./components/NewRankComponent.vue').default)
 Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.vue').default)
 Vue.component('news-item-manager', require('./components/NewsItemManagerComponent.vue').default)
 Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue').default)
+Vue.component('raid-schedular', require('./components/RaidSchedularComponent.vue').default)
 Vue.component('ranks-manager', require('./components/RanksManagerComponent.vue').default)
 Vue.component('wow-icon', require('./components/WoWIconComponent.vue').default)
 

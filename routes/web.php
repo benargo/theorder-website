@@ -119,8 +119,10 @@ Route::group(
             return redirect()->route('manage-raids');
         });
 
-        Route::get('/raids/schedule', function () {
-            return view('controlpanel/manage_raid_schedule');
+        Route::get('/raids/schedule', function (App\Blizzard\Warcraft\Instances\Raids $raids) {
+            return view('controlpanel/manage_raid_schedule', [
+                'instances' => $raids->toJson(),
+            ]);
         });
 
         Route::get('/raids/signups', function () {

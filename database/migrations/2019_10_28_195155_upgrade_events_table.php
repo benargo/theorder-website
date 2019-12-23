@@ -49,6 +49,6 @@ class UpgradeEventsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('event_users');
     }
 }

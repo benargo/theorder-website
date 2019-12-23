@@ -23,6 +23,7 @@
 @import '~@fullcalendar/daygrid/main.css';
 @import '~@fullcalendar/list/main.css';
 @import '~@fullcalendar/bootstrap/main.css';
+@import '~vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.css';
 
 a:hover {
     border-color: $link-hover-color !important;
@@ -59,6 +60,12 @@ a:hover {
 .btn.btn-icon {
     min-width: 41px;
     min-height: 41px;
+}
+@include media-breakpoint-only(xs) {
+  .btn-block-xs-only {
+    display: block;
+    width: 100%;
+  }
 }
 
 // Components
