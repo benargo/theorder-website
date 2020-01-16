@@ -178,7 +178,7 @@ Route::get('/marketplace/{action}');
  */
 
 Route::get('/raids', function () {
-    return view('');
+    return view('view_raiding_schedule');
 });
 
 /*

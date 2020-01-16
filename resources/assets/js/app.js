@@ -11,10 +11,6 @@ window.Vue = require('vue')
 import BootstrapVue from 'bootstrap-vue'
 import draggable from 'vuedraggable'
 import FlagIcon from 'vue-flag-icon'
-import FullCalendar from '@fullcalendar/vue'
-import bootstrapPlugin from '@fullcalendar/bootstrap'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import listPlugin from '@fullcalendar/list'
 import Prism from 'prismjs'
 import VueApexCharts from 'vue-apexcharts'
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker'
@@ -185,9 +181,6 @@ faLibrary.add(
 
 Vue.use(BootstrapVue)
 Vue.use(FlagIcon)
-Vue.use(FullCalendar)
-Vue.use(dayGridPlugin)
-Vue.use(listPlugin)
 Vue.use(VueApexCharts)
 Vue.use(VueInputMask)
 Vue.component('account-settings', require('./components/AccountSettingsComponent.vue').default)
@@ -206,6 +199,7 @@ Vue.component('new-rank', require('./components/NewRankComponent.vue').default)
 Vue.component('news-item-editor', require('./components/NewsItemEditorComponent.vue').default)
 Vue.component('news-item-manager', require('./components/NewsItemManagerComponent.vue').default)
 Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue').default)
+Vue.component('raid-calendar', require('./components/RaidCalendarComponent.vue').default)
 Vue.component('raid-schedular', require('./components/RaidSchedularComponent.vue').default)
 Vue.component('ranks-manager', require('./components/RanksManagerComponent.vue').default)
 Vue.component('wow-icon', require('./components/WoWIconComponent.vue').default)
@@ -232,16 +226,6 @@ const navbar = new Vue({
 
 const app = new Vue({
     el: '#app',
-    components: {
-        FullCalendar,
-    },
-    data: {
-        calendarPlugins: [
-            bootstrapPlugin,
-            dayGridPlugin,
-            listPlugin,
-        ],
-    }
 })
 
 const footer = new Vue({
