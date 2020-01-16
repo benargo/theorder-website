@@ -21,8 +21,8 @@ return [
     ],
 
     'discord' => [
-        // Used by Autokin notifications...
-        'token' => env('DISCORD_AUTOKIN_TOKEN'),
+        // Used by Rudolf notifications...
+        'token' => env('DISCORD_RUDOLF_TOKEN'),
 
         // Used by The Order for authentication...
         'client_id' => env('DISCORD_GUILDBOT_KEY'),

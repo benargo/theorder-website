@@ -24,16 +24,17 @@ return [
             'secret' => env('DISCORD_GUILDBOT_SECRET'),
             'token' => env('DISCORD_GUILDBOT_TOKEN'),
         ],
-        'autokin' => [
-            'key' => env('DISCORD_AUTOKIN_KEY'),
-            'secret' => env('DISCORD_AUTOKIN_SECRET'),
-            'token' => env('DISCORD_AUTOKIN_TOKEN'),
+        'rudolf' => [
+            'key' => env('DISCORD_RUDOLF_KEY'),
+            'secret' => env('DISCORD_RUDOLF_SECRET'),
+            'token' => env('DISCORD_RUDOLF_TOKEN'),
         ],
     ],
 
     'channels' => [
         'notices' => env('DISCORD_CHANNEL_NOTICES', 479666941447897109),
         'raids' => env('DISCORD_CHANNEL_RAIDS', 492290479111667722),
+        'raid_signups' => env('DISCORD_CHANNEL_RAID_SIGNUPS', 667320284621045778),
         'recruitment' => env('DISCORD_CHANNEL_RECRUITMENT', 484387377956257804),
     ],
 
