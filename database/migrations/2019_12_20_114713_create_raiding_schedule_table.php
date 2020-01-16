@@ -15,7 +15,7 @@ class CreateRaidingScheduleTable extends Migration
     {
         Schema::create('raiding_schedule', function (Blueprint $table) {
             $table->increments('id');
-            $table->datetime('starts');
+            $table->dateTimeTz('starts');
             $table->unsignedInteger('repeats_days')->nullable();
             $table->json('instance_ids');
             $table->timestamps();
