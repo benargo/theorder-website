@@ -4,34 +4,27 @@ namespace App\Raiding;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Schedule extends Model
+class Raid extends Model
 {
     /**
      * While the model is called Schedule, the database table is called
      * something different so we need to set it here manually.
      */
-    protected $table = 'raiding_schedule';
+    protected $table = 'raids';
 
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $casts = [
-        'repeats_days' => 'integer',
-        'instance_ids' => 'array',
-    ];
+    protected $casts = ['instance_ids' => 'array'];
 
     /**
      * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'starts',
-    ];
+    protected $dates = ['starts_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -39,23 +32,18 @@ class Schedule extends Model
      * @var array
      */
     protected $fillable = [
-        'starts',
-        'repeats_days',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
+        'schedule_id',
+        'starts_at',
         'instance_ids',
-        'created_at',
-        'updated_at',
     ];
 
-    public function raids()
+    public function schedule()
     {
-        return $this->hasMany('App\Raiding\Raid');
+        return $this->belongsTo('App\Raiding\Schedule');
+    }
+
+    public function signups()
+    {
+        return $this->hasMany('App\Raiding\Signup');
     }
 }
