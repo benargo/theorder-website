@@ -28,7 +28,7 @@
                 </label>
                 <div class="col-sm-9 form-inline">
                     Repeat this schedule every
-                    <input type="number" class="form-control mx-2" name="inputRepeat" placeholder="7" min="1" v-model="new_schedule.repeat">
+                    <input type="number" class="form-control mx-2" name="inputRepeat" placeholder="7" required min="1" v-model="new_schedule.repeats_days">
                     days.
                 </div>
             </div>
@@ -65,20 +65,22 @@
         </thead>
         <tbody>
             <tr v-for="s in schedules">
-                <td>
-                    <ul class="list-inline">
+                <td class="align-middle">
+                    <ul class="mb-0">
                         <li v-for="i in s.instances">{{ i.name }}</li>
                     </ul>
                 </td>
-                <td>{{ s.schedule }}</td>
-                <td>{{ s.start_time }}</td>
+                <td class="align-middle">{{ s.schedule }}</td>
+                <td class="align-middle">{{ s.start_time }}</td>
                 <td class="align-top">
                     <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Delete" @click="deleteRaid(s.id)">
                         <font-awesome-icon :icon="['fas', 'trash']"></font-awesome-icon>
                         <span class="sr-only">Delete</span>
                     </button>
                 </td>
-
+            </tr>
+            <tr v-if="schedules.length == 0">
+                <td colspan="4" class="text-center">There are no raids scheduled.</td>
             </tr>
         </tbody>
     </table>
@@ -91,7 +93,7 @@ export default {
         return {
             new_schedule: {
                 start: undefined,
-                repeat: undefined,
+                repeats_days: undefined,
                 instances: [],
             },
             schedules: [],
@@ -109,10 +111,9 @@ export default {
                         this.$refs['modalNewRaidSchedule'].hide()
 
                         // Reset new schedule back to normal...
-                        this.new_schedule.when = null
-                        this.new_schedule.start = '18:00'
+                        this.new_schedule.start = undefined
+                        this.new_schedule.repeats_days = undefined
                         this.new_schedule.instances = []
-                        this.new_schedule.first_date = undefined
                     }.bind(this))
             }
         },

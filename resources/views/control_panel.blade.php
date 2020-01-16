@@ -98,7 +98,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="alert alert-secondary" role="alert">
-                            The News feature has been deprecated. Please publish all announcements on <a href="{{ route('discord-channel', ['channel' => 479666941447897109]) }}" title="#announcements on Discord">Discord</a> instead.
+                            The News feature has been deprecated. Please publish all announcements on <a href="{{ route('discord-channel', ['channel' => 479666941447897109]) }}" title="#announcements on Discord" class="alert-link">Discord</a> instead.
                         </div>
                     </div>
                 </div>
