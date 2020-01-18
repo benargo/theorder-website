@@ -56,27 +56,27 @@ class CreateRaids extends Command
      */
     public function handle()
     {
-        $filtered = $this->schedules->filter(function ($item) {
-            return ($item->starts->diffInDays(Carbon::now()) % $item->repeats_days == 0);
-        });
-
-        // Loop through each of the schedules for today...
-        $filtered->each(function ($schedule) {
-            // Check and add events in the next eight weeks...
-            for ($i = 0; $i <= 56; $i = $i + $schedule->repeats_days) {
-                $date = Carbon::yesterday();
+        // Check and add events in the next eight weeks...
+        for ($i = 0; $i <= 56; $i++) {
+            // Loop through each of the schedules for today...
+            $this->schedules->each(function ($schedule) use ($i) {
+                $date = Carbon::today();
                 $date->addDays($i);
                 $date->hour($schedule->starts->hour)
                      ->minute($schedule->starts->minute);
 
-                if ($date->isAfter($schedule->starts))
-                {
+                if (
+                    $date->isAfter($schedule->starts) &&
+                    $schedule->starts->diffInDays($date) % $schedule->repeats_days == 0
+                ) {
                     $this->raids[] = Raid::firstOrCreate(
                         ['starts_at' => $date],
                         ['schedule_id' => $schedule->id, 'starts_at' => $date, 'instance_ids' => $schedule->instance_ids]
                     );
+
+                    $this->info("Raid created using schedule ID {$schedule->id}, on {$date->toDateTimeString()}");
                 }
-            }
-        });
+            });
+        }
     }
 }

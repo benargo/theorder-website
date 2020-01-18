@@ -7,12 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Raid extends Model
 {
     /**
-     * While the model is called Schedule, the database table is called
-     * something different so we need to set it here manually.
-     */
-    protected $table = 'raids';
-
-    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -35,6 +29,17 @@ class Raid extends Model
         'schedule_id',
         'starts_at',
         'instance_ids',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'instance_ids',
+        'created_at',
+        'updated_at',
     ];
 
     public function schedule()

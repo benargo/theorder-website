@@ -4,19 +4,21 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Carbon\Carbon;
+use App\Raiding\Raid;
 use App\Raiding\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
-use App\Blizzard\Warcraft\Instances\Raids;
+use App\Blizzard\Warcraft\Instances\Raids as Instances;
 
 class RaidSchedularController extends Controller
 {
-    public function getAll(Raids $raids)
+    public function getAllSchedules(Instances $instances)
     {
         $schedules = Schedule::all();
-        $schedules->map(function ($item, $key) use ($raids) {
-            $item->instances = $raids->whereIn('zone_id', $item->instance_ids);
+
+        $schedules = $schedules->map(function ($item, $key) use ($instances) {
+            $item->instances = $instances->whereIn('zone_id', $item->instance_ids);
             $item->schedule = "Repeats every {$item->repeats_days} days, beginning {$item->starts->format('l, d F Y')}";
             $item->start_time = $item->starts->format('H:i T');
             return $item;
@@ -25,7 +27,20 @@ class RaidSchedularController extends Controller
         return response()->json($schedules);
     }
 
-    public function create(Raids $raids, Request $request)
+    public function getAllRaids(Instances $instances)
+    {
+        $raids = Raid::all();
+
+        $raids = $raids->map(function ($item, $key) use ($instances) {
+            $item->instances = $instances->whereIn('zone_id', $item->instance_ids);
+            $item->starts_at_human = $item->starts_at->format('l d F Y @ H:i T');
+            return $item;
+        });
+
+        return response()->json($raids);
+    }
+
+    public function create(Instances $instances, Request $request)
     {
         $validated_data = $request->validate([
             'start' => 'required|date_format:Y-m-d H:i',
@@ -36,7 +51,7 @@ class RaidSchedularController extends Controller
                 'min:1',
             ],
             'instances.*' => [
-                Rule::in($raids->pluck('zone_id')),
+                Rule::in($instances->pluck('zone_id')),
             ],
         ]);
 

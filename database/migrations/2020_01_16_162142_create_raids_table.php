@@ -17,8 +17,9 @@ class CreateRaidsTable extends Migration
         Schema::create('raids', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('schedule_id')->nullable();
-            $table->dateTimeTz('starts_at');
             $table->json('instance_ids');
+            $table->dateTime('starts_at');
+            $table->dateTime('cancelled_at')->nullable();
             $table->timestamps();
 
             $table->foreign('schedule_id')
@@ -33,9 +34,9 @@ class CreateRaidsTable extends Migration
             $table->string('character_name', 12);
             $table->integer('class_id');
             $table->string('role');
-            $table->datetimeTz('signed_up_at');
-            $table->dateTimeTz('confirmed_at');
-            $table->datetimeTz('withdrawn_at');
+            $table->datetime('signed_up_at');
+            $table->dateTime('confirmed_at');
+            $table->datetime('withdrawn_at');
             $table->timestamps();
 
             $table->foreign('raid_id')
