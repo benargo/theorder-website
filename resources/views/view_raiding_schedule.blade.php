@@ -10,7 +10,7 @@
             </div>
         </header>
         <div class="container py-6 text-light">
-            
+            <raid-calendar></raid-calendar>
         </div>
     </div>
 @endsection

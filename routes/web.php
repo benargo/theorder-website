@@ -181,6 +181,10 @@ Route::get('/raids', function () {
     return view('view_raiding_schedule');
 });
 
+Route::get('/raids/{raid}', function (App\Raiding\Raid $raid) {
+    return view('view_raiding_schedule', ['raid' => $raid]);
+})->name('raids.single');
+
 /*
  |--------------------------------------------------------------------------
  | News
