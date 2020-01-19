@@ -90,79 +90,29 @@
                     </div> --}}
                 </div>
 
-                {{-- News --}}
-                <h2 class="mt-4">
-                    News
-                    <small class="text-muted">(deprecated)</small>
-                </h2>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-secondary" role="alert">
-                            The News feature has been deprecated. Please publish all announcements on <a href="{{ route('discord-channel', ['channel' => 479666941447897109]) }}" title="#announcements on Discord" class="alert-link">Discord</a> instead.
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-2">
-                    <div class="col-12 col-lg-6">
-                        <a href="{{ url('inner-circle/news/create') }}" class="d-block border border-primary rounded my-2 py-4">
-                            <div class="row no-gutters">
-                                <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'pen-fancy']" class="fa-3x"></font-awesome-icon>
-                                </div>
-                                <div class="col-8 text-center v-align-center">
-                                    Create a news item
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <a href="{{ url('inner-circle/news') }}" class="d-block border border-primary rounded my-2 py-4">
-                            <div class="row no-gutters">
-                                <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'pencil']" class="fa-3x"></font-awesome-icon>
-                                </div>
-                                <div class="col-8 text-center v-align-center">
-                                    Edit a news item
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                {{-- Forum --}}
-                {{-- <h2 class="mt-4">
-                    Forum
-                    <small class="text-muted">(not yet implemented)</small>
-                </h2>
-                <div class="row my-2">
-                    <div class="col-12 col-lg-6">
-                        <a href="{{ url('inner-circle/forum') }}" class="d-block border border-primary rounded my-2 py-4">
-                            <div class="row no-gutters">
-                                <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'chalkboard']" class="fa-3x"></font-awesome-icon>
-                                </div>
-                                <div class="col-8 text-center v-align-center">
-                                    Manage boards
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div> --}}
-
                 {{-- Raiding --}}
-                <h2 class="mt-4">
-                    Raiding
-                    <small class="text-muted">(coming soon&trade;)</small>
-                </h2>
+                <h2 class="mt-4">Raiding</h2>
                 <div class="row my-2">
                     <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/raids/schedule') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'calendar-week']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                    Update Raid Schedule
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <a href="{{ url('inner-circle/raids/raids') }}" class="d-block border border-primary rounded my-2 py-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'calendar-day']" class="fa-3x"></font-awesome-icon>
                                 </div>
                                 <div class="col-8 text-center v-align-center">
-                                    Manage Raid Schedule
+                                    Manage Raids
                                 </div>
                             </div>
                         </a>
@@ -174,7 +124,7 @@
                                     <font-awesome-icon :icon="['fas', 'users-cog']" class="fa-3x"></font-awesome-icon>
                                 </div>
                                 <div class="col-8 text-center v-align-center">
-                                    Manage Signups
+                                    View Signups
                                 </div>
                             </div>
                         </a>
@@ -237,21 +187,68 @@
                     </div>
                 </div> --}}
 
-                {{-- Guild Bank --}}
-                <h2 class="mt-4">Guild bank</h2>
-                <div class="row my-2">
+                {{-- News --}}
+                <h2 class="mt-4">
+                    News
+                    <small class="text-muted">(deprecated)</small>
+                </h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-secondary my-1" role="alert">
+                            The News feature has been deprecated. Please publish all announcements on <a href="{{ route('discord-channel', ['channel' => 479666941447897109]) }}" title="#announcements on Discord" class="alert-link">Discord</a> instead.
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
                     <div class="col-12 col-lg-6">
-                        <a href="{{ url('inner-circle/guild-bank/clients') }}" class="d-block border border-primary rounded my-2 py-4">
+                        <a href="{{ url('inner-circle/news/create') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
-                                    <font-awesome-icon :icon="['fas', 'cogs']" class="fa-3x"></font-awesome-icon>
+                                    <font-awesome-icon :icon="['fas', 'pen-fancy']" class="fa-3x"></font-awesome-icon>
                                 </div>
                                 <div class="col-8 text-center v-align-center">
-                                    Stock Addon Settings
+                                    Create a news item
                                 </div>
                             </div>
                         </a>
                     </div>
+                    <div class="col-12 col-lg-6">
+                        <a href="{{ url('inner-circle/news') }}" class="d-block border border-primary rounded my-2 py-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'pencil']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                    Edit a news item
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                {{-- Forum --}}
+                {{-- <h2 class="mt-4">
+                    Forum
+                    <small class="text-muted">(not yet implemented)</small>
+                </h2>
+                <div class="row my-2">
+                    <div class="col-12 col-lg-6">
+                        <a href="{{ url('inner-circle/forum') }}" class="d-block border border-primary rounded my-2 py-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'chalkboard']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                    Manage boards
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div> --}}
+
+                {{-- Guild Bank --}}
+                <h2 class="mt-4">Guild bank</h2>
+                <div class="row my-2">
                     <div class="col-12 col-lg-6">
                         <a href="{{ url('inner-circle/guild-bank/bankers') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
@@ -259,7 +256,7 @@
                                     <font-awesome-icon :icon="['fas', 'user-lock']" class="fa-3x"></font-awesome-icon>
                                 </div>
                                 <div class="col-8 text-center v-align-center">
-                                    Manage bank characters
+                                    Set bank characters
                                 </div>
                             </div>
                         </a>
@@ -292,6 +289,30 @@
                                 </div>
                                 <div class="col-8 text-center v-align-center">
                                     View stats
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                {{-- API Settings --}}
+                <h2 class="mt-4">API Settings</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-warning my-1" role="alert">
+                            These settings are intended for developers only. It's recommended that you do not touch this zone unless you are an experienced user.
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-12 col-lg-6">
+                        <a href="{{ url('inner-circle/guild-bank/clients') }}" class="d-block border border-primary rounded my-2 py-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'cogs']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                    Manage API Clients &amp; Secrets
                                 </div>
                             </div>
                         </a>
