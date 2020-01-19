@@ -5,6 +5,7 @@ namespace App\Providers;
 use RestCord\DiscordClient;
 use App\Discord\RolesRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Discord\Channels\RaidSignupsChannel;
 use App\Discord\Channels\RecruitmentChannel;
 
 class DiscordServiceProvider extends ServiceProvider
@@ -33,6 +34,10 @@ class DiscordServiceProvider extends ServiceProvider
 
         $this->app->singleton(RecruitmentChannel::class, function ($app) {
             return new RecruitmentChannel;
+        });
+
+        $this->app->singleton(RaidSignupsChannel::class, function ($app) {
+            return new RaidSignupsChannel;
         });
     }
 

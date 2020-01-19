@@ -18,7 +18,7 @@ class RaidSchedularController extends Controller
         $schedules = Schedule::all();
 
         $schedules = $schedules->map(function ($item, $key) use ($instances) {
-            $item->instances = $instances->whereIn('zone_id', $item->instance_ids);
+            $item->instances = $instances->whereIn('zone_id', $item->instance_ids)->values();
             $item->schedule = "Repeats every {$item->repeats_days} days, beginning {$item->starts->format('l, d F Y')}";
             $item->start_time = $item->starts->format('H:i T');
             return $item;
@@ -32,15 +32,16 @@ class RaidSchedularController extends Controller
         $raids = Raid::all();
 
         $raids = $raids->map(function ($item, $key) use ($instances) {
-            $item->instances = $instances->whereIn('zone_id', $item->instance_ids);
+            $item->instances = $instances->whereIn('zone_id', $item->instance_ids)->values();
             $item->starts_at_human = $item->starts_at->format('l d F Y @ H:i T');
+            $item->url = route('raids.single', $item->id);
             return $item;
         });
 
         return response()->json($raids);
     }
 
-    public function create(Instances $instances, Request $request)
+    public function createSchedule(Instances $instances, Request $request)
     {
         $validated_data = $request->validate([
             'start' => 'required|date_format:Y-m-d H:i',
@@ -69,7 +70,7 @@ class RaidSchedularController extends Controller
         return response()->json($schedule);
     }
 
-    public function delete(Schedule $schedule)
+    public function deleteSchedule(Schedule $schedule)
     {
         $schedule->delete();
 

@@ -127,11 +127,13 @@ Route::get('/notifications/unread', 'NotificationsController@getUnreadNotificati
 
 Route::get('/schedular/schedules', 'RaidSchedularController@getAllSchedules');
 
-Route::post('/schedular/new', 'RaidSchedularController@create');
+Route::post('/schedular/new', 'RaidSchedularController@createSchedule');
 
 Route::get('/schedular/raids', 'RaidSchedularController@getAllRaids');
 
-Route::delete('/schedular/schedule/{schedule}', 'RaidSchedularController@delete');
+Route::get('/schedular/raids/{raid}', 'RaidSchedularController@getRaid');
+
+Route::delete('/schedular/schedule/{schedule}', 'RaidSchedularController@deleteSchedule');
 
 /*
  |--------------------------------------------------------------------------

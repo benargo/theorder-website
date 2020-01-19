@@ -34,7 +34,7 @@ return [
     'channels' => [
         'notices' => env('DISCORD_CHANNEL_NOTICES', 479666941447897109),
         'raids' => env('DISCORD_CHANNEL_RAIDS', 492290479111667722),
-        'raid_signups' => env('DISCORD_CHANNEL_RAID_SIGNUPS', 667320284621045778),
+        'raid_signups' => env('DISCORD_CHANNEL_RAID_SIGNUPS', 668263423057985551),
         'recruitment' => env('DISCORD_CHANNEL_RECRUITMENT', 484387377956257804),
     ],
 
