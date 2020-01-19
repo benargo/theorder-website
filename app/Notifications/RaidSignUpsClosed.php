@@ -12,7 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use NotificationChannels\Discord\DiscordChannel;
 use NotificationChannels\Discord\DiscordMessage;
 
-class RaidSignUpsAvailable extends Notification implements ShouldQueue
+class RaidSignUpsClosed extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -57,14 +57,14 @@ class RaidSignUpsAvailable extends Notification implements ShouldQueue
         $icon = asset('images/raid_icon_'.strtolower($raids->take(1)->get('abbr')).'.png');
 
         return DiscordMessage::create(
-            "Raid signups are now available for {$raids_titles} on {$date}",
+            "Raid signups are now closed for {$raids_titles} on {$date}",
             [
                 'title' => "Raid Signups: {$raids_abbrs} on {$date}",
                 'type' => 'rich',
-                'description' => "Sign up now to enter the ballot for the raid {$raids_titles} on {$date}. Only {$max_players} players can be selected.",
+                'description' => "Sign ups are now closed for {$raids_titles} on {$date}. The list of invited members will be published shortly.",
                 'url' => $url,
                 'timestamp' => Carbon::now()->toIso8601String(),
-                'color' => hexdec('f8b700'),
+                'color' => hexdec('dc3545'),
                 'thumbnail' => [
                     'url' => $icon,
                 ],

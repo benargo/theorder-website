@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('raids:schedule')->daily()->at('09:00');
+        $schedule->command('raids:create')->daily()->at('09:00');
     }
 
     /**

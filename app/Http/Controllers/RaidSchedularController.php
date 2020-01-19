@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Artisan;
 use Validator;
 use Carbon\Carbon;
 use App\Raiding\Raid;
@@ -66,6 +67,8 @@ class RaidSchedularController extends Controller
         $schedule->instance_ids = $validated_data['instances'];
 
         $schedule->save();
+
+        Artisan::call('raids:create')
 
         return response()->json($schedule);
     }

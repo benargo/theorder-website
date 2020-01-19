@@ -2,10 +2,16 @@
 
 namespace App\Console\Commands;
 
+use App;
 use Carbon\Carbon;
 use App\Raiding\Raid;
 use App\Raiding\Schedule as RaidingSchedule;
+use App\Jobs\CloseRaidSignups;
 use Illuminate\Console\Command;
+use App\Notifications\RaidSignUpsClosed;
+use App\Notifications\RaidSignUpsAvailable;
+use App\Discord\Channels\RaidSignupsChannel;
+use Illuminate\Support\Facades\Notification;
 
 class CreateRaids extends Command
 {
@@ -14,7 +20,7 @@ class CreateRaids extends Command
      *
      * @var string
      */
-    protected $signature = 'raids:schedule';
+    protected $signature = 'raids:create';
 
     /**
      * The console command description.
@@ -69,12 +75,45 @@ class CreateRaids extends Command
                     $date->isAfter($schedule->starts) &&
                     $schedule->starts->diffInDays($date) % $schedule->repeats_days == 0
                 ) {
-                    $this->raids[] = Raid::firstOrCreate(
+                    $raid = Raid::firstOrCreate(
                         ['starts_at' => $date],
                         ['schedule_id' => $schedule->id, 'starts_at' => $date, 'instance_ids' => $schedule->instance_ids]
                     );
 
-                    $this->info("Raid created using schedule ID {$schedule->id}, on {$date->toDateTimeString()}");
+                    if ($raid->wasRecentlyCreated) {
+                        $this->info("Raid #{$raid->id} created using schedule ID {$schedule->id}, on {$date->toDateTimeString()}");
+
+                        $discord_channel = App::make(RaidSignupsChannel::class);
+
+                        // Create the notification for when raid signups open...
+                        $opening_date = $date->subDays(6)->hour(10)->minute(0)->second(0);
+
+                        if ($opening_date->isAfter(Carbon::now())) {
+
+                            $discord_channel->notify((new RaidSignUpsAvailable($raid))->delay($opening_date));
+                        }
+
+                        // Create the notification for when raid signups close...
+                        $closing_date = $date->subHours(24);
+
+                        if ($closing_date->isAfter(Carbon::now())) {
+                            $discord_channel->notify((new RaidSignUpsClosed($raid))->delay($closing_date));
+                        }
+
+                        $this->info("Notifications queued for raid #{$raid->id} on {$date->toDateTimeString()}");
+
+                        // Schedule the job for when signups close...
+                        CloseRaidSignups::dispatch($raid)
+                                ->delay($date->subHours(23));
+
+                        $this->info("Scheduled the job for closing raid signups");
+                    }
+                    else {
+                        $this->comment("Skipped creating raid as it already exists as #{$raid->id}");
+                    }
+
+                    // Add the raid to the list of raids...
+                    $this->raids[] = $raid;
                 }
             });
         }
