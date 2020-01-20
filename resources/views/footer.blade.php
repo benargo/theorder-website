@@ -41,12 +41,12 @@
                     </li>
 
                     {{-- News --}}
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ url('news') }}">
                             <font-awesome-icon :icon="['far', 'newspaper']" class="nav-icon"></font-awesome-icon>
                             News
                         </a>
-                    </li> --}}
+                    </li>
 
                     {{-- Forum --}}
                     {{-- <li class="nav-item">
