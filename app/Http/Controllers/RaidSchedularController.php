@@ -7,6 +7,7 @@ use Validator;
 use Carbon\Carbon;
 use App\Raiding\Raid;
 use App\Raiding\Schedule;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -45,26 +46,46 @@ class RaidSchedularController extends Controller
     public function createSchedule(Instances $instances, Request $request)
     {
         $validated_data = $request->validate([
-            'start' => 'required|date_format:Y-m-d H:i',
-            'repeats_days' => 'min:1',
-            'instances' => [
+            'schedule.start' => 'required|date_format:Y-m-d H:i',
+            'schedule.repeats_days' => 'min:1',
+            'schedule.instances' => [
                 'required',
                 'array',
                 'min:1',
             ],
-            'instances.*' => [
+            'schedule.instances.*' => [
                 Rule::in($instances->pluck('zone_id')),
             ],
+            'raid_composition.tanks.*' => 'integer',
+            'raid_composition.healers.*' => 'integer',
+            'raid_composition.damage.*' => 'integer',
         ]);
 
         // Format the start date...
-        $validated_data['start'] = Carbon::createFromFormat('Y-m-d H:i', $validated_data['start'], 'Europe/Paris');
+        Arr::set($validated_data, 'schedule.start', Carbon::createFromFormat('Y-m-d H:i', Arr::get($validated_data, 'schedule.start'), 'Europe/Paris'));
 
         $schedule = new Schedule([
-            'starts' => $validated_data['start'],
-            'repeats_days' => $validated_data['repeats_days'],
+            'starts' => Arr::get($validated_data, 'schedule.start'),
+            'repeats_days' => Arr::get($validated_data, 'schedule.repeats_days'),
+            'num_tanks' => Arr::get($validated_data, 'raid_composition.tanks.total'),
+            'num_tanks_druid' => Arr::get($validated_data, 'raid_composition.tanks.druid'),
+            'num_tanks_paladin' => Arr::get($validated_data, 'raid_composition.tanks.paladin'),
+            'num_tanks_warrior' => Arr::get($validated_data, 'raid_composition.tanks.warrior'),
+            'num_healers' => Arr::get($validated_data, 'raid_composition.healers.total'),
+            'num_healers_druid' => Arr::get($validated_data, 'raid_composition.healers.druid'),
+            'num_healers_paladin' => Arr::get($validated_data, 'raid_composition.healers.paladin'),
+            'num_healers_priest' => Arr::get($validated_data, 'raid_composition.healers.priest'),
+            'num_damage' => Arr::get($validated_data, 'raid_composition.damage.total'),
+            'num_damage_druid' => Arr::get($validated_data, 'raid_composition.damage.druid'),
+            'num_damage_hunter' => Arr::get($validated_data, 'raid_composition.damage.hunter'),
+            'num_damage_mage' => Arr::get($validated_data, 'raid_composition.damage.mage'),
+            'num_damage_paladin' => Arr::get($validated_data, 'raid_composition.damage.paladin'),
+            'num_damage_priest' => Arr::get($validated_data, 'raid_composition.damage.priest'),
+            'num_damage_rogue' => Arr::get($validated_data, 'raid_composition.damage.rogue'),
+            'num_damage_warlock' => Arr::get($validated_data, 'raid_composition.damage.warlock'),
+            'num_damage_warrior' => Arr::get($validated_data, 'raid_composition.damage.warrior'),
         ]);
-        $schedule->instance_ids = $validated_data['instances'];
+        $schedule->instance_ids = Arr::get($validated_data, 'schedule.instances');
 
         $schedule->save();
 

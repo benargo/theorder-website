@@ -11,9 +11,11 @@
         </header>
         <div class="container py-6 text-light">
             <div class="row mb-6">
-                <div class="alert alert-warning col-12 text-center" role="alert">
-                    <font-awesome-icon :icon="['fas', 'debug']" class="align-middle mr-3" size="2x"></font-awesome-icon>
-                    <strong>This feature is new and is currently being tested. Please report any bugs to Ben/Tinkletoes as a matter of urgency.</strong>
+                <div class="col">
+                    <div class="alert alert-warning col-12 text-center" role="alert">
+                        <font-awesome-icon :icon="['fas', 'debug']" class="align-middle mr-3" size="2x"></font-awesome-icon>
+                        <strong>This feature is new and is currently being tested. Please report any bugs to Ben/Tinkletoes as a matter of urgency.</strong>
+                    </div>
                 </div>
             </div>
             <raid-calendar></raid-calendar>

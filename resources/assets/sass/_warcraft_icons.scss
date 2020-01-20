@@ -1,131 +1,128 @@
-.class-icons,
-.race-icons {
-    .class-icon,
-    .race-icon {
-        border: solid 3px transparent;
-        border-radius: 3px;
-        box-sizing: content-box;
-        height: 56px;
+.class-icon,
+.race-icon {
+    border: solid 3px transparent;
+    border-radius: 3px;
+    box-sizing: content-box;
+    height: 56px;
+    object-fit: none;
+    width: 56px;
+
+    &.class-icon-xs,
+    &.race-icon-xs {
+        height: 28px;
         object-fit: none;
-        width: 56px;
+        width: 28px;
+    }
 
-        &.class-icon-xs,
-        &.race-icon-xs {
-            height: 28px;
-            object-fit: none;
-            width: 28px;
+    &.active {
+        border-color: $primary;
+    }
+
+    &.class-icon-11,
+    &.class-icon-druid {
+        object-position: 0 0;
+
+        &.class-icon-closed {
+            object-position: 0 66px;
         }
+    }
 
-        &.active {
-            border-color: $primary;
+    &.class-icon-3,
+    &.class-icon-hunter {
+        object-position: -66px 0;
+
+        &.class-icon-closed {
+            object-position: -66px -66px;
         }
+    }
 
-        &.class-icon-11,
-        &.class-icon-druid {
-            object-position: 0 0;
+    &.class-icon-8,
+    &.class-icon-mage {
+        object-position: -132px 0;
 
-            &.class-icon-closed {
-                object-position: 0 66px;
-            }
+        &.class-icon-closed {
+            object-position: -132px -66px;
         }
+    }
 
-        &.class-icon-3,
-        &.class-icon-hunter {
-            object-position: -66px 0;
+    &.class-icon-2,
+    &.class-icon-paladin {
+        object-position: -198px 0;
 
-            &.class-icon-closed {
-                object-position: -66px -66px;
-            }
+        &.class-icon-closed {
+            object-position: -198px -66px;
         }
+    }
 
-        &.class-icon-8,
-        &.class-icon-mage {
-            object-position: -132px 0;
+    &.class-icon-5,
+    &.class-icon-priest {
+        object-position: -264px 0;
 
-            &.class-icon-closed {
-                object-position: -132px -66px;
-            }
+        &.class-icon-closed {
+            object-position: -264px -66px;
         }
+    }
 
-        &.class-icon-2,
-        &.class-icon-paladin {
-            object-position: -198px 0;
+    &.class-icon-4,
+    &.class-icon-rogue {
+        object-position: -330px 0;
 
-            &.class-icon-closed {
-                object-position: -198px -66px;
-            }
+        &.class-icon-closed {
+            object-position: -330px -66px;
         }
+    }
 
-        &.class-icon-5,
-        &.class-icon-priest {
-            object-position: -264px 0;
+    &.class-icon-9,
+    &.class-icon-warlock {
+        object-position: -396px 0;
 
-            &.class-icon-closed {
-                object-position: -264px -66px;
-            }
+        &.class-icon-closed {
+            object-position: -396px -66px;
         }
+    }
 
-        &.class-icon-4,
-        &.class-icon-rogue {
-            object-position: -330px 0;
+    &.class-icon-1,
+    &.class-icon-warrior {
+        object-position: -462px 0;
 
-            &.class-icon-closed {
-                object-position: -330px -66px;
-            }
+        &.class-icon-closed {
+            object-position: -462px -66px;
         }
+    }
 
-        &.class-icon-9,
-        &.class-icon-warlock {
-            object-position: -396px 0;
+    &.race-icon-1,
+    &.race-icon-human {
+        object-position: 0 0;
 
-            &.class-icon-closed {
-                object-position: -396px -66px;
-            }
+        &.race-icon-closed {
+            object-position: 0 66px;
         }
+    }
 
-        &.class-icon-1,
-        &.class-icon-warrior {
-            object-position: -462px 0;
+    &.race-icon-3,
+    &.race-icon-dwarf {
+        object-position: -66px 0;
 
-            &.class-icon-closed {
-                object-position: -462px -66px;
-            }
+        &.race-icon-closed {
+            object-position: -66px -66px;
         }
+    }
 
-        &.race-icon-1,
-        &.race-icon-human {
-            object-position: 0 0;
+    &.race-icon-4,
+    &.race-icon-night-elf {
+        object-position: -132px 0;
 
-            &.race-icon-closed {
-                object-position: 0 66px;
-            }
+        &.race-icon-closed {
+            object-position: -132px -66px;
         }
+    }
 
-        &.race-icon-3,
-        &.race-icon-dwarf {
-            object-position: -66px 0;
+    &.race-icon-7,
+    &.race-icon-gnome {
+        object-position: -198px 0;
 
-            &.race-icon-closed {
-                object-position: -66px -66px;
-            }
-        }
-
-        &.race-icon-4,
-        &.race-icon-night-elf {
-            object-position: -132px 0;
-
-            &.race-icon-closed {
-                object-position: -132px -66px;
-            }
-        }
-
-        &.race-icon-7,
-        &.race-icon-gnome {
-            object-position: -198px 0;
-
-            &.race-icon-closed {
-                object-position: -198px -66px;
-            }
+        &.race-icon-closed {
+            object-position: -198px -66px;
         }
     }
 }

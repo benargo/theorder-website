@@ -13,15 +13,17 @@
         </header>
         <div class="container py-6 text-light">
             <div class="row mb-6">
-                <div class="alert alert-warning col-12 text-center" role="alert">
-                    <font-awesome-icon :icon="['fas', 'debug']" class="align-middle mr-3" size="2x"></font-awesome-icon>
-                    <strong>This feature is new and is currently being tested. Please report any bugs to Ben/Tinkletoes as a matter of urgency.</strong>
+                <div class="col">
+                    <div class="alert alert-warning col-12 text-center" role="alert">
+                        <font-awesome-icon :icon="['fas', 'debug']" class="align-middle mr-3" size="2x"></font-awesome-icon>
+                        <strong>This feature is new and is currently being tested. Please report any bugs to Ben/Tinkletoes as a matter of urgency.</strong>
+                    </div>
                 </div>
             </div>
             <div class="row mb-6">
                 <div class="col col-md-8">
                     <h2>Raid: {{ $instances->implode('name', '/') }}</h2>
-                    <h3>{{ $raid->starts_at->format('l d F Y @ H:i T') }}</h3>
+                    <h3 class="mb-4">{{ $raid->starts_at->format('l d F Y @ H:i T') }}</h3>
                     @if ($signups_are_open)
                         {{-- If raid signups are currently open... --}}
                         <h4>Sign Up Here</h4>
@@ -50,6 +52,34 @@
                     @if (count($confirmed_team))
                         <h3>Raid Team</h3>
                         <p>This is the raid team as randomly selected on {{ $signups_close_time->format('l d F Y @ H:i T') }}.</p>
+                    @endif
+
+                    <h3 class="mt-6 mb-4">Current Signups</h3>
+                    @if ($grouped_signups->count())
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert alert-warning col-12 text-center" role="alert">
+                                    This list currently doesn't update automatically.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @foreach ($grouped_signups as $role => $signups)
+                                <div class="col">
+                                    <h4 class="mb-3">{{ ucfirst($role) }}</h4>
+                                    <ul class="list-group">
+                                        @foreach($signups as $signup)
+                                        <li class="list-group-item">
+                                            <img src="{{ asset('/images/classicons_xs.png') }}" alt="Class Icons" class="class-icon class-icon-xs class-icon-{{ strtolower($classes->get($signup->class_id)->name) }}" />
+                                            {{ ucfirst(strtolower($signup->character_name)) }}
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p>No one has signed up yet.</p>
                     @endif
                 </div>
                 <div class="col col-md-4">

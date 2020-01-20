@@ -13,6 +13,7 @@ class ViewRaidController extends Controller
 {
     public function get(Raid $raid, Classes $classes, Instances $instances, Request $request)
     {
+        $all_signups = $raid->signups()->get();
         $confirmed_team = $raid->signups()->whereNotNull('confirmed_at')->get();
         $signed_up = $raid->signups()
                           ->where('user_id', $request->user()->id)
@@ -28,6 +29,7 @@ class ViewRaidController extends Controller
             'default_character_name' => $request->session()->get('raid_signup.character_name', 'undefined'),
             'default_class_id' => $request->session()->get('raid_signup.class_id', 'undefined'),
             'default_role' => $request->session()->get('raid_signup.role', 'undefined'),
+            'grouped_signups' => $all_signups->groupBy('role'),
             'instances' => $instances->whereIn('zone_id', $raid->instance_ids)->values(),
             'raid' => $raid,
             'signed_up' => $signed_up,

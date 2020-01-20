@@ -16,10 +16,27 @@ class CreateRaidsTable extends Migration
         // Create the main 'raids' table...
         Schema::create('raids', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('schedule_id')->nullable();
-            $table->json('instance_ids');
+            $table->unsignedInteger('num_tanks')->nullable();
+            $table->unsignedInteger('num_tanks_druid')->nullable();
+            $table->unsignedInteger('num_tanks_paladin')->nullable();
+            $table->unsignedInteger('num_tanks_warrior')->nullable();
+            $table->unsignedInteger('num_healers')->nullable();
+            $table->unsignedInteger('num_healers_druid')->nullable();
+            $table->unsignedInteger('num_healers_paladin')->nullable();
+            $table->unsignedInteger('num_healers_priest')->nullable();
+            $table->unsignedInteger('num_damage')->nullable();
+            $table->unsignedInteger('num_damage_druid')->nullable();
+            $table->unsignedInteger('num_damage_hunter')->nullable();
+            $table->unsignedInteger('num_damage_mage')->nullable();
+            $table->unsignedInteger('num_damage_paladin')->nullable();
+            $table->unsignedInteger('num_damage_priest')->nullable();
+            $table->unsignedInteger('num_damage_rogue')->nullable();
+            $table->unsignedInteger('num_damage_warlock')->nullable();
+            $table->unsignedInteger('num_damage_warrior')->nullable();
             $table->dateTime('starts_at');
             $table->dateTime('cancelled_at')->nullable();
+            $table->unsignedInteger('schedule_id')->nullable();
+            $table->json('instance_ids');
             $table->timestamps();
 
             $table->foreign('schedule_id')

@@ -37,6 +37,6 @@ class CloseRaidSignups implements ShouldQueue
      */
     public function handle()
     {
-        //
+         
     }
 }
