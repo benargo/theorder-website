@@ -24,7 +24,7 @@
 
 {{-- Raiding --}}
 <li class="nav-item">
-    <a class="nav-link disabled" href="{{ url('raids') }}" tabindex="-1" aria-disabled="true">
+    <a class="nav-link" href="{{ url('raids') }}">
         <font-awesome-icon :icon="['far', 'calendar-alt']" class="nav-icon"></font-awesome-icon>
         Raiding
     </a>
