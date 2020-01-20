@@ -6,6 +6,12 @@
     background-repeat: repeat-y;
 }
 
+.bg-bwl {
+    background-image: url("../images/bg_bwl.jpg");
+    background-position: 50% 50%;
+    background-size: cover;
+}
+
 .bg-dark-portal {
     background-image: url("../images/bg_darkportal.jpg");
     background-position: center;
@@ -53,7 +59,7 @@
     background-size: cover;
 }
 
-.bg-kelthuzad {
+.bg-kelthuzad, .bg-naxx {
     background-image: url("../images/bg_kelthuzad.jpg");
     background-position: 50% 10%;
     background-size: cover;
@@ -66,13 +72,19 @@
     background-size: cover;
 }
 
+.bg-ony {
+    background-image: url("../images/bg_ony.jpg");
+    background-position: 50% 35%;
+    background-size: cover;
+}
+
 .bg-overlay {
     background-color: rgba(0,0,0,0.5);
 }
 
-.bg-ragnaros {
+.bg-ragnaros, .bg-mc {
     background-image: url("../images/bg_ragnaros.jpg");
-    background-position: center;
+    background-position: 50% 10%;
     background-size: cover;
 }
 

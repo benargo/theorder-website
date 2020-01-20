@@ -137,6 +137,17 @@ Route::delete('/schedular/schedule/{schedule}', 'RaidSchedularController@deleteS
 
 /*
  |--------------------------------------------------------------------------
+ | Raid Signups
+ |--------------------------------------------------------------------------
+ */
+
+Route::post('/raids/{raid}/signup', 'RaidSignUpController@create')
+    ->middleware(\Illuminate\Session\Middleware\StartSession::class);
+
+Route::delete('/raids/{raid}/signup/{signup}', 'RaidSignUpController@delete');
+
+/*
+ |--------------------------------------------------------------------------
  | Ranks
  |--------------------------------------------------------------------------
  */

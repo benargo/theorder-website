@@ -24,6 +24,17 @@ class SignUp extends Model
         'withdrawn_at',
     ];
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'character_name',
+        'class_id',
+        'role',
+    ];
+
     protected static $allowed_roles = [
         'damage',
         'healer',
@@ -44,6 +55,11 @@ class SignUp extends Model
         if (in_array($value, static::$allowed_roles)) {
             $this->attributes['role'] = $value;
         }
+    }
+
+    public function getCharacterNameAttribute()
+    {
+        return ucfirst(strtolower($this->attributes['character_name']));
     }
 
     public function raid()

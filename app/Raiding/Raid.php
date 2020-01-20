@@ -42,6 +42,17 @@ class Raid extends Model
         'updated_at',
     ];
 
+    protected static $allowed_roles = [
+        'damage',
+        'healer',
+        'tank',
+    ];
+
+    public static function getAllowedRoles()
+    {
+        return static::$allowed_roles;
+    }
+
     public function schedule()
     {
         return $this->belongsTo('App\Raiding\Schedule');

@@ -2,10 +2,10 @@
     <FullCalendar
         :bootstrap-font-awesome="false"
         :button-text="{
-            prev: 'previous',
-            next: 'next'
+            prev: '<',
+            next: '>'
         }"
-        default-view="dayGridMonth"
+        :default-view="defaultView"
         :first-day="1"
         :events="raids"
         :event-time-format="{
@@ -34,6 +34,7 @@ import {
 import FullCalendar from '@fullcalendar/vue'
 import bootstrapPlugin from '@fullcalendar/bootstrap'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import listPlugin from '@fullcalendar/list';
 
 export default {
     components: {
@@ -41,7 +42,7 @@ export default {
     },
     data: function () {
         return {
-            calendarPlugins: [bootstrapPlugin, dayGridPlugin],
+            calendarPlugins: [bootstrapPlugin, dayGridPlugin, listPlugin],
             raids: [],
         }
     },
@@ -62,6 +63,12 @@ export default {
 
                 this.raids = raids;
             }.bind(this))
-    }
+    },
+    props: {
+        defaultView: {
+            type: String,
+            default: 'dayGridMonth',
+        },
+    },
 }
 </script>

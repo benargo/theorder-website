@@ -77,6 +77,7 @@ import {
     faClipboardList as fasClipboardList,
     faCogs as fasCogs,
     faConstruction as fasConstruction,
+    faDebug as fasDebug,
     faDragon as fasDragon,
     faFirstAid as fasFirstAid,
     faHome as fasHome,
@@ -151,6 +152,7 @@ faLibrary.add(
     fasClipboardList,
     fasCogs,
     fasConstruction,
+    fasDebug,
     fasDragon,
     fasFirstAid,
     fasHome,
@@ -203,6 +205,7 @@ Vue.component('news-item-manager', require('./components/NewsItemManagerComponen
 Vue.component('notifications-menu-item', require('./components/NotificationsMenuItem.vue').default)
 Vue.component('raid-calendar', require('./components/RaidCalendarComponent.vue').default)
 Vue.component('raid-schedular', require('./components/RaidSchedularComponent.vue').default)
+Vue.component('raid-signup-form', require('./components/RaidSignUpFormComponent.vue').default)
 Vue.component('ranks-manager', require('./components/RanksManagerComponent.vue').default)
 Vue.component('wow-icon', require('./components/WoWIconComponent.vue').default)
 

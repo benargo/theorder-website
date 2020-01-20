@@ -44,24 +44,14 @@ class CreateRaids extends Command
     protected $schedules;
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->schedules = RaidingSchedule::all();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
+        $this->schedules = RaidingSchedule::all();
+
         // Check and add events in the next eight weeks...
         for ($i = 0; $i <= 56; $i++) {
             // Loop through each of the schedules for today...
@@ -72,7 +62,7 @@ class CreateRaids extends Command
                      ->minute($schedule->starts->minute);
 
                 if (
-                    $date->isAfter($schedule->starts) &&
+                    $date->gte($schedule->starts) &&
                     $schedule->starts->diffInDays($date) % $schedule->repeats_days == 0
                 ) {
                     $raid = Raid::firstOrCreate(

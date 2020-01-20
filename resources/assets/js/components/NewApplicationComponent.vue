@@ -143,7 +143,6 @@ export default {
                         this.applicationSubmitted = true
                     }.bind(this))
             }
-
         },
     },
 

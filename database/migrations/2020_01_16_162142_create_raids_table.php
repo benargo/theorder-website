@@ -23,7 +23,8 @@ class CreateRaidsTable extends Migration
             $table->timestamps();
 
             $table->foreign('schedule_id')
-                  ->references('id')->on('raiding_schedule');
+                  ->references('id')->on('raiding_schedule')
+                  ->onDelete('cascade');
         });
 
         // Create a new 'raids_signups' link table...
@@ -34,9 +35,8 @@ class CreateRaidsTable extends Migration
             $table->string('character_name', 12);
             $table->integer('class_id');
             $table->string('role');
-            $table->datetime('signed_up_at');
-            $table->dateTime('confirmed_at');
-            $table->datetime('withdrawn_at');
+            $table->dateTime('confirmed_at')->nullable();
+            $table->datetime('withdrawn_at')->nullable();
             $table->timestamps();
 
             $table->foreign('raid_id')
@@ -45,7 +45,7 @@ class CreateRaidsTable extends Migration
 
             $table->foreign('user_id')
                   ->references('id')->on('users')
-                  ->onDelete('restrict');
+                  ->onDelete('no action');
         });
     }
 
