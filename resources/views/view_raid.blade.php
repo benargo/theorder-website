@@ -52,17 +52,32 @@
                     @if (count($confirmed_team))
                         <h3>Raid Team</h3>
                         <p>This is the raid team as randomly selected on {{ $signups_close_time->format('l d F Y @ H:i T') }}.</p>
+                        <div class="row">
+                            @foreach ($confirmed_team as $role => $role_members)
+                                <div class="col">
+                                    <h4 class="mb-3">{{ ucfirst($role) }}</h4>
+                                    <ul class="list-group">
+                                        @foreach($role_members as $role_member)
+                                        <li class="list-group-item">
+                                            <img src="{{ asset('/images/classicons_xs.png') }}" alt="Class Icons" class="class-icon class-icon-xs class-icon-{{ strtolower($role_member->get($signup->class_id)->name) }}" />
+                                            {{ ucfirst(strtolower($role_member->character_name)) }}
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endforeach
+                        </div>
                     @endif
 
                     <h3 class="mt-6 mb-4">Current Signups</h3>
-                    @if ($grouped_signups->count())
-                        <div class="row">
-                            <div class="col">
-                                <div class="alert alert-warning col-12 text-center" role="alert">
-                                    This list currently doesn't update automatically.
-                                </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="alert alert-warning col-12 text-center" role="alert">
+                                This list currently doesn't update automatically.
                             </div>
                         </div>
+                    </div>
+                    @if ($grouped_signups->count())
                         <div class="row">
                             @foreach ($grouped_signups as $role => $signups)
                                 <div class="col">

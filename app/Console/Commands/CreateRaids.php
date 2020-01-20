@@ -103,19 +103,10 @@ class CreateRaids extends Command
 
                             $discord_channel->notify((new RaidSignUpsAvailable($raid))->delay($opening_date));
                         }
-
-                        // Create the notification for when raid signups close...
-                        $closing_date = $date->subHours(24);
-
-                        if ($closing_date->isAfter(Carbon::now())) {
-                            $discord_channel->notify((new RaidSignUpsClosed($raid))->delay($closing_date));
-                        }
-
-                        $this->info("Notifications queued for raid #{$raid->id} on {$date->toDateTimeString()}");
-
+                        
                         // Schedule the job for when signups close...
                         CloseRaidSignups::dispatch($raid)
-                                ->delay($date->subHours(23));
+                                ->delay($date->subHours(24));
 
                         $this->info("Scheduled the job for closing raid signups");
                     }

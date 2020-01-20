@@ -24,12 +24,12 @@ class ViewRaidController extends Controller
         $signups_are_open = now()->between($signups_open_time, $signups_close_time);
 
         return view('view_raid', [
-            'confirmed_team' => $confirmed_team,
+            'confirmed_team' => $confirmed_team->groupBy('role')->sortBy('name'),
             'classes' => $classes->getClassicClasses(config('blizzard.faction')),
             'default_character_name' => $request->session()->get('raid_signup.character_name', 'undefined'),
             'default_class_id' => $request->session()->get('raid_signup.class_id', 'undefined'),
             'default_role' => $request->session()->get('raid_signup.role', 'undefined'),
-            'grouped_signups' => $all_signups->groupBy('role'),
+            'grouped_signups' => $all_signups->groupBy('role')->sortBy('name'),
             'instances' => $instances->whereIn('zone_id', $raid->instance_ids)->values(),
             'raid' => $raid,
             'signed_up' => $signed_up,

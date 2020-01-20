@@ -17,15 +17,17 @@ class RaidSignUpsClosed extends Notification implements ShouldQueue
     use Queueable;
 
     protected $raid;
+    protected $confirmed_team;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Raid $raid)
+    public function __construct(Raid $raid, $confirmed_team)
     {
         $this->raid = $raid;
+        $this->confirmed_team = $confirmed_team;
     }
 
     /**
@@ -61,7 +63,7 @@ class RaidSignUpsClosed extends Notification implements ShouldQueue
             [
                 'title' => "Raid Signups: {$raids_abbrs} on {$date}",
                 'type' => 'rich',
-                'description' => "Sign ups are now closed for {$raids_titles} on {$date}. The list of invited members will be published shortly.",
+                'description' => "Sign ups are now closed for {$raids_titles} on {$date}. The list of confirmed members is as follows:",
                 'url' => $url,
                 'timestamp' => Carbon::now()->toIso8601String(),
                 'color' => hexdec('dc3545'),
@@ -69,6 +71,20 @@ class RaidSignUpsClosed extends Notification implements ShouldQueue
                     'url' => $icon,
                 ],
                 'author' => ['name' => 'Rudolf'],
+                'fields' => [
+                    [
+                        'name' => 'Tanks',
+                        'value' => "- ".$this->confirmed_team->where('role', 'tank')->implode(", \r\n- "),
+                    ],
+                    [
+                        'name' => 'Healers',
+                        'value' => "- ".$this->confirmed_team->where('role', 'healer')->implode(", \r\n- "),
+                    ],
+                    [
+                        'name' => 'Damage',
+                        'value' => "- ".$this->confirmed_team->where('role', 'damage')->implode(", \r\n- "),
+                    ],
+                ],
             ]
         );
     }
