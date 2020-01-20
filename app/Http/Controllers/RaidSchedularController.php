@@ -68,7 +68,7 @@ class RaidSchedularController extends Controller
 
         $schedule->save();
 
-        Artisan::call('raids:create')
+        Artisan::call('raids:create');
 
         return response()->json($schedule);
     }
