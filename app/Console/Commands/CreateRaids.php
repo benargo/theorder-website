@@ -67,7 +67,28 @@ class CreateRaids extends Command
                 ) {
                     $raid = Raid::firstOrCreate(
                         ['starts_at' => $date],
-                        ['schedule_id' => $schedule->id, 'starts_at' => $date, 'instance_ids' => $schedule->instance_ids]
+                        [
+                            'schedule_id' => $schedule->id,
+                            'starts_at' => $date,
+                            'num_tanks' => $schedule->num_tanks,
+                            'num_tanks_druid' => $schedule->num_tanks_druid,
+                            'num_tanks_paladin' => $schedule->num_tanks_paladin,
+                            'num_tanks_warrior' => $schedule->num_tanks_warrior,
+                            'num_healers' => $schedule->num_healers,
+                            'num_healers_druid' => $schedule->num_healers_druid,
+                            'num_healers_paladin' => $schedule->num_healers_paladin,
+                            'num_healers_priest' => $schedule->num_healers_priest,
+                            'num_damage' => $schedule->num_damage,
+                            'num_damage_druid' => $schedule->num_damage_druid,
+                            'num_damage_hunter' => $schedule->num_damage_hunter,
+                            'num_damage_mage' => $schedule->num_damage_mage,
+                            'num_damage_paladin' => $schedule->num_damage_paladin,
+                            'num_damage_priest' => $schedule->num_damage_priest,
+                            'num_damage_rogue' => $schedule->num_damage_rogue,
+                            'num_damage_warlock' => $schedule->num_damage_warlock,
+                            'num_damage_warrior' => $schedule->num_damage_warrior,
+                            'instance_ids' => $schedule->instance_ids,
+                        ]
                     );
 
                     if ($raid->wasRecentlyCreated) {
