@@ -31,7 +31,7 @@
                     <div class="col-xs-12 col-md-8 order-md-first">
                         <article class="article-introduction">
                             <h2>Who We Are</h2>
-                            <p>The Order is an exclusive and secretive World of Warcraft Classic dungeon and leveling guild. We believe in helping and supporting our members, maintaining an active community and, most importantly, having fun.</p>
+                            <p>The Order is an exclusive and secretive World of Warcraft Classic casual raiding guild. We believe in helping and supporting our members, maintaining an active community and, most importantly, having fun.</p>
                             <p>We started out life on the <a href="https://elysium-project.org/" title="Elysium" rel="nofollow">Elysium project</a>, but with the official Classic release just around the corner we look forward to welcoming new and returning adventurers to our new home on Pyrewood Village.</p>
                             <p>Does what we do interest you? Are you thinking of joining? Great! We are currently recruiting the following classes for our raid team:</p>
                             <p class="class-icons">
