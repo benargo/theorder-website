@@ -187,5 +187,35 @@
                 </div>
             </div>
         </div>
+
+        <div class="bg-brown-texture py-6">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <article class="article-introduction">
+                            <h2>Join The Order</h2>
+                            <p>We are currently recruiting the following classes for our raid team:</p>
+                            <p class="class-icons">
+                                @foreach($recruiting_classes as $class)
+                                    <img src="{{ asset('images/classicons.png') }}"
+                                        alt="{{ $class->name }} Class icon"
+                                        class="class-icon class-icon-{{ $class->name }} {{ $class->is_recruiting ?: ' class-icon-closed' }}"
+                                        data-html="true"
+                                        data-toggle="tooltip"
+                                        data-placement="bottom"
+                                        title="{{ ucwords(trans_choice('warcraft/classes.'.$class->name, 1)) }}">
+                                @endforeach
+                            </p>
+                            <p>Social applications are always welcome, regardless of your class.</p>
+                            <p>
+                                <a href="{{ url('/join') }}" class="btn btn-primary btn-lg" role="button">
+                                    Apply Now!
+                                </a>
+                        </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
