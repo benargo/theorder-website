@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="bg-brown-texture py-6">
+        <div class="py-6">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-md-4 v-align-center">
@@ -188,7 +188,7 @@
             </div>
         </div>
 
-        <div class="bg-brown-texture py-6">
+        <div class="py-6">
             <div class="container">
                 <div class="row">
                     <div class="col">
