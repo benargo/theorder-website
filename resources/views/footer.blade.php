@@ -110,7 +110,7 @@
 
                     {{-- Patreon --}}
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="https://patreon.com/fortheorder" tabindex="-1" aria-disabled="true">
+                        <a class="nav-link" href="https://patreon.com/fortheorder">
                             <font-awesome-icon :icon="['fab', 'patreon']" class="nav-icon"></font-awesome-icon>
                             Patreon
                         </a>
