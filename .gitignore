@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor
 /.idea
+/.npmrc
 /.vscode
 /.vagrant
 Homestead.json
@@ -12,4 +13,3 @@ npm-debug.log
 yarn-error.log
 .env
 .DS_Store
-/.npmrc
