@@ -16,6 +16,10 @@ class UpgradeEventsTable extends Migration
         Schema::table('events', function (Blueprint $table) {
             $table->boolean('is_all_day')->after('ends_at')->default(false);
             $table->renameColumn('starts_at', 'start');
+        });
+
+        // Split this functionality into its own function for SQLite support...
+        Schema::table('events', function (Blueprint $table) {
             $table->renameColumn('ends_at', 'end');
         });
 

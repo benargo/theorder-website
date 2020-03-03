@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class HomePageTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Test the page response.
      *

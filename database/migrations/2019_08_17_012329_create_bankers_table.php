@@ -25,7 +25,9 @@ class CreateBankersTable extends Migration
             $table->dropColumn('banker_name');
 
             // Insert a new column 'banker_id' after the 'id' field...
-            $table->unsignedInteger('banker_id')->after('id');
+            $table->unsignedInteger('banker_id')
+                ->after('id')
+                ->default(0);
 
             // Add a foreign key to reference the new 'bankers' table...
             $table->foreign('banker_id')
