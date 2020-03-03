@@ -71,7 +71,11 @@
                             Teams
                         </a>
                     </li> --}}
-
+                </ul>
+            </div>
+            <div class="w-100 my-2 d-sm-none"></div>
+            <div class="col">
+                <ul class="nav flex-column">
                     {{-- Guild Bank --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('bank') }}">
@@ -117,12 +121,12 @@
                     </li>
 
                     {{-- Email --}}
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="mailto:hey@theorder.gg">
                             <font-awesome-icon :icon="['far', 'envelope-open']" class="nav-icon"></font-awesome-icon>
                             hey@theorder.gg
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- Creator --}}
                     <li class="nav-item">
