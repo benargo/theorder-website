@@ -130,8 +130,11 @@
                                 </div>
                                 <div class="carousel-caption">
                                     <h4>Alex</h4>
-                                    <p>Balleknusern</p>
-                                    <p><flag iso="no" :squared="false" /><span class="sr-only">{{ __('nationalities.no') }}</span></p>
+                                    <p>Sardius</p>
+                                    <p>
+                                        <flag iso="no" :squared="false" />
+                                        <span class="sr-only">Norwegian</span>
+                                    </p>
                                 </div>
                             </div>
                             <div class="carousel-item">
@@ -141,7 +144,10 @@
                                 <div class="carousel-caption">
                                     <h4>Andy</h4>
                                     <p>Gambiit</p>
-                                    <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
+                                    <p>
+                                        <flag iso="gb" :squared="false" />
+                                        <span class="sr-only">British</span>
+                                    </p>
                                 </div>
                             </div>
                             <div class="carousel-item">
@@ -151,7 +157,10 @@
                                 <div class="carousel-caption">
                                     <h4>Ben</h4>
                                     <p>Tinkletoes</p>
-                                    <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
+                                    <p>
+                                        <flag iso="gb" :squared="false" />
+                                        <span class="sr-only">British</span>
+                                    </p>
                                 </div>
                             </div>
                             <div class="carousel-item">
@@ -161,7 +170,10 @@
                                 <div class="carousel-caption">
                                     <h4>Sam</h4>
                                     <p>Bolis</p>
-                                    <p><flag iso="gb-wls" :squared="false" /><span class="sr-only">{{ __('nationalities.gb-wls') }}</span></p>
+                                    <p>
+                                        <flag iso="gb-wls" :squared="false" />
+                                        <span class="sr-only">British</span>
+                                    </p>
                                 </div>
                             </div>
                             <div class="carousel-item">
@@ -171,7 +183,10 @@
                                 <div class="carousel-caption">
                                     <h4>Tommy</h4>
                                     <p>Monori</p>
-                                    <p><flag iso="se" :squared="false" /><span class="sr-only">{{ __('nationalities.se') }}</span></p>
+                                    <p>
+                                        <flag iso="se" :squared="false" />
+                                        <span class="sr-only">Swedish</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
