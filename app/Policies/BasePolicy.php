@@ -11,5 +11,16 @@ abstract class BasePolicy
         if ($user->rank) {
             return $user->rank->seniority <= 1;
         }
+
+        return false;
+    }
+
+    public function userIsOfficer(User $user)
+    {
+        if ($user->rank) {
+            return $user->rank->seniority <= 4;
+        }
+
+        return false;
     }
 }
