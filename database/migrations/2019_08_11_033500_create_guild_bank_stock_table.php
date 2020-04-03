@@ -21,8 +21,8 @@ class CreateGuildBankStockTable extends Migration
             $table->integer('slot_number');
             $table->integer('item_id');
             $table->integer('count');
-            $table->timestamps();
             $table->unsignedInteger('updated_by_user_id');
+            $table->timestamps();
             $table->dateTime('withdrawn_at')->nullable();
 
             // Set up the foreign key to the users table...
