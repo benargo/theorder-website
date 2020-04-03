@@ -53,7 +53,8 @@ class StockUpdateSchema
                 						"type": "string",
                 						"maxLength": 12
                 					}
-                				}
+                				},
+                                "required": ["bag", "slot", "banker_name"]
                 			}
                         },
                         "mail": {
@@ -80,18 +81,18 @@ class StockUpdateSchema
                                     "mail": {
                 						"type": "integer",
                 						"minimum": 0,
-                						"maximum": 11
                 					},
                 					"slot": {
                 						"type": "integer",
                 						"minimum": 0,
-                						"maximum": 28
+                						"maximum": 11
                 					},
                 					"banker_name": {
                 						"type": "string",
                 						"maxLength": 12
                 					}
-                                }
+                                },
+                                "required": ["mail", "slot", "banker_name"]
                             }
                         }
                     },

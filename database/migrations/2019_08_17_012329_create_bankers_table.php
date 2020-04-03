@@ -23,7 +23,8 @@ class CreateBankersTable extends Migration
         Schema::table('guild_bank_stock', function (Blueprint $table) {
             // Drop the column 'banker_name' from the stock table...
             $table->dropColumn('banker_name');
-
+        });
+        Schema::table('guild_bank_stock', function (Blueprint $table) {
             // Insert a new column 'banker_id' after the 'id' field...
             $table->unsignedInteger('banker_id')
                 ->after('id')

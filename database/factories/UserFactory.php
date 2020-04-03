@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\User::class, function (Faker $faker) {
     return [
-        'id' => $faker->randomNumber(8),
+        'id' => $faker->numberBetween(1000000, 99999999),
         'nickname' => $faker->firstNameMale,
         'email' => $faker->email,
         'battletag' => $faker->regexify('[a-z]{5,8}#\d{4}'),

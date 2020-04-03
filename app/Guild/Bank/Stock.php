@@ -34,9 +34,9 @@ class Stock extends Model
      */
     protected $fillable = [
         'banker_id',
-        'is_in_bags',
-        'bag_number',
-        'slot_number',
+        'bag',
+        'mail',
+        'slot',
         'item_id',
         'count',
         'updated_by_user_id',

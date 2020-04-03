@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\GuildBank;
 
+use Carbon\Carbon;
 use GuzzleHttp\Psr7;
 use App\Guild\Bank\Stock;
 use JsonSchema\Validator;
 use App\Guild\Bank\Banker;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Rules\StockSchemaRule;
 use App\Blizzard\Warcraft\Items;
@@ -69,39 +72,70 @@ class StockController extends Controller
 
         // Decode the imported stock...
         try {
-            $decoded = json_decode($validated_data['stock']);
-            $stock = collect($decoded->stock);
+            $stock = collect(Arr::get($validated_data, 'stock.stock'));
 
-            // Loop over each of the stock entries...
-            $models = $stock->mapWithKeys(function ($entry) use ($user) {
-                // Validate the item...
-                $item = $this->items->getItem($entry->item->id);
+            // Loop over each of the bags...
+            $models = $stock->map(function ($entries, $key) use ($user) {
+                // Get the singular form of the key. This will either be mail or
+                // bag...
+                $key = Str::singular($key);
 
-                // Validate the banker...
-                $banker = Banker::where('name', $entry->banker_name)->firstOrFail();
+                // Wrap the entries in a collection, so we can use the
+                // mapWithKeys function.
+                $entries = collect($entries);
 
-                $model = Stock::updateOrCreate(
-                    // Where...
-                    [
-                        'banker_id'   => $banker->id,
-                        'bag_number'  => $entry->bag_number,
-                        'slot_number' => $entry->slot_number,
-                    ],
+                return $entries->mapWithkeys(function ($entry) use ($key, $user) {
+                    // Validate the banker...
+                    $banker = Banker::where('name', Arr::get($entry, 'banker_name'))->firstOrFail();
 
-                    // Update/Create...
-                    [
-                        'banker_id'          => $banker->id,
-                        'is_in_bags'         => $entry->is_in_bags,
-                        'bag_number'         => $entry->bag_number,
-                        'slot_number'        => $entry->slot_number,
-                        'item_id'            => $item->id,
-                        'count'              => $entry->count,
-                        'updated_by_user_id' => $user->id,
-                    ]
-                );
+                    // If there is an item id...
+                    if (Arr::get($entry, 'id')) {
+                        // Validate the item...
+                        $item = $this->items->getItem(Arr::get($entry, 'id'));
 
-                return [$model->id => $model];
-            });
+                        $model = Stock::updateOrCreate(
+                            // Where...
+                            [
+                                'banker_id' => $banker->id,
+                                $key        => Arr::get($entry, $key), // $key is either mail or bag...
+                                'slot'      => Arr::get($entry, 'slot'),
+                            ],
+
+                            // Update/Create...
+                            [
+                                'banker_id'          => $banker->id,
+                                $key                 => Arr::get($entry, $key), // $key is either mail or bag...
+                                'slot'               => Arr::get($entry, 'slot'),
+                                'item_id'            => Arr::get($item, 'id'),
+                                'count'              => Arr::get($entry, 'count'),
+                                'updated_by_user_id' => $user->id,
+                            ]
+                        );
+                    }
+                    // If there isn't an item id, then the item has been removed
+                    // and the withdrawn_at timestamp needs to be added.
+                    // If an entry doesn't exist in the database, then the
+                    // process should continue, and this entry should be removed
+                    // from the returned collection...
+                    else {
+                        $model = Stock::firstWhere([
+                            'banker_id' => $banker->id,
+                            $key        => Arr::get($entry, $key),
+                            'slot'      => Arr::get($entry, 'slot'),
+                        ]);
+
+                        if ($model) {
+                            $model->withdrawn_at = Carbon::now();
+                            $model->save();
+                        }
+                    }
+
+                    // Return the created/updated model. If the model was never
+                    // created or updated, then return null to remove this entry
+                    // from the returned collection...
+                    return $model ? [$model->id => $model] : null;
+                });
+            })->flatten();
 
             // Build the response...
             $response = collect([
@@ -117,17 +151,22 @@ class StockController extends Controller
 
         }
         catch (ModelNotFoundException $e) {
-            abort(403, 'One of the characters you specified is not authorised to act as a banker.');
+            if ($e->getModel() == 'App\Guild\Bank\Banker') {
+                abort(400, 'One of the characters you specified is not authorised to act as a banker.');
+            }
+            elseif ($e->getModel() == 'App\Guild\Bank\Stock') {
+                abort(400, 'One of the stock entries specified could not be found in the database.');
+            }
         }
         catch (ClientException $e) {
             return response()->json([
                 'exception'    => 'GuzzleHttp\Exception\ClientException',
                 'request'  => Psr7\str($e->getRequest()),
                 'response' => Psr7\str($e->getResponse()),
-            ]);
+            ], 500);
         }
         catch (\Exception $e) {
-            return response()->json(['e' => $e]);
+            return abort(500, $e->getMessage());
         }
     }
 }
