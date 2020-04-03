@@ -125,8 +125,7 @@ class StockController extends Controller
                         ]);
 
                         if ($model) {
-                            $model->withdrawn_at = Carbon::now();
-                            $model->save();
+                            $model->delete();
                         }
                     }
 

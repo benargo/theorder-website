@@ -13,13 +13,18 @@ class UpdateStockTable extends Migration
      */
     public function up()
     {
+        // Drop the boolean for is_in_bags...
         Schema::table('guild_bank_stock', function (Blueprint $table) {
-            // Drop the boolean for is_in_bags...
             $table->dropColumn('is_in_bags');
         });
 
+        // Drop the timestamp for withdrawn_at...
         Schema::table('guild_bank_stock', function (Blueprint $table) {
-            // Add a new column for mailbox items...
+            $table->dropColumn('withdrawn_at');
+        });
+
+        // Add a new column for mailbox items...
+        Schema::table('guild_bank_stock', function (Blueprint $table) {
             $table->integer('mail')->nullable()->after('bag_number');
         });
 
