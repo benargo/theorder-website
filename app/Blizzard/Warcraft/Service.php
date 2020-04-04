@@ -15,7 +15,7 @@ class Service extends BaseService
     /**
      * {@inheritdoc}
      */
-    protected $service_param = '/wow';
+    protected $service_param = '/data/wow';
 
     // region Achievement API
 

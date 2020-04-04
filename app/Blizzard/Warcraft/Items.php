@@ -26,6 +26,11 @@ class Items
      */
     public function getItem($item_id, array $options = [])
     {
+        if (empty($item_id))
+        {
+            return null;
+        }
+
         // First check the list of items already loaded...
         if (array_key_exists($item_id, $this->items)) {
             return $this->items[$item_id];

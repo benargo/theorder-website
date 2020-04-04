@@ -4,6 +4,7 @@ namespace App\Blizzard;
 
 use GuzzleHttp\Client;
 use App\Blizzard\Client as BlizzardClient;
+use Illuminate\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
 
 class Service
@@ -32,6 +33,7 @@ class Service
             'base_uri' => $this->blizzard_client->getApiUrl(),
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->blizzard_client->getAccessToken(),
+                'Battlenet-Namespace' => Arr::get($options, 'namespace', 'static-classic-' . $this->blizzard_client->getRegion())
             ],
             // 'proxy' => 'http://52.166.58.138:3128',
         ]);
