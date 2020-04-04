@@ -72,7 +72,7 @@ class StockController extends Controller
 
         // Decode the imported stock...
         try {
-            $stock = collect(Arr::get($validated_data, 'stock.stock'));
+            $stock = collect(Arr::get($validated_data, 'stock'));
 
             // Loop over each of the bags...
             $models = $stock->map(function ($entries, $key) use ($user) {

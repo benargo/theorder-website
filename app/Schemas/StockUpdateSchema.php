@@ -15,91 +15,85 @@ class StockUpdateSchema
         	"description": "A Stock Update API Request",
         	"type": "object",
         	"properties": {
-        		"stock": {
-        			"type": "object",
-                    "properties" {
-                        "bags": {
-                            "type": "array",
-                            "items": {
-                				"type": "object",
-                				"properties": {
-                                    "id": {
-        								"type": "integer",
-        								"minimum": 0,
-        								"maximum": 4294967296
-        							},
-                                    "name": {
-        								"type": "string"
-        							},
-                                    "link": {
-        								"type": "string",
-        								"pattern": "^\\\\|[\\\\da-f]{6,9}\\\\|Hitem:[\\\\d:]+\\\\|h\\\\[[\\\\w\\\\s]+\\\\]\\\\|h\\\\|r$"
-                					},
-                					"count": {
-                						"type": "integer",
-                						"minimum": 1
-                					},
-                                    "bag": {
-                						"type": "integer",
-                						"minimum": 0,
-                						"maximum": 11
-                					},
-                					"slot": {
-                						"type": "integer",
-                						"minimum": 0,
-                						"maximum": 28
-                					},
-                					"banker_name": {
-                						"type": "string",
-                						"maxLength": 12
-                					}
-                				},
-                                "required": ["bag", "slot", "banker_name"]
-                			}
+                "bags": {
+                    "type": "array",
+                    "items": {
+        				"type": "object",
+        				"properties": {
+                            "id": {
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 4294967296
+							},
+                            "name": {
+								"type": "string"
+							},
+                            "link": {
+								"type": "string",
+								"pattern": "^\\\\|[\\\\da-f]{6,9}\\\\|Hitem:[\\\\d:]+\\\\|h\\\\[[\\\\w\\\\s]+\\\\]\\\\|h\\\\|r$"
+        					},
+        					"count": {
+        						"type": "integer",
+        						"minimum": 1
+        					},
+                            "bag": {
+        						"type": "integer",
+        						"minimum": 0,
+        						"maximum": 11
+        					},
+        					"slot": {
+        						"type": "integer",
+        						"minimum": 0,
+        						"maximum": 28
+        					},
+        					"banker_name": {
+        						"type": "string",
+        						"maxLength": 12
+        					}
+        				},
+                        "required": ["bag", "slot", "banker_name"]
+        			}
+                },
+                "mail": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 4294967296
+							},
+                            "name": {
+								"type": "string"
+							},
+                            "link": {
+								"type": "string",
+								"pattern": "^\\\\|[\\\\da-f]{6,9}\\\\|Hitem:[\\\\d:]+\\\\|h\\\\[[\\\\w\\\\s]+\\\\]\\\\|h\\\\|r$"
+        					},
+        					"count": {
+        						"type": "integer",
+        						"minimum": 1
+        					},
+                            "mail": {
+        						"type": "integer",
+        						"minimum": 0,
+        					},
+        					"slot": {
+        						"type": "integer",
+        						"minimum": 0,
+        						"maximum": 11
+        					},
+        					"banker_name": {
+        						"type": "string",
+        						"maxLength": 12
+        					}
                         },
-                        "mail": {
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-        								"type": "integer",
-        								"minimum": 0,
-        								"maximum": 4294967296
-        							},
-                                    "name": {
-        								"type": "string"
-        							},
-                                    "link": {
-        								"type": "string",
-        								"pattern": "^\\\\|[\\\\da-f]{6,9}\\\\|Hitem:[\\\\d:]+\\\\|h\\\\[[\\\\w\\\\s]+\\\\]\\\\|h\\\\|r$"
-                					},
-                					"count": {
-                						"type": "integer",
-                						"minimum": 1
-                					},
-                                    "mail": {
-                						"type": "integer",
-                						"minimum": 0,
-                					},
-                					"slot": {
-                						"type": "integer",
-                						"minimum": 0,
-                						"maximum": 11
-                					},
-                					"banker_name": {
-                						"type": "string",
-                						"maxLength": 12
-                					}
-                                },
-                                "required": ["mail", "slot", "banker_name"]
-                            }
-                        }
-                    },
-                    "required": ["bags", "mail"]
-        		}
-        	},
-        	"required": ["stock"]
+                        "required": ["mail", "slot", "banker_name"]
+                    }
+                }
+            },
+            "required": ["bags", "mail"]
         }';
     }
 
