@@ -47,44 +47,46 @@ class UpdateStockApiTest extends TestCase
         $this->app->instance('App\Blizzard\Warcraft\Items', $mock_items);
 
         $response = $this->actingAs($this->user, 'api')->postJson('/api/guild-bank/stock/update', ['stock' => [
-            'mail' => [
-                [
-                    'id' => 7005,
-                    'name' => 'Skinning Knife',
-                    'link' => '|cffffffff|Hitem:7005::::::::120:::::|h[Skinning Knife]|h|r',
-                    'count' => 1,
-                    'mail' => 0,
-                    'slot' => 0,
-                    'banker_name' => 'Theorder',
+            'stock' => [
+                'mail' => [
+                    [
+                        'id' => 7005,
+                        'name' => 'Skinning Knife',
+                        'link' => '|cffffffff|Hitem:7005::::::::120:::::|h[Skinning Knife]|h|r',
+                        'count' => 1,
+                        'mail' => 0,
+                        'slot' => 0,
+                        'banker_name' => 'Theorder',
+                    ],
+                    [
+                        'id' => 5956,
+                        'name' => 'Blacksmith Hammer',
+                        'link' => '|cffffffff|Hitem:5956:0:0:0|h[Blacksmith Hammer]|h|r',
+                        'count' => 1,
+                        'mail' => 1,
+                        'slot' => 1,
+                        'banker_name' => 'Theorder',
+                    ]
                 ],
-                [
-                    'id' => 5956,
-                    'name' => 'Blacksmith Hammer',
-                    'link' => '|cffffffff|Hitem:5956:0:0:0|h[Blacksmith Hammer]|h|r',
-                    'count' => 1,
-                    'mail' => 1,
-                    'slot' => 1,
-                    'banker_name' => 'Theorder',
-                ]
-            ],
-            'bags' => [
-                [
-                    'id' => 7005,
-                    'name' => 'Skinning Knife',
-                    'link' => '|cffffffff|Hitem:7005::::::::120:::::|h[Skinning Knife]|h|r',
-                    'count' => 1,
-                    'bag' => 0,
-                    'slot' => 0,
-                    'banker_name' => 'Theorder',
-                ],
-                [
-                    'id' => 5956,
-                    'name' => 'Blacksmith Hammer',
-                    'link' => '|cffffffff|Hitem:5956:0:0:0|h[Blacksmith Hammer]|h|r',
-                    'count' => 1,
-                    'bag' => 1,
-                    'slot' => 1,
-                    'banker_name' => 'Theorder',
+                'bags' => [
+                    [
+                        'id' => 7005,
+                        'name' => 'Skinning Knife',
+                        'link' => '|cffffffff|Hitem:7005::::::::120:::::|h[Skinning Knife]|h|r',
+                        'count' => 1,
+                        'bag' => 0,
+                        'slot' => 0,
+                        'banker_name' => 'Theorder',
+                    ],
+                    [
+                        'id' => 5956,
+                        'name' => 'Blacksmith Hammer',
+                        'link' => '|cffffffff|Hitem:5956:0:0:0|h[Blacksmith Hammer]|h|r',
+                        'count' => 1,
+                        'bag' => 1,
+                        'slot' => 1,
+                        'banker_name' => 'Theorder',
+                    ]
                 ]
             ]
         ]]);
@@ -100,8 +102,10 @@ class UpdateStockApiTest extends TestCase
     public function testPostWithEmptyData()
     {
         $response = $this->actingAs($this->user, 'api')->postJson('/api/guild-bank/stock/update', ['stock' => [
-            'bags' => [],
-            'mail' => []
+            'stock' => [
+                'bags' => [],
+                'mail' => []
+            ]
         ]]);
 
         $response->assertStatus(200);
@@ -126,26 +130,28 @@ class UpdateStockApiTest extends TestCase
         $this->app->instance('App\Blizzard\Warcraft\Items', $mock_items);
 
         $response = $this->actingAs($this->user, 'api')->postJson('/api/guild-bank/stock/update', ['stock' => [
-            'mail' => [
-                [
-                    'id' => 7005,
-                    'name' => 'Skinning Knife',
-                    'link' => '|cffffffff|Hitem:7005::::::::120:::::|h[Skinning Knife]|h|r',
-                    'count' => 1,
-                    'mail' => 0,
-                    'slot' => 0,
-                    'banker_name' => 'Theorder',
-                ]
-            ],
-            'bags' => [
-                [
-                    'id' => 5956,
-                    'name' => 'Blacksmith Hammer',
-                    'link' => '|cffffffff|Hitem:5956:0:0:0|h[Blacksmith Hammer]|h|r',
-                    'count' => 1,
-                    'bag' => 1,
-                    'slot' => 1,
-                    'banker_name' => 'Theorder',
+            'stock' => [
+                'mail' => [
+                    [
+                        'id' => 7005,
+                        'name' => 'Skinning Knife',
+                        'link' => '|cffffffff|Hitem:7005::::::::120:::::|h[Skinning Knife]|h|r',
+                        'count' => 1,
+                        'mail' => 0,
+                        'slot' => 0,
+                        'banker_name' => 'Theorder',
+                    ]
+                ],
+                'bags' => [
+                    [
+                        'id' => 5956,
+                        'name' => 'Blacksmith Hammer',
+                        'link' => '|cffffffff|Hitem:5956:0:0:0|h[Blacksmith Hammer]|h|r',
+                        'count' => 1,
+                        'bag' => 1,
+                        'slot' => 1,
+                        'banker_name' => 'Theorder',
+                    ]
                 ]
             ]
         ]]);

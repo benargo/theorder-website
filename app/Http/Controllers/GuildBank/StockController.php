@@ -66,16 +66,18 @@ class StockController extends Controller
         $validated_data = $request->validate([
             'stock' => [
                 'required',
+                'json',
                 new StockSchemaRule(new Validator)
             ]
         ]);
 
         // Decode the imported stock...
         try {
-            $stock = collect(Arr::get($validated_data, 'stock'));
+            $stock = (array)json_decode(Arr::get($validated_data, 'stock'));
+            $stock = collect(Arr::get($stock, 'stock'));
 
             // Loop over each of the bags...
-            $models = $stock->map(function ($entries, $key) use ($user) {
+            $models = $stock->flatMap(function ($entries, $key) use ($user) {
                 // Get the singular form of the key. This will either be mail or
                 // bag...
                 $key = Str::singular($key);
@@ -84,57 +86,65 @@ class StockController extends Controller
                 // mapWithKeys function.
                 $entries = collect($entries);
 
-                return $entries->mapWithkeys(function ($entry) use ($key, $user) {
-                    // Validate the banker...
-                    $banker = Banker::where('name', Arr::get($entry, 'banker_name'))->firstOrFail();
+                if ($entries->count() > 0) {
+                    return $entries->map(function ($entry) use ($key, $user) {
+                        // Convert the entry to an array...
+                        $entry = (array) $entry;
 
-                    // If there is an item id...
-                    if (Arr::get($entry, 'id')) {
-                        // Validate the item...
+                        // Validate the banker...
+                        $banker = Banker::where('name', Arr::get($entry, 'banker_name'))->first();
+
                         $item = $this->items->getItem(Arr::get($entry, 'id'));
 
-                        $model = Stock::updateOrCreate(
-                            // Where...
-                            [
-                                'banker_id' => $banker->id,
-                                $key        => Arr::get($entry, $key), // $key is either mail or bag...
-                                'slot'      => Arr::get($entry, 'slot'),
-                            ],
+                        // If there is an item id...
+                        if ($item) {
+                            // Validate the item...
+                            $model = Stock::updateOrCreate(
+                                // Where...
+                                [
+                                    'banker_id' => $banker->id,
+                                    $key        => Arr::get($entry, $key), // $key is either mail or bag...
+                                    'slot'      => Arr::get($entry, 'slot'),
+                                ],
 
-                            // Update/Create...
-                            [
-                                'banker_id'          => $banker->id,
-                                $key                 => Arr::get($entry, $key), // $key is either mail or bag...
-                                'slot'               => Arr::get($entry, 'slot'),
-                                'item_id'            => Arr::get($item, 'id'),
-                                'count'              => Arr::get($entry, 'count'),
-                                'updated_by_user_id' => $user->id,
-                            ]
-                        );
-                    }
-                    // If there isn't an item id, then the item has been removed
-                    // and the withdrawn_at timestamp needs to be added.
-                    // If an entry doesn't exist in the database, then the
-                    // process should continue, and this entry should be removed
-                    // from the returned collection...
-                    else {
-                        $model = Stock::firstWhere([
-                            'banker_id' => $banker->id,
-                            $key        => Arr::get($entry, $key),
-                            'slot'      => Arr::get($entry, 'slot'),
-                        ]);
+                                // Update/Create...
+                                [
+                                    'banker_id'          => $banker->id,
+                                    $key                 => Arr::get($entry, $key), // $key is either mail or bag...
+                                    'slot'               => Arr::get($entry, 'slot'),
+                                    'item_id'            => $item->id,
+                                    'count'              => Arr::get($entry, 'count'),
+                                    'updated_by_user_id' => $user->id,
+                                ]
+                            );
 
-                        if ($model) {
-                            $model->delete();
+                            // Return the created/updated model.
+                            return $model;
                         }
-                    }
+                        // If there isn't an item id, then the item has been
+                        // removed.
+                        // If an entry doesn't exist in the database, then the
+                        // process should continue, and this entry should be
+                        // removed from the returned collection...
+                        else {
+                            $model = Stock::where([
+                                'banker_id' => $banker->id,
+                                $key        => Arr::get($entry, $key),
+                                'slot'      => Arr::get($entry, 'slot'),
+                            ])->first();
 
-                    // Return the created/updated model. If the model was never
-                    // created or updated, then return null to remove this entry
-                    // from the returned collection...
-                    return $model ? [$model->id => $model] : null;
-                });
-            })->flatten();
+                            if ($model) {
+                                $model->delete();
+                            }
+
+                            // If the model was never created or updated, then
+                            // return null to remove this entry from the
+                            // returned collection...
+                            return false;
+                        }
+                    })->filter();
+                }
+            });
 
             // Build the response...
             $response = collect([
@@ -164,8 +174,8 @@ class StockController extends Controller
                 'response' => Psr7\str($e->getResponse()),
             ], 500);
         }
-        catch (\Exception $e) {
-            return abort(500, $e->getMessage());
-        }
+        // catch (\Exception $e) {
+        //     return response()->json(['exception' => $e->getMessage()], 500);
+        // }
     }
 }
