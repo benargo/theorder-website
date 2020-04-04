@@ -40,8 +40,8 @@ class ApplicationAccepted extends Notification
 
     public function toDiscord($notifiable)
     {
-        if ($notifiable instanceof RecruitmentChannel::class) {
-            
+        if ($notifiable instanceof RecruitmentChannel) {
+            // @todo
         }
     }
 
