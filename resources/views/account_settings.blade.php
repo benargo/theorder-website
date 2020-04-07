@@ -1,16 +1,16 @@
 @extends('template')
 
-@section('title', __('account.my_account'))
+@section('title', 'Account Settings')
 
 @section('content')
     <div id="app">
         <header class="container-fluid bg-tavern py-7 text-light">
             <div class="content">
-                <h1 class="text-center">{{ __('account.my_account') }}</h1>
+                <h1 class="text-center">Account Settings</h1>
             </div>
         </header>
         <div class="container py-6 text-light">
-            <p class="lead">{{ __('account.introduction_account_settings') }}</p>
+            <p class="lead">Here you can modify the following account settings:</p>
             <account-settings
                 :default-values="{
                     nickname: '{{ $nickname }}',

@@ -23,6 +23,13 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     ];
 });
 
+$factory->state(App\Models\User::class, 'commander', function (Faker $faker) {
+    return [
+        'rank_id' => factory(App\Models\Rank::class)->states('commander')->create(),
+    ];
+});
+
+
 $factory->state(App\Models\User::class, 'inner_circle', function (Faker $faker) {
     return [
         'rank_id' => factory(App\Models\Rank::class)->states('inner_circle')->create(),

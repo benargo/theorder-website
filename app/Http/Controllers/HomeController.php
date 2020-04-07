@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\GuildRoster;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 

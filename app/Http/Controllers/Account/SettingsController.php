@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Account;
 
+use Auth;
 use App\Models\User;
 use RestCord\DiscordClient;
 use Illuminate\Http\Request;
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Schema;
 
 class SettingsController extends Controller
 {
+    /**
+     * Renders the settings page for the user. This page requires several
+     * services to be injected, so they are loaded here and then passed into
+     * the view.
+     *
+     * @return Illuminate\Http\Response
+     */
     public function settingsPage(Classes $classes, DiscordClient $discord, Races $races, Request $request)
     {
         $discord_tag  = null;
@@ -33,6 +41,12 @@ class SettingsController extends Controller
         ]);
     }
 
+    /**
+     * API request to update certain attributes about the user. This can only
+     * be called via the JavaScript API.
+     *
+     * @return Illuminate\Http\Response
+     */
     public function updateUserField(User $user, $field, Request $request)
     {
         abort_unless(Schema::hasColumn($user->getTable(), $field), 400);

@@ -20,7 +20,7 @@ class ApplicationPolicy extends BasePolicy
      */
     public function view(User $user, Application $application)
     {
-        return $this->userIsMemberOfInnerCircle($user);
+        return $this->userIsOfficer($user);
     }
 
     /**
@@ -31,7 +31,7 @@ class ApplicationPolicy extends BasePolicy
      */
     public function viewAll(User $user)
     {
-        return $this->userIsMemberOfInnerCircle($user);
+        return $this->userIsOfficer($user);
     }
 
     /**
@@ -66,7 +66,7 @@ class ApplicationPolicy extends BasePolicy
      */
     public function accept(User $user, Application $application)
     {
-        return $this->userIsMemberOfInnerCircle($user);
+        return $this->userIsOfficer($user);
     }
 
     /**
@@ -78,6 +78,6 @@ class ApplicationPolicy extends BasePolicy
      */
     public function decline(User $user, Application $application)
     {
-        return $this->userIsMemberOfInnerCircle($user);
+        return $this->userIsOfficera($user);
     }
 }

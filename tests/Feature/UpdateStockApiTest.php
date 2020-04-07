@@ -28,11 +28,6 @@ class UpdateStockApiTest extends TestCase
         ]);
     }
 
-    /**
-     * Tests the API endpoint.
-     *
-     * @return void
-     */
     public function testPostUpdateStock()
     {
         $mock_items = Mockery::mock('App\Blizzard\Warcraft\Items');
@@ -91,14 +86,9 @@ class UpdateStockApiTest extends TestCase
             ]
         ])]);
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
-    /**
-     * Test the API endpoint with empty datasets.
-     *
-     * @return void
-     */
     public function testPostWithEmptyData()
     {
         $response = $this->actingAs($this->user, 'api')->postJson('/api/guild-bank/stock/update', ['stock' => json_encode((object)[
@@ -108,14 +98,9 @@ class UpdateStockApiTest extends TestCase
             ]
         ])]);
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
-    /**
-     * Tests that the response is returned in the correct format.
-     *
-     * @return void
-     */
     public function testResponse()
     {
         $mock_items = Mockery::mock('App\Blizzard\Warcraft\Items');

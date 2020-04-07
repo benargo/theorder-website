@@ -17,13 +17,20 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
 
     /**
+     * This domain is applied to the web routes.
+     *
+     * @var string
+     */
+    protected $domain;
+
+    /**
      * Define your route model bindings, pattern filters, etc.
      *
      * @return void
      */
     public function boot()
     {
-        //
+        $this->domain = config('app.domain');
 
         parent::boot();
     }
@@ -37,9 +44,9 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
 
-        $this->mapWebRoutes();
+        $this->mapControlPanelRoutes();
 
-        //
+        $this->mapWebRoutes();
     }
 
     /**
@@ -69,5 +76,22 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "control panel" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     */
+    protected function mapControlPanelRoutes()
+    {
+        Route::prefix('officers')
+             ->middleware([
+                 'web',
+                 'can:access-officers-control-panel',
+             ])
+             ->name('control_panel.')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/control_panel.php'));
     }
 }

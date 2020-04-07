@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', __('meta.title'))
+@section('title', 'The Order')
 
 @section('content')
     <div id="app" class="page-home font-size-md">
@@ -13,10 +13,10 @@
             <div class="bg-overlay container-fluid z-index-1 full-height vh-80 vh-md-95 exclude-navbar justify-content-center">
                 <div class="text-center">
                     <h1 class="display-1">
-                        {{ __('meta.title') }}
+                        The Order
                     </h1>
                     <h2>
-                        {{ __('meta.realm') }}
+                        Pyrewood Village
                     </h2>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                     <div class="row py-6">
                         <div class="col-12">
                             <h2>Meet the Inner Circle</h2>
-                            <p>At the top of any guild is the master. Or in our case, we’re ruled by a council of five outstanding, bright, young(-ish) players who together form the Order’s inner circle. Here we all are, in this amazing screenshot.</p>
+                            <p>At the top of any guild is the master. Or in our case, we’re ruled by a council of five outstanding, bright, young(-ish) players who together form The Order’s inner circle. Here we all are, in this amazing screenshot.</p>
                             <p>You’re probably thinking: &lsquo;How do I become part of the inner circle?&rsquo; Well, to put it simply&hellip; you don’t. Sorry to disappoint you like that.</p>
                         </div>
                     </div>
@@ -77,8 +77,8 @@
                                 <img class="d-block image-inner-circle z-index-2" src="{{ asset('images/innercircle_alex.png') }}" alt="Alex" height="300">
                             </div>
                             <h4>Alex</h4>
-                            <p>Balleknusern</p>
-                            <p><flag iso="no" :squared="false" /><span class="sr-only">{{ __('nationalities.no') }}</span></p>
+                            <p>Sardius</p>
+                            <p><flag iso="no" :squared="false" /><span class="sr-only">Norwegian</span></p>
                         </div>
                         <div class="col-lg text-center">
                             <div class="inner-circle-image-wrapper v-align-bottom">
@@ -86,7 +86,7 @@
                             </div>
                             <h4>Andy</h4>
                             <p>Gambiit</p>
-                            <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
+                            <p><flag iso="gb" :squared="false" /><span class="sr-only">British</span></p>
                         </div>
                         <div class="col-lg text-center">
                             <div class="inner-circle-image-wrapper v-align-bottom">
@@ -94,7 +94,7 @@
                             </div>
                             <h4>Ben</h4>
                             <p>Tinkletoes</p>
-                            <p><flag iso="gb" :squared="false" /><span class="sr-only">{{ __('nationalities.gb') }}</span></p>
+                            <p><flag iso="gb" :squared="false" /><span class="sr-only">British</span></p>
                         </div>
                         <div class="col-lg text-center">
                             <div class="inner-circle-image-wrapper v-align-bottom">
@@ -102,7 +102,7 @@
                             </div>
                             <h4>Sam</h4>
                             <p>Bolis</p>
-                            <p><flag iso="gb-wls" :squared="false" /><span class="sr-only">{{ __('nationalities.gb-wls') }}</span></p>
+                            <p><flag iso="gb-wls" :squared="false" /><span class="sr-only">Welsh</span></p>
                         </div>
                         <div class="col-lg text-center">
                             <div class="inner-circle-image-wrapper v-align-bottom">
@@ -110,7 +110,7 @@
                             </div>
                             <h4>Tommy</h4>
                             <p>Monori</p>
-                            <p><flag iso="se" :squared="false" /><span class="sr-only">{{ __('nationalities.se') }}</span></p>
+                            <p><flag iso="se" :squared="false" /><span class="sr-only">Swedish</span></p>
                         </div>
                     </div>
                 </div>

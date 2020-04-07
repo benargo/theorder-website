@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Policies\BasePolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class InnerCirclePolicy extends BasePolicy
+class ControlPanelPolicy extends BasePolicy
 {
     use HandlesAuthorization;
 
@@ -16,8 +16,8 @@ class InnerCirclePolicy extends BasePolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function accessControlPanel(User $user)
+    public function viewControlPanel(User $user)
     {
-        return $this->userIsMemberOfInnerCircle($user);
+        return $this->userIsOfficer($user);
     }
 }

@@ -457,7 +457,7 @@ class Service extends BaseService
      */
     public function getDataCharacterRaces(array $options = [])
     {
-        return $this->request('/data/character/races', $options);
+        return $this->request('/playable-race/index', $options);
     }
 
     /**
@@ -471,7 +471,7 @@ class Service extends BaseService
      */
     public function getDataCharacterClasses(array $options = [])
     {
-        return $this->request('/data/character/classes', $options);
+        return $this->request('/playable-class/index', $options);
     }
 
     /**

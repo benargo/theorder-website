@@ -1,12 +1,12 @@
 @extends('template')
 
-@section('title', __('controlpanel.applications'))
+@section('title', 'Applications')
 
 @section('content')
     <div id="app">
         <header class="container-fluid bg-engineering py-7 text-light">
             <div class="content">
-                <h1 class="text-center">{{ __('controlpanel.applications') }}</h1>
+                <h1 class="text-center">Applications</h1>
             </div>
         </header>
         <div class="py-6 text-light">

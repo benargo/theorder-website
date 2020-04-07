@@ -13,17 +13,12 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\Rank::class, function (Faker $faker) {
+$factory->define(App\Models\NewsItem::class, function (Faker $faker) {
     return [
-        'title' => $faker->word,
-        'seniority' => $faker->numberBetween(5, 10),
+        'title' => $faker->sentence,
+        'body' => $faker->text(),
+        'allows_comments' => true,
+        'url' => $faker->slug,
+        'published_at' => $faker->dateTimeThisMonth(),
     ];
 });
-
-$factory->state(App\Models\Rank::class, 'commander', [
-    'seniority' => 2,
-]);
-
-$factory->state(App\Models\Rank::class, 'inner_circle', [
-    'seniority' => 1,
-]);

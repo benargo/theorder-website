@@ -11,17 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    $recruiting_classes = DB::table('wow_classes')
-        ->select('name', 'is_recruiting')
-        ->where('is_recruiting', true)
-        ->orderBy('name', 'asc')
-        ->get();
-
-    return view('home', [
-        'recruiting_classes' => $recruiting_classes,
-    ]);
-})->name('homepage');
+Route::name('homepage')
+     ->get('/', 'HomeController@renderHomepage');
 
 /*
  |--------------------------------------------------------------------------
@@ -29,19 +20,14 @@ Route::get('/', function () {
  |--------------------------------------------------------------------------
  */
 
-Route::get('/account', function () {
-    return redirect('/account/settings');
-});
+Route::name('account.index')
+     ->get('/account', function () {
+         return redirect('/account/settings');
+     });
 
-Route::get('/account/settings', 'Account\SettingsController@settingsPage');
-
-Route::get('/account/character-select', function () {
-    abort(404);
-})->name('character-select');
-
-// Route::get('/account/character-select', 'Account\CharacterSelectController@showCharacterList')
-//         ->middleware('auth')
-//         ->name('character-select');
+Route::name('account.settings')
+     ->middleware('auth')
+     ->get('/account/settings', 'Account\SettingsController@settingsPage');
 
 /*
  |--------------------------------------------------------------------------
@@ -51,10 +37,6 @@ Route::get('/account/character-select', function () {
 
 Route::get('/join', 'ApplicationsController@showJoinPage')
     ->middleware('auth');
-
-// Route::get('/join', function () {
-//     return abort(504);
-// });
 
 /*
  |--------------------------------------------------------------------------
@@ -77,61 +59,28 @@ Route::get('/oauth2/discord', 'DiscordController@handleProviderCallback');
  |--------------------------------------------------------------------------
  */
 
-Route::get('/bank', function () {
-    return view('guild_bank_index');
-});
+Route::name('bank.index')
+     ->get('/bank', function () {
+         return view('guild_bank_index');
+     });
 
 /*
  |--------------------------------------------------------------------------
  | Inner Circle Control Panel
  |--------------------------------------------------------------------------
+ |
+ | This has now been replaced by the Officers' Control Panel. The routes for
+ | which can be found in the 'routes\control_panel.php' file. These routes
+ | remain here to act as redirects to the new location, for those authenticated
+ | to a suitable level to see them.
+ |
  */
 
-Route::group(
-    [
-        'middleware' => 'can:access-inner-circle-control-panel',
-        'prefix' => '/inner-circle',
-    ],
-    function () {
-        Route::get('', function () {
-            return view('control_panel');
-        });
-
-        Route::get('/applications', 'ApplicationsController@all');
-
-        Route::get('/guild-bank/clients', function () {
-            return view('view_api_clients');
-        });
-
-        Route::get('/guild-bank/bankers', function () {
-            return view('manage_bankers');
-        });
-
-        Route::get('/news', function () {
-            return view('manage_news_items');
-        });
-
-        Route::get('/news/create', 'NewsItemController@create');
-
-        Route::get('/news/editor/{news_item}', 'NewsItemController@edit');
-
-        Route::get('/raids', function () {
-            return redirect()->route('manage-raids');
-        });
-
-        Route::get('/raids/schedule', function (App\Blizzard\Warcraft\Instances\Raids $raids) {
-            return view('controlpanel/manage_raid_schedule', [
-                'instances' => $raids->toJson(),
-            ]);
-        });
-
-        Route::get('/raids/signups', function () {
-            return view('controlpanel/manage_raids');
-        })->name('manage-raids');
-
-        Route::get('/ranks', 'RanksController@manage');
-    }
-);
+Route::middleware('can:access-officers-control-panel')
+     ->get('/inner-circle{route?}', function ($route = null) {
+         return redirect("/officers{$route}");
+     })
+     ->where('route', '.*');
 
 /*
  |--------------------------------------------------------------------------
@@ -139,13 +88,15 @@ Route::group(
  |--------------------------------------------------------------------------
  */
 
-Route::get('/privacy', function () {
-    return view('privacy_policy');
-});
+Route::name('privacy_policy')
+     ->get('/privacy', function () {
+         return view('privacy_policy');
+     });
 
-Route::get('/battlenet', function () {
-    return view('battlenet_usage_information');
-});
+Route::name('battlenet_usage_information')
+     ->get('/battlenet', function () {
+         return view('battlenet_usage_information');
+     });
 
 /*
  |--------------------------------------------------------------------------
@@ -153,13 +104,14 @@ Route::get('/battlenet', function () {
  |--------------------------------------------------------------------------
  */
 
-Route::get('/login', 'Auth\LoginController@redirectToProvider')
-        ->name('login');
+Route::name('login')
+     ->get('/login', 'Auth\LoginController@redirectToProvider');
 
-Route::get('/oauth2/battlenet', 'Auth\LoginController@handleProviderCallback')
-        ->name('login.callback');
+Route::name('login.callback')
+     ->get('/oauth2/battlenet', 'Auth\LoginController@handleProviderCallback');
 
-Route::get('/logout', 'Auth\LogoutController@handleLogout');
+Route::name('logout')
+     ->get('/logout', 'Auth\LogoutController@handleLogout');
 
 /*
  |--------------------------------------------------------------------------
@@ -167,9 +119,9 @@ Route::get('/logout', 'Auth\LogoutController@handleLogout');
  |--------------------------------------------------------------------------
  */
 
-Route::get('/marketplace', 'MarketplaceController@getIndex');
+// Route::get('/marketplace', 'MarketplaceController@getIndex');
 
-Route::get('/marketplace/{action}');
+// Route::get('/marketplace/{action}');
 
 /*
  |--------------------------------------------------------------------------
@@ -177,13 +129,14 @@ Route::get('/marketplace/{action}');
  |--------------------------------------------------------------------------
  */
 
-Route::get('/raids', function () {
-    return view('view_raiding_schedule');
-});
+Route::name('raids.index')
+     ->get('/raids', function () {
+         return view('view_raiding_schedule');
+     });
 
-Route::get('/raids/{raid}', 'ViewRaidController@get')
-        ->middleware('auth')
-        ->name('raids.single');
+Route::name('raids.single')
+     ->middleware('auth')
+     ->get('/raids/{raid}', 'ViewRaidController@get');
 
 /*
  |--------------------------------------------------------------------------
@@ -191,19 +144,15 @@ Route::get('/raids/{raid}', 'ViewRaidController@get')
  |--------------------------------------------------------------------------
  */
 
-Route::group(
-    [
-        'prefix' => '/news',
-    ],
-    function () {
-        Route::get('/', 'NewsItemController@index')
-                ->name('news.index');
+Route::prefix('/news')->group(function () {
+    Route::name('news.index')
+         ->get('/', 'NewsItemController@index');
 
-        Route::get('/{news_item}', function (App\Models\NewsItem $news_item) {
-            return view('news_single', ['news_item' => $news_item]);
-        })->name('news.single');
-    }
-);
+    Route::name('news.single')
+         ->get('/{news_item}', function (App\Models\NewsItem $news_item) {
+             return view('news_single', ['news_item' => $news_item]);
+         });
+});
 
 /*
  |--------------------------------------------------------------------------

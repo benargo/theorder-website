@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         // Control Panel gates...
-        Gate::define('access-inner-circle-control-panel', 'App\Policies\InnerCirclePolicy@accessControlPanel');
+        Gate::define('access-officers-control-panel', 'App\Policies\ControlPanelPolicy@viewControlPanel');
 
         // Guild bank/stock addon gates...
         Gate::define('update-stock-data', 'App\Policies\StockAddonPolicy@update');

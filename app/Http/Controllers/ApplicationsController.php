@@ -38,8 +38,6 @@ class ApplicationsController extends Controller
 
     public function all(Request $request)
     {
-        $this->authorize('viewAll', ApplicationModel::class);
-
         $data = $this->validateGetRequest($request);
 
         // TODO: Move to a ViewComposer
@@ -52,8 +50,6 @@ class ApplicationsController extends Controller
 
     public function getCollection(Request $request)
     {
-        $this->authorize('viewAll', ApplicationModel::class);
-
         $validated_data = $this->validateGetRequest($request);
 
         $applications = ApplicationModel::where(function ($query) use ($validated_data) {
@@ -79,10 +75,6 @@ class ApplicationsController extends Controller
 
     public function getStatistics(Request $request)
     {
-        $this->authorize('viewAll', ApplicationModel::class);
-
-        // $races          = $this->races->getClassicRaces('alliance');
-        // $classes        = $this->classes->getClassicClasses('alliance');
         $validated_data = $this->validateGetRequest($request);
 
         $races = DB::table('applications')
