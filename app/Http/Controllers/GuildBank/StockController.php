@@ -94,7 +94,7 @@ class StockController extends Controller
                         // Validate the banker...
                         $banker = Banker::where('name', Arr::get($entry, 'banker_name'))->first();
 
-                        $item = $this->items->getItem(Arr::get($entry, 'id'));
+                        $item = (array) $this->items->getItem(Arr::get($entry, 'id'));
 
                         // If there is an item id...
                         if ($item) {
@@ -112,7 +112,7 @@ class StockController extends Controller
                                     'banker_id'          => $banker->id,
                                     $key                 => Arr::get($entry, $key), // $key is either mail or bag...
                                     'slot'               => Arr::get($entry, 'slot'),
-                                    'item_id'            => $item->id,
+                                    'item_id'            => Arr::get($item, 'id'),
                                     'count'              => Arr::get($entry, 'count'),
                                     'updated_by_user_id' => $user->id,
                                 ]

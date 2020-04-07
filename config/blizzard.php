@@ -48,7 +48,7 @@ return [
     | For examples: en_GB | fr_FR | de_DE | ru_RU
     |
     */
-    'locale' => 'en_US',
+    'locale' => 'en_GB',
 
     /*
     |--------------------------------------------------------------------------
@@ -58,6 +58,6 @@ return [
     | Define the Region API.
     |
     */
-    'region' => 'us',
+    'region' => 'eu',
 
 ];
