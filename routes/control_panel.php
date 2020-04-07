@@ -48,4 +48,5 @@ Route::get('/raids/signups', function () {
     return view('controlpanel/manage_raids');
 })->name('manage-raids');
 
-Route::get('/ranks', 'RanksController@manage');
+Route::name('manage_ranks')
+     ->get('/ranks', 'RanksController@manage');
