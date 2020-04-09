@@ -3,12 +3,10 @@
 namespace App\Discord\Channels;
 
 use App\Contracts\Discord\Channel;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\AnonymousNotifiable;
 
-class RecruitmentChannel implements Channel
+class RecruitmentChannel extends AnonymousNotifiable implements Channel
 {
-    use Notifiable;
-
     public function routeNotificationForDiscord()
     {
         return config('discord.channels.recruitment');
