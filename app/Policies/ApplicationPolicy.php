@@ -78,6 +78,6 @@ class ApplicationPolicy extends BasePolicy
      */
     public function decline(User $user, Application $application)
     {
-        return $this->userIsOfficera($user);
+        return $this->userIsOfficer($user);
     }
 }
