@@ -1,12 +1,12 @@
 @extends('template')
 
-@section('title', __('news.news_editor'))
+@section('title', Lang::get('news.news_editor'))
 
 @section('content')
     <div id="app" class="page-news-item-editor">
         <header class="container-fluid bg-engineering py-6 text-light">
             <div class="content">
-                <h1 class="text-center">{{ __('news.news_editor') }}</h1>
+                <h1 class="text-center">{{ Lang::get('news.news_editor') }}</h1>
             </div>
         </header>
         <div class="bg-brown-texture py-6 text-light">
@@ -26,33 +26,33 @@
 
                 {{-- language lines --}}
                 :lang="{
-                    allowComments: '{{ __('news.allow_comments') }}',
-                    articleId: '{{ __('news.article_id') }}',
-                    author: '{{ __('news.author') }}',
-                    basePath: '{{ str_after(route('news.index'), '://') }}',
-                    comments: '{{ __('news.comments') }}',
-                    currentlyPublished: '{{ __('news.currently_published') }}',
-                    draftId: '{{ __('news.draft_id') }}',
-                    errInvalidPublishDate: '{{ __('news.alerts.error_invalid_publish_date') }}',
-                    errPublishing: '{{ __('news.alerts.error_publishing') }}',
-                    labelUrl: '{{ __('news.labels.url') }}',
-                    labelPublishDate: '{{ __('news.labels.publish_date') }}',
-                    labelPublishDateHelp: '{{ __('news.labels.publish_date_help', [
+                    allowComments: '{{ Lang::get('news.allow_comments') }}',
+                    articleId: '{{ Lang::get('news.article_id') }}',
+                    author: '{{ Lang::get('news.author') }}',
+                    basePath: '{{ Illuminate\Support\Str::after(route('news.index'), '://') }}',
+                    comments: '{{ Lang::get('news.comments') }}',
+                    currentlyPublished: '{{ Lang::get('news.currently_published') }}',
+                    draftId: '{{ Lang::get('news.draft_id') }}',
+                    errInvalidPublishDate: '{{ Lang::get('news.alerts.error_invalid_publish_date') }}',
+                    errPublishing: '{{ Lang::get('news.alerts.error_publishing') }}',
+                    labelUrl: '{{ Lang::get('news.labels.url') }}',
+                    labelPublishDate: '{{ Lang::get('news.labels.publish_date') }}',
+                    labelPublishDateHelp: '{{ Lang::get('news.labels.publish_date_help', [
                         'date' => date('d/m/Y H:i'),
                     ]) }}',
-                    notCurrentlyPublished: '{{ __('news.not_currently_published') }}',
-                    placeholder: '{{ __('news.placeholder') }}',
-                    publishingOptions: '{{ __('news.publishing_options') }}',
-                    publishNowButton: '{{ __('news.publish_now') }}',
-                    publishLaterButton: '{{ __('news.publish_later') }}',
-                    selectAuthor: '{{ __('news.select_author') }}',
-                    startingTitle: '{{  __('news.click_to_set_title') }}',
-                    togglePublishingOptions: '{{ __('news.sr_toggle_publishing_options') }}',
-                    unpublishButton: '{{ __('news.unpublish') }}',
-                    url: '{{ __('news.url') }}',
-                    urlIsAvailable: '{{ __('news.url_is_available') }}',
-                    urlNotAvailable: '{{ __('news.url_is_not_available') }}',
-                    viewArticle: '{{ __('news.view_article') }}',
+                    notCurrentlyPublished: '{{ Lang::get('news.not_currently_published') }}',
+                    placeholder: '{{ Lang::get('news.placeholder') }}',
+                    publishingOptions: '{{ Lang::get('news.publishing_options') }}',
+                    publishNowButton: '{{ Lang::get('news.publish_now') }}',
+                    publishLaterButton: '{{ Lang::get('news.publish_later') }}',
+                    selectAuthor: '{{ Lang::get('news.select_author') }}',
+                    startingTitle: '{{  Lang::get('news.click_to_set_title') }}',
+                    togglePublishingOptions: '{{ Lang::get('news.sr_toggle_publishing_options') }}',
+                    unpublishButton: '{{ Lang::get('news.unpublish') }}',
+                    url: '{{ Lang::get('news.url') }}',
+                    urlIsAvailable: '{{ Lang::get('news.url_is_available') }}',
+                    urlNotAvailable: '{{ Lang::get('news.url_is_not_available') }}',
+                    viewArticle: '{{ Lang::get('news.view_article') }}',
                 }"
 
                 {{-- current user object prop --}}

@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', __('controlpanel.control_panel'))
+@section('title', Lang::get('controlpanel.control_panel'))
 
 @section('content')
     <div id="app" class="page-control-panel-index">

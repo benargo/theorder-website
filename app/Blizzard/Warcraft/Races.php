@@ -56,7 +56,7 @@ class Races
             Cache::tags(['blizzard', 'static'])->put(
                 'races',
                 $this->races,
-                now()->addHours(24)
+                now()->addDays(30)
             );
         }
     }

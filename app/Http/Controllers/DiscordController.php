@@ -143,7 +143,7 @@ class DiscordController extends Controller
                 $this->client->guild->addGuildMemberRole([
                     'guild.id' => self::GUILD_ID,
                     'user.id'  => intval($discord_user->id),
-                    'role.id'  => $this->roles->firstWhere('name', $user->rank->title),
+                    'role.id'  => $this->roles->firstWhere('name', '==', $user->rank->title),
                 ]);
             }
         }

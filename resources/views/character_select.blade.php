@@ -1,14 +1,14 @@
 @extends('template')
 
-@section('title', __('account.character_select_title'))
+@section('title', Lang::get('account.character_select_title'))
 
 @section('content')
     <div class="full-height bg-dark-portal text-light py-6">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h1>{{ __('account.character_select_title') }}</h1>
-                    <p class="lead">{{ __('account.character_select_lead') }}</p>
+                    <h1>{{ Lang::get('account.character_select_title') }}</h1>
+                    <p class="lead">{{ Lang::get('account.character_select_lead') }}</p>
                 </div>
             </div>
             <div class="row justify-content-md-center">
@@ -22,7 +22,7 @@
                         {!! $alert !!}
                     </div>
                 @endif
-                <character-select-confirmation lang="{{ __('account.character_select_confirmation') }}"></character-select-confirmation>
+                <character-select-confirmation lang="{{ Lang::get('account.character_select_confirmation') }}"></character-select-confirmation>
             </div>
             @if (isset($characters))
                 <div class="row">
@@ -34,7 +34,7 @@
                         <character-select-button
                             name="{{ $character->name }}"
                             realm="{{ $character->realm }}"
-                            summary="{{ __('account.character_summary', [
+                            summary="{{ Lang::get('account.character_summary', [
                                 'level' => $character->level,
                                 'race' => $races->getRace($character->race)->name,
                                 'class' => $classes->getClass($character->class)->name,
@@ -47,7 +47,7 @@
                                 <div class="character-select-body">
                                     <h3 class="card-title">{{ $character->name }}</h5>
                                     <p class="card-text">
-                                        {{ __('account.character_summary', [
+                                        {{ Lang::get('account.character_summary', [
                                             'level' => $character->level,
                                             'race' => $races->getRace($character->race)->name,
                                             'class' => $classes->getClass($character->class)->name,
@@ -70,7 +70,7 @@
                                 <div class="character-select-body">
                                     <h3 class="card-title">{{ $character->name }}</h5>
                                     <p class="card-text">
-                                        {{ __('account.character_summary', [
+                                        {{ Lang::get('account.character_summary', [
                                             'level' => $character->level,
                                             'race' => $races->getRace($character->race)->name,
                                             'class' => $classes->getClass($character->class)->name,
@@ -94,7 +94,7 @@
                                     <div class="character-select-body">
                                         <h3 class="card-title">{{ $character->name }}</h5>
                                         <p class="card-text">
-                                            {{ __('account.character_summary', [
+                                            {{ Lang::get('account.character_summary', [
                                                 'level' => $character->level,
                                                 'race' => $races->getRace($character->race)->name,
                                                 'class' => $classes->getClass($character->class)->name,

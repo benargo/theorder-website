@@ -65,14 +65,14 @@ class CharacterSelectController extends Controller
             });
 
             if ($silvermoon->isEmpty()) {
-                $this->data['alert'] = __('account.errors.no_silvermoon_characters_found');
+                $this->data['alert'] = Lang::get('account.errors.no_silvermoon_characters_found');
             }
 
             // Group the remaining characters by realm...
             $this->data['characters'] = $characters->sortBy('name')->groupBy('realm');
         }
         catch (ServerException $e) {
-            $this->data['error'] = __('account.errors.battlenet_api_'.$e->getCode());
+            $this->data['error'] = Lang::get('account.errors.battlenet_api_'.$e->getCode());
         }
         catch (NoCharactersFoundException $e) {
             $this->data['error'] = $e->getMessage();

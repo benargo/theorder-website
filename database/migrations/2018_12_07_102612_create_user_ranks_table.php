@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -39,9 +40,11 @@ class CreateUserRanksTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_rank_id_foreign');
-        });
+        if (DB::getDriverName() !== 'sqlite') {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropForeign(['rank_id']);
+            });
+        }
 
         Schema::dropIfExists('user_ranks');
     }

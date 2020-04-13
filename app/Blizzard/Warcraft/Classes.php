@@ -65,7 +65,7 @@ class Classes
             Cache::tags(['blizzard', 'static'])->put(
                 'classes',
                 $this->classes,
-                now()->addHours(24)
+                now()->addDays(30)
             );
         }
     }

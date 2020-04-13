@@ -18,7 +18,7 @@ class SeeBankersTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/bank')
                     ->assertSee('I want to donate items...')
-                    ->press('I want to donate items...')
+                    ->click('#btnStepOneDonate')
                     ->assertSee('Below you will find the list of bank characters, so you know where to send each item.');
         });
     }

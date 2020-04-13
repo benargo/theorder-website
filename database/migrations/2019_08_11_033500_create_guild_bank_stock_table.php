@@ -16,7 +16,7 @@ class CreateGuildBankStockTable extends Migration
         Schema::create('guild_bank_stock', function (Blueprint $table) {
             $table->increments('id');
             $table->string('banker_name', 12);
-            $table->boolean('is_in_bags');
+            $table->boolean('is_in_bags')->default(true);
             $table->integer('bag_number')->nullable();
             $table->integer('slot_number');
             $table->integer('item_id');

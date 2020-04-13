@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -24,6 +25,7 @@ class CreateBankersTable extends Migration
             // Drop the column 'banker_name' from the stock table...
             $table->dropColumn('banker_name');
         });
+
         Schema::table('guild_bank_stock', function (Blueprint $table) {
             // Insert a new column 'banker_id' after the 'id' field...
             $table->unsignedInteger('banker_id')
@@ -45,7 +47,9 @@ class CreateBankersTable extends Migration
     public function down()
     {
         Schema::table('guild_bank_stock', function (Blueprint $table) {
-            $table->dropForeign('guild_bank_stock_banker_id_foreign');
+            if (DB::getDriverName() !== 'sqlite') {
+                $table->dropForeign(['banker_id']);
+            }
             $table->dropColumn('banker_id');
             $table->string('banker_name', 12)->default('{unknown}');
         });

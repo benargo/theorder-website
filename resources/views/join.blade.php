@@ -17,7 +17,7 @@
                 :races="{{ $races->toJson() }}"
                 cannot-apply-again-until-date="{{ $application ? $application->canApplyAgainWhen()->format('jS F Y') : '{date}' }}"
                 :lang="{
-                    nextSteps: '{!! __('applications.next_steps') !!}',
+                    nextSteps: '{!! Lang::get('applications.next_steps') !!}',
                 }"
                 @isset ($application)
                     status="{{ $application->getStatus() }}"

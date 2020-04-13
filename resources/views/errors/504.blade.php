@@ -1,7 +1,7 @@
 @extends('errors::illustrated-layout')
 
 @section('code', '504')
-@section('title', __('Service Unavailable'))
+@section('title', Lang::get('Service Unavailable'))
 
 @section('image')
     <div style="background-image: url({{ asset('/svg/503.svg') }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">

@@ -57,7 +57,7 @@ class Items
             Cache::tags(['blizzard', 'items'])->put(
                 $item_id,
                 $item,
-                now()->addHours(24)
+                now()->addDays(30)
             );
         }
 

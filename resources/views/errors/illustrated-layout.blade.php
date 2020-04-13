@@ -462,7 +462,7 @@
             <div class="w-full md:w-1/2 flex items-center justify-center">
                 <div class="max-w-sm m-8">
                     <div class="text-white text-5xl md:text-15xl font-black">
-                        @yield('code', __('Oh no'))
+                        @yield('code', Lang::get('Oh no'))
                     </div>
 
                     <div class="w-16 h-1 bg-primary my-3 md:my-6"></div>
@@ -473,7 +473,7 @@
 
                     <a href="{{ app('router')->has('home') ? route('home') : url('/') }}">
                         <button class="bg-transparent text-white font-bold uppercase tracking-wide py-3 px-6 border-2 border-grey-light hover:border-grey rounded-lg">
-                            {{ __('Go Home') }}
+                            {{ Lang::get('Go Home') }}
                         </button>
                     </a>
                 </div>

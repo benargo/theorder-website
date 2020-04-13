@@ -22,7 +22,7 @@ class MembershipController extends Controller
     {
         return view('manage_all_users', [
             'roles' => $this->roles->stringifyId(),
-            'title' => ucwords(__('controlpanel.manage_members')),
+            'title' => ucwords(Lang::get('controlpanel.manage_members')),
         ]);
     }
 }

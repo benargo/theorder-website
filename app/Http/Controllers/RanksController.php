@@ -67,7 +67,7 @@ class RanksController extends Controller
     {
         return view('manage_ranks', [
             'roles' => $this->roles->stringifyId(),
-            'title' => ucwords(__('controlpanel.manage_ranks')),
+            'title' => ucwords(Lang::get('controlpanel.manage_ranks')),
         ]);
     }
 

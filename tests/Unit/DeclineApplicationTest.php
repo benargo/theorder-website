@@ -2,15 +2,15 @@
 
 namespace Tests\Unit;
 
-use Tests\TestCase;
+use Tests\DuskTestCase;
 use App\Models\User;
 use App\Guild\Application;
 
-class DeclineApplicationTest extends TestCase
+class DeclineApplicationTest extends DuskTestCase
 {
     private $application;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

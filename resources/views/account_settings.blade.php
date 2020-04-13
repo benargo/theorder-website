@@ -23,20 +23,20 @@
             <account-applications
                 :classes="{{ $classes }}"
                 :lang="{
-                    on: '{{ __('applications.on') }}',
+                    on: '{{ Lang::get('applications.on') }}',
                     labels: {
-                        damage: '{{ __('applications.labels.damage') }}',
-                        healer: '{{ __('applications.labels.healer') }}',
-                        role: '{{ __('applications.role') }}',
-                        status: '{{ __('applications.labels.status') }}',
-                        tank: '{{ __('applications.labels.tank') }}',
-                        withdrawApplication: '{{ __('applications.labels.withdraw_application') }}',
+                        damage: '{{ Lang::get('applications.labels.damage') }}',
+                        healer: '{{ Lang::get('applications.labels.healer') }}',
+                        role: '{{ Lang::get('applications.role') }}',
+                        status: '{{ Lang::get('applications.labels.status') }}',
+                        tank: '{{ Lang::get('applications.labels.tank') }}',
+                        withdrawApplication: '{{ Lang::get('applications.labels.withdraw_application') }}',
                     },
                     status: {
-                        accepted: '{{ ucfirst(__('applications.status.accepted')) }}',
-                        declined: '{{ ucfirst(__('applications.status.declined')) }}',
-                        pending: '{{ ucfirst(__('applications.status.pending')) }}',
-                        withdrawn: '{{ ucfirst(__('applications.status.withdrawn')) }}',
+                        accepted: '{{ ucfirst(Lang::get('applications.status.accepted')) }}',
+                        declined: '{{ ucfirst(Lang::get('applications.status.declined')) }}',
+                        pending: '{{ ucfirst(Lang::get('applications.status.pending')) }}',
+                        withdrawn: '{{ ucfirst(Lang::get('applications.status.withdrawn')) }}',
                     },
                 }"
                 :races="{{ $races }}"

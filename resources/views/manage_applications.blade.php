@@ -13,7 +13,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-8">
-                        <p class="lead">{{ __('applications.manage_lead') }}</p>
+                        <p class="lead">{{ Lang::get('applications.manage_lead') }}</p>
                     </div>
                 </div>
             </div>
@@ -31,14 +31,14 @@
                 :lang="{
                     roles: {
                         @foreach ($roles as $r)
-                            {{ $r }}: '{{ __("applications.labels.{$r}") }}',
+                            {{ $r }}: '{{ Lang::get("applications.labels.{$r}") }}',
                         @endforeach
                     },
                     status: {
-                        accepted: '{{ ucfirst(__('applications.status.accepted')) }}',
-                        declined: '{{ ucfirst(__('applications.status.declined')) }}',
-                        pending: '{{ ucfirst(__('applications.status.pending')) }}',
-                        withdrawn: '{{ ucfirst(__('applications.status.withdrawn')) }}',
+                        accepted: '{{ ucfirst(Lang::get('applications.status.accepted')) }}',
+                        declined: '{{ ucfirst(Lang::get('applications.status.declined')) }}',
+                        pending: '{{ ucfirst(Lang::get('applications.status.pending')) }}',
+                        withdrawn: '{{ ucfirst(Lang::get('applications.status.withdrawn')) }}',
                     }
                 }"
 

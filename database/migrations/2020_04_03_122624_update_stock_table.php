@@ -46,7 +46,7 @@ class UpdateStockTable extends Migration
     {
         Schema::table('guild_bank_stock', function (Blueprint $table) {
             // Restore the boolean column for is_in_bags...
-            $table->boolean('is_in_bags');
+            $table->boolean('is_in_bags')->default(true);
         });
 
         Schema::table('guild_bank_stock', function (Blueprint $table) {

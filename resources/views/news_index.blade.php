@@ -1,12 +1,12 @@
 @extends('template')
 
-@section('title', __('news.news'))
+@section('title', Lang::get('news.news'))
 
 @section('content')
     <div id="app" class="page-news-index d-flex flex-column" data-spy="scroll" data-target="scrollspy-news-items" data-offset="0">
         <header class="container-fluid bg-engineering py-6 text-light">
             <div class="content">
-                <h1 class="text-center">{{ __('news.news') }}</h1>
+                <h1 class="text-center">{{ Lang::get('news.news') }}</h1>
             </div>
         </header>
         <div class="pb-6 text-light flex-1">
@@ -29,7 +29,7 @@
                                     <div class="card-body bg-brown">
                                         <h5 class="card-title">
                                             {{
-                                                __('news.attribution', [
+                                                Lang::get('news.attribution', [
                                                         'author' => $news_item->author->nickname,
                                                         'date' => $news_item->published_at->toDayDateTimeString(),
                                                 ])
@@ -51,7 +51,7 @@
                         </div>
                     @else
                         <div class="col pt-6">
-                            <p class="lead text-center">{{ __('news.alerts.info_items_count_zero') }}</p>
+                            <p class="lead text-center">{{ Lang::get('news.alerts.info_items_count_zero') }}</p>
                         </div>
                     @endif
                 </div>

@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Models\User;
 use App\Models\NewsItem;
+use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -60,7 +61,7 @@ class NewsItemPublished extends Notification implements ShouldQueue
     {
         $author = isset($this->news_item->author->nickname)
             ? $this->news_item->author->nickname
-            : str_before($this->news_item->author->battletag, '#');
+            : Str::before($this->news_item->author->battletag, '#');
 
         $url = route('news.single', $this->news_item->url);
 
@@ -69,7 +70,7 @@ class NewsItemPublished extends Notification implements ShouldQueue
             [
                 'title' => $this->news_item->title,
                 'type' => 'rich',
-                'description' => str_before($this->news_item->body, "\n"),
+                'description' => Str::before($this->news_item->body, "\n"),
                 'url' => $url,
                 'timestamp' => $this->news_item->published_at->toIso8601String(),
                 'color' => hexdec('f8b700'),
