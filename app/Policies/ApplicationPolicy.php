@@ -54,7 +54,7 @@ class ApplicationPolicy extends BasePolicy
      */
     public function withdraw(User $user, Application $application)
     {
-        return $user->id === $application->user_id;
+        return $user->id === $application->user->id;
     }
 
     /**
