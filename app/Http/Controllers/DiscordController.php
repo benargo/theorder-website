@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rank;
+use App\Guild\Rank;
 use RestCord\DiscordClient;
 use App\Discord\RolesRepository;
 use Illuminate\Support\Facades\Auth;

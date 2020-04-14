@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rank;
+use App\Guild\Rank;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Discord\RolesRepository;

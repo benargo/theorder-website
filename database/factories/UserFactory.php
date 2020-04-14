@@ -19,19 +19,19 @@ $factory->define(App\User::class, function (Faker $faker) {
         'nickname' => $faker->firstNameMale,
         'email' => $faker->email,
         'battletag' => $faker->regexify('[a-z]{5,8}#\d{4}'),
-        'rank_id' => factory(App\Models\Rank::class)->create(),
+        'rank_id' => factory(App\Guild\Rank::class)->create(),
     ];
 });
 
 $factory->state(App\User::class, 'commander', function (Faker $faker) {
     return [
-        'rank_id' => factory(App\Models\Rank::class)->states('commander')->create(),
+        'rank_id' => factory(App\Guild\Rank::class)->states('commander')->create(),
     ];
 });
 
 
 $factory->state(App\User::class, 'inner_circle', function (Faker $faker) {
     return [
-        'rank_id' => factory(App\Models\Rank::class)->states('inner_circle')->create(),
+        'rank_id' => factory(App\Guild\Rank::class)->states('inner_circle')->create(),
     ];
 });

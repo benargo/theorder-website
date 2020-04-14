@@ -230,6 +230,6 @@ class User extends Authenticatable
      */
     public function rank()
     {
-        return $this->belongsTo('App\Models\Rank');
+        return $this->belongsTo('App\Guild\Rank');
     }
 }

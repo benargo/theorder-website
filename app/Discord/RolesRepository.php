@@ -2,7 +2,7 @@
 
 namespace App\Discord;
 
-use App\Models\Rank;
+use App\Guild\Rank;
 use Illuminate\Support\Arr;
 use RestCord\DiscordClient;
 use Illuminate\Support\Facades\Cache;
