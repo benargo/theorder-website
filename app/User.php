@@ -198,7 +198,7 @@ class User extends Authenticatable
      */
     public function kudos()
     {
-        return $this->hasMany('App\Models\Kudos', 'awarded_to_user_id');
+        return $this->hasMany('App\Kudos', 'awarded_to_user_id');
     }
 
     /**
