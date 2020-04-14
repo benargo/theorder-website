@@ -14,7 +14,7 @@ class Kudos extends Model
      */
     public function awardedByUser()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 
     /**
@@ -22,7 +22,7 @@ class Kudos extends Model
      */
     public function awardedToUser()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 
     /**

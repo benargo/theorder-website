@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\User;
+use App\User;
 use App\Guild\Bank\Stock;
 use App\Policies\BasePolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;

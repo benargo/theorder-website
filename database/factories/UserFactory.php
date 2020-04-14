@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
+$factory->define(App\User::class, function (Faker $faker) {
     return [
         'id' => $faker->numberBetween(1000000, 99999999),
         'nickname' => $faker->firstNameMale,
@@ -23,14 +23,14 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(App\Models\User::class, 'commander', function (Faker $faker) {
+$factory->state(App\User::class, 'commander', function (Faker $faker) {
     return [
         'rank_id' => factory(App\Models\Rank::class)->states('commander')->create(),
     ];
 });
 
 
-$factory->state(App\Models\User::class, 'inner_circle', function (Faker $faker) {
+$factory->state(App\User::class, 'inner_circle', function (Faker $faker) {
     return [
         'rank_id' => factory(App\Models\Rank::class)->states('inner_circle')->create(),
     ];

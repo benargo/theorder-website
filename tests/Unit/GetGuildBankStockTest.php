@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 
 use Tests\TestCase;
-use App\Models\User;
+use App\User;
 use App\Guild\Bank\Stock;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

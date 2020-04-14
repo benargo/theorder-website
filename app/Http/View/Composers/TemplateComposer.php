@@ -12,7 +12,7 @@ class TemplateComposer
     /**
      * The user repository implementation.
      *
-     * @var App\Models\User
+     * @var App\User
      */
     protected $user;
 

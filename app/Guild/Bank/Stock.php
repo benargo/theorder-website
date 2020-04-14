@@ -60,7 +60,7 @@ class Stock extends Model
      */
     public function updatingUser()
     {
-        return $this->belongsTo('App\Models\User', 'updated_by_user_id');
+        return $this->belongsTo('App\User', 'updated_by_user_id');
     }
 
     public function getItemAttribute()

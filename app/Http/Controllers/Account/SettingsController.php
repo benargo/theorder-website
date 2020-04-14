@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Account;
 
 use Auth;
-use App\Models\User;
+use App\User;
 use RestCord\DiscordClient;
 use Illuminate\Http\Request;
 use App\Blizzard\Warcraft\Races;

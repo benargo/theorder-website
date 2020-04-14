@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\User;
+use App\User;
 use App\Policies\BasePolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -13,7 +13,7 @@ class ControlPanelPolicy extends BasePolicy
     /**
      * Determine if the user can access the control panel.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @return bool
      */
     public function viewControlPanel(User $user)

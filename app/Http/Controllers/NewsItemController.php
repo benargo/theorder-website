@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Carbon\Carbon;
-use App\Models\User;
+use App\User;
 use App\Models\NewsItem;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;

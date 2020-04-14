@@ -18,12 +18,12 @@ class Event extends Model
 
     public function creator()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 
     public function attendees()
     {
-        return $this->belongsToMany('App\Models\User', 'event_attendees')
+        return $this->belongsToMany('App\User', 'event_attendees')
                     ->withPivot([
                         'status',
                         'created_at',
@@ -33,7 +33,7 @@ class Event extends Model
 
     public function invitees()
     {
-        return $this->belongsToMany('App\Models\User', 'event_invitees')
+        return $this->belongsToMany('App\User', 'event_invitees')
                     ->withTimestamps();
     }
 }

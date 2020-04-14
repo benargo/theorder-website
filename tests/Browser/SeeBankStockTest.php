@@ -17,7 +17,7 @@ class SeeBankStockTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/bank')
-                    ->assertSee('I\'m looking for an item...')
+                    ->assertSee('I’m looking for an item...')
                     ->click('#btnStepOneDonate')
                     ->assertSee('Below you will find the list of bank characters, so you know where to send each item.');
         });

@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\User;
+use App\User;
 use App\Guild\Application;
 use App\Policies\BasePolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -14,7 +14,7 @@ class ApplicationPolicy extends BasePolicy
     /**
      * Determine whether the user can view the application.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @param  \App\Guild\Application  $application
      * @return mixed
      */
@@ -26,7 +26,7 @@ class ApplicationPolicy extends BasePolicy
     /**
      * Determine whether the user can view applications.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @return mixed
      */
     public function viewAll(User $user)
@@ -37,7 +37,7 @@ class ApplicationPolicy extends BasePolicy
     /**
      * Determine whether the user can create applications.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -48,7 +48,7 @@ class ApplicationPolicy extends BasePolicy
     /**
      * Determine whether the user can delete the application.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @param  \App\Guild\Application  $application
      * @return mixed
      */
@@ -60,7 +60,7 @@ class ApplicationPolicy extends BasePolicy
     /**
      * Determine whether the user can approve the application.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @param  \App\Guild\Application  $application
      * @return mixed
      */
@@ -72,7 +72,7 @@ class ApplicationPolicy extends BasePolicy
     /**
      * Determine whether the user can decline the application.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @param  \App\Guild\Application  $application
      * @return mixed
      */

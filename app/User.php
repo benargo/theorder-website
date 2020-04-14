@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;

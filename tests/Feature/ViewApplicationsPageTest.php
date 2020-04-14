@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
+use App\User;
 use Tests\TestCase;
 
 class ViewApplicationsPageTest extends TestCase

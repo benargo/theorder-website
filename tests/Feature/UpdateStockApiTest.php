@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use DB;
 use Mockery;
 use Tests\TestCase;
-use App\Models\User;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateStockApiTest extends TestCase

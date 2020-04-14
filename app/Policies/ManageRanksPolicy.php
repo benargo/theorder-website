@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\User;
+use App\User;
 use App\Models\Rank;
 use App\Policies\BasePolicy;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -14,7 +14,7 @@ class ManageRanksPolicy extends BasePolicy
     /**
      * Determine whether the user can view the ranks.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @param  \App\Models\Ranks  $ranks
      * @return mixed
      */
@@ -26,7 +26,7 @@ class ManageRanksPolicy extends BasePolicy
     /**
      * Determine whether the user can create ranks.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -37,7 +37,7 @@ class ManageRanksPolicy extends BasePolicy
     /**
      * Determine whether the user can update the ranks.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @param  \App\Models\Ranks  $ranks
      * @return mixed
      */
@@ -49,7 +49,7 @@ class ManageRanksPolicy extends BasePolicy
     /**
      * Determine whether the user can delete the ranks.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @param  \App\Models\Ranks  $ranks
      * @return mixed
      */
@@ -61,7 +61,7 @@ class ManageRanksPolicy extends BasePolicy
     /**
      * Determine whether the user can see the users belonging to the rank.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @param  \App\Models\Ranks  $ranks
      * @return mixed
      */

@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
+use App\User;
 use App\Models\NewsItem;
 use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;

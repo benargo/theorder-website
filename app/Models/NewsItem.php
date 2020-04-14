@@ -36,7 +36,7 @@ class NewsItem extends Model
      */
     public function author()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 
     /**

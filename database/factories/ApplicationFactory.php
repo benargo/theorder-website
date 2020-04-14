@@ -24,6 +24,6 @@ $factory->define(App\Guild\Application::class, function (Faker $faker) {
 
 $factory->state(App\Guild\Application::class, 'with_user', function (Faker $faker) {
     return [
-        'user_id' => factory(App\Models\User::class)->create()
+        'user_id' => factory(App\User::class)->create()
     ];
 });

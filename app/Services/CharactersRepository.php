@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\User;
+use App\User;
 use Illuminate\Support\Facades\Cache;
 use BlizzardApi\Service\WorldOfWarcraft;
 use App\Exceptions\NoCharactersFoundException;
@@ -21,7 +21,7 @@ class CharactersRepository
      * Render the homepage.
      *
      * @param  \BlizzardApi\Service\WorldOfWarcraft  $client
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @return void
      */
     public function __construct(WorldOfWarcraft $client)

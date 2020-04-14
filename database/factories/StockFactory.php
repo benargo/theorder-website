@@ -21,6 +21,6 @@ $factory->define(App\Guild\Bank\Stock::class, function (Faker $faker) {
         'slot' => $faker->numberBetween(0, 13),
         'item_id' => 4540,
         'count' => $faker->numberBetween(1, 20),
-        'updated_by_user_id' => factory(App\Models\User::class)->make(),
+        'updated_by_user_id' => factory(App\User::class)->make(),
     ];
 });

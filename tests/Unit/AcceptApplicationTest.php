@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Tests\DuskTestCase;
-use App\Models\User;
+use App\User;
 use App\Guild\Application;
 
 class AcceptApplicationTest extends DuskTestCase

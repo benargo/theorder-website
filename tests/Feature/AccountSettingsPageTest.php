@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\User;
+use App\User;
 
 class AccountSettingsPageTest extends TestCase
 {

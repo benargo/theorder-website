@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Account;
 
-use App\Models\User;
+use App\User;
 use App\Models\Character;
 use Illuminate\Http\Request;
 use App\Services\RacesRepository;
@@ -84,7 +84,7 @@ class CharacterSelectController extends Controller
     /**
      * Set the primary character for the user.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\User  $user
      * @param  \App\Services\CharactersRepository  $characters
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
