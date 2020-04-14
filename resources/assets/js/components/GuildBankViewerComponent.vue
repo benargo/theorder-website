@@ -8,7 +8,7 @@
             <div class="col btn-group btn-group-toggle">
                 <label :class="btnStepOneSearchClass" id="btnStepOneSearch" for="inputStepOneSearch">
                     <input type="radio" name="stepOne" v-model="progress.stepOne" id="inputStepOneSearch" value="search">
-                    I'm looking for an item...
+                    I&rsquo;m looking for an item...
                 </label>
                 <label :class="btnStepOneDonateClass" id="btnStepOneDonate" for="inputStepOneDonate">
                     <input type="radio" name="stepOne" v-model="progress.stepOne" id="inputStepOneDonate" value="donate">
@@ -20,7 +20,7 @@
 
     <section id="bankDonate" class="my-6" v-if="progress.stepOne == 'donate'">
         <p class="lead mb-4">
-            Since guild banks weren't an official thing until The Burning Crusade&trade;, we have to do things the Classic way. The guild bank is spread over nine different characters on a separate WoW account owned and operated by the Inner Circle.
+            Since guild banks weren't an official thing until The Burning Crusade&trade;, we have to do things the Classic way. The guild bank is spread over nine different characters on a separate WoW account owned and operated by the guild management.
         </p>
         <p class="lead mb-4">
             Below you will find the list of bank characters, so you know where to send each item.
@@ -48,7 +48,7 @@
 
                     <h5 class="mt-0">Bezoar</h5>
                     <p>
-                        I'm the keeper of raid consumables. I help out with spare consumables when people don't have time to grind.
+                        I'm the keeper of raid consumables. I help out with spare consumables when people don&rsquo;t have time to grind.
                     </p>
                     <ul class="list-inline">
                         <li class="list-inline-item">Yes please:</li>
@@ -95,7 +95,7 @@
 
                     <h5 class="mt-0">Garment</h5>
                     <p>
-                        I'm the collector of cloth, and other items needed by tailors.
+                        I&rsquo;m the collector of cloth, and other items needed by tailors.
                     </p>
                     <ul class="list-inline">
                         <li class="list-inline-item">Yes please:</li>
@@ -109,7 +109,7 @@
                         </li>
                         <li class="list-inline-item">
                             <font-awesome-icon :icon="['fas', 'check-circle']"></font-awesome-icon>
-                            Spiders' silk
+                            Spiders&rsquo; silk
                         </li>
                         <li class="list-inline-item">
                             <font-awesome-icon :icon="['fas', 'check-circle']"></font-awesome-icon>
@@ -217,7 +217,7 @@
                             I am a dwarf and I'm digging a hole...
                             <font-awesome-icon :icon="['fas', 'music-alt']"></font-awesome-icon>
                         </em>
-                        Oh sorry, yes I'm in charge of anything used by blacksmiths and engineers!
+                        Oh sorry, yes I&rsquo;m in charge of anything used by blacksmiths and engineers!
                     </p>
                     <ul class="list-inline">
                         <li class="list-inline-item">Yes please:</li>
@@ -311,7 +311,7 @@
 
                     <h5 class="mt-0">Skinsaw</h5>
                     <p>
-                        I may have leathery skin, but I'm much more friendly than my name would suggest!
+                        I may have leathery skin, but I&rsquo;m much more friendly than my name would suggest!
                     </p>
                     <ul class="list-inline">
                         <li class="list-inline-item">Yes please:</li>
@@ -399,60 +399,58 @@
 
     <section id="bankSearch" class="my-6" v-if="progress.stepOne == 'search'">
         <form id="formFilters">
-            <div class="row mb-3">
-                <div class="col">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text h4" for="inputSearch">Search</label>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Hearthstone" name="inputSearch" id="inputSearch" />
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-primary" type="button" id="buttonSearch">
-                                <font-awesome-icon :icon="['far', 'search']"></font-awesome-icon>
-                                <span class="sr-only">Search</span>
-                            </button>
+            <div class="card my-3">
+                <div class="card-header">
+                    <h2 class="h4 my-2">Filters</h2>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text h4" for="inputSearch">Search</label>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Hearthstone" name="inputSearch" id="inputSearch" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="buttonSearch">
+                                        <font-awesome-icon :icon="['far', 'search']"></font-awesome-icon>
+                                        <span class="sr-only">Search</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="col">
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <h2 class="h4 my-2">Filters</h2>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="inputItemClass">Category</label>
+                                <select class="form-control" name="inputItemClass" id="inputItemClass" v-model="filters.itemClass">
+                                    <option value="NULL">--</option>
+                                    <option value="">Container</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="card-body form-row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="inputItemClass">Category</label>
-                                    <select class="form-control" name="inputItemClass" id="inputItemClass" v-model="filters.itemClass">
-                                        <option value="NULL">--</option>
-                                        <option value="">Container</option>
-                                    </select>
-                                </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="inputItemSubclass">Subcategory</label>
+                                <select class="form-control" name="inputItemSubclass" id="inputItemSubclass" v-model="filters.itemSubclass" disabled>
+                                    <option value="NULL">--</option>
+                                    <option value="">Container</option>
+                                </select>
                             </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="inputItemSubclass">Subcategory</label>
-                                    <select class="form-control" name="inputItemSubclass" id="inputItemSubclass" v-model="filters.itemSubclass" disabled>
-                                        <option value="NULL">--</option>
-                                        <option value="">Container</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="inputRarity">Quality</label>
-                                    <select class="form-control" name="inputQuality" id="inputQuality" v-model="filters.quality">
-                                        <option value="NULL" data-text-class="text-muted">--</option>
-                                        <option value="0" data-text-class="text-poor">Poor</option>
-                                        <option value="1" data-text-class="text-common">Common</option>
-                                        <option value="2" data-text-class="text-uncommon">Uncommon</option>
-                                        <option value="3" data-text-class="text-rare">Rare</option>
-                                        <option value="4" data-text-class="text-epic">Epic</option>
-                                        <option value="5" data-text-class="text-legendary">Legendary</option>
-                                    </select>
-                                </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="inputRarity">Quality</label>
+                                <select class="form-control" name="inputQuality" id="inputQuality" v-model="filters.quality">
+                                    <option value="NULL" data-text-class="text-muted">--</option>
+                                    <option value="0" data-text-class="text-poor">Poor</option>
+                                    <option value="1" data-text-class="text-common">Common</option>
+                                    <option value="2" data-text-class="text-uncommon">Uncommon</option>
+                                    <option value="3" data-text-class="text-rare">Rare</option>
+                                    <option value="4" data-text-class="text-epic">Epic</option>
+                                    <option value="5" data-text-class="text-legendary">Legendary</option>
+                                </select>
                             </div>
                         </div>
                     </div>
