@@ -2,10 +2,10 @@
 
 namespace App\Blizzard\Warcraft\Facades;
 
-use Blizzard\Warcraft\Classes as Accessor;
+use App\Blizzard\Warcraft\Classes as Accessor;
 use Illuminate\Support\Facades\Facade;
 
-class Classes extends Facades
+class Classes extends Facade
 {
     /**
      * Get the registered name of the component.

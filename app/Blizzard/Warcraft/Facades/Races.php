@@ -2,10 +2,10 @@
 
 namespace App\Blizzard\Warcraft\Facades;
 
-use Blizzard\Warcraft\Races as Accessor;
+use App\Blizzard\Warcraft\Races as Accessor;
 use Illuminate\Support\Facades\Facade;
 
-class Races extends Facades
+class Races extends Facade
 {
     /**
      * Get the registered name of the component.
