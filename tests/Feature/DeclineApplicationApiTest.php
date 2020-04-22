@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use Tests\DuskTestCase;
 use App\User;
 use App\Guild\Application;
 
-class AcceptApplicationTest extends DuskTestCase
+class DeclineApplicationApiTest extends DuskTestCase
 {
     private $application;
 
@@ -19,7 +19,7 @@ class AcceptApplicationTest extends DuskTestCase
 
     public function testWhileUnauthenticated()
     {
-        $response = $this->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'accept']);
+        $response = $this->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'decline']);
 
         $response->assertStatus(401);
     }
@@ -29,7 +29,7 @@ class AcceptApplicationTest extends DuskTestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user, 'api')
-                         ->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'accept']);
+                         ->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'decline']);
 
         $response->assertStatus(403);
     }
@@ -39,7 +39,7 @@ class AcceptApplicationTest extends DuskTestCase
         $user = factory(User::class)->states('commander')->create();
 
         $response = $this->actingAs($user, 'api')
-                         ->json('POST', "/api/applications/{$this->application->id}", ['action' => 'accept']);
+                         ->json('POST', "/api/applications/{$this->application->id}", ['action' => 'decline']);
 
         $response->assertStatus(405);
     }
@@ -59,7 +59,7 @@ class AcceptApplicationTest extends DuskTestCase
         $user = factory(User::class)->states('commander')->create();
 
         $response = $this->actingAs($user, 'api')
-                         ->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'accept']);
+                         ->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'decline']);
 
         $response->assertStatus(204);
     }

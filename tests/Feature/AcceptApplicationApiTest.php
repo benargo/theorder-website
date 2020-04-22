@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use Tests\DuskTestCase;
 use App\User;
 use App\Guild\Application;
 
-class WithdrawApplicationTest extends DuskTestCase
+class AcceptApplicationApiTest extends DuskTestCase
 {
     private $application;
 
@@ -19,7 +19,7 @@ class WithdrawApplicationTest extends DuskTestCase
 
     public function testWhileUnauthenticated()
     {
-        $response = $this->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'withdraw']);
+        $response = $this->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'accept']);
 
         $response->assertStatus(401);
     }
@@ -29,22 +29,26 @@ class WithdrawApplicationTest extends DuskTestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user, 'api')
-                         ->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'withdraw']);
+                         ->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'accept']);
 
         $response->assertStatus(403);
     }
 
     public function testWithWrongHttpVerb()
     {
-        $response = $this->actingAs($this->application->user, 'api')
-                         ->json('POST', "/api/applications/{$this->application->id}", ['action' => 'withdraw']);
+        $user = factory(User::class)->states('commander')->create();
+
+        $response = $this->actingAs($user, 'api')
+                         ->json('POST', "/api/applications/{$this->application->id}", ['action' => 'accept']);
 
         $response->assertStatus(405);
     }
 
     public function testWithInvalidData()
     {
-        $response = $this->actingAs($this->application->user, 'api')
+        $user = factory(User::class)->states('commander')->create();
+
+        $response = $this->actingAs($user, 'api')
                          ->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'invalid']);
 
         $response->assertStatus(422);
@@ -52,8 +56,10 @@ class WithdrawApplicationTest extends DuskTestCase
 
     public function testSuccess()
     {
-        $response = $this->actingAs($this->application->user, 'api')
-                         ->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'withdraw']);
+        $user = factory(User::class)->states('commander')->create();
+
+        $response = $this->actingAs($user, 'api')
+                         ->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'accept']);
 
         $response->assertStatus(204);
     }

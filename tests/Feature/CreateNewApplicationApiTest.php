@@ -1,19 +1,20 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\User;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CreateNewApplicationTest extends TestCase
+class CreateNewApplicationApiTest extends TestCase
 {
     public function testCreateAsGuest()
     {
         $response = $this->json('POST', '/api/applications/new', []);
 
         $response->assertStatus(401);
+        $response->assertJson(['message' => "Unauthenticated."]);
     }
 
     public function testCreateWithMissingData()

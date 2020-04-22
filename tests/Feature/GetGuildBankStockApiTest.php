@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 
 use Tests\TestCase;
@@ -8,7 +8,7 @@ use App\User;
 use App\Guild\Bank\Stock;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class GetGuildBankStockTest extends TestCase
+class GetGuildBankStockApiTest extends TestCase
 {
     use RefreshDatabase;
 

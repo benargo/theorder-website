@@ -2,12 +2,12 @@
 
 namespace Tests\Unit;
 
-use App\Blizzard\Warcraft\Races;
-use App\Blizzard\Warcraft\Facades\Races as RacesFacade;
+use App\Blizzard\Warcraft\Classes;
+use App\Blizzard\Warcraft\Facades\Classes as ClassesFacade;
 use Illuminate\Support\Facades\Cache;
 use Tests\TestCase;
 
-class WarcraftRacesTest extends TestCase
+class WarcraftClassesServiceTest extends TestCase
 {
     public function testServiceProvider()
     {
@@ -18,17 +18,17 @@ class WarcraftRacesTest extends TestCase
 
         Cache::shouldReceive('has')
              ->once()
-             ->with('races')
+             ->with('classes')
              ->andReturn(true);
 
         Cache::shouldReceive('get')
              ->once()
-             ->with('races')
+             ->with('classes')
              ->andReturn(collect([]));
 
-        $races = $this->app->make(Races::class);
+        $classes = $this->app->make(Classes::class);
 
-        $this->assertInstanceOf(Races::class, $races);
+        $this->assertInstanceOf(Classes::class, $classes);
     }
 
     public function testBlizzardClient()
@@ -40,18 +40,18 @@ class WarcraftRacesTest extends TestCase
 
         Cache::shouldReceive('has')
              ->once()
-             ->with('races')
+             ->with('classes')
              ->andReturn(false);
 
         Cache::shouldReceive('put')
              ->once()
-             ->with('races', \Mockery::type(\Illuminate\Support\Collection::class), \Mockery::type(\DateTimeInterface::class))
+             ->with('classes', \Mockery::type(\Illuminate\Support\Collection::class), \Mockery::type(\DateTimeInterface::class))
              ->andReturnNull();
 
-        $races = $this->app->make(Races::class);
+        $classes = $this->app->make(Classes::class);
 
-        $this->assertInstanceOf(Races::class, $races);
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $races->getRaces());
+        $this->assertInstanceOf(Classes::class, $classes);
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $classes->getClasses());
     }
 
     public function testFacade()
@@ -63,16 +63,16 @@ class WarcraftRacesTest extends TestCase
 
         Cache::shouldReceive('has')
              ->once()
-             ->with('races')
+             ->with('classes')
              ->andReturn(true);
 
         Cache::shouldReceive('get')
              ->once()
-             ->with('races')
+             ->with('classes')
              ->andReturn(collect([]));
 
-        $races = RacesFacade::getRaces();
+        $classes = ClassesFacade::getClasses();
 
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $races);
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $classes);
     }
 }
