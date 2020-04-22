@@ -31,11 +31,28 @@ class GetGuildBankStockTest extends TestCase
     public function testResponseHasExpectedFormat()
     {
         $user = factory(User::class)->create();
+        $stock = factory(Stock::class, 5)->create()->toArray();
+        $row_structure = [
+            'banker',
+            'bag',
+            'mail',
+            'slot',
+            'item',
+            'count',
+            'created_at',
+            'updated_at',
+        ];
 
         $response = $this->actingAs($user, 'api')->json('GET', '/api/guild-bank/stock');
 
         $response->assertJsonStructure([
-            'stock' => factory(Stock::class, 5)->make()->toArray(),
+            'stock' => [
+                $row_structure,
+                $row_structure,
+                $row_structure,
+                $row_structure,
+                $row_structure,
+            ]
         ]);
     }
 }

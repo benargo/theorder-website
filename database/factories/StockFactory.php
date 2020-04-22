@@ -15,12 +15,12 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Guild\Bank\Stock::class, function (Faker $faker) {
     return [
-        'banker_id' => factory(App\Guild\Bank\Banker::class)->make(),
+        'banker_id' => factory(App\Guild\Bank\Banker::class)->create(),
         'bag' => $faker->numberBetween(-1, 11),
         'mail' => null,
         'slot' => $faker->numberBetween(0, 13),
         'item_id' => 4540,
         'count' => $faker->numberBetween(1, 20),
-        'updated_by_user_id' => factory(App\User::class)->make(),
+        'updated_by_user_id' => factory(App\User::class)->create(),
     ];
 });

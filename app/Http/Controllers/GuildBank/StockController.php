@@ -11,7 +11,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Rules\StockSchemaRule;
-use App\Blizzard\Warcraft\Items;
+use App\Blizzard\Warcraft\Items as ItemsRepository;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Exception\ClientException;
@@ -21,28 +21,28 @@ class StockController extends Controller
 {
     protected $items;
 
-    public function __construct(Items $items)
+    public function __construct(ItemsRepository $items)
     {
         $this->items = $items;
     }
 
     public function getStock()
     {
-        $stock = DB::table('guild_bank_stock')
-                    ->whereNull('withdrawn_at')
-                    ->get();
+        $stock = Stock::all();
 
-        $stock = $stock->map(function ($item, $key) {
-            $item->item = $this->items->getItem($item->item_id);
-            unset($item->item_id);
+        $stock = $stock->map(function ($row, $key) {
+            $row->banker = Banker::find($row->banker_id);
+            unset($row->banker_id);
 
-            return $item;
-        })
-        ->filter(function ($item, $key) {
-            return $item->item->itemBind <> 1;
-        })
-        ->groupBy(['banker_name', 'bag_number'])
-        ->sortBy('slot_number');
+            $row->item = $this->items->getItem($row->item_id);
+            unset($row->item_id);
+
+            if (property_exists($row->item, 'itemBind') && $row->item->itemBind == 1) {
+                return false;
+            }
+
+            return $row;
+        });
 
         $last_modified = DB::table('guild_bank_stock')
                             ->select('updated_at')
@@ -53,7 +53,7 @@ class StockController extends Controller
             $last_modified = $last_modified->updated_at;
         }
 
-        return response()->json($stock)
+        return response()->json(['stock' => $stock])
                          ->header('Date', $last_modified);
     }
 

@@ -8,15 +8,6 @@ use App\Blizzard\Warcraft\Facades\Items;
 class Stock extends Model
 {
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'is_in_bags' => 'boolean',
-    ];
-
-    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
@@ -24,7 +15,6 @@ class Stock extends Model
     protected $dates = [
         'created_at',
         'updated_at',
-        'withdrawn_at',
     ];
 
     /**
@@ -61,10 +51,5 @@ class Stock extends Model
     public function updatingUser()
     {
         return $this->belongsTo('App\User', 'updated_by_user_id');
-    }
-
-    public function getItemAttribute()
-    {
-        return Items::getItem($this->attributes['item_id']);
     }
 }
