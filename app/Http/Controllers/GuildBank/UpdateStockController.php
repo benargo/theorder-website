@@ -2,65 +2,34 @@
 
 namespace App\Http\Controllers\GuildBank;
 
-use Carbon\Carbon;
-use GuzzleHttp\Psr7;
+use App\Blizzard\Warcraft\Items as ItemsRepository;
 use App\Guild\Bank\Stock;
-use JsonSchema\Validator;
 use App\Guild\Bank\Banker;
+use App\Http\Controllers\Controller;
+use App\Rules\StockSchemaRule;
+use ArrayAccess;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Rules\StockSchemaRule;
-use App\Blizzard\Warcraft\Items as ItemsRepository;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use GuzzleHttp\Exception\ClientException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use JsonSchema\Validator;
 
-class StockController extends Controller
+class UpdateStockController extends Controller
 {
     protected $items;
+    protected $user;
 
     public function __construct(ItemsRepository $items)
     {
         $this->items = $items;
     }
 
-    public function getStock()
-    {
-        $stock = Stock::all();
-
-        $stock = $stock->map(function ($row, $key) {
-            $row->banker = Banker::find($row->banker_id);
-            unset($row->banker_id);
-
-            $row->item = $this->items->getItem($row->item_id);
-            unset($row->item_id);
-
-            if (property_exists($row->item, 'itemBind') && $row->item->itemBind == 1) {
-                return false;
-            }
-
-            return $row;
-        });
-
-        $last_modified = DB::table('guild_bank_stock')
-                            ->select('updated_at')
-                            ->latest()
-                            ->first();
-
-        if ($last_modified) {
-            $last_modified = $last_modified->updated_at;
-        }
-
-        return response()->json(['stock' => $stock])
-                         ->header('Date', $last_modified);
-    }
-
-    public function updateStock(Request $request)
+    public function postUpdateStock(Request $request)
     {
         // Get the user from the request...
-        $user = $request->user();
+        $this->user = $request->user();
 
         // Validate the imported stock...
         $validated_data = $request->validate([
@@ -72,12 +41,19 @@ class StockController extends Controller
         ]);
 
         // Decode the imported stock...
-        try {
-            $stock = (array)json_decode(Arr::get($validated_data, 'stock'));
-            $stock = collect(Arr::get($stock, 'stock'));
+        $stock = (array) json_decode(Arr::get($validated_data, 'stock'));
+        $stock = collect(Arr::get($stock, 'stock'));
+        $stock = $this->mapStock($stock);
 
+        // Respond...
+        return $this->respond($stock);
+    }
+
+    protected function mapStock(ArrayAccess $stock)
+    {
+        try {
             // Loop over each of the bags...
-            $models = $stock->flatMap(function ($entries, $key) use ($user) {
+            $models = $stock->flatMap(function ($entries, $key) {
                 // Get the singular form of the key. This will either be mail or
                 // bag...
                 $key = Str::singular($key);
@@ -86,8 +62,8 @@ class StockController extends Controller
                 // mapWithKeys function.
                 $entries = collect($entries);
 
-                if ($entries->count() > 0) {
-                    return $entries->map(function ($entry) use ($key, $user) {
+                if (count($entries) > 0) {
+                    return $entries->map(function ($entry) use ($key) {
                         // Convert the entry to an array...
                         $entry = (array) $entry;
 
@@ -114,7 +90,7 @@ class StockController extends Controller
                                     'slot'               => Arr::get($entry, 'slot'),
                                     'item_id'            => Arr::get($item, 'id'),
                                     'count'              => Arr::get($entry, 'count'),
-                                    'updated_by_user_id' => $user->id,
+                                    'updated_by_user_id' => $this->user->id,
                                 ]
                             );
 
@@ -138,7 +114,7 @@ class StockController extends Controller
                             }
 
                             // If the model was never created or updated, then
-                            // return null to remove this entry from the
+                            // return false to remove this entry from the
                             // returned collection...
                             return false;
                         }
@@ -146,18 +122,7 @@ class StockController extends Controller
                 }
             });
 
-            // Build the response...
-            $response = collect([
-                'status'  => 'Accepted',
-                'user' => [
-                    'id'        => $user->id,
-                    'battletag' => $user->battletag,
-                ],
-                'entries' => $models->values()
-            ]);
-
-            return response()->json($response);
-
+            return $models;
         }
         catch (ModelNotFoundException $e) {
             if ($e->getModel() == 'App\Guild\Bank\Banker') {
@@ -167,15 +132,17 @@ class StockController extends Controller
                 abort(400, 'One of the stock entries specified could not be found in the database.');
             }
         }
-        catch (ClientException $e) {
-            return response()->json([
-                'exception'    => 'GuzzleHttp\Exception\ClientException',
-                'request'  => Psr7\str($e->getRequest()),
-                'response' => Psr7\str($e->getResponse()),
-            ], 500);
-        }
-        // catch (\Exception $e) {
-        //     return response()->json(['exception' => $e->getMessage()], 500);
-        // }
+    }
+
+    protected function respond(ArrayAccess $entries)
+    {
+        return response()->json([
+            'status'  => 'Accepted',
+            'user' => [
+                'id'        => $this->user->id,
+                'battletag' => $this->user->battletag,
+            ],
+            'entries' => $entries->values(),
+        ]);
     }
 }

@@ -69,10 +69,10 @@ Route::post('/guild-bank/bankers', 'GuildBank\BankersController@updateBankers')
 Route::delete('/guild-bank/bankers/{banker}', 'GuildBank\BankersController@deleteBanker')
     ->middleware('can:update-stock-data');
 
-Route::get('/guild-bank/stock', 'GuildBank\StockController@getStock')
+Route::get('/guild-bank/stock', 'GuildBank\GetStockController@getStock')
     ->middleware('cache.headers:etag');
 
-Route::post('/guild-bank/stock/update', 'GuildBank\StockController@updateStock')
+Route::post('/guild-bank/stock/update', 'GuildBank\UpdateStockController@postUpdateStock')
     ->middleware('can:update-stock-data');
 
 /*
