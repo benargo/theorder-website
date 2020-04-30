@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\GuildBank;
 
-use App\Blizzard\Warcraft\Items as ItemsRepository;
+use App\Repositories\Interfaces\ItemRepositoryInterface;
 use App\Guild\Bank\Banker;
 use App\Guild\Bank\Stock;
 use App\Http\Controllers\Controller;
@@ -12,7 +12,7 @@ class GetStockController extends Controller
 {
     protected $items;
 
-    public function __construct(ItemsRepository $items)
+    public function __construct(ItemRepositoryInterface $items)
     {
         $this->items = $items;
     }
@@ -34,7 +34,7 @@ class GetStockController extends Controller
         unset($value->banker_id);
 
         // Load the item from the repository...
-        $value->item = $this->items->getItem($value->item_id);
+        $value->item = $this->items->find($value->item_id);
         unset($value->item_id);
 
         // Remove any 'Binds when picked up' items...

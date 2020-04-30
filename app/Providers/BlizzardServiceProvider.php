@@ -16,16 +16,6 @@ use App\Blizzard\Warcraft\Instances\Raids;
 class BlizzardServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-    }
-
-    /**
      * Register services.
      *
      * @return void
@@ -53,10 +43,6 @@ class BlizzardServiceProvider extends ServiceProvider
 
         $this->app->singleton(GuildRoster::class, function ($app) {
             return new GuildRoster($app->make(WarcraftService::class));
-        });
-
-        $this->app->singleton(Items::class, function ($app) {
-            return new Items($app->make(WarcraftService::class));
         });
 
         $this->app->singleton(Races::class, function ($app) {
