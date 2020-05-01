@@ -14,7 +14,7 @@ class GetStockController extends Controller
 
     public function __construct(ItemRepositoryInterface $items)
     {
-        $this->items = $items;
+        $this->items = $items->withMedia();
     }
 
     public function getStock()
