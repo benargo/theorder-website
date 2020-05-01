@@ -2,6 +2,9 @@
 
 namespace App\Blizzard\Warcraft;
 
+use App\Blizzard\Warcraft\Service as WarcraftService;
+use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Arr;
 use Jenssegers\Model\Model;
 
 class Item extends Model
@@ -44,4 +47,28 @@ class Item extends Model
         'is_equippable',
         'is_stackable',
     ];
+
+    public function getMediaAssets(WarcraftService $service, array $options = [])
+    {
+        $media = $this->getAttribute('media');
+
+        try {
+            // Fetch the item from the API...
+            $media_attributes = (array) json_decode(
+                $service
+                    ->getItemMedia($media->id, $options)
+                    ->getBody()
+                    ->getContents()
+            );
+        }
+        catch (RequestException $e) {
+            return;
+        }
+
+        $media->assets = Arr::get($media_attributes, 'assets', []);
+
+        $this->setAttribute('media', $media);
+
+        return $media->assets;
+    }
 }

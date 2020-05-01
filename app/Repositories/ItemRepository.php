@@ -5,13 +5,16 @@ namespace App\Repositories;
 use App\Blizzard\Warcraft\Item;
 use App\Blizzard\Warcraft\Service as WarcraftService;
 use App\Repositories\Interfaces\ItemRepositoryInterface;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Cache;
 
 class ItemRepository implements ItemRepositoryInterface
 {
-    private $service;
+    protected $service;
 
     protected $items = [];
+
+    protected $with_media = false;
 
     /**
      * Construct the repository.
@@ -56,7 +59,14 @@ class ItemRepository implements ItemRepositoryInterface
         return $this->items[$id];
     }
 
-    private function fetch($id, array $options = []): Item
+    public function withMedia($with_media = true)
+    {
+        $this->with_media = $with_media;
+
+        return $this;
+    }
+
+    protected function fetch($id, array $options = []): Item
     {
         try {
             // Fetch the item from the API...
@@ -67,10 +77,16 @@ class ItemRepository implements ItemRepositoryInterface
                      ->getContents()
             );
         }
-        catch (ClientException $e) {
+        catch (RequestException $e) {
             return null;
         }
 
-        return new Item($item_attributes);
+        $item = new Item($item_attributes);
+
+        if ($this->with_media) {
+            $item->getMediaAssets($this->service);
+        }
+
+        return $item;
     }
 }

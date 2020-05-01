@@ -213,6 +213,21 @@ class Service extends BaseService
         return $this->request('/item/set/'.(int) $set_id, $options);
     }
 
+    /**
+     * Get item media by ID
+     *
+     * The item API provides detailed item information. This includes item set information if this item is part of a set.
+     *
+     * @param int   $itemId  Unique ID of the item being requested
+     * @param array $options Options
+     *
+     * @return ResponseInterface
+     */
+    public function getItemMedia($item_id, array $options = [])
+    {
+        return $this->request('/media/item/'.(int) $item_id, $options);
+    }
+
     // endregion Item API
 
     // region Mount API

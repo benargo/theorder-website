@@ -273,4 +273,63 @@ class ItemModelTest extends TestCase
         $this->assertIsBool($item->is_stackable);
         $this->assertFalse($item->is_stackable);
     }
+
+    public function testGetMediaAssetsFunction()
+    {
+        $item = new Item([
+            'id' => 24358,
+            'media' => [
+                'key' => ['href' => 'https://eu.api.blizzard.com/data/wow/media/item/24358?namespace=static-1.13.4_33598-classic-eu'],
+                'id' => 24358
+            ]
+        ]);
+
+        $service = \Mockery::mock('App\Blizzard\Warcraft\Service');
+        $service->shouldReceive('getItemMedia')->andReturnSelf();
+        $service->shouldReceive('getBody')->andReturnSelf();
+        $service->shouldReceive('getContents')->andReturn('{"_links":{"self":{"href":"https://eu.api.blizzard.com/data/wow/media/item/24358?namespace=static-1.13.4_33598-classic-eu"}},"assets":[{"key":"icon","value":"https://render-classic-eu.worldofwarcraft.com/icons/56/inv_jewelry_ring_38.jpg"}]}');
+
+        $assets = $item->getMediaAssets($service);
+
+        $this->assertIsArray($assets);
+        $this->assertCount(1, $assets);
+
+        $asset = array_shift($assets);
+
+        $this->assertIsObject($asset);
+        $this->assertObjectHasAttribute('key', $asset);
+        $this->assertEquals('icon', $asset->key);
+        $this->assertObjectHasAttribute('value', $asset);
+        $this->assertEquals('https://render-classic-eu.worldofwarcraft.com/icons/56/inv_jewelry_ring_38.jpg', $asset->value);
+    }
+
+    public function testGetMediaAssetsFunction2()
+    {
+        $item = new Item([
+            'id' => 24358,
+            'media' => [
+                'key' => ['href' => 'https://eu.api.blizzard.com/data/wow/media/item/24358?namespace=static-1.13.4_33598-classic-eu'],
+                'id' => 24358
+            ]
+        ]);
+
+        $service = \Mockery::mock('App\Blizzard\Warcraft\Service');
+        $service->shouldReceive('getItemMedia')->andReturnSelf();
+        $service->shouldReceive('getBody')->andReturnSelf();
+        $service->shouldReceive('getContents')->andReturn('{"_links":{"self":{"href":"https://eu.api.blizzard.com/data/wow/media/item/24358?namespace=static-1.13.4_33598-classic-eu"}},"assets":[{"key":"icon","value":"https://render-classic-eu.worldofwarcraft.com/icons/56/inv_jewelry_ring_38.jpg"}]}');
+
+        $item->getMediaAssets($service);
+
+        $this->assertObjectHasAttribute('assets', $item->media);
+        $this->assertIsArray($item->media->assets);
+        $this->assertCount(1, $item->media->assets);
+
+        $asset = array_shift($item->media->assets);
+
+        $this->assertIsObject($asset);
+        $this->assertObjectHasAttribute('key', $asset);
+        $this->assertEquals('icon', $asset->key);
+        $this->assertObjectHasAttribute('value', $asset);
+        $this->assertEquals('https://render-classic-eu.worldofwarcraft.com/icons/56/inv_jewelry_ring_38.jpg', $asset->value);
+    }
 }
