@@ -7,6 +7,7 @@
 require('./bootstrap')
 
 window.Vue = require('vue')
+Vue.prototype._ = _
 
 import BootstrapVue from 'bootstrap-vue'
 import draggable from 'vuedraggable'
