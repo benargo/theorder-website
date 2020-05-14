@@ -2,24 +2,23 @@
 
 namespace Tests\Feature;
 
-
-use Tests\TestCase;
-use App\User;
 use App\Guild\Bank\Stock;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class GetGuildBankStockApiTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testGetAsGuest()
+    public function testAsGuest()
     {
         $response = $this->json('GET', '/api/guild-bank/stock');
 
         $response->assertStatus(401);
     }
 
-    public function testGetAsUser()
+    public function testAsUser()
     {
         $user = factory(User::class)->create();
 

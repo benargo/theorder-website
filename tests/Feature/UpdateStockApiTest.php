@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use DB;
-use Mockery;
-use Tests\TestCase;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
+use Mockery;
+use Tests\TestCase;
 
 class UpdateStockApiTest extends TestCase
 {

@@ -2,19 +2,19 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\NewsItem;
+use Tests\TestCase;
 
 class NewsIndexPageTest extends TestCase
 {
-    public function testPageWithoutModels()
+    public function testWithoutModels()
     {
         $response = $this->get('/news');
 
         $response->assertOk();
     }
 
-    public function testPageWithModels()
+    public function testWithModels()
     {
         factory(NewsItem::class, 3)->make();
 

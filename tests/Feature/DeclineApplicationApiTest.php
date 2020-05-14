@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\DuskTestCase;
-use App\User;
 use App\Guild\Application;
+use App\User;
+use Tests\TestCase;
 
-class DeclineApplicationApiTest extends DuskTestCase
+class DeclineApplicationApiTest extends TestCase
 {
     private $application;
 
@@ -17,14 +17,14 @@ class DeclineApplicationApiTest extends DuskTestCase
         $this->application = factory(Application::class)->states('with_user')->create();
     }
 
-    public function testWhileUnauthenticated()
+    public function testAsGuest()
     {
         $response = $this->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'decline']);
 
         $response->assertStatus(401);
     }
 
-    public function testWhileUnauthorized()
+    public function testAsUser()
     {
         $user = factory(User::class)->create();
 

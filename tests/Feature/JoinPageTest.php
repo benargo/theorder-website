@@ -2,19 +2,19 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\User;
+use Tests\TestCase;
 
 class JoinPageTest extends TestCase
 {
-    public function testPageAsGuest()
+    public function testResponse()
     {
         $response = $this->get('/join');
 
         $response->assertRedirect('login');
     }
 
-    public function testPageAsUser()
+    public function testResponseWhenAuthenticated()
     {
         $user = factory(User::class)->make();
 

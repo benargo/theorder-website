@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class RaidsIndexPageTest extends TestCase
 {
-    public function testPage()
+    public function testResponse()
     {
         $response = $this->get('/raids');
 

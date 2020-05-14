@@ -7,14 +7,14 @@ use Tests\TestCase;
 
 class ViewApplicationsPageTest extends TestCase
 {
-    public function testAuthorizationAsGuest()
+    public function testAsGuest()
     {
         $response = $this->get('/officers/applications');
 
         $response->assertForbidden();
     }
 
-    public function testAuthorizationAsNormie()
+    public function testAsRegularUser()
     {
         $user = factory(User::class)->make();
 
@@ -23,7 +23,7 @@ class ViewApplicationsPageTest extends TestCase
         $response->assertForbidden();
     }
 
-    public function testAuthorizationAsCommander()
+    public function testAsCommander()
     {
         $user = factory(User::class)->state('commander')->make();
 
@@ -32,7 +32,7 @@ class ViewApplicationsPageTest extends TestCase
         $response->assertOk();
     }
 
-    public function testAuthorizationAsInnerCircle()
+    public function testAsInnerCircle()
     {
         $user = factory(User::class)->state('inner_circle')->make();
 

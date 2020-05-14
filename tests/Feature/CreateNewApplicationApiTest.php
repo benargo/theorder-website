@@ -2,22 +2,21 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\User;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CreateNewApplicationApiTest extends TestCase
 {
-    public function testCreateAsGuest()
+    public function testAsGuest()
     {
         $response = $this->json('POST', '/api/applications/new', []);
 
-        $response->assertStatus(401);
+        $response->assertUnauthorized();
         $response->assertJson(['message' => "Unauthenticated."]);
     }
 
-    public function testCreateWithMissingData()
+    public function testWithMissingData()
     {
         $user = factory(User::class)->create();
 
@@ -26,7 +25,7 @@ class CreateNewApplicationApiTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function testCreateWithInvalidClassId()
+    public function testWithInvalidClassId()
     {
         $user = factory(User::class)->create();
 
@@ -40,7 +39,7 @@ class CreateNewApplicationApiTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function testCreateWithInvalidRaceId()
+    public function testWithInvalidRaceId()
     {
         $user = factory(User::class)->create();
 
@@ -54,7 +53,7 @@ class CreateNewApplicationApiTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function testCreateWithInvalidRole()
+    public function testWithInvalidRole()
     {
         $user = factory(User::class)->create();
 
@@ -68,7 +67,7 @@ class CreateNewApplicationApiTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function testCreateWithValidData()
+    public function testWithValidData()
     {
         Notification::fake();
 

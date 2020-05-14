@@ -2,11 +2,11 @@
 
 namespace Tests\Feature;
 
-use Tests\DuskTestCase;
-use App\User;
 use App\Guild\Application;
+use App\User;
+use Tests\TestCase;
 
-class WithdrawApplicationApiTest extends DuskTestCase
+class WithdrawApplicationApiTest extends TestCase
 {
     private $application;
 
@@ -17,14 +17,14 @@ class WithdrawApplicationApiTest extends DuskTestCase
         $this->application = factory(Application::class)->states('with_user')->create();
     }
 
-    public function testWhileUnauthenticated()
+    public function testAsGuest()
     {
         $response = $this->json('PATCH', "/api/applications/{$this->application->id}", ['action' => 'withdraw']);
 
         $response->assertStatus(401);
     }
 
-    public function testWhileUnauthorized()
+    public function testAsRegularUser()
     {
         $user = factory(User::class)->create();
 

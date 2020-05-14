@@ -2,16 +2,16 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\User;
 use App\Models\NewsItem;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class NewsSinglePageTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testPageUsingId()
+    public function testUsingId()
     {
         $item = factory(NewsItem::class)->make();
         $item->author()->associate(factory(User::class)->create());
@@ -22,7 +22,7 @@ class NewsSinglePageTest extends TestCase
         $response->assertOk();
     }
 
-    public function testPageUsingSlug()
+    public function testUsingSlug()
     {
         $item = factory(NewsItem::class)->make();
         $item->author()->associate(factory(User::class)->create());

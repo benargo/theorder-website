@@ -8,11 +8,6 @@ use Tests\DuskTestCase;
 
 class SeeBankStockTest extends DuskTestCase
 {
-    /**
-     * A basic browser test example.
-     *
-     * @return void
-     */
     public function testSeeStock()
     {
         $this->browse(function (Browser $browser) {
