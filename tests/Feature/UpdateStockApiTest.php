@@ -30,16 +30,16 @@ class UpdateStockApiTest extends TestCase
 
     public function testPostUpdateStock()
     {
-        $mock_items = Mockery::mock('App\Blizzard\Warcraft\Items');
-        $mock_items->shouldReceive('getItem')
+        $mock_items = Mockery::mock('App\Repositories\ItemRepository');
+        $mock_items->shouldReceive('find')
                    ->with(7005)
                    ->twice()
                    ->andReturn(['id' => 7005]);
-        $mock_items->shouldReceive('getItem')
+        $mock_items->shouldReceive('find')
                    ->with(5956)
                    ->twice()
                    ->andReturn(['id' => 5956]);
-        $this->app->instance('App\Blizzard\Warcraft\Items', $mock_items);
+        $this->app->instance('App\Repositories\Interfaces\ItemRepositoryInterface', $mock_items);
 
         $response = $this->actingAs($this->user, 'api')->postJson('/api/guild-bank/stock/update', ['stock' => json_encode((object)[
             'stock' => (object)[
@@ -103,16 +103,16 @@ class UpdateStockApiTest extends TestCase
 
     public function testResponse()
     {
-        $mock_items = Mockery::mock('App\Blizzard\Warcraft\Items');
-        $mock_items->shouldReceive('getItem')
+        $mock_items = Mockery::mock('App\Repositories\ItemRepository');
+        $mock_items->shouldReceive('find')
                    ->with(7005)
                    ->once()
-                   ->andReturn(['id' => 7005]);
-        $mock_items->shouldReceive('getItem')
+                   ->andReturn(['id' =>  7005]);
+        $mock_items->shouldReceive('find')
                    ->with(5956)
                    ->once()
                    ->andReturn(['id' => 5956]);
-        $this->app->instance('App\Blizzard\Warcraft\Items', $mock_items);
+        $this->app->instance('App\Repositories\Interfaces\ItemRepositoryInterface', $mock_items);
 
         $response = $this->actingAs($this->user, 'api')->postJson('/api/guild-bank/stock/update', ['stock' => json_encode((object)[
             'stock' => (object)[

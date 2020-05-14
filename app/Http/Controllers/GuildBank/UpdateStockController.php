@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\GuildBank;
 
-use App\Blizzard\Warcraft\Items as ItemsRepository;
+use App\Repositories\Interfaces\ItemRepositoryInterface;
 use App\Guild\Bank\Stock;
 use App\Guild\Bank\Banker;
 use App\Http\Controllers\Controller;
@@ -21,7 +21,7 @@ class UpdateStockController extends Controller
     protected $items;
     protected $user;
 
-    public function __construct(ItemsRepository $items)
+    public function __construct(ItemRepositoryInterface $items)
     {
         $this->items = $items;
     }
@@ -70,7 +70,7 @@ class UpdateStockController extends Controller
                         // Validate the banker...
                         $banker = Banker::where('name', Arr::get($entry, 'banker_name'))->first();
 
-                        $item = (array) $this->items->getItem(Arr::get($entry, 'id'));
+                        $item = $this->items->find(Arr::get($entry, 'id'));
 
                         // If there is an item id...
                         if ($item) {
@@ -88,7 +88,7 @@ class UpdateStockController extends Controller
                                     'banker_id'          => $banker->id,
                                     $key                 => Arr::get($entry, $key), // $key is either mail or bag...
                                     'slot'               => Arr::get($entry, 'slot'),
-                                    'item_id'            => Arr::get($item, 'id'),
+                                    'item_id'            => Arr::get($entry, 'id'),
                                     'count'              => Arr::get($entry, 'count'),
                                     'updated_by_user_id' => $this->user->id,
                                 ]

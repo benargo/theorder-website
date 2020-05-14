@@ -66,7 +66,7 @@ class ItemRepository implements ItemRepositoryInterface
         return $this;
     }
 
-    protected function fetch($id, array $options = []): Item
+    protected function fetch($id, array $options = [])
     {
         try {
             // Fetch the item from the API...
