@@ -37,7 +37,7 @@
                 <h2 class="mt-4">Recruitment</h2>
                 <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/applications?status=pending') }}" class="d-block border border-primary rounded my-2 py-4">
+                        <a href="{{ url('officers/applications?status=pending') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'user-plus']" class="fa-3x"></font-awesome-icon>
@@ -49,7 +49,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/applications') }}" class="d-block border border-primary rounded my-2 py-4">
+                        <a href="{{ url('officers/applications') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'user-clock']" class="fa-3x"></font-awesome-icon>
@@ -66,7 +66,7 @@
                 <h2 class="mt-4">News</h2>
                 <div class="row mb-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/news/create') }}" class="d-block border border-primary rounded my-2 py-4">
+                        <a href="{{ url('officers/news/create') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'pen-fancy']" class="fa-3x"></font-awesome-icon>
@@ -78,7 +78,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/news') }}" class="d-block border border-primary rounded my-2 py-4">
+                        <a href="{{ url('officers/news') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'pencil']" class="fa-3x"></font-awesome-icon>
@@ -95,7 +95,7 @@
                 <h2 class="mt-4">Guild bank</h2>
                 <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/guild-bank/bankers') }}" class="d-block border border-primary rounded my-2 py-4">
+                        <a href="{{ url('officers/guild-bank/bankers') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'user-lock']" class="fa-3x"></font-awesome-icon>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="row my-2">
                     <div class="col-12 col-lg-4">
-                        <a href="{{ url('inner-circle/guild-bank/clients') }}" class="d-block border border-primary rounded my-2 py-4">
+                        <a href="{{ url('officers/guild-bank/clients') }}" class="d-block border border-primary rounded my-2 py-4">
                             <div class="row no-gutters">
                                 <div class="col-4 text-center">
                                     <font-awesome-icon :icon="['fas', 'cogs']" class="fa-3x"></font-awesome-icon>
