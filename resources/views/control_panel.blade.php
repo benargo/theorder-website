@@ -106,6 +106,18 @@
                             </div>
                         </a>
                     </div>
+                    <div class="col-12 col-lg-4">
+                        <a href="{{ url('officers/guild-bank/upload') }}" class="d-block border border-primary rounded my-2 py-4">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center">
+                                    <font-awesome-icon :icon="['fas', 'upload']" class="fa-3x"></font-awesome-icon>
+                                </div>
+                                <div class="col-8 text-center v-align-center">
+                                    Upload bank data
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
                 {{-- API Settings --}}

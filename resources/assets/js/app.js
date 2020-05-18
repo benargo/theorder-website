@@ -29,6 +29,10 @@ window.str_slug = require('./str_slug').default
 import {
     library as faLibrary
 } from '@fortawesome/fontawesome-svg-core'
+
+/**
+ * Brand icons.
+ */
 import {
     faBattleNet as fabBattleNet,
     faDiscord as fabDiscord,
@@ -36,7 +40,10 @@ import {
     faPatreon as fabPatreon,
     faSafari as fabSafari,
 } from '@fortawesome/free-brands-svg-icons'
-// import {  } from '@fortawesome/pro-light-svg-icons'
+
+/**
+ * Regular icons.
+ */
 import {
     faAddressBook as farAddressBook,
     faBalanceScale as farBalanceScale,
@@ -61,6 +68,10 @@ import {
     faUserPlus as farUserPlus,
     faUserSecret as farUserSecret,
 } from '@fortawesome/pro-regular-svg-icons'
+
+/**
+ * Solid icons.
+ */
 import {
     faArrowDown as fasArrowDown,
     faArrowUp as fasArrowUp,
@@ -94,6 +105,7 @@ import {
     faTimes as fasTimes,
     faTimesCircle as fasTimesCircle,
     faTrash as fasTrash,
+    faUpload as fasUpload,
     faUserCog as fasUserCog,
     faUserClock as fasUserClock,
     faUserLock as fasUserLock,
@@ -102,9 +114,8 @@ import {
     faUsersCog as fasUsersCog,
     faUsersCrown as fasUsersCrown,
 } from '@fortawesome/pro-solid-svg-icons'
-import {
-    FontAwesomeIcon
-} from '@fortawesome/vue-fontawesome'
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 faLibrary.add(
     // Brands
@@ -113,6 +124,7 @@ faLibrary.add(
     fabFacebook,
     fabPatreon,
     fabSafari,
+
     // Regular
     farAddressBook,
     farBalanceScale,
@@ -136,6 +148,7 @@ faLibrary.add(
     farUserCog,
     farUserPlus,
     farUserSecret,
+
     // Solid
     fasArrowDown,
     fasArrowUp,
@@ -169,6 +182,7 @@ faLibrary.add(
     fasTimes,
     fasTimesCircle,
     fasTrash,
+    fasUpload,
     fasUserCog,
     fasUserClock,
     fasUserLock,

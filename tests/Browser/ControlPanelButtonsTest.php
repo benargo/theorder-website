@@ -96,6 +96,17 @@ class ControlPanelButtonsTest extends DuskTestCase
         });
     }
 
+    public function testUploadBankDataButton()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($this->user)
+                    ->visit('/officers')
+                    ->assertSeeLink('Upload bank data')
+                    ->clickLink('Upload bank data')
+                    ->assertPathIs('/officers/guild-bank/upload');
+        });
+    }
+
     public function testManageApiClientsButton()
     {
         $this->browse(function (Browser $browser) {
