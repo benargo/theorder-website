@@ -50,8 +50,6 @@ class RolesRepository
         // Load the ranks from the database...
         $ranks = Rank::all();
 
-        dd($roles);
-
         $roles = Arr::where($this->roles, function ($value, $key) use ($ranks) {
             return ($value);
         });
